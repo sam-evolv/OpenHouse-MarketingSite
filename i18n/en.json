@@ -1,0 +1,194 @@
+{
+  "hero": {
+    "title": "The AI resident assistant for modern developments",
+    "subtitle": "Cut support requests, wow buyers, and give residents answers in seconds. One assistant that knows your development inside out.",
+    "cta_primary": "Book a demo",
+    "cta_secondary": "Watch 60-second overview"
+  },
+  "problem": {
+    "title": "The same questions, over and over",
+    "bullets": [
+      "Repetitive questions flooding your inbox",
+      "Documents scattered across emails and drives",
+      "Buyers need clarity before they commit"
+    ]
+  },
+  "solution": {
+    "title": "One assistant that knows everything",
+    "description": "OpenHouse AI centralises answers, documents, and local info into a single smart assistant that lives on web, QR and NFC."
+  },
+  "how_it_works": {
+    "title": "Launch in minutes, not months",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Upload docs and data",
+        "description": "Floorplans, brochures, specs—everything your buyers need."
+      },
+      {
+        "number": "02",
+        "title": "Brand it",
+        "description": "Match your development's look and feel."
+      },
+      {
+        "number": "03",
+        "title": "Launch via link, QR or NFC",
+        "description": "Track usage and refine your content."
+      }
+    ]
+  },
+  "features": {
+    "title": "Everything you need, nothing you don't",
+    "items": [
+      {
+        "title": "Smart Q&A",
+        "description": "Instant answers to common questions about your development."
+      },
+      {
+        "title": "Floorplans & specs",
+        "description": "Interactive 3D models and detailed specifications."
+      },
+      {
+        "title": "Local area guide",
+        "description": "Maps, transport links, and nearby amenities."
+      },
+      {
+        "title": "Announcements board",
+        "description": "Keep residents informed with timely updates."
+      },
+      {
+        "title": "Multi-language",
+        "description": "Serve international buyers in their language."
+      },
+      {
+        "title": "Admin analytics",
+        "description": "Track engagement and content performance."
+      },
+      {
+        "title": "Role-based access",
+        "description": "Different views for buyers, residents, and agents."
+      },
+      {
+        "title": "Secure hosting",
+        "description": "Enterprise-grade security and reliability."
+      }
+    ]
+  },
+  "audience": {
+    "title": "Built for everyone in the property ecosystem",
+    "developers": {
+      "title": "Developers",
+      "description": "Reduce support overhead, impress buyers, and close deals faster with 24/7 AI assistance."
+    },
+    "agents": {
+      "title": "Managing Agents",
+      "description": "Empower residents with instant answers and reduce repetitive inquiries."
+    },
+    "residents": {
+      "title": "Residents",
+      "description": "Get answers instantly—no waiting, no hassle."
+    }
+  },
+  "dashboard": {
+    "title": "Metrics you'll actually use",
+    "description": "Top questions, downloads, active users, and content health—all in one clean dashboard."
+  },
+  "security": {
+    "title": "Security you can trust",
+    "bullets": [
+      "Data isolation per development",
+      "PII redaction",
+      "Encryption at rest and in transit",
+      "EU hosting options"
+    ]
+  },
+  "pricing": {
+    "title": "Pricing that scales with you",
+    "toggle": {
+      "monthly": "Monthly",
+      "annual": "Annual"
+    },
+    "tiers": [
+      {
+        "name": "Starter",
+        "price_monthly": "299",
+        "price_annual": "2990",
+        "description": "Perfect for single developments",
+        "features": [
+          "1 development",
+          "Up to 500 queries/month",
+          "Basic analytics",
+          "Email support"
+        ]
+      },
+      {
+        "name": "Growth",
+        "price_monthly": "799",
+        "price_annual": "7990",
+        "description": "For growing portfolios",
+        "features": [
+          "Up to 5 developments",
+          "Unlimited queries",
+          "Advanced analytics",
+          "Priority support",
+          "Custom branding"
+        ],
+        "popular": true
+      },
+      {
+        "name": "Enterprise",
+        "price_monthly": "Contact sales",
+        "price_annual": "Contact sales",
+        "description": "For large-scale operations",
+        "features": [
+          "Unlimited developments",
+          "White-label options",
+          "Dedicated account manager",
+          "Custom integrations",
+          "SLA guarantee"
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "Where is my data stored?",
+        "answer": "All data is stored in secure, enterprise-grade data centers. We offer EU hosting options for GDPR compliance."
+      },
+      {
+        "question": "How quickly can I launch?",
+        "answer": "Most clients launch within 48 hours. Upload your content, customize branding, and you're live."
+      },
+      {
+        "question": "Do you support multiple languages?",
+        "answer": "Yes, OpenHouse AI supports 50+ languages out of the box, with automatic translation capabilities."
+      },
+      {
+        "question": "Can I white-label the assistant?",
+        "answer": "Enterprise plans include full white-label options with custom domains and branding."
+      },
+      {
+        "question": "How do QR and NFC work?",
+        "answer": "We provide QR codes and NFC tags that link directly to your assistant. Perfect for show homes and marketing materials."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Made by EvolvAi",
+    "contact": "hello@openhouse.ai",
+    "product": {
+      "title": "Product",
+      "links": ["Features", "Solutions", "Pricing", "Case Studies"]
+    },
+    "resources": {
+      "title": "Resources",
+      "links": ["Documentation", "API", "Support", "Contact"]
+    },
+    "legal": {
+      "title": "Legal",
+      "links": ["Privacy Policy", "Terms of Service"]
+    }
+  }
+}
