@@ -60,8 +60,6 @@ export function RouteWipe({
       }
     : variants[variant];
 
-  const easing = [0.22, 1, 0.36, 1];
-
   return (
     <AnimatePresence mode="wait">
       {isTransitioning && (
@@ -73,7 +71,7 @@ export function RouteWipe({
           exit={animation.exit}
           transition={{
             duration,
-            ease: easing,
+            ease: [0.22, 1, 0.36, 1] as any,
           }}
         >
           <motion.div
