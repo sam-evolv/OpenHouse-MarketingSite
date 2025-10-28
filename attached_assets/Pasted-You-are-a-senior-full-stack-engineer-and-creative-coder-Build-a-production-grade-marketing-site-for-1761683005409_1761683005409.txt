@@ -1,0 +1,104 @@
+You are a senior full-stack engineer and creative coder. Build a production-grade marketing site for “OpenHouse AI” with cinematic 3D. Stack: Next.js 14 (App Router) + TypeScript + TailwindCSS + shadcn/ui + React Three Fiber (r3f) + drei + react-postprocessing + framer-motion. Deploy on Netlify. Provide accessibility, performance, and fallbacks.
+
+1) Project setup
+- Create Next.js 14 + TypeScript + App Router.
+- Add Tailwind and configure theme tokens:
+  -- colors: carbon #0A0A0A, porcelain #F7F7F5, gold #C8A75E, slate #151515, hint #9EA3AE
+  -- radius: 12
+- Install: @radix-ui/react-icons, lucide-react, framer-motion, @react-three/fiber, @react-three/drei, three, three-stdlib, react-postprocessing, lenis, zod.
+- Add shadcn/ui components: button, card, dialog, sheet, accordion, badge, tabs, tooltip, navigation-menu.
+- Fonts via next/font: Manrope for display, Inter for body.
+- Create .env.example with SITE_URL, NETLIFY_SITE_ID, NETLIFY_AUTH_TOKEN, ANALYTICS_ID.
+
+2) Routing and pages
+- Routes: / (home), /features, /solutions, /pricing, /case-studies, /docs, /contact, /privacy, /terms.
+- Generate sitemap and robots.
+- Add a NotFound page with helpful links.
+
+3) Global layout and nav
+- Sticky transparent nav that becomes solid on scroll. “Book a demo” CTA in gold.
+- Footer: product, resources, legal, contact hello@openhouse.ai and tiny “Made by EvolvAi”.
+
+4) Hero section with 3D
+- Implement <Hero3D /> using r3f with dynamic import to avoid SSR.
+- Canvas fills viewport height. Add:
+  -- SoftLights rig (ambient + directional key + rim)
+  -- GroundGrid (faint grid, gold accents at major lines)
+  -- AuroraBackground shader plane (GPU fragment shader with noise)
+  -- AssistantOrb mesh (custom shader material) as default focal point
+  -- Camera controls limited to gentle orbit, damped
+  -- Postprocessing with Bloom and Vignette
+- Provide Suspense fallback with poster image and “Play interactive” button.
+- Respect prefers-reduced-motion: auto-disable Canvas and show hero video/poster instead.
+
+5) Scroll storytelling
+- Create sections with framer-motion animations:
+  -- ProblemSolution
+  -- HowItWorks (3 steps)
+  -- FeatureGrid (8 features)
+  -- AudienceSlices (Developers, Managing Agents, Residents)
+  -- DashboardPreview (analytics mock)
+  -- PricingTable with toggle Monthly/Annual
+  -- SecurityStrip
+  -- FAQ
+- Use intersection observers for gentle fade-up on view.
+- Provide CTA bars after FeatureGrid and Pricing.
+
+6) 3D floorplan demo
+- Add /components/three/FloorplanViewer.tsx:
+  -- Loads /public/models/floorplan.glb and /public/models/site.glb if present.
+  -- OrbitControls, section cut toggle (clip planes), wireframe toggle, and a “Download PDF” button linking /public/floorplans/sample.pdf.
+  -- Fallback card if models not found.
+- Create a /demo page that mounts FloorplanViewer with clear instructions.
+
+7) Assets and placeholders
+- Add /public/logo.svg (gold wordmark), /public/og.jpg (1200x630), /public/hero-poster.jpg, /public/hero.mp4 (2s placeholder), /public/models/README.md on how to export .glb.
+- Create shaders:
+  -- /lib/shaders/aurora.ts with fragment shader generating subtle noise gradient.
+  -- /lib/shaders/orb.ts for the AI orb with breathing distortion and fresnel rim.
+
+8) Components to implement
+- ui/Container.tsx, SectionHeading.tsx, Stat.tsx, LogoCloud.tsx, VideoModal.tsx.
+- Navbar with NavigationMenu and mobile Sheet.
+- Cookie banner, basic analytics hook (placeholder to window.gtag if ANALYTICS_ID exists).
+
+9) Content
+- Use the exact homepage copy provided below. Keep labels translatable via a simple dictionary in /i18n/en.json.
+HOMEPAGE COPY:
+Title: The AI resident assistant for modern developments
+Subtitle: Cut support requests, wow buyers, and give residents answers in seconds. One assistant that knows your development inside out.
+Primary CTA: Book a demo
+Secondary CTA: Watch 60-second overview
+Problem bullets: Repetitive questions, scattered documents, buyers need clarity
+Solution sentence: OpenHouse AI centralises answers, documents, and local info into a single smart assistant that lives on web, QR and NFC.
+How it works steps: Upload docs and data, Brand it, Launch via link, QR or NFC and track usage
+Feature grid (8): Smart Q&A, Floorplans and specs, Local area guide with maps, Announcements board, Multi-language, Admin analytics, Role-based access, Secure hosting
+Audience slices: Developers, Managing Agents, Residents
+Dashboard blurb: Metrics you’ll actually use. Top questions, downloads, active users, and content health.
+Security bullets: Data isolation per development, PII redaction, Encryption at rest and in transit, EU hosting options
+FAQ list: data location, launch speed, multi-language, white-label, QR/NFC
+Pricing tiers: Starter, Growth, Enterprise with placeholders and “Contact sales”
+
+10) Performance and accessibility
+- Target LCP < 2.5s. Lazy load 3D. Provide <noscript> hero poster.
+- Use reduced-motion preference to disable heavy effects.
+- Keyboard focus for all dialogs and menus. Meaningful alt text.
+
+11) Netlify deploy
+- Add netlify.toml with Next adapter.
+- Add GitHub Actions workflow .github/workflows/deploy.yml for Netlify deploy on push to main using NETLIFY_SITE_ID and NETLIFY_AUTH_TOKEN.
+- Provide README.md with:
+  -- local dev
+  -- model export guide from Blender/Spline → glTF (.glb), poly budget, texture sizes (1K–2K), draco compression
+  -- environment and deployment steps
+  -- DNS instructions for openhouse.ai
+
+12) Deliver a clean, running site with no console errors. Show a working hero with 3D orb by default. The FloorplanViewer should render a placeholder grid if no models exist.
+
+Extra implementation notes:
+- Use dynamic(() => import('components/three/Hero3D'), { ssr: false }) for Canvas.
+- Set pixelRatio to Math.min(window.devicePixelRatio, 1.5).
+- Cap fps at 60 and adapt dpr on tab blur.
+- Provide a toggle in the UI to “Reduce effects” that disables Bloom.
+
+Finally, print a success checklist and the locations of key files.

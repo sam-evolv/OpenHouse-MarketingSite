@@ -1,0 +1,75 @@
+You are a senior creative coder. Build a flagship marketing site for “OpenHouse AI” that combines the kinetic energy of LandoNorris.com with the editorial restraint + 3D isometrics of thefoundation.house.
+
+STACK
+- Next.js 14 (App Router, TypeScript), TailwindCSS, shadcn/ui
+- Motion: framer-motion, Lenis (smooth scroll), split-type for line reveals
+- 3D: react-three-fiber, drei, @react-three/postprocessing, three-stdlib
+- Images: next/image; Fonts: Manrope (display), Inter (body) via next/font
+- Deploy: Netlify (netlify.toml + Next adapter), GitHub Actions CI
+
+THEME TOKENS
+- colors: carbon #0A0A0A, porcelain #F7F7F5, gold #C8A75E, slate #151515, hint #9EA3AE
+- radii: 12; shadow: xs/md/lg; container: 1200px; grid: 12 cols / 80–120px gutters
+- type scale: Display 112/96/72, H 56/40/28, Body 18/16, All-caps tracking on overlays
+
+ROUTES
+/ (home), /features, /solutions, /pricing, /case-studies, /docs, /demo, /contact, /privacy, /terms
++ sitemap, robots, 404
+
+GLOBAL
+- Sticky transparent nav → solid on scroll; gold “Book a demo”
+- Page transitions (framer-motion layoutId). Magnetic cursor w/ subtle scale on interactive elements.
+- Cookie banner; basic analytics hook (window.gtag if ANALYTICS_ID)
+
+HERO (Hero3D)
+- Full-viewport Canvas (dynamic import, ssr:false). 
+- Scene: AuroraBackground shader plane, GroundGrid (gold major lines), AssistantOrb (breathing fresnel shader), soft key/rim lights, Bloom+Vignette postfx.
+- Overlay: Split-line H1 and subhead (animated on mount), primary CTA (gold), secondary “Watch overview”.
+- Provide prefers-reduced-motion: no Canvas; show hero.mp4 poster + static gradient.
+
+SCROLL STORY
+- ProblemSolution: left editorial copy, right image mask-reveal on scroll.
+- HowItWorks (scroll-pinned 3 steps): camera moves across site.glb → unit.glb → analytics UI plane.
+- FeatureGrid: 8 cards; 4 use 3D isometric thumbnails (rendered in a tiny r3f canvas), 4 are glass cards.
+- DashboardPreview: live chart canvas + metric counters.
+- AudienceSlices: Developers / Managing Agents / Residents (mini stories).
+- PricingTable: Starter / Growth / Enterprise; toggle monthly/annual.
+- SecurityStrip + FAQ accordion; CTA bar.
+
+3D FLOORPLAN DEMO (/demo)
+- FloorplanViewer.tsx: load /public/models/{site.glb,floorplan.glb}; OrbitControls; clip planes toggle; wireframe toggle; “Download PDF” button to /public/floorplans/sample.pdf.
+- Fallback: placeholder grid + instructions if models absent.
+
+ASSETS & SHADERS
+- /public/logo.svg (gold wordmark), /public/og.jpg, /public/hero-poster.jpg, /public/hero.mp4 (2s placeholder)
+- /public/models/README.md (export guide: glTF+Draco, 1–2K KTX2 textures)
+- /lib/shaders/aurora.ts (noise gradient), /lib/shaders/orb.ts (breathing fresnel)
+
+COMPONENTS
+- ui: Button, Card, Dialog, Sheet, Tabs, Accordion, Tooltip, NavigationMenu (shadcn)
+- primitives: Container, SectionHeading, Stat, LogoCloud, VideoModal, Marquee
+- interactions: MagneticCursor, SplitLines (utility using SplitType)
+
+CONTENT (inject exact copy where indicated)
+H1: “The AI resident assistant for modern developments”
+Sub: “Cut support requests, wow buyers, and give residents answers in seconds. One assistant that knows your development inside out.”
+CTAs: “Book a demo” (primary), “Watch 60-second overview” (secondary)
+Problem bullets: Repetitive questions; scattered documents; buyers need clarity.
+Solution: “OpenHouse AI centralises answers, documents, and local info into a single smart assistant that lives on web, QR and NFC.”
+How it works: Upload docs and data → Brand it → Launch via link/QR/NFC and track usage
+Feature grid (8): Smart Q&A; Floorplans & specs; Local area guide; Announcements; Multi-language; Admin analytics; Role-based access; Secure hosting
+Audience: Developers; Managing Agents; Residents
+Security bullets: Data isolation; PII redaction; Encryption at rest/in transit; EU hosting options
+FAQ: data location; launch speed; multi-language; white-label; QR/NFC
+Pricing tiers: Starter / Growth / Enterprise with placeholder features and “Contact sales”
+
+PERFORMANCE & A11Y
+- LCP < 2.5s: lazy-load Canvas; DPR cap Math.min(devicePixelRatio,1.5); pause render on tab blur
+- Reduced-motion disables heavy effects; keyboard focus & aria labels everywhere; semantic landmarks
+
+DEPLOY
+- netlify.toml using Next adapter; .github/workflows/deploy.yml for Netlify on push to main (NETLIFY_SITE_ID, NETLIFY_AUTH_TOKEN)
+- README: local dev, asset pipeline (Blender/Spline→glTF), image rules, DNS for openhouse.ai
+
+DONE CRITERIA
+- No console errors; 60fps in hero on desktop; graceful fallback on mobile/low-power. Print locations of key files and a post-setup checklist.
