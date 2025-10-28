@@ -58,6 +58,10 @@
   }
   html {
     scroll-behavior: smooth;
+    overscroll-behavior: none;
+  }
+  body {
+    overscroll-behavior: none;
   }
 }
 
@@ -67,6 +71,9 @@
   }
   .glow-text {
     text-shadow: 0 0 20px rgba(200, 167, 94, 0.5);
+  }
+  .will-change-transform {
+    will-change: transform;
   }
 }
 

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { ScrollProvider } from "@/components/providers/ScrollProvider";
+import { TransitionOverlay } from "@/components/TransitionOverlay";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -62,9 +64,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
       <body className="font-sans">
-        <Navigation />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <ScrollProvider>
+          <TransitionOverlay />
+          <Navigation />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </ScrollProvider>
       </body>
     </html>
   );

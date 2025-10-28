@@ -1,0 +1,148 @@
+You are a senior front-end creative coder. Enhance the existing “OpenHouse AI” Next.js 14 + TypeScript + Tailwind + shadcn/ui + framer-motion + r3f site with:
+
+A) Route transition wipes inspired by high-end portfolio sites
+B) Foundation-style isometric gallery for case studies
+
+If the repo is missing, scaffold it per prior instructions, then apply these changes.
+
+INSTALL
+- npm i framer-motion lenis split-type @react-three/fiber @react-three/drei three @react-three/postprocessing zustand
+
+FOLDERS
+- src/components/transitions
+- src/components/effects
+- src/components/iso
+- src/sections/Gallery
+- src/data
+
+A) PAGE TRANSITION WIPES
+1) Create src/components/transitions/RouteWipe.tsx (Client component)
+   - Export <RouteWipe> that listens to route changes (usePathname from next/navigation).
+   - Use framer-motion + AnimatePresence to render a fixed overlay that wipes in on navigation start and wipes out after new page mounts.
+   - Implement 3 variants: 'left', 'up', 'radial'.
+     * left: motion.div covers from left→right with ease [0.22,1,0.36,1].
+     * up: bottom→top.
+     * radial: scale from 0.8→1.1 with a circular clip-path.
+   - Overlay styling: gold gradient (#C8A75E → #9B8446) on carbon (#0A0A0A) base.
+   - Optionally display the next page <h1> text as a masked split-line inside the wipe for a premium handoff.
+   - Props: color, variant='left', duration=0.7.
+
+2) Create src/components/transitions/ProgressBar.tsx
+   - Fixed 2px bar at top that expands to 100% during route transition, then collapses.
+   - Re-use framer-motion controls triggered by the same store as RouteWipe.
+
+3) Create a tiny store at src/components/transitions/useRouteFx.ts
+   - zustand store with { start(), done() } to sync RouteWipe and ProgressBar.
+
+4) Create src/components/effects/SplitText.tsx if not present
+   - Uses SplitType to wrap lines and animate on mount (y: 24→0, opacity 0→1, stagger 0.06).
+
+5) Wire into layout
+   - Edit src/app/layout.tsx
+     * Wrap <body>{children}</body> with:
+       <RouteWipe variant="left" />
+       <ProgressBar />
+       {children}
+     * Ensure it is a Client Layout wrapper if needed (create src/app/client-layout.tsx).
+     * Use useEffect to hook into next/navigation events and call store.start() on link click, store.done() on route settled.
+
+B) FOUNDATION-STYLE ISOMETRIC GALLERY
+Goal: fast, crisp iso cards with CSS transforms. Optional R3F iso canvas for 3D thumbs.
+
+6) Data source
+   - Create src/data/caseStudies.ts
+     export type CaseItem = {
+       id: string
+       title: string
+       subtitle?: string
+       thumb: string   // /images/cases/xxx.jpg
+       href: string
+       tags?: string[]
+     }
+     export const CASE_STUDIES: CaseItem[] = [
+       { id:'seaview', title:'Seaview Assistant', subtitle:'Resident portal', thumb:'/images/cases/seaview.jpg', href:'/case-studies/seaview', tags:['RAG','QR/NFC','Maps'] },
+       { id:'longview', title:'Longview', subtitle:'Sales enablement', thumb:'/images/cases/longview.jpg', href:'/case-studies/longview', tags:['Docs','Floorplans'] },
+       // add 6–12 items with placeholder thumbs
+     ]
+
+7) CSS iso primitives
+   - Add to globals.css:
+     .iso-scene { transform-style: preserve-3d; perspective: 1200px; }
+     .iso { transform: rotateX(55deg) rotateZ(45deg); transform-style: preserve-3d; }
+     .iso-card { transform: translateZ(0px); transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s; }
+     .iso-card[data-elevate="true"]:hover { transform: translateZ(12px) rotateZ(-1deg); box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+
+8) Iso components
+   - Create src/components/iso/IsoCard.tsx
+     * Props: item: CaseItem, elevate=true
+     * Structure:
+       <div className="iso-scene">
+         <div className="iso">
+           <a href={item.href} className="block iso-card" data-elevate={elevate}>
+             <div className="rounded-2xl overflow-hidden bg-[#151515]">
+               <Image src={item.thumb} alt={item.title} width={960} height={720} className="block w-full h-auto" />
+             </div>
+             <div className="mt-3 flex items-center justify-between">
+               <div>
+                 <h3 className="text-porcelain text-lg">{item.title}</h3>
+                 {item.subtitle && <p className="text-hint text-sm">{item.subtitle}</p>}
+               </div>
+               <div className="flex gap-1">{/* tiny badges from tags */}</div>
+             </div>
+           </a>
+         </div>
+       </div>
+
+   - Create src/components/iso/IsoGrid.tsx
+     * Props: items: CaseItem[]
+     * Layout: responsive grid (auto-fit, minmax 260px)
+     * Every 3rd card has slight rotation or z-elevation for rhythm.
+     * On reduced motion, remove iso transforms and show flat cards.
+
+9) Optional R3F iso thumbs
+   - Create src/components/iso/IsoThumbCanvas.tsx (dynamic import, ssr:false)
+     * OrthographicCamera with isometric angle (position [8,10,8], lookAt 0,0,0).
+     * Single Box or Plane with image texture (thumb) via drei’s useTexture.
+     * On hover, lift 0→0.12 and rotate 0→-0.06 rad.
+     * Fallback to static Image if WebGL not available or reduced motion.
+
+10) Gallery section
+   - Create src/sections/Gallery/IsoGallerySection.tsx
+     * Imports CASE_STUDIES and renders a headline:
+       <SplitText as="h2">Case studies</SplitText>
+     * Renders <IsoGrid items={CASE_STUDIES} />
+     * CTA bar below - “See all case studies”
+     * Add small helper text: “Isometric view - drag to scroll on touch” (no actual drag, just guidance)
+
+11) Route and page
+   - Add /case-studies page at src/app/case-studies/page.tsx
+     * Uses IsoGallerySection as main content.
+     * SEO: title “Case studies - OpenHouse AI”.
+
+12) Home integration
+   - Edit src/app/page.tsx
+     * Insert IsoGallerySection after FeatureGrid or before Pricing.
+     * Wrap H1/H2 with SplitText for editorial handoff.
+
+C) ACCESSIBILITY AND REDUCED MOTION
+13) Reduced motion
+   - Respect prefers-reduced-motion: remove iso transforms, disable RouteWipe animation, skip Canvas thumbs.
+   - Provide flat fade transitions instead.
+
+14) Keyboard focus
+   - Ensure all links and cards have focus ring and an aria-label with project title.
+
+D) PERFORMANCE
+15) Lazy load heavy parts
+   - dynamic(() => import('@/components/iso/IsoThumbCanvas'), { ssr:false }) for thumbs
+   - Preload case thumbs with priority on first row only.
+   - Set DPR cap in any Canvas: Math.min(devicePixelRatio, 1.5)
+
+E) DESIGN POLISH
+16) Use gold gradients subtly in RouteWipe and small badge strokes.
+17) Add a micro ripple on CTA click (scale 0.98 → 1).
+18) Ensure no console errors, type all new files, add minimal unit tests for the zustand store.
+
+OUTPUT
+- Print a summary of all created/modified files with short usage notes.
+- Run typecheck and build to confirm no errors.

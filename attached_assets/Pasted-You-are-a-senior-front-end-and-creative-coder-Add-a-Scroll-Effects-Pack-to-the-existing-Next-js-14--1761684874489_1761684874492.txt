@@ -1,0 +1,109 @@
+You are a senior front-end and creative coder. Add a Scroll Effects Pack to the existing Next.js 14 + TypeScript + Tailwind + shadcn/ui + framer-motion + r3f site for “OpenHouse AI”. If the repo is missing, scaffold it first, then apply these changes.
+
+INSTALL
+- npm i lenis split-type @react-three/drei @react-three/postprocessing framer-motion three
+- Confirm framer-motion and r3f exist. If not, install @react-three/fiber too.
+
+GLOBAL SETUP
+1) Create src/lib/scroll/lenis.ts
+   - Export a singleton Lenis instance with RAF loop.
+   - Expose start(), stop(), destroy(), onScroll(cb).
+2) Create src/components/providers/ScrollProvider.tsx
+   - Hook Lenis into requestAnimationFrame.
+   - Respect prefers-reduced-motion: if reduced, do not init Lenis.
+   - Wrap app in this provider in src/app/layout.tsx.
+3) Update globals.css
+   - html, body { overscroll-behavior: none; }
+   - .will-change-transform { will-change: transform; }
+
+PAGE TRANSITIONS
+4) Add src/components/TransitionOverlay.tsx
+   - framer-motion black overlay that wipes in and out on route change.
+   - Hook into next/navigation events in layout to animate between pages.
+
+SPLIT HEADLINES + REVEALS
+5) Create src/components/effects/SplitText.tsx
+   - Uses SplitType on mount to wrap lines in spans, animate each line with framer-motion.
+   - Accept props: as="h1|h2", stagger=0.06, delay=0.1.
+6) Create src/components/effects/Reveal.tsx
+   - IntersectionObserver powered fade-up with y=24, opacity 0→1, once: true, stagger children.
+
+IMAGE MASK REVEALS
+7) Create src/components/effects/MaskImage.tsx
+   - Wrapper around next/image with CSS clip-path mask that animates from 0 to 100 percent on in-view.
+
+PARALLAX
+8) Create src/components/effects/Parallax.tsx
+   - Accept strength, start, end. On scroll, translateY based on viewport progress.
+
+MAGNETIC CURSOR
+9) Create src/components/interactive/Magnetic.tsx
+   - On mouse move, lerp element toward pointer within 12 px radius. Use transform and requestAnimationFrame.
+   - Wrap primary CTAs and nav links.
+
+SCROLL-PINNED STORY
+10) Add src/sections/HowItWorks/HowItWorksPinned.tsx
+    - Use a sticky container: 200vh height, inner sticky top-0.
+    - Three panels: Upload, Brand, Launch. As user scrolls, animate text and a progress line with framer-motion useScroll and useTransform.
+
+COUNTERS
+11) Add src/components/effects/CountUp.tsx
+    - IntersectionObserver triggers a tween from 0 to target over 1.2s, easing outQuad.
+
+R3F SYNCED MOTION
+12) Update src/components/three/Hero3D.tsx
+    - Add a timeline based on scroll progress using drei’s useScroll or framer useScroll + state store.
+    - Map 0→1 scroll to camera position and AssistantOrb shader intensity.
+    - Provide a prop reducedEffects to disable postprocessing if reduced motion is set.
+13) Create src/sections/DashboardPreview/CanvasHUD.tsx
+    - Small r3f canvas with isometric tiles. On in-view, play a short timeline: tiles rise 0→12px, subtle rotation, bloom pulse.
+
+HOOKS
+14) Create src/hooks/useInViewOnce.ts
+    - Thin wrapper over IntersectionObserver that returns boolean once true.
+
+HOME INTEGRATION
+15) Edit src/app/page.tsx
+    - Wrap page with <ScrollProvider>.
+    - Hero:
+       * Replace H1 with <SplitText as="h1">The AI resident assistant for modern developments</SplitText>
+       * Apply <Magnetic> to “Book a demo”.
+    - ProblemSolution section:
+       * Left column uses <Reveal> for each bullet.
+       * Right column uses <MaskImage src="/images/problem.jpg" />
+    - HowItWorks:
+       * Replace existing with HowItWorksPinned.
+    - FeatureGrid:
+       * Stagger cards with <Reveal> and slight parallax on icons.
+    - DashboardPreview:
+       * Add <CanvasHUD /> and CountUp metrics.
+    - CTA bars:
+       * Add Magnetic wrapper to buttons.
+
+ACCESSIBILITY + REDUCED MOTION
+16) Respect reduced motion everywhere:
+    - In ScrollProvider, skip Lenis if reduced.
+    - In Hero3D and CanvasHUD, disable postprocessing and heavy animations if reduced.
+    - All animations use prefersReducedMotion from framer-motion where possible.
+
+PERFORMANCE
+17) Use motion.div layout animations sparingly, set will-change on animated elements.
+18) Lazy import heavy components:
+    - dynamic(() => import('../components/three/Hero3D'), { ssr: false, loading: () => <HeroPoster /> })
+    - dynamic(() => import('../sections/DashboardPreview/CanvasHUD'), { ssr: false })
+19) In Hero3D, set gl.pixelRatio = Math.min(window.devicePixelRatio, 1.5) and pause render on tab blur.
+
+DESIGN DETAILS
+20) Animation values:
+    - Fade-ups: duration 0.6, ease [0.22, 1, 0.36, 1], stagger 0.06.
+    - Line splits: duration 0.7 per line, y from 24 to 0, opacity 0 to 1.
+    - MaskImage: clip-path inset(0 0 100% 0) to inset(0 0 0 0) over 0.9s.
+    - Magnetic: lerp 0.18, max offset 10–12 px.
+    - Counters: ease outQuad, decimals optional.
+
+DEV NOTES
+21) Add storybook or simple /sandbox route demonstrating each effect.
+22) Ensure no console errors. Type all new files. Add minimal tests for hooks.
+
+OUTPUT
+- Print a summary with created files, and quick usage examples for SplitText, Reveal, MaskImage, Parallax, Magnetic, CountUp, HowItWorksPinned, Hero3D timeline controls.

@@ -1,17 +1,33 @@
 "use client";
 
 import { Suspense, useEffect, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import { AuroraBackground } from "./AuroraBackground";
 import { GroundGrid } from "./GroundGrid";
 import { AssistantOrb } from "./AssistantOrb";
+import * as THREE from "three";
 
-function Scene({ reduceEffects }: { reduceEffects: boolean }) {
+function ScrollSyncedCamera({ scrollProgress }: { scrollProgress: number }) {
+  const { camera } = useThree();
+
+  useFrame(() => {
+    const targetZ = 8 - scrollProgress * 3;
+    const targetY = 2 + scrollProgress * 1.5;
+    
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, 0.05);
+    camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetY, 0.05);
+  });
+
+  return null;
+}
+
+function Scene({ reduceEffects, scrollProgress }: { reduceEffects: boolean; scrollProgress: number }) {
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 2, 8]} fov={50} />
+      <ScrollSyncedCamera scrollProgress={scrollProgress} />
       <OrbitControls
         enableZoom={false}
         enablePan={false}
@@ -67,6 +83,7 @@ function Loader() {
 export function Hero3D() {
   const [reduceEffects, setReduceEffects] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const canvasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -82,6 +99,18 @@ export function Hero3D() {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const maxScroll = 800;
+      const progress = Math.min(scrolled / maxScroll, 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   if (prefersReducedMotion) {
     return null; // Parent will show fallback
   }
@@ -95,7 +124,7 @@ export function Hero3D() {
         frameloop="always"
       >
         <Suspense fallback={null}>
-          <Scene reduceEffects={reduceEffects} />
+          <Scene reduceEffects={reduceEffects} scrollProgress={scrollProgress} />
         </Suspense>
       </Canvas>
       
