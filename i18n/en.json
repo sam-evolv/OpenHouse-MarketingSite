@@ -15,7 +15,14 @@
   },
   "solution": {
     "title": "One assistant that knows everything",
-    "description": "OpenHouse AI centralises answers, documents, and local info into a single smart assistant that lives on web, QR and NFC."
+    "description": "OpenHouse AI centralises answers, documents, and local info into a single smart assistant that lives on web, QR and NFC.",
+    "benefits_title": "How OpenHouse Helps",
+    "benefits": [
+      "24/7 instant answers",
+      "Centralized knowledge base",
+      "Reduced support load",
+      "Better buyer experience"
+    ]
   },
   "how_it_works": {
     "title": "Launch in minutes, not months",

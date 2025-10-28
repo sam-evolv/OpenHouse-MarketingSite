@@ -4,27 +4,9 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { Upload, Palette, Rocket } from "lucide-react";
+import content from "@/i18n/en.json";
 
-const steps = [
-  {
-    icon: Upload,
-    title: "Upload Your Data",
-    description:
-      "Import floorplans, amenities, and property details in seconds. Our AI instantly learns your development.",
-  },
-  {
-    icon: Palette,
-    title: "Brand & Configure",
-    description:
-      "Customize the assistant's voice, appearance, and knowledge base to match your brand identity.",
-  },
-  {
-    icon: Rocket,
-    title: "Launch & Scale",
-    description:
-      "Go live with a single click. Your AI assistant is ready to serve thousands of residents 24/7.",
-  },
-];
+const stepIcons = [Upload, Palette, Rocket];
 
 export function HowItWorksPinned() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,13 +33,13 @@ export function HowItWorksPinned() {
                   How It Works
                 </span>
                 <h2 className="text-display-sm font-bold text-porcelain mb-6">
-                  Three steps to transform resident experience
+                  {content.how_it_works.title}
                 </h2>
               </motion.div>
 
               <div className="space-y-8 mt-12">
-                {steps.map((step, index) => {
-                  const Icon = step.icon;
+                {content.how_it_works.steps.map((step, index) => {
+                  const Icon = stepIcons[index];
                   const opacity = useTransform(
                     currentStep,
                     [index - 0.5, index, index + 0.5],

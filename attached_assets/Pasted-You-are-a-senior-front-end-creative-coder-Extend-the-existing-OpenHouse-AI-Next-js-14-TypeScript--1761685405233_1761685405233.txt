@@ -1,0 +1,101 @@
+You are a senior front-end creative coder. Extend the existing OpenHouse AI Next.js 14 + TypeScript + Tailwind + shadcn/ui + framer-motion + r3f project with:
+
+A) A high quality GPU-efficient cursor glow trail that follows the pointer with additive gradients, pressure, and decay
+B) A hero headline mask scroll that reveals the headline with a moving gradient based on scroll position and line splits
+C) Clean fallbacks for reduced motion and touch devices
+
+No new heavy deps. Use framer-motion already in the app. If missing, install it.
+
+FILES AND FOLDERS
+- src/components/fx/CursorGlow.tsx
+- src/components/fx/HeadlineMaskScroll.tsx
+- src/hooks/usePrefersReducedMotion.ts
+- src/styles/cursor.css (import in globals.css)
+- Integrations in src/app/layout.tsx and src/app/page.tsx (Hero)
+
+A) CURSOR GLOW TRAIL
+Create src/components/fx/CursorGlow.tsx as a Client component:
+- Render a fixed <canvas> covering the viewport with pointer-events:none, z-index above content but below nav and dialogs.
+- Scale canvas for DPR: const DPR = Math.min(window.devicePixelRatio || 1, 1.75)
+- Draw technique: 2D Canvas with additive composite
+  ctx.globalCompositeOperation = 'lighter'
+  On each RAF, fade the frame with a low alpha fill (alpha 0.08) to create decay, then draw several soft circles following a smoothed pointer path
+- Maintain a small ring buffer of last 24 points: {x, y, v} where v is pointer velocity magnitude (0..1)
+- Radius maps to velocity: r = lerp(10, 38, v)
+- Color stops: inner rgba(200,167,94,0.35), mid rgba(200,167,94,0.18), outer rgba(200,167,94,0.06)
+- Use Kahan summation for motion smoothing: current = current + (target - current) * 0.18
+- Pause drawing on window blur and when document.hidden
+- Handle resize with debounced handler, reinit canvas size
+- Touch devices: disable by default unless a prop enableTouch is true
+- Reduced motion: do not mount canvas
+- Export <CursorGlow reducedMotion?: boolean />
+
+Create src/styles/cursor.css and import in globals.css:
+  .oh-cursor-canvas {
+    position: fixed; inset: 0; pointer-events: none; z-index: 30;
+    mix-blend-mode: screen; /* enhances the additive look over dark bg */
+    opacity: .9;
+  }
+  @media (max-width: 768px) { .oh-cursor-canvas { opacity: .5 } }
+
+B) HEADLINE MASK SCROLL
+Create src/components/fx/HeadlineMaskScroll.tsx as a Client component:
+- Props: text: string, sub?: string
+- Use SplitType or a simple splitter to wrap each line in a span
+- Structure:
+  <div className="relative overflow-hidden">
+    <h1 className="oh-mask-headline ...">{lines}</h1>
+    {sub && <p className="mt-4 text-hint">{sub}</p>}
+  </div>
+- Mask technique: CSS mask-image gradient tied to scroll progress
+  Use framer-motion useScroll with target ref on the wrapper and useTransform to map progress 0..1 to mask position in px
+  Apply style={{ WebkitMaskImage: `linear-gradient(180deg, transparent ${start}px, black ${end}px)` }}
+  where start/end are transforms derived from progress for a soft sweep downward
+- Animate each line y:24→0, opacity 0→1 with small stagger 0.06 on mount
+- Reduced motion: skip mask, only fade-in
+- Expose an optional prop sweep="vertical|horizontal" to switch between vertical sweep and left→right sweep
+
+Add CSS in globals.css:
+  .oh-mask-headline {
+    letter-spacing: -0.02em;
+    line-height: .95;
+  }
+
+C) HOOK
+Create src/hooks/usePrefersReducedMotion.ts:
+  export function usePrefersReducedMotion() {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  }
+
+D) INTEGRATION
+Edit src/app/layout.tsx:
+- Import CursorGlow and usePrefersReducedMotion
+- Inside <body> after route transition components, mount:
+  { !usePrefersReducedMotion() && <CursorGlow /> }
+- Ensure z-index of wipes sits above or below the canvas as desired. If your RouteWipe is z-index 40, set CursorGlow to 30 so wipes win.
+
+Edit src/app/page.tsx (hero area):
+- Replace the top H1 and sub with:
+  <HeadlineMaskScroll
+    text="The AI resident assistant for modern developments"
+    sub="Cut support requests, wow buyers, and give residents answers in seconds. One assistant that knows your development inside out."
+  />
+- Keep your SplitText only if you prefer line splits there. If both are present, use HeadlineMaskScroll for the visual mask and turn off SplitText.
+
+E) PERFORMANCE AND SAFETY
+- CursorGlow uses RAF loop only when pointer is inside viewport and not reduced motion. Throttle pointer events to rAF.
+- Cap DPR at 1.75 and clear with ctx.fillStyle = 'rgba(0,0,0,0.08)' on each frame for decay. On light sections, reduce decay fill to 0.04 and invert composite to 'source-over' if needed. Expose a prop theme="dark|light" and default to dark.
+- Make sure canvas is not focusable and does not trap scroll. No console warnings.
+
+F) TEST HOOKS
+- Add a simple route /sandbox/fx to toggle the glow, DPR, and sweep via UI controls for QA.
+
+G) TYPESCRIPT
+- Type all components and hooks. No any. Use React.MutableRefObject<HTMLCanvasElement | null> etc.
+
+H) OUTPUT
+- Print a summary of new files, and short usage snippets for:
+  <CursorGlow />
+  <HeadlineMaskScroll text="..." sub="..." sweep="horizontal" />
+- Run typecheck and build.

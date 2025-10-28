@@ -10,18 +10,7 @@ import content from "@/i18n/en.json";
 const Hero3D = dynamic(() => import("@/components/three/Hero3D").then((mod) => ({ default: mod.Hero3D })), {
   ssr: false,
   loading: () => (
-    <div className="absolute inset-0 bg-carbon">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/hero-poster.jpg"
-        className="w-full h-full object-cover opacity-50"
-      >
-        <source src="/hero.mp4" type="video/mp4" />
-      </video>
-    </div>
+    <div className="absolute inset-0 bg-gradient-to-b from-carbon via-slate to-carbon animate-pulse" />
   ),
 });
 

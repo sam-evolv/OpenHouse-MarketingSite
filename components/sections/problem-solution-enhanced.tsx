@@ -40,12 +40,12 @@ export function ProblemSolutionEnhanced() {
           <div>
             <Reveal>
               <h3 className="text-heading-lg font-bold text-porcelain mb-8">
-                How OpenHouse Helps
+                {content.solution.benefits_title}
               </h3>
             </Reveal>
 
             <Reveal stagger staggerDelay={0.1} className="space-y-4">
-              {["24/7 instant answers", "Centralized knowledge base", "Reduced support load", "Better buyer experience"].map((bullet: string, index: number) => (
+              {content.solution.benefits.map((bullet: string, index: number) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
                     <Check className="w-4 h-4 text-gold" />
@@ -59,7 +59,7 @@ export function ProblemSolutionEnhanced() {
 
         <div className="mt-16">
           <MaskImage
-            src="/images/dashboard.jpg"
+            src="/images/dashboard.svg"
             alt="OpenHouse AI Dashboard"
             width={1200}
             height={675}
