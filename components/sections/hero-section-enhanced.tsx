@@ -44,20 +44,20 @@ export function HeroSectionEnhanced() {
 
         <Reveal delay={0.8}>
           <p className="text-heading-md text-hint max-w-3xl mx-auto mb-8">
-            {content.hero.description}
+            {content.hero.subtitle}
           </p>
         </Reveal>
 
         <Reveal delay={1.2}>
           <div className="flex gap-4 justify-center">
             <Magnetic>
-              <Button size="lg" className="bg-gold hover:bg-gold/90 text-carbon font-semibold">
-                {content.hero.cta.primary}
+              <Button size="lg" className="bg-gold hover:bg-gold/90 text-carbon font-semibold" asChild>
+                <a href="/contact">{content.hero.cta_primary}</a>
               </Button>
             </Magnetic>
             <Magnetic>
               <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold/10">
-                {content.hero.cta.secondary}
+                {content.hero.cta_secondary}
               </Button>
             </Magnetic>
           </div>

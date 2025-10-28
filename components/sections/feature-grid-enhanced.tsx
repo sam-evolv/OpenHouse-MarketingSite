@@ -6,9 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Reveal } from "../effects/Reveal";
 import { Parallax } from "../effects/Parallax";
 import content from "@/i18n/en.json";
-import { MessageSquare, Zap, BarChart3, Lock } from "lucide-react";
+import { MessageSquare, Map, Bell, Globe, BarChart3, Shield, Lock, Server } from "lucide-react";
 
-const icons = [MessageSquare, Zap, BarChart3, Lock];
+const icons = [MessageSquare, Map, Map, Bell, Globe, BarChart3, Shield, Lock];
 
 export function FeatureGridEnhanced() {
   return (
@@ -16,7 +16,6 @@ export function FeatureGridEnhanced() {
       <Container>
         <SectionHeading
           title={content.features.title}
-          description={content.features.description}
           badge="Features"
         />
 
