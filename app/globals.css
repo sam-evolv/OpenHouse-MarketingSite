@@ -75,6 +75,42 @@
   .will-change-transform {
     will-change: transform;
   }
+  
+  /* Isometric primitives */
+  .iso-scene {
+    transform-style: preserve-3d;
+    perspective: 1200px;
+  }
+  
+  .iso {
+    transform: rotateX(55deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+  }
+  
+  .iso-card {
+    transform: translateZ(0px);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .iso-card[data-elevate="true"]:hover {
+    transform: translateZ(12px) rotateZ(-1deg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+  
+  .iso-card:focus-visible {
+    outline: 2px solid rgba(200, 167, 94, 0.8);
+    outline-offset: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iso-scene,
+  .iso,
+  .iso-card {
+    transform: none !important;
+    perspective: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
