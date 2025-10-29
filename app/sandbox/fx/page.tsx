@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { CursorGlow } from "@/components/fx/CursorGlow";
 import { HeadlineMaskScroll } from "@/components/fx/HeadlineMaskScroll";
 import { Button } from "@/components/ui/button";
 
@@ -12,7 +11,6 @@ export default function FXSandbox() {
 
   return (
     <div className="min-h-screen bg-carbon text-porcelain p-8">
-      {glowEnabled && <CursorGlow theme={theme} />}
 
       <div className="max-w-4xl mx-auto space-y-12">
         <h1 className="text-4xl font-bold text-gold mb-8">
