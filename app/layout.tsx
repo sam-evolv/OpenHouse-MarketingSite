@@ -7,6 +7,7 @@ import { TransitionOverlay } from "@/components/TransitionOverlay";
 import { RouteWipe } from "@/components/transitions/RouteWipe";
 import { ProgressBar } from "@/components/transitions/ProgressBar";
 import { RouteTransitionHandler } from "@/components/transitions/RouteTransitionHandler";
+import { ClientCursorGlow } from "@/components/fx/ClientCursorGlow";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -72,6 +73,7 @@ export default function RootLayout({
           <RouteWipe variant="left" />
           <ProgressBar />
           <TransitionOverlay />
+          <ClientCursorGlow />
           <Navigation />
           <main className="min-h-screen">{children}</main>
           <Footer />

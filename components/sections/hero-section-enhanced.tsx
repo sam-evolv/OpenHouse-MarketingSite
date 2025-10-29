@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
-import { SplitText } from "@/components/effects/SplitText";
+import { HeadlineMaskScroll } from "@/components/fx/HeadlineMaskScroll";
 import { Magnetic } from "@/components/interactive/Magnetic";
 import { Reveal } from "@/components/effects/Reveal";
 import content from "@/i18n/en.json";
@@ -22,20 +22,11 @@ export function HeroSectionEnhanced() {
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        <SplitText
-          as="h1"
-          className="text-display-lg font-bold mb-6 text-porcelain"
-          stagger={0.08}
-          delay={0.2}
-        >
-          {content.hero.title}
-        </SplitText>
-
-        <Reveal delay={0.8}>
-          <p className="text-heading-md text-hint max-w-3xl mx-auto mb-8">
-            {content.hero.subtitle}
-          </p>
-        </Reveal>
+        <HeadlineMaskScroll
+          text={content.hero.title}
+          sub={content.hero.subtitle}
+          className="mb-8"
+        />
 
         <Reveal delay={1.2}>
           <div className="flex gap-4 justify-center">

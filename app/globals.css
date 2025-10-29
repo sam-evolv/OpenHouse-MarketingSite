@@ -1,3 +1,5 @@
+@import '../styles/cursor.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -101,6 +103,11 @@
   .iso-card:focus-visible {
     outline: 2px solid rgba(200, 167, 94, 0.8);
     outline-offset: 4px;
+  }
+  
+  .oh-mask-headline {
+    letter-spacing: -0.02em;
+    line-height: 0.95;
   }
 }
 
