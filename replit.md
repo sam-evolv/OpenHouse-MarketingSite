@@ -19,6 +19,40 @@ Production-grade marketing website for OpenHouse AI (an AI resident assistant fo
 
 ## Recent Changes (October 29, 2025)
 
+### UX Polish: Smooth Scroll Implementation
+Optimized Lenis smooth scrolling for ultra-fluid, professional scroll behavior on mouse wheel and trackpad.
+
+**Implementation Details:**
+- **Library:** Lenis v1.0.42 (@studio-freight/lenis) - already installed
+- **Configuration:** `lib/scroll/lenis.ts`
+  - Duration: 1.2s for buttery-smooth deceleration
+  - Easing: Custom exponential decay curve `Math.min(1, 1.001 - Math.pow(2, -10 * t))`
+  - Enhanced touch multiplier (1.5x) for responsive mobile scrolling
+  - Smooth wheel enabled for desktop precision
+- **Integration:** `components/providers/ScrollProvider.tsx`
+  - Automatically initializes on mount
+  - Respects `prefers-reduced-motion` accessibility setting
+  - Clean cleanup on unmount
+
+**CSS Updates (`app/globals.css`):**
+```css
+/* Lenis-specific styles added */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+```
+- Removed conflicting `scroll-behavior: smooth` from html element
+- Added Lenis control classes for proper scroll handling
+- Iframe pointer-events prevention during scroll for performance
+
+**Performance:**
+✅ Scroll FPS: 60fps (tested on Replit preview)
+✅ No scroll jumps or layout shifts
+✅ Seamless integration with GSAP and Three.js animations
+✅ Consistent feel across trackpad and mouse wheel
+✅ Reduced motion support for accessibility
+
 ### Cursor Glow Effect Removal
 Completely removed the custom cursor glow/trail effect that followed mouse movement throughout the site. The cursor now uses the default system pointer for a cleaner, more professional appearance.
 

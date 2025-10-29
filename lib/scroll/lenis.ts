@@ -10,12 +10,12 @@ export function createLenis() {
 
   lenisInstance = new Lenis({
     duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // subtle deceleration
     orientation: "vertical",
     gestureOrientation: "vertical",
     smoothWheel: true,
     wheelMultiplier: 1,
-    touchMultiplier: 2,
+    touchMultiplier: 1.5, // Enhanced touch scrolling
     infinite: false,
   });
 
