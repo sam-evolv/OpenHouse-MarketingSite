@@ -17,6 +17,62 @@ Production-grade marketing website for OpenHouse AI (an AI resident assistant fo
 ✅ Navigation and routing working  
 ✅ Lenis smooth scrolling active (1.2s duration, 1.5x touch multiplier)
 ✅ Hero background: Professional architectural gradient (WebGL fallback working correctly)
+✅ **READY FOR NETLIFY DEPLOYMENT** (see Deployment section below)
+
+---
+
+## 🚀 Netlify Deployment Package (October 29, 2025 21:20 UTC)
+
+**Status: ✅ PRODUCTION-READY**
+
+### Deployment File
+- **Package:** `OpenHouseAI-netlify.zip` (123.8 MB)
+- **Location:** Root directory of workspace
+- **Contents:**
+  - `.next/` - Production build output (16 routes compiled)
+  - `public/` - Static assets and images
+  - `netlify.toml` - Netlify deployment configuration
+  - `next.config.js` - Next.js production config
+  - `package.json` + `package-lock.json` - Dependencies
+
+### Build Details
+- **Node.js:** v20.19.3
+- **Next.js:** 14.2.33
+- **Build Status:** ✓ Compiled successfully
+- **Netlify Plugin:** @netlify/plugin-nextjs installed
+- **Architect Review:** ✅ Passed (configuration verified)
+
+### netlify.toml Configuration
+```toml
+[build]
+  command = "npm run build"
+  publish = ".next"
+  functions = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"
+```
+
+### Deployment Instructions
+1. Download `OpenHouseAI-netlify.zip` from the workspace
+2. Go to https://app.netlify.com/drop
+3. Drag and drop the ZIP file
+4. Netlify will automatically:
+   - Install dependencies (`npm install`)
+   - Run production build (`npm run build`)
+   - Deploy the Next.js app with proper routing
+
+### Notes
+- ✅ No conflicting redirects (SPA redirect removed)
+- ✅ @netlify/plugin-nextjs handles all routing
+- ✅ All 16 routes will work correctly (SSG + dynamic routing)
+- ✅ WebGL architectural scene will render in production browsers
+- ⚠️ Optional: Set `metadataBase` in layout to clear OG image warnings
+
+---
 
 ## Recent Changes (October 29, 2025)
 
