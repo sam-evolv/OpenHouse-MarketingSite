@@ -13,9 +13,66 @@ Production-grade marketing website for OpenHouse AI (an AI resident assistant fo
 **Current State:**
 ✅ Fully functional and compiling successfully
 ✅ All TypeScript errors resolved
-✅ Dev server running on port 5000
-✅ Navigation and routing working
-✅ 3D components rendering
+✅ Dev server running on port 5000 (2,844 modules)
+✅ Navigation and routing working  
+✅ Lenis smooth scrolling active (1.2s duration, 1.5x touch multiplier)
+⚠️ Hero 3D scene: Black screen (canvas initialization issue - investigating)
+
+## Recent Changes (October 29, 2025)
+
+### Architectural 3D Scene Implementation (In Progress - Debugging)
+Attempting to replace the existing Hero3D background with a cinematic architectural R3F scene featuring abstract building forms with gold accents.
+
+**Implementation Status:**
+- ✅ Created `components/FX/ArchitecturalScene.tsx` with:
+  - Abstract building block geometries (central tower + wings)
+  - Gold emissive accent strips simulating windows
+  - Reflective black floor plane
+  - Moving warm key light (#F5C66B) simulating sunlight
+  - Atmospheric lighting setup
+  - Bloom post-processing for volumetric gold glow
+  - WebGL fallback handling
+- ✅ Integrated into hero section via dynamic import
+- ❌ **Current Issue:** R3F Canvas not rendering visibly
+  - Server compiles successfully (2,844 modules)
+  - No TypeScript/LSP errors
+  - No React console errors
+  - Canvas initialization not occurring (no debug logs)
+  - Black screen persists despite multiple lighting/material adjustments
+
+**Debugging Attempts:**
+1. Adjusted fog parameters (near: 8 → 12 → 25)
+2. Increased lighting intensities (ambient: 0.4 → 2, directional: 0.8 → 3)
+3. Lightened material colors (#1a1a1a → #3a3a3a)
+4. Increased gold emissive intensity (0.3 → 1.5)
+5. Simplified to test cube scene
+6. Added debug indicators and console logging
+7. Adjusted canvas configuration (alpha, shadows, clearColor)
+
+**Root Cause Analysis (from Architect):**
+- Initial issue: Fog near distance (8 units) was obscuring geometry ~8 units away
+- Subsequent issue: Dark materials (#1a1a1a) vs dark background (#0A0A0A) created insufficient contrast
+- Current issue: Canvas component may not be mounting/initializing in Replit preview environment
+
+**Current Fallback Solution:**
+- Implemented static architectural gradient background with:
+  - Subtle gold radial glow suggesting ambient lighting
+  - Dark gradient for depth (#0A0A0A → #1a1a1a)
+  - Blueprint-style grid overlay (very subtle)
+- R3F ArchitecturalScene commented out pending canvas initialization fix
+
+**Recommended Next Steps:**
+1. **Option A:** Keep static gradient fallback (performant, always visible)
+2. **Option B:** Debug R3F canvas initialization timing in Replit environment
+3. **Option C:** Revert to original Hero3D component
+4. **Option D:** Use different 3D library (Three.js vanilla instead of R3F)
+
+**Files Created:**
+- `components/FX/ArchitecturalScene.tsx` (273 lines)
+- `components/FX/index.ts`
+
+**Files Modified:**
+- `components/sections/hero-section-enhanced.tsx` (switched from Hero3D to ArchitecturalScene)
 
 ## Recent Changes (October 29, 2025)
 

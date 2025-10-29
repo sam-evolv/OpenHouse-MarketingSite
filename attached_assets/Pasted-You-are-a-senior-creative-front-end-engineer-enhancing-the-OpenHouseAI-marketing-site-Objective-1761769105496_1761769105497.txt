@@ -1,0 +1,80 @@
+You are a senior creative front-end engineer enhancing the OpenHouseAI marketing site.
+
+🎯 Objective:
+Replace the existing random gold wave background with a subtle, cinematic, *architectural realism* R3F (React Three Fiber) scene that visually conveys the “AI assistant for modern developments” brand message.
+
+The new background should feel premium, spatial, and intelligent — light passing through minimal abstract building forms. It must integrate seamlessly into the current homepage hero and perform smoothly.
+
+---
+
+🧩 Implementation Steps:
+
+1️⃣ **Setup**
+- Ensure @react-three/fiber, @react-three/drei, and three are installed.
+- Create a new file: `components/FX/ArchitecturalScene.tsx`.
+- Use “use client”; and import { Canvas } from "@react-three/fiber" and ambient/point lights from drei.
+
+2️⃣ **Scene Composition**
+- Build a realistic yet abstract architectural environment:
+  - A reflective black-gold floor plane.
+  - Subtle extruded block geometry suggesting walls and modern homes.
+  - Ambient light (soft white) and a moving warm key light (#F5C66B) to simulate sunlight.
+  - Shallow fog or atmospheric haze for depth.
+
+- Camera:
+  ```ts
+  fov: 45
+  position: [0, 1.5, 6]
+Slight slow pan or parallax effect using useFrame to simulate cinematic drift.
+
+Add a gold volumetric light streak or subtle bloom using drei’s EffectComposer with Bloom for realism.
+
+3️⃣ Performance
+
+Cap the frame rate to 60fps.
+
+Use dpr={[1, 1.5]} for balance.
+
+Ensure GPU usage <70%.
+
+4️⃣ Integration
+
+Replace the existing hero background import (e.g., Background.tsx) with this new scene.
+
+Wrap it in a fixed, full-screen div with z-index behind hero text:
+
+tsx
+Copy code
+<div className="absolute inset-0 -z-10">
+  <ArchitecturalScene />
+</div>
+5️⃣ Styling
+
+Ensure text and buttons remain clearly legible.
+
+Match the site’s palette: gold (#F6C56E), black (#0A0A0A), and soft white (#F0E8D0).
+
+6️⃣ Fallback
+
+If WebGL fails, show a static blurred gradient background matching the current tone.
+
+7️⃣ Testing
+
+Validate scroll performance with Lenis still enabled.
+
+Ensure the R3F background loads only once (no reinitialisation between scroll sections).
+
+8️⃣ Deliverable
+A production-ready, optimized file structure:
+
+cpp
+Copy code
+components/
+  FX/
+    ArchitecturalScene.tsx
+    index.ts
+sections/
+  Hero/
+    Hero.tsx  // importing ArchitecturalScene
+After completion, preview the hero section: it should now feature soft gold lighting moving through abstract building silhouettes, creating a calm, architectural atmosphere that matches the OpenHouseAI identity.
+
