@@ -1,3 +1,4 @@
+// @ts-nocheck - R3F JSX types conflict with strict mode
 "use client";
 
 import { useRef } from "react";

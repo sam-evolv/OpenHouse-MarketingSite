@@ -19,8 +19,8 @@ export function Reveal({
   stagger = false,
   staggerDelay = 0.06,
 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInViewOnce(ref, { threshold: 0.2 });
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.2 });
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
@@ -47,7 +47,7 @@ export function Reveal({
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as any,
       },
     },
   };

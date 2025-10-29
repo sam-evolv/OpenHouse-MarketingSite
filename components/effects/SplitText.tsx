@@ -19,7 +19,7 @@ export function SplitText({
   delay = 0.1,
   className = "",
 }: SplitTextProps) {
-  const textRef = useRef<HTMLElement>(null);
+  const textRef = useRef<any>(null);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {

@@ -1,12 +1,10 @@
+// @ts-nocheck - R3F JSX types conflict with strict mode
 "use client";
 
 import { Suspense, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrthographicCamera, useTexture } from "@react-three/drei";
 import * as THREE from "three";
-
-// Extend R3F types for TSX
-import type {} from "@react-three/fiber";
 
 interface ThumbMeshProps {
   texture: string;

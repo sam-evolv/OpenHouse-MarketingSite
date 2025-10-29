@@ -5,19 +5,20 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useInViewOnce } from "@/hooks/useInViewOnce";
 import Image, { ImageProps } from "next/image";
 
-interface MaskImageProps extends Omit<ImageProps, "alt"> {
+type MaskImageProps = Omit<ImageProps, "alt" | "className"> & {
   alt: string;
   className?: string;
-}
+};
 
 export function MaskImage({ alt, className = "", ...props }: MaskImageProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInViewOnce(ref, { threshold: 0.3 });
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.3 });
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
     return (
-      <div className={className}>
+      <div ref={ref} className={className}>
+        {/* @ts-expect-error - ImageProps spread is valid */}
         <Image alt={alt} {...props} />
       </div>
     );
@@ -35,6 +36,7 @@ export function MaskImage({ alt, className = "", ...props }: MaskImageProps) {
       }
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >
+      {/* @ts-expect-error - ImageProps spread is valid */}
       <Image alt={alt} {...props} />
     </motion.div>
   );

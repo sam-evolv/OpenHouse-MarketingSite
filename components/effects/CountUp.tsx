@@ -20,8 +20,8 @@ export function CountUp({
   prefix = "",
   className = "",
 }: CountUpProps) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInViewOnce(ref, { threshold: 0.5 });
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.5 });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
