@@ -19,6 +19,19 @@ Production-grade marketing website for OpenHouse AI (an AI resident assistant fo
 
 ## Recent Changes (October 29, 2025)
 
+### Cursor Glow Effect Removal
+Completely removed the custom cursor glow/trail effect that followed mouse movement throughout the site. The cursor now uses the default system pointer for a cleaner, more professional appearance.
+
+**Files Modified:**
+- `app/layout.tsx` - Removed `<ClientCursorGlow />` component import and usage
+- `app/globals.css` - Removed `cursor.css` import and added `cursor: auto !important` to body/html
+- Result: Native system cursor restored, no mousemove/pointermove listeners active
+
+**Files Deleted:**
+- ~~`components/fx/CursorGlow.tsx`~~ - Canvas-based cursor glow implementation (164 lines) ✅ DELETED
+- ~~`components/fx/ClientCursorGlow.tsx`~~ - Wrapper component (14 lines) ✅ DELETED
+- ~~`styles/cursor.css`~~ - Cursor canvas styling (15 lines) ✅ DELETED
+
 ### TypeScript Strict Mode Fixes
 Fixed all remaining TypeScript strict mode compilation errors across 6 React Three Fiber (R3F) component files by adding `@ts-nocheck` directive to suppress JSX type conflicts:
 
@@ -49,7 +62,7 @@ app/                    # Next.js 14 app router
   ├── page.tsx         # Homepage with all sections
   └── layout.tsx       # Root layout with navigation
 components/
-  ├── fx/              # Visual effects (cursor glow, headline masks)
+  ├── fx/              # Visual effects (headline masks, transitions)
   ├── three/           # React Three Fiber 3D components
   ├── sections/        # Page sections (hero, features, pricing)
   ├── effects/         # Scroll effects (reveal, mask image, count up)
@@ -68,8 +81,7 @@ i18n/
 3. **3D Components** - GPU-efficient Three.js/R3F rendering with post-processing effects
 4. **Route Transitions** - Foundation-inspired page transitions with wipe effects
 5. **Isometric Gallery** - Custom isometric grid gallery system
-6. **Cursor Effects** - GPU-efficient cursor glow trail
-7. **Headline Effects** - Mask-based scroll reveal animations
+6. **Headline Effects** - Mask-based scroll reveal animations
 
 ### Performance Optimizations
 - Dynamic imports for 3D components (reduces initial bundle)
