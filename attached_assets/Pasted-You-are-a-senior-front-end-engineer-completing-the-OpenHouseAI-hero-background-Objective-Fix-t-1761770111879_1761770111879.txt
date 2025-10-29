@@ -1,0 +1,108 @@
+You are a senior front-end engineer completing the OpenHouseAI hero background.
+
+🎯 Objective:
+Fix the current architectural 3D scene so that a visible, professional-quality background appears behind the hero section — either a working R3F scene or a clean static fallback if WebGL fails.
+
+---
+
+🧩 Steps:
+
+1️⃣ **Verify Component Mount**
+- Open `sections/hero-section-enhanced.tsx`
+- Uncomment `<ArchitecturalScene />` (line ~51) so the component actually mounts.
+- Wrap it in a container div:
+  ```tsx
+  <div className="absolute inset-0 -z-10">
+    <ArchitecturalScene />
+  </div>
+2️⃣ Fix R3F Scene Rendering
+
+Open components/FX/ArchitecturalScene.tsx
+
+Ensure it includes this minimal visible setup:
+
+tsx
+Copy code
+"use client";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { useRef } from "react";
+
+function Scene() {
+  const cube = useRef();
+  useFrame((state, delta) => {
+    cube.current.rotation.y += delta * 0.1;
+  });
+
+  return (
+    <>
+      <color attach="background" args={["#111111"]} />
+      <ambientLight intensity={1.2} />
+      <directionalLight position={[4, 5, 3]} intensity={2} color="#F6C56E" />
+      <mesh ref={cube} position={[0, 1, 0]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="#F6C56E" metalness={0.5} roughness={0.3} />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[50, 50]} />
+        <meshStandardMaterial color="#0A0A0A" metalness={0.8} roughness={0.2} />
+      </mesh>
+    </>
+  );
+}
+
+export default function ArchitecturalScene() {
+  return (
+    <Canvas shadows dpr={[1, 1.5]}>
+      <PerspectiveCamera makeDefault position={[3, 2, 6]} />
+      <OrbitControls enableZoom={false} />
+      <Scene />
+    </Canvas>
+  );
+}
+✅ This guarantees something visible (gold cube + lit floor) so we can confirm R3F is alive before adding architectural geometry.
+
+3️⃣ Add Graceful Fallback
+
+In ArchitecturalScene.tsx, wrap <Canvas> in a WebGL check:
+
+tsx
+Copy code
+const isWebGL = typeof document !== "undefined" && !!document.createElement("canvas").getContext("webgl");
+if (!isWebGL) {
+  return (
+    <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#151515] to-[#1E1E1E]" />
+  );
+}
+4️⃣ Lighting & Material Adjustments
+
+Ensure nothing is pure black-on-black; increase light intensities to make geometry readable.
+
+Remove fog for now.
+
+5️⃣ Test
+
+Run npm run dev.
+
+Open the .replit.dev preview in a new tab (not inside the side pane).
+
+You should see a rotating gold cube on a reflective floor.
+
+If that renders, replace the cube with your architectural geometry.
+
+6️⃣ Commit
+Once the background renders correctly, commit:
+
+sql
+Copy code
+git add .
+git commit -m "Fix: working hero background with R3F + fallback"
+✅ Expected Result
+
+The hero background now displays a visible 3D environment (cube or architecture).
+
+If Replit blocks WebGL, the site gracefully falls back to a sleek static gradient.
+
+No console errors.
+
+Hero text and Lenis scrolling remain unaffected.
