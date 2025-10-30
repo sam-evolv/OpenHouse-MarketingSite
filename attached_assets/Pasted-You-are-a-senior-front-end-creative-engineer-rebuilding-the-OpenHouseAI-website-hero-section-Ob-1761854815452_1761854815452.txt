@@ -1,0 +1,69 @@
+You are a senior front-end creative engineer rebuilding the OpenHouseAI website hero section.
+
+🎯 Objective:
+1️⃣ Reactivate the full Next.js dev environment so the site runs live again in Replit (not just static export).
+2️⃣ Replace the current placeholder hero with a visually stunning, cinematic new design that aligns with the OpenHouseAI brand identity.
+
+---
+
+## STEP 1 — Restore Website in Replit Preview
+- Delete or ignore the `/out` static export.
+- Run:
+  ```bash
+  rm -rf out
+  npm install
+  npm run dev
+Ensure the site opens in the .replit.dev preview window and updates on save.
+
+STEP 2 — Build a Next-Generation Hero Section
+📍 Location: sections/Hero.tsx
+
+Design Vision:
+Create a cinematic “AI for property” hero — premium, ambient, futuristic, but grounded in architectural realism.
+
+Layout Specs:
+Full viewport height (100vh)
+
+Black base with deep gold lighting accents (#F6C56E, #D4B26C)
+
+Floating geometric shapes or lines that react subtly to scroll or cursor
+
+Use a soft parallax gradient light moving across the text
+
+Background can be either:
+
+Dynamic GLSL gradient shader (if GPU/WebGL available)
+
+Animated architectural wireframe (using Three.js)
+
+Fallback: Subtle radial gold-light gradient with depth blur
+
+Hero Copy:
+yaml
+Copy code
+Headline: The AI assistant for modern developments
+Subtext: Transforming how residents, buyers, and developers interact — powered by intelligent automation.
+Primary CTA: [Book a demo]
+Secondary CTA: [Watch 60-second overview]
+Motion & Feel:
+Slow, smooth scroll-based fade-in (Lenis already active)
+
+Cursor glow following pointer
+
+Soft light pulse behind headline
+
+Maintain clean typography — use Inter or similar, bold + confident
+
+STEP 3 — Implementation
+Replace old Hero component with the new one.
+
+Ensure all CSS and shaders are responsive.
+
+Verify gradient and effects don’t overwhelm text readability.
+
+Retain current navigation + CTAs for continuity.
+
+Deliverable:
+✅ A live Replit preview showing the rebuilt OpenHouseAI hero with cinematic motion, luxury design, and brand coherence.
+✅ All effects tested across browsers with graceful fallback.
+
