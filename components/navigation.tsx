@@ -41,7 +41,11 @@ export function Navigation() {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" prefetch={true} className="flex items-center space-x-2">
+          <Link
+            href="/"
+            prefetch={true}
+            className="flex items-center space-x-2"
+          >
             <span className="text-2xl font-bold text-gold">OpenHouse AI</span>
           </Link>
 
@@ -53,7 +57,7 @@ export function Navigation() {
                 href={link.href}
                 prefetch={true}
                 className={cn(
-                  "text-sm font-medium transition-colors",
+                  "text-sm font-medium transition-colors duration-200",
                   pathname === link.href
                     ? "text-gold"
                     : "text-porcelain hover:text-gold"
@@ -67,7 +71,9 @@ export function Navigation() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Button asChild>
-              <Link href="/contact" prefetch={true}>Book a demo</Link>
+              <Link href="/contact" prefetch={true}>
+                Book a demo
+              </Link>
             </Button>
           </div>
 
@@ -90,19 +96,25 @@ export function Navigation() {
                   key={link.href}
                   href={link.href}
                   prefetch={true}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
                     "text-sm font-medium transition-colors",
                     pathname === link.href
                       ? "text-gold"
                       : "text-porcelain hover:text-gold"
                   )}
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
               <Button asChild className="w-full">
-                <Link href="/contact" prefetch={true}>Book a demo</Link>
+                <Link
+                  href="/contact"
+                  prefetch={true}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Book a demo
+                </Link>
               </Button>
             </div>
           </div>

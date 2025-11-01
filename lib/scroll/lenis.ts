@@ -8,6 +8,11 @@ export function createLenis() {
 
   if (lenisInstance) return lenisInstance;
 
+  // Ensure body has position: relative for scroll offset calculation
+  if (typeof document !== "undefined") {
+    document.body.style.position = "relative";
+  }
+
   lenisInstance = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // subtle deceleration

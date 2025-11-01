@@ -1,0 +1,93 @@
+You are a senior Next.js performance engineer optimizing OpenHouseAI’s UX responsiveness.
+
+🎯 Objective:
+Eliminate the perceptible delay between a user clicking a navigation tab and the start of the page transition animation.  
+Navigation transitions should begin **instantly** (within ~20 ms of click), creating a snappy, high-end feel.
+
+---
+
+## Implementation Plan
+
+1️⃣ **Instant Feedback on Click**
+In `components/navigation.tsx`, wrap each Link in a click handler that triggers the transition immediately:
+```tsx
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import Link from "next/link";
+
+export function NavLink({ href, children }) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    // ⚡ trigger transition animation instantly
+    document.body.classList.add("page-exit-active");
+    // Start route transition concurrently
+    startTransition(() => router.push(href));
+  };
+
+  return (
+    <Link href={href} onClick={handleClick} prefetch>
+      <span className={isPending ? "active-transition" : ""}>{children}</span>
+    </Link>
+  );
+}
+✅ This starts the fade/motion before Next.js begins its internal routing, removing that dead gap.
+
+2️⃣ Visual Transition Hook
+In styles/globals.css:
+
+css
+Copy code
+body.page-exit-active {
+  cursor: wait;
+}
+.page-exit-active main {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+And in _app.tsx or layout.tsx, clear it on route complete:
+
+tsx
+Copy code
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
+export default function App({ Component, pageProps }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleComplete = () => {
+      document.body.classList.remove("page-exit-active");
+    };
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+    return () => {
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router]);
+
+  return <Component {...pageProps} />;
+}
+3️⃣ Optimized Perception
+
+Start the transition on mousedown instead of click for zero latency:
+
+tsx
+Copy code
+<Link href={href} onMouseDown={handleClick} prefetch>
+Keep route prefetching enabled so the new page loads from cache instantly.
+
+Result
+✅ Immediate visual feedback — the site reacts the moment a user clicks.
+✅ Transition animation begins instantly, creating the illusion of zero delay.
+✅ Route loading remains smooth and cached.
+✅ UX now feels high-end and “alive,” like a native app.
+
+Deliverable message:
+
+pgsql
+Copy code
