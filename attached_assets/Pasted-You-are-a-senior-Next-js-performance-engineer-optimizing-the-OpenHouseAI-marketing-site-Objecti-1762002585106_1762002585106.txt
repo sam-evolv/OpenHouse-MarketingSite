@@ -1,0 +1,115 @@
+You are a senior Next.js performance engineer optimizing the OpenHouseAI marketing site.
+
+🎯 Objective:
+Eliminate the 1–2 second delay when switching between navigation tabs (Features, Solutions, Pricing, Case Studies, Docs).  
+Make transitions instant by enabling client-side routing, intelligent prefetching, and lightweight transitions.
+
+---
+
+## Step 1 — Enable Instant Client-Side Navigation
+1️⃣ Ensure all internal links use Next.js `<Link>` from `next/link`.  
+   Replace any `<a href="/something">` with:
+   ```tsx
+   <Link href="/something" prefetch>
+     <span>Something</span>
+   </Link>
+This ensures Next.js uses the built-in router and doesn’t reload the page.
+
+2️⃣ Add prefetch={true} to every top-nav <Link> to preload bundles for the other pages.
+
+Step 2 — Activate Router Prefetching and Caching
+In _app.tsx or layout.tsx, add a prefetch hook:
+
+tsx
+Copy code
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
+export default function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const linksToPrefetch = ["/", "/features", "/solutions", "/pricing", "/case-studies", "/docs"];
+    linksToPrefetch.forEach((link) => router.prefetch(link));
+  }, [router]);
+
+  return <Component {...pageProps} />;
+}
+✅ This preloads all top-level routes on first load, so navigating between them becomes instant.
+
+Step 3 — Use Next.js App Router Optimizations (If Using app/)
+Ensure you’re on Next.js 14+ with app/ routing.
+
+Wrap your layout in React’s <Suspense> to stream non-critical components:
+
+tsx
+Copy code
+<Suspense fallback={<div className="loading-spinner" />}>
+  {children}
+</Suspense>
+Confirm next.config.js has:
+
+js
+Copy code
+experimental: { appDir: true },
+reactStrictMode: true,
+}
+Step 4 — Add Smooth Fade or Instant Transition Feedback
+For ultra-polished UX, add a lightweight transition indicator (CSS-only):
+
+css
+Copy code
+.page-transition {
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+.page-transition.active {
+  opacity: 1;
+}
+Then, in _app.tsx:
+
+tsx
+Copy code
+import "../styles/globals.css";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+
+export default function App({ Component, pageProps }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const start = () => setLoading(true);
+    const end = () => setLoading(false);
+    router.events.on("routeChangeStart", start);
+    router.events.on("routeChangeComplete", end);
+    router.events.on("routeChangeError", end);
+    return () => {
+      router.events.off("routeChangeStart", start);
+      router.events.off("routeChangeComplete", end);
+      router.events.off("routeChangeError", end);
+    };
+  }, [router]);
+
+  return (
+    <div className={`page-transition ${!loading ? "active" : ""}`}>
+      <Component {...pageProps} />
+    </div>
+  );
+}
+Step 5 — Verify Performance
+Run Lighthouse → Performance should jump by 10–20 points.
+
+Navigation delay between pages should be <200 ms.
+
+No visible “white flash” or layout shift during transitions.
+
+✅ Deliverable:
+
+Snappy, instant tab transitions between all main sections
+
+Prefetched content cached in memory
+
+Zero reloads, zero flicker, zero delay
+
+End result message:

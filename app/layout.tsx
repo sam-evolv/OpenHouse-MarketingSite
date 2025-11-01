@@ -3,6 +3,7 @@ import { Manrope, Inter } from "next/font/google";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { ScrollProvider } from "@/components/providers/ScrollProvider";
+import { PrefetchProvider } from "@/components/providers/PrefetchProvider";
 import { TransitionOverlay } from "@/components/TransitionOverlay";
 import { RouteWipe } from "@/components/transitions/RouteWipe";
 import { ProgressBar } from "@/components/transitions/ProgressBar";
@@ -67,15 +68,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
       <body className="font-sans">
-        <ScrollProvider>
-          <RouteTransitionHandler />
-          <RouteWipe variant="left" />
-          <ProgressBar />
-          <TransitionOverlay />
-          <Navigation />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </ScrollProvider>
+        <PrefetchProvider>
+          <ScrollProvider>
+            <RouteTransitionHandler />
+            <RouteWipe variant="left" />
+            <ProgressBar />
+            <TransitionOverlay />
+            <Navigation />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </ScrollProvider>
+        </PrefetchProvider>
       </body>
     </html>
   );

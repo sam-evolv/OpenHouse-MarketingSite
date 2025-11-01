@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
@@ -17,6 +18,7 @@ const navLinks = [
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +41,7 @@ export function Navigation() {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" prefetch={true} className="flex items-center space-x-2">
             <span className="text-2xl font-bold text-gold">OpenHouse AI</span>
           </Link>
 
@@ -49,7 +51,13 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-porcelain hover:text-gold transition-colors"
+                prefetch={true}
+                className={cn(
+                  "text-sm font-medium transition-colors",
+                  pathname === link.href
+                    ? "text-gold"
+                    : "text-porcelain hover:text-gold"
+                )}
               >
                 {link.label}
               </Link>
@@ -59,7 +67,7 @@ export function Navigation() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Button asChild>
-              <Link href="/contact">Book a demo</Link>
+              <Link href="/contact" prefetch={true}>Book a demo</Link>
             </Button>
           </div>
 
@@ -81,14 +89,20 @@ export function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-porcelain hover:text-gold transition-colors"
+                  prefetch={true}
+                  className={cn(
+                    "text-sm font-medium transition-colors",
+                    pathname === link.href
+                      ? "text-gold"
+                      : "text-porcelain hover:text-gold"
+                  )}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
               <Button asChild className="w-full">
-                <Link href="/contact">Book a demo</Link>
+                <Link href="/contact" prefetch={true}>Book a demo</Link>
               </Button>
             </div>
           </div>
