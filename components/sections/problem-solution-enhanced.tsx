@@ -15,46 +15,43 @@ export function ProblemSolutionEnhanced() {
           badge="Why OpenHouse AI"
         />
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* LEFT COLUMN - Platform Architecture */}
-          <div>
-            <Reveal>
-              <h3 className="text-heading-lg font-bold text-porcelain mb-8">
-                A Modern Multi-Tenant Platform Architected for Scale.
-              </h3>
-            </Reveal>
+        <div className="mt-16 flex flex-col md:flex-row gap-10 md:gap-16">
+          {/* CARD 1 - Platform Architecture */}
+          <Reveal className="w-full md:w-1/2 bg-black/20 border border-white/5 rounded-2xl p-10 flex flex-col space-y-6">
+            <h3 className="text-heading-lg font-bold text-porcelain">
+              A Modern Multi-Tenant Platform Architected for Scale.
+            </h3>
 
-            <Reveal stagger staggerDelay={0.1} className="space-y-4">
+            <ul className="grid grid-rows-7 gap-3">
               {content.problem.bullets.map((bullet: string, index: number) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
-                    <Check className="w-4 h-4 text-gold" />
-                  </div>
-                  <p className="text-hint text-body-md">{bullet}</p>
-                </div>
+                <li key={index} className="flex items-start gap-3 leading-snug">
+                  <Check className="w-5 h-5 text-yellow-500 shrink-0 mt-0.5" />
+                  <span className="text-hint text-body-md">{bullet}</span>
+                </li>
               ))}
-            </Reveal>
-          </div>
+            </ul>
+          </Reveal>
 
-          {/* RIGHT COLUMN - Developer Value Points (limit to 3) */}
-          <div>
-            <Reveal>
-              <h3 className="text-heading-lg font-bold text-porcelain mb-8">
-                Built for Developers. Loved by Residents.
-              </h3>
-            </Reveal>
+          {/* CARD 2 - Developer Value Points */}
+          <Reveal delay={0.1} className="w-full md:w-1/2 bg-black/20 border border-white/5 rounded-2xl p-10 flex flex-col space-y-6">
+            <h3 className="text-heading-lg font-bold text-porcelain">
+              Built for Developers. Loved by Residents.
+            </h3>
 
-            <Reveal stagger staggerDelay={0.1} className="space-y-6">
+            <ul className="grid grid-rows-7 gap-3">
               {content.solution.benefits.slice(0, 3).map((bullet: string, index: number) => (
-                <div key={index} className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center shrink-0 mt-1">
-                    <Check className="w-5 h-5 text-gold" />
-                  </div>
-                  <p className="text-porcelain text-body-lg font-medium">{bullet}</p>
-                </div>
+                <li key={index} className="flex items-start gap-3 leading-snug">
+                  <Check className="w-5 h-5 text-yellow-500 shrink-0 mt-0.5" />
+                  <span className="text-hint text-body-md">{bullet}</span>
+                </li>
               ))}
-            </Reveal>
-          </div>
+              {/* Empty placeholders for alignment */}
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </Reveal>
         </div>
       </Container>
     </section>
