@@ -1,0 +1,240 @@
+You are updating the OpenHouse AI marketing website.
+Do NOT change navigation code, header, footer, global CSS, Lenis scroll, animations, routes, or core layout components.
+This task is content + component cleanup only, using the existing component system and Tailwind utilities.
+
+Follow these instructions precisely:
+
+1. FIX THE “Built for Developers. Loved by Residents.” SECTION
+
+File:
+sections/YourCurrentSectionFile.tsx (the file that renders this section — locate it by searching for the heading text)
+
+Replace current content with a clean 2-column layout:
+LEFT COLUMN — New Title & Gold Tick Items
+
+Title:
+“A Modern Multi-Tenant Platform Architected for Scale.”
+
+Bullet points (all with gold tick icons, no red icons anywhere):
+
+Multi-tenant core (developers, OMCs, residents)
+
+RAG knowledge engine
+
+Onboarding layer (QR/NFC)
+
+Developer dashboard
+
+POI engine
+
+Analytics layer (query trends, knowledge gaps, monthly reporting)
+
+GDPR + EU data residency + audit logs
+
+RIGHT COLUMN — 3 Developer Value Points
+
+Reduce after-sales volumes by 70–90%
+
+Effortless, automated handover experience
+
+Premium, modern resident experience from day one
+
+Grid Requirements
+
+Use existing Section container
+
+grid grid-cols-1 md:grid-cols-2 gap-12
+
+Ensure both columns top-align
+
+Delete
+
+All red X icons
+
+Any overlapping layout or absolute positioning used previously
+
+2. FIX THE FEATURE GRID (Everything You Need. Nothing You Don’t.)
+
+File:
+sections/Features.tsx or similar
+
+Make all 8 feature cards the same height
+
+Apply to all card wrappers:
+
+min-h-[260px] (adjust if necessary but use a fixed minimum height)
+
+flex flex-col justify-between
+
+p-6
+
+All cards must use identical internal spacing
+
+Limit titles to max 2 lines
+
+Limit descriptions to max 2 lines
+
+Ensure the grid uses:
+
+grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8
+
+This forces perfect uniformity across all boxes.
+
+3. FIX SECURITY & COMPLIANCE SECTION
+
+File:
+sections/Security.tsx or similar
+
+Rebuild the grid as a 3×3 layout (6 items = 3×2)
+
+Use: grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6
+
+Convert each item into a card using same style as Features
+
+Card wrapper:
+
+rounded-xl border border-white/10 bg-white/5 p-6
+
+On hover:
+
+transform scale-[1.02]
+
+border-gold-400/40
+
+shadow-lg shadow-black/30
+
+smooth transition
+
+Keep the 6 items:
+
+GDPR-first
+
+EU data residency
+
+Audit logs
+
+Encryption at rest & transit
+
+No LLM training
+
+Fully sandboxed developments
+
+4. REBUILD THE SOLUTIONS PAGE TO MATCH THE NEW PRODUCT ARCHITECTURE
+
+File:
+app/solutions/page.tsx or sections/SolutionsContent.tsx
+
+Replace existing layout with the following structure:
+Primary 3-Column Stakeholder Layout
+1. Developers
+
+Multi-scheme oversight
+
+Document management
+
+Global updates
+
+Analytics + insights
+
+Monthly reporting
+
+Handover automation
+
+2. OMCs / Property Managers
+
+Issue categorisation
+
+Resident communication
+
+Manual uploads
+
+Warranty workflows
+
+Access to queries + trending topics
+
+3. Residents
+
+NFC onboarding
+
+POI mapping
+
+Home-specific AI companion
+
+Manuals & drawings
+
+Community tools
+
+Use:
+grid grid-cols-1 md:grid-cols-3 gap-12
+
+Secondary Use-Case Row
+
+Add four smaller boxes below:
+
+After-Sales Support
+
+Handover & Completions
+
+International Buyer Support
+
+Resident Engagement
+
+Use:
+grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6
+
+Card style must match Feature cards.
+
+5. GLOBAL POLISH FIXES
+Spacing
+
+Add py-28 or equivalent above and below major sections for consistent vertical rhythm.
+
+Headings
+
+Apply unified <h2> styling across all pages.
+
+Ensure consistent font weight, letter-spacing, and padding.
+
+Containers
+
+Ensure all major sections use the same max-width wrapper (likely max-w-7xl mx-auto px-6).
+
+Do NOT Modify
+
+Navigation
+
+Header
+
+Footer
+
+Lenis scroll
+
+Global CSS
+
+Button components
+
+Hero visuals
+
+Background animations
+
+This is strictly content + layout refinement.
+
+6. OUTPUT REQUIREMENTS
+
+When you implement all changes:
+
+No console warnings
+
+No layout shifts
+
+No overlapping content
+
+No removed components
+
+All grids and cards are symmetrical across breakpoints
+
+The site retains its premium aesthetic exactly as before
+
+Only the content and layouts specified above are changed
+
+Begin the update now.
