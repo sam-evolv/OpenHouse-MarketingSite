@@ -1,0 +1,149 @@
+You are updating the OpenHouse AI marketing website.
+Do NOT change layout frameworks, component structure, navigation code, Lenis scroll setup, or styling.
+Only update content inside existing sections, and create new sections ONLY using existing section patterns.
+Do NOT delete animations, hero visuals, or design elements.
+Your task is to update text content across the site so it reflects the final OpenHouse AI product architecture.
+
+1. Update the HERO section (app/page.tsx or relevant section component)
+
+Replace the hero text ONLY with:
+
+Headline: “The AI resident portal for modern developments.”
+
+Subheading: “Instant onboarding, intelligent support, and a unified knowledge engine for every home you build — powered by automation, NFC activation, and a multi-tenant developer dashboard.”
+
+Keep both buttons. Do not move or restyle anything.
+
+2. Insert new section BELOW the hero using existing section-style component
+
+Add a new section titled:
+
+“Built for Developers. Loved by Residents.”
+With three highlights:
+
+Reduce after-sales volumes by 70–90%
+
+Effortless, automated handover experience
+
+Premium, modern resident experience from day one
+
+Use existing typography + spacing utilities.
+
+3. Update the FEATURES section to reflect the real modules
+
+Modify the text inside the existing cards only.
+Do NOT alter icons, grid layout, or animations.
+
+Replace card content with:
+
+Resident Portal
+
+AI assistant, manuals, drawings, warranties, POI mapping, community tools.
+
+Developer Command Center
+
+Manage multiple schemes, upload documents, push updates, global edits, role-based access, analytics.
+
+Handover Automation
+
+NFC/QR activation, welcome journeys, templated onboarding, scheme cloning.
+
+AI Knowledge Engine
+
+RAG ingestion, multi-phrase intent mapping, issue categorisation, predictive FAQs.
+
+Leave card styles untouched.
+
+4. Add a new “Product Architecture” section using an existing section pattern
+
+This must use the existing Section component but with new text only.
+No new custom components.
+
+Section title: “A Modern Multi-Tenant Platform Architected for Scale.”
+
+Bullet points:
+
+Multi-tenant core (developers, OMCs, residents)
+
+RAG knowledge engine
+
+Onboarding layer (QR/NFC)
+
+Developer dashboard
+
+POI engine
+
+Analytics layer (query trends, knowledge gaps, monthly reporting)
+
+GDPR + EU data residency + audit logs
+
+No images or diagrams required — simple text structure.
+
+5. Add a “How It Works” section using an existing simple 3-step layout
+
+Steps:
+
+Scan the NFC tag — the home activates instantly.
+
+AI welcomes the resident by name and answers any home-specific question.
+
+Developer dashboard manages documents, updates, and analytics across all schemes.
+
+6. Add a “Security & Compliance” section
+
+Use existing styling for informational sections.
+Include:
+
+GDPR-first
+
+EU data storage
+
+Audit logs
+
+No LLM training on customer data
+
+Encryption at rest & in transit
+
+Scheme-level sandboxing
+
+7. Add a “Developer Engagement Model” section
+
+Steps:
+
+Discovery & data ingest
+
+Scheme setup (minutes)
+
+AI knowledge build
+
+NFC/QR deployment
+
+Go-live
+
+Monthly insights
+
+Use existing typography + spacing.
+
+8. Do NOT touch the following:
+
+❗ Do NOT modify navigation code
+❗ Do NOT modify Lenis scroll configuration
+❗ Do NOT alter CSS, breakpoints, or layout wrappers
+❗ Do NOT add new libraries or dependencies
+❗ Do NOT modify hero visuals, background animations, or button components
+
+Your job is content-only, using current components.
+
+9. Deliverables
+
+All sections above implemented
+
+No visual regressions
+
+No layout changes
+
+All updated text readable and formatted within current design
+
+No broken imports, no missing components, no console errors
+
+Run the update now.
