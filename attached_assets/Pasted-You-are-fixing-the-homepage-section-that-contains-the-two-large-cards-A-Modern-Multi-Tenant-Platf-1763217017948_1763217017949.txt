@@ -1,0 +1,97 @@
+You are fixing the homepage section that contains the two large cards:
+
+“A Modern Multi-Tenant Platform Architected for Scale.”
+
+“Built for Developers. Loved by Residents.”
+
+Your task is to make both lists align perfectly row-by-row, with identical spacing, identical row height, and identical vertical start position, regardless of text length.
+
+1. Wrap BOTH cards in a unified 2-column grid
+
+Replace the parent container with:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+
+
+This ensures the cards always align.
+
+2. Each card must use THIS EXACT layout
+
+Replace both card wrappers with:
+
+<div className="bg-black/20 border border-white/5 rounded-2xl p-10 flex flex-col">
+
+3. LOCK BOTH HEADINGS to the SAME HEIGHT
+
+Wrap each heading inside:
+
+<div className="h-[110px] flex items-start">
+  <h2 className="text-3xl font-bold leading-tight">
+    {HEADING_TEXT}
+  </h2>
+</div>
+
+
+This prevents line-wrapping from shifting list alignment.
+
+4. Force BOTH bullet lists into identical 7-row grids
+
+Replace BOTH <ul> blocks with:
+
+<ul className="grid grid-rows-7 gap-4">
+
+
+Every <li> becomes:
+
+<li className="flex items-start gap-3 leading-snug">
+  <CheckIcon className="w-5 h-5 text-yellow-500 shrink-0 mt-1" />
+  <span className="block">{TEXT}</span>
+</li>
+
+
+This forces each bullet row to take the exact same height.
+
+5. HORIZONTAL ALIGNMENT GUARANTEE
+
+Make sure BOTH cards have:
+
+className="flex flex-col justify-start"
+
+
+No justify-between, no min-h, no auto heights.
+
+6. FINAL CARD HEIGHT (fix both to match)
+
+Add:
+
+className="h-[720px]"
+
+
+to BOTH cards.
+
+7. REMOVE ALL OLD SPACING, FLEX, OR GRID WRAPPERS
+
+Delete:
+
+previous flex row/column containers
+
+any placeholder <li>
+
+any extra padding around headings
+
+any min-h or overflow logic
+
+Only the new structure should exist.
+
+✅ END RESULT YOU WILL SEE
+✔ Two cards
+✔ Same height
+✔ Same heading height
+✔ Same row count
+✔ Same row height
+✔ Checkmarks perfectly aligned down and across
+✔ Identical spacing
+✔ Identical left/right visual weight
+✔ Looks like a top-tier SaaS marketing site
+
+Exactly what you asked for.
