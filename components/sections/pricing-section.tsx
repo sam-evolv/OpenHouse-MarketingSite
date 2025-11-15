@@ -14,7 +14,7 @@ export function PricingSection() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
 
   return (
-    <section className="py-24 bg-slate">
+    <section className="py-28 bg-slate">
       <Container>
         <SectionHeading
           title={content.pricing.title}

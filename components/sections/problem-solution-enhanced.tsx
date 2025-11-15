@@ -20,7 +20,7 @@ export function ProblemSolutionEnhanced() {
           <div>
             <Reveal>
               <h3 className="text-heading-lg font-bold text-porcelain mb-8">
-                {content.problem.title}
+                A Modern Multi-Tenant Platform Architected for Scale.
               </h3>
             </Reveal>
 
@@ -36,7 +36,7 @@ export function ProblemSolutionEnhanced() {
             </Reveal>
           </div>
 
-          {/* RIGHT COLUMN - Developer Value Points */}
+          {/* RIGHT COLUMN - Developer Value Points (limit to 3) */}
           <div>
             <Reveal>
               <h3 className="text-heading-lg font-bold text-porcelain mb-8">
@@ -45,7 +45,7 @@ export function ProblemSolutionEnhanced() {
             </Reveal>
 
             <Reveal stagger staggerDelay={0.1} className="space-y-6">
-              {content.solution.benefits.map((bullet: string, index: number) => (
+              {content.solution.benefits.slice(0, 3).map((bullet: string, index: number) => (
                 <div key={index} className="flex items-start gap-4">
                   <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center shrink-0 mt-1">
                     <Check className="w-5 h-5 text-gold" />

@@ -12,7 +12,7 @@ import content from "@/i18n/en.json";
 
 export function FAQSection() {
   return (
-    <section className="py-24 bg-carbon">
+    <section className="py-28 bg-slate">
       <Container>
         <SectionHeading
           title={content.faq.title}

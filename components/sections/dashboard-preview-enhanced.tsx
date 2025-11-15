@@ -22,7 +22,7 @@ const metrics = [
 
 export function DashboardPreviewEnhanced() {
   return (
-    <section className="py-24 bg-carbon">
+    <section className="py-28 bg-slate">
       <Container>
         <SectionHeading
           title={content.dashboard.title}
