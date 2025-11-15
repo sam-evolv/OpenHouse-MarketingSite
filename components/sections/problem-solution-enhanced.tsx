@@ -15,9 +15,9 @@ export function ProblemSolutionEnhanced() {
           badge="Why OpenHouse AI"
         />
 
-        <div className="mt-16 flex flex-col md:flex-row gap-10 md:gap-16">
+        <div className="mt-16 flex flex-col md:flex-row gap-10 md:gap-16 w-full">
           {/* CARD 1 - Platform Architecture */}
-          <Reveal className="w-full md:w-1/2 bg-black/20 border border-white/5 rounded-2xl p-10 flex flex-col space-y-6">
+          <Reveal className="w-full md:w-1/2 bg-black/20 border border-white/5 rounded-2xl p-10 flex flex-col space-y-6 h-[680px]">
             <h3 className="text-heading-lg font-bold text-porcelain">
               A Modern Multi-Tenant Platform Architected for Scale.
             </h3>
@@ -32,24 +32,19 @@ export function ProblemSolutionEnhanced() {
             </ul>
           </Reveal>
 
-          {/* CARD 2 - Developer Value Points */}
-          <Reveal delay={0.1} className="w-full md:w-1/2 bg-black/20 border border-white/5 rounded-2xl p-10 flex flex-col space-y-6">
+          {/* CARD 2 - Business Outcomes */}
+          <Reveal delay={0.1} className="w-full md:w-1/2 bg-black/20 border border-white/5 rounded-2xl p-10 flex flex-col space-y-6 h-[680px]">
             <h3 className="text-heading-lg font-bold text-porcelain">
               Built for Developers. Loved by Residents.
             </h3>
 
             <ul className="grid grid-rows-7 gap-3">
-              {content.solution.benefits.slice(0, 3).map((bullet: string, index: number) => (
+              {content.solution.benefits.map((bullet: string, index: number) => (
                 <li key={index} className="flex items-start gap-3 leading-snug">
                   <Check className="w-5 h-5 text-yellow-500 shrink-0 mt-0.5" />
                   <span className="text-hint text-body-md">{bullet}</span>
                 </li>
               ))}
-              {/* Empty placeholders for alignment */}
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
             </ul>
           </Reveal>
         </div>

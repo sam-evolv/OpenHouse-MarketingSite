@@ -1,0 +1,137 @@
+REPLIT AGENT PROMPT — FIX, REFORMAT & SYMMETRISE THE ENTIRE FEATURE SECTION BELOW “Residents.”
+
+You are updating the homepage hero feature section located immediately below the “Residents.” heading.
+The layout currently displays two large cards:
+
+Left: “A Modern Multi-Tenant Platform Architected for Scale.”
+
+Right: “Built for Developers. Loved by Residents.”
+
+This section is visually unbalanced, asymmetrical, and lacks enterprise polish.
+Your task is to fully clean, rebuild, and symmetrise this section.
+
+Follow these instructions exactly:
+
+1. REPLACE THE ENTIRE LAYOUT WITH A CLEAN, SYMMETRICAL 2-CARD STRUCTURE
+
+Each card must use this wrapper:
+
+className="w-full md:w-1/2 bg-black/20 border border-white/5 rounded-2xl p-10 flex flex-col space-y-6 h-[680px]"
+
+
+This guarantees:
+
+identical height
+
+identical padding
+
+identical card visual weight
+
+enterprise-level consistency
+
+2. UPDATE THE BULLET LISTS TO EXACTLY 7 ITEMS EACH
+LEFT CARD — KEEP THESE 7 BULLETS
+
+Multi-tenant core (developers, OMCs, residents)
+
+RAG knowledge engine
+
+Onboarding layer (QR/NFC)
+
+Developer dashboard
+
+POI engine
+
+Analytics layer (query trends, knowledge gaps, monthly reporting)
+
+GDPR + EU data residency + audit logs
+
+RIGHT CARD — USE THESE 7 OUTCOMES
+
+Replace the existing 3 with these 7:
+
+Reduce after-sales volumes by 70–90%
+
+Effortless, automated handover experience
+
+Premium, modern resident experience from day one
+
+Centralised knowledge reduces repeated queries
+
+Faster warranty issue resolution
+
+Improved resident satisfaction & brand perception
+
+Scalable across all developments instantly
+
+3. FORCE PERFECT ROW-FOR-ROW ALIGNMENT
+
+Wrap all bullets in:
+
+<ul className="grid grid-rows-7 gap-3">
+
+
+Each bullet:
+
+<li className="flex items-start gap-3 leading-snug">
+  <CheckIcon className="w-5 h-5 text-yellow-500 shrink-0 mt-0.5" />
+  <span>TEXT HERE</span>
+</li>
+
+
+This ensures:
+
+identical row structure
+
+checkmarks align across both cards
+
+typography aligns horizontally
+
+4. FIX THE COLUMN SPACING
+
+Replace the outer container with:
+
+<div className="flex flex-col md:flex-row gap-10 md:gap-16 w-full">
+
+
+This removes the awkward spacing in the screenshot.
+
+5. REMOVE ALL OLD CODE FOR THIS SECTION
+
+Delete:
+
+old containers
+
+float layouts
+
+inconsistent padding
+
+duplicated wrappers
+
+placeholder <li> lines
+
+any scroll/overflow logic
+
+Only the new two-card layout should remain.
+
+6. FINAL EXPECTED RESULT
+
+The section must display:
+
+two identical-height premium cards
+
+equal 7-bullet lists
+
+perfect left/right alignment
+
+consistent spacing
+
+no overflow, no scroll
+
+clean enterprise UI
+
+visually balanced composition
+
+Exactly what you see on top-tier SaaS landing pages.
+
+Make these changes now.
