@@ -1,46 +1,49 @@
 {
   "hero": {
-    "title": "The AI assistant for modern developments",
-    "subtitle": "Transforming how residents, buyers, and developers interact — powered by intelligent automation.",
+    "title": "The AI resident portal for modern developments.",
+    "subtitle": "Instant onboarding, intelligent support, and a unified knowledge engine for every home you build — powered by automation, NFC activation, and a multi-tenant developer dashboard.",
     "cta_primary": "Book a demo",
     "cta_secondary": "Watch 60-second overview"
   },
   "problem": {
-    "title": "The same questions, over and over",
+    "title": "A Modern Multi-Tenant Platform Architected for Scale.",
     "bullets": [
-      "Repetitive questions flooding your inbox",
-      "Documents scattered across emails and drives",
-      "Buyers need clarity before they commit"
+      "Multi-tenant core (developers, OMCs, residents)",
+      "RAG knowledge engine",
+      "Onboarding layer (QR/NFC)",
+      "Developer dashboard",
+      "POI engine",
+      "Analytics layer (query trends, knowledge gaps, monthly reporting)",
+      "GDPR + EU data residency + audit logs"
     ]
   },
   "solution": {
-    "title": "One assistant that knows everything",
-    "description": "OpenHouse AI centralises answers, documents, and local info into a single smart assistant that lives on web, QR and NFC.",
-    "benefits_title": "How OpenHouse Helps",
+    "title": "Built for Developers. Loved by Residents.",
+    "description": "",
+    "benefits_title": "",
     "benefits": [
-      "24/7 instant answers",
-      "Centralized knowledge base",
-      "Reduced support load",
-      "Better buyer experience"
+      "Reduce after-sales volumes by 70–90%",
+      "Effortless, automated handover experience",
+      "Premium, modern resident experience from day one"
     ]
   },
   "how_it_works": {
-    "title": "Launch in minutes, not months",
+    "title": "How It Works",
     "steps": [
       {
         "number": "01",
-        "title": "Upload docs and data",
-        "description": "Floorplans, brochures, specs—everything your buyers need."
+        "title": "Scan the NFC tag",
+        "description": "The home activates instantly."
       },
       {
         "number": "02",
-        "title": "Brand it",
-        "description": "Match your development's look and feel."
+        "title": "AI welcomes the resident",
+        "description": "By name and answers any home-specific question."
       },
       {
         "number": "03",
-        "title": "Launch via link, QR or NFC",
-        "description": "Track usage and refine your content."
+        "title": "Developer dashboard",
+        "description": "Manages documents, updates, and analytics across all schemes."
       }
     ]
   },
@@ -48,20 +51,20 @@
     "title": "Everything you need, nothing you don't",
     "items": [
       {
-        "title": "Smart Q&A",
-        "description": "Instant answers to common questions about your development."
+        "title": "Resident Portal",
+        "description": "AI assistant, manuals, drawings, warranties, POI mapping, community tools."
       },
       {
-        "title": "Floorplans & specs",
-        "description": "Interactive 3D models and detailed specifications."
+        "title": "Developer Command Center",
+        "description": "Manage multiple schemes, upload documents, push updates, global edits, role-based access, analytics."
       },
       {
-        "title": "Local area guide",
-        "description": "Maps, transport links, and nearby amenities."
+        "title": "Handover Automation",
+        "description": "NFC/QR activation, welcome journeys, templated onboarding, scheme cloning."
       },
       {
-        "title": "Announcements board",
-        "description": "Keep residents informed with timely updates."
+        "title": "AI Knowledge Engine",
+        "description": "RAG ingestion, multi-phrase intent mapping, issue categorisation, predictive FAQs."
       },
       {
         "title": "Multi-language",
@@ -97,16 +100,18 @@
     }
   },
   "dashboard": {
-    "title": "Metrics you'll actually use",
-    "description": "Top questions, downloads, active users, and content health—all in one clean dashboard."
+    "title": "Developer Engagement Model",
+    "description": "Discovery & data ingest → Scheme setup (minutes) → AI knowledge build → NFC/QR deployment → Go-live → Monthly insights"
   },
   "security": {
-    "title": "Security you can trust",
+    "title": "Security & Compliance",
     "bullets": [
-      "Data isolation per development",
-      "PII redaction",
-      "Encryption at rest and in transit",
-      "EU hosting options"
+      "GDPR-first",
+      "EU data storage",
+      "Audit logs",
+      "No LLM training on customer data",
+      "Encryption at rest & in transit",
+      "Scheme-level sandboxing"
     ]
   },
   "pricing": {
@@ -155,6 +160,65 @@
           "SLA guarantee"
         ]
       }
+    ]
+  },
+  "highlights": {
+    "title": "Built for Developers. Loved by Residents.",
+    "items": [
+      "Reduce after-sales volumes by 70–90%",
+      "Effortless, automated handover experience",
+      "Premium, modern resident experience from day one"
+    ]
+  },
+  "product_architecture": {
+    "title": "A Modern Multi-Tenant Platform Architected for Scale.",
+    "items": [
+      "Multi-tenant core (developers, OMCs, residents)",
+      "RAG knowledge engine",
+      "Onboarding layer (QR/NFC)",
+      "Developer dashboard",
+      "POI engine",
+      "Analytics layer (query trends, knowledge gaps, monthly reporting)",
+      "GDPR + EU data residency + audit logs"
+    ]
+  },
+  "how_it_works_new": {
+    "title": "How It Works",
+    "steps": [
+      {
+        "title": "Scan the NFC tag",
+        "description": "The home activates instantly."
+      },
+      {
+        "title": "AI welcomes the resident",
+        "description": "By name and answers any home-specific question."
+      },
+      {
+        "title": "Developer dashboard",
+        "description": "Manages documents, updates, and analytics across all schemes."
+      }
+    ]
+  },
+  "security_compliance": {
+    "title": "Security & Compliance",
+    "items": [
+      "GDPR-first",
+      "EU data storage",
+      "Audit logs",
+      "No LLM training on customer data",
+      "Encryption at rest & in transit",
+      "Scheme-level sandboxing"
+    ]
+  },
+  "developer_engagement": {
+    "title": "Developer Engagement Model",
+    "steps": [
+      "Discovery & data ingest",
+      "Scheme setup (minutes)",
+      "AI knowledge build",
+      "NFC/QR deployment",
+      "Go-live",
+      "Monthly insights"
     ]
   },
   "faq": {

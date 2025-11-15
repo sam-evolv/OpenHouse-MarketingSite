@@ -2,9 +2,9 @@
 
 import { Container } from "../ui/container";
 import content from "@/i18n/en.json";
-import { Shield, Lock, Database, Globe } from "lucide-react";
+import { Shield, Lock, Database, Globe, FileCheck, Building2 } from "lucide-react";
 
-const icons = [Database, Shield, Lock, Globe];
+const icons = [Shield, Database, FileCheck, Globe, Lock, Building2];
 
 export function SecurityStrip() {
   return (
