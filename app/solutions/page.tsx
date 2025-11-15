@@ -100,7 +100,7 @@ export default function SolutionsPage() {
             const Icon = useCaseIcons[idx];
             return (
               <Reveal key={idx} delay={idx * 0.1}>
-                <Card className="min-h-[200px] flex flex-col justify-start p-6 hover:border-gold/50 transition-all">
+                <Card className="h-[220px] flex flex-col justify-start p-6 hover:border-gold/50 transition-all">
                   <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-4 flex-shrink-0">
                     <Icon className="w-6 h-6 text-gold" />
                   </div>
