@@ -1,0 +1,311 @@
+You are updating the OpenHouse AI marketing website to complete the final transformation into a polished, enterprise-grade SaaS website.
+You may modify components, layouts, grids, Tailwind classes, sections, and content.
+Do NOT modify:
+
+Navigation / header
+
+Footer
+
+Lenis scroll
+
+Global stylesheets
+
+Hero visuals
+
+Animations
+
+Routes
+
+Any backend code
+
+This task is focused exclusively on site polish, content clarity, layout refinement, new sections, and enterprise credibility building.
+
+Follow every instruction below exactly.
+
+1. UPGRADE THE SOLUTIONS PAGE (HIGH PRIORITY)
+
+File: app/solutions/page.tsx (or equivalent section file)
+
+Replace the entire content with a three-pillar stakeholder layout, followed by four use-case blocks.
+
+A. TOP SECTION — Three Primary Stakeholder Columns
+
+Use a 3-column responsive grid:
+
+grid grid-cols-1 md:grid-cols-3 gap-12 py-28
+
+Columns:
+
+1. Developers
+
+Multi-scheme oversight
+
+Document management
+
+Global updates
+
+Analytics & reporting
+
+Handover automation
+
+Issue trend insights
+
+2. OMCs / Property Managers
+
+Issue categorisation
+
+Resident communication
+
+Warranty workflows
+
+Manual uploads
+
+Access to query history
+
+Trending topics / common issues
+
+3. Residents
+
+NFC / QR onboarding
+
+Personalised home AI assistant
+
+Local POI mapping
+
+Manuals, drawings, warranties
+
+Community tools
+
+24/7 support
+
+Use the same card component style as Feature cards (consistent padding, min-height, icon slot).
+
+B. SECOND SECTION — Use-Case Blocks
+
+Add four smaller boxes directly under:
+
+After-Sales Support
+
+Handover & Completions
+
+International Buyer Support
+
+Resident Engagement
+
+Grid:
+grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-20
+
+Each card follows the style of a simplified feature card.
+
+C. Add One Visual (Mock Screenshot Placeholder)
+
+Below the use-case row:
+
+Create a placeholder area in a bordered, rounded container
+
+Use /public/mock-dashboard.png if available, or insert a placeholder block with “Dashboard Preview Coming Soon”
+
+Ensure it does not break spacing or alignment
+
+2. ADD A “WHY OPENHOUSE AI” TRUST SECTION
+
+Create a new section component (e.g., sections/WhyOpenHouse.tsx) and add it to the homepage just before the footer CTA.
+
+Section Title:
+Why OpenHouse AI
+
+Use 5 cards in a grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6.
+
+Cards:
+
+Built for developers
+
+Reduces inbound queries by 70–90%
+
+Enterprise-grade security
+
+Fast onboarding
+
+Future-proof handover infrastructure
+
+Cards use same feature card styling.
+
+Spacing: py-28
+
+3. ADD AN ARCHITECTURE DIAGRAM SECTION
+
+Create a simple diagrammatic block (not a real image — use styled divs and arrows).
+
+Location:
+Just below “A Modern Multi-Tenant Platform Architected for Scale.”
+
+Section Title:
+How OpenHouse AI Works Behind the Scenes
+
+Diagram layout (horizontal or vertical stack):
+
+Resident → AI Assistant → RAG Engine → Developer Dashboard → OMC Tools
+
+Use boxes with rounded borders and arrows (→ or tailwind arrow icons).
+
+Container constraints: max-w-5xl mx-auto py-20
+
+This section is purely visual and must not break existing typography.
+
+4. ENHANCE THE PRICING PAGE FOR ENTERPRISE READINESS
+
+File: app/pricing/page.tsx
+
+A. Add a feature comparison table
+
+Place it below the pricing cards.
+
+Columns:
+
+Starter
+
+Growth
+
+Enterprise
+
+Rows:
+
+Number of developments
+
+AI query volume
+
+Document storage
+
+Custom branding
+
+Advanced analytics
+
+White-label options
+
+SLA
+
+Developer dashboard
+
+Monthly reporting
+
+Integrations
+
+Style it using a simple bordered table with:
+border border-white/10 rounded-xl p-8
+
+B. Add an Enterprise CTA below the table
+
+Box with gold border and gold button:
+
+“Need custom requirements, migrations, or multi-region deployments?”
+Button: “Book Enterprise Consultation”
+
+Spacing: py-20
+
+5. ADD A FOOTER CTA SECTION BEFORE THE FOOTER
+
+Title:
+Ready to modernise the resident experience across your developments?
+
+Subtitle:
+Book a demo and see how OpenHouse AI transforms handover, support, and homeowner satisfaction.
+
+Buttons:
+
+Book a demo
+
+Download Overview PDF (placeholder link /overview.pdf)
+
+Container: py-28 bg-carbon/30 rounded-2xl
+
+6. ADD FAQ SECTION BELOW PRICING
+
+Create a simple accordion (use existing components if any).
+
+FAQs:
+
+How do residents access OpenHouse AI?
+
+How is data stored?
+
+Do you support white-labelling?
+
+How quickly can we onboard a new scheme?
+
+Do we need to train the AI ourselves?
+
+What languages do you support?
+
+Spacing: py-28
+
+7. ICON CONSISTENCY CHECK
+
+Across:
+
+Features
+
+Security
+
+Solutions
+
+Why OpenHouse
+
+Use-cases
+
+Pricing table
+
+Standardise to one icon set (Lucide or existing gold icons).
+
+Replace inconsistent icons with the chosen set.
+
+Do NOT introduce new dependencies.
+
+8. TIGHTEN TYPOGRAPHY AND SPACING
+
+Global enforcement:
+
+All section headings use the same size + weight
+
+All py-28 between major sections
+
+All inner container use: max-w-screen-xl mx-auto px-6
+
+All text uses consistent line-height and letter-spacing
+
+Ensure no section is overly verbose (keep bullets crisp)
+
+9. ENSURE NOTHING BREAKS
+
+You must verify:
+
+No navigation issues
+
+No console errors
+
+No layout shifts
+
+All grids responsive
+
+All new sections integrate with existing theme
+
+No impact on hero visuals
+
+No modification to Lenis scroll
+
+No broken imports
+
+10. OUTPUT REQUIREMENTS
+
+Once all changes are made:
+
+Show a diff of modified sections
+
+Confirm all grids, cards, spacing, and visuals
+
+Confirm no files outside components/sections/pages were changed besides content JSON
+
+Restart server and verify
+
+Provide a summary titled: “OpenHouse AI – Enterprise Upgrade Complete”
+
+Begin implementing all upgrades now.
