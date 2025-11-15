@@ -29,67 +29,61 @@ export default function SolutionsPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-28">
           {/* Developers */}
           <Reveal>
-            <Card className="h-[540px] flex flex-col justify-start p-8 hover:border-gold/50 transition-all">
-              <CardHeader className="p-0 mb-6 flex-shrink-0">
-                <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
+            <Card className="h-[560px] flex flex-col justify-between p-8 hover:border-gold/50 transition-all">
+              <div className="space-y-6">
+                <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center">
                   <Building2 className="w-8 h-8 text-gold" />
                 </div>
                 <CardTitle className="text-heading-lg">{content.solutions.stakeholders.developers.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="p-0 flex-1 flex flex-col justify-start">
-                <ul className="space-y-3">
+                <ul className="grid grid-rows-6 gap-2">
                   {content.solutions.stakeholders.developers.bullets.map((bullet: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
                       <Check className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-                      <span className="text-hint text-body-md">{bullet}</span>
+                      <span className="text-hint text-body-md leading-snug">{bullet}</span>
                     </li>
                   ))}
                 </ul>
-              </CardContent>
+              </div>
             </Card>
           </Reveal>
 
           {/* Property Managers */}
           <Reveal delay={0.1}>
-            <Card className="h-[540px] flex flex-col justify-start p-8 hover:border-gold/50 transition-all">
-              <CardHeader className="p-0 mb-6 flex-shrink-0">
-                <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
+            <Card className="h-[560px] flex flex-col justify-between p-8 hover:border-gold/50 transition-all">
+              <div className="space-y-6">
+                <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center">
                   <Users className="w-8 h-8 text-gold" />
                 </div>
                 <CardTitle className="text-heading-lg">{content.solutions.stakeholders.omcs.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="p-0 flex-1 flex flex-col justify-start">
-                <ul className="space-y-3">
+                <ul className="grid grid-rows-6 gap-2">
                   {content.solutions.stakeholders.omcs.bullets.map((bullet: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
                       <Check className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-                      <span className="text-hint text-body-md">{bullet}</span>
+                      <span className="text-hint text-body-md leading-snug">{bullet}</span>
                     </li>
                   ))}
                 </ul>
-              </CardContent>
+              </div>
             </Card>
           </Reveal>
 
           {/* Residents */}
           <Reveal delay={0.2}>
-            <Card className="h-[540px] flex flex-col justify-start p-8 hover:border-gold/50 transition-all">
-              <CardHeader className="p-0 mb-6 flex-shrink-0">
-                <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
+            <Card className="h-[560px] flex flex-col justify-between p-8 hover:border-gold/50 transition-all">
+              <div className="space-y-6">
+                <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center">
                   <Home className="w-8 h-8 text-gold" />
                 </div>
                 <CardTitle className="text-heading-lg">{content.solutions.stakeholders.residents.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="p-0 flex-1 flex flex-col justify-start">
-                <ul className="space-y-3">
+                <ul className="grid grid-rows-6 gap-2">
                   {content.solutions.stakeholders.residents.bullets.map((bullet: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
                       <Check className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-                      <span className="text-hint text-body-md">{bullet}</span>
+                      <span className="text-hint text-body-md leading-snug">{bullet}</span>
                     </li>
                   ))}
                 </ul>
-              </CardContent>
+              </div>
             </Card>
           </Reveal>
         </div>
