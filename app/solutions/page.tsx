@@ -29,14 +29,14 @@ export default function SolutionsPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-28">
           {/* Developers */}
           <Reveal>
-            <Card className="min-h-[380px] flex flex-col p-6 hover:border-gold/50 transition-all">
-              <CardHeader className="p-0 mb-6">
+            <Card className="min-h-[380px] flex flex-col justify-start p-8 hover:border-gold/50 transition-all">
+              <CardHeader className="p-0 mb-6 flex-shrink-0">
                 <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
                   <Building2 className="w-8 h-8 text-gold" />
                 </div>
                 <CardTitle className="text-heading-lg">{content.solutions.stakeholders.developers.title}</CardTitle>
               </CardHeader>
-              <CardContent className="p-0 flex-1">
+              <CardContent className="p-0 flex-1 flex flex-col justify-start">
                 <ul className="space-y-3">
                   {content.solutions.stakeholders.developers.bullets.map((bullet: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
@@ -51,14 +51,14 @@ export default function SolutionsPage() {
 
           {/* OMCs / Property Managers */}
           <Reveal delay={0.1}>
-            <Card className="min-h-[380px] flex flex-col p-6 hover:border-gold/50 transition-all">
-              <CardHeader className="p-0 mb-6">
+            <Card className="min-h-[380px] flex flex-col justify-start p-8 hover:border-gold/50 transition-all">
+              <CardHeader className="p-0 mb-6 flex-shrink-0">
                 <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
                   <Users className="w-8 h-8 text-gold" />
                 </div>
                 <CardTitle className="text-heading-lg">{content.solutions.stakeholders.omcs.title}</CardTitle>
               </CardHeader>
-              <CardContent className="p-0 flex-1">
+              <CardContent className="p-0 flex-1 flex flex-col justify-start">
                 <ul className="space-y-3">
                   {content.solutions.stakeholders.omcs.bullets.map((bullet: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
@@ -73,14 +73,14 @@ export default function SolutionsPage() {
 
           {/* Residents */}
           <Reveal delay={0.2}>
-            <Card className="min-h-[380px] flex flex-col p-6 hover:border-gold/50 transition-all">
-              <CardHeader className="p-0 mb-6">
+            <Card className="min-h-[380px] flex flex-col justify-start p-8 hover:border-gold/50 transition-all">
+              <CardHeader className="p-0 mb-6 flex-shrink-0">
                 <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
                   <Home className="w-8 h-8 text-gold" />
                 </div>
                 <CardTitle className="text-heading-lg">{content.solutions.stakeholders.residents.title}</CardTitle>
               </CardHeader>
-              <CardContent className="p-0 flex-1">
+              <CardContent className="p-0 flex-1 flex flex-col justify-start">
                 <ul className="space-y-3">
                   {content.solutions.stakeholders.residents.bullets.map((bullet: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
@@ -100,14 +100,14 @@ export default function SolutionsPage() {
             const Icon = useCaseIcons[idx];
             return (
               <Reveal key={idx} delay={idx * 0.1}>
-                <Card className="p-6 hover:border-gold/50 transition-all">
-                  <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
+                <Card className="min-h-[200px] flex flex-col justify-start p-6 hover:border-gold/50 transition-all">
+                  <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-4 flex-shrink-0">
                     <Icon className="w-6 h-6 text-gold" />
                   </div>
-                  <h3 className="text-heading-sm font-semibold text-porcelain mb-2">
+                  <h3 className="text-heading-sm font-semibold text-porcelain mb-2 flex-shrink-0">
                     {useCase.title}
                   </h3>
-                  <p className="text-hint text-body-sm">
+                  <p className="text-hint text-body-sm flex-1">
                     {useCase.description}
                   </p>
                 </Card>
