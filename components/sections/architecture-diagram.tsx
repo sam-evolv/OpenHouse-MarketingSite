@@ -10,7 +10,7 @@ const flowIcons = [User, Bot, Database, LayoutDashboard, Building];
 
 export function ArchitectureDiagram() {
   return (
-    <section className="py-20 bg-carbon">
+    <section className="py-28 bg-carbon">
       <Container className="max-w-5xl">
         <SectionHeading
           title={content.architecture.title}
