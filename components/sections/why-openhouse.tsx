@@ -23,8 +23,8 @@ export function WhyOpenHouse() {
             const Icon = icons[index];
             return (
               <Reveal key={index} delay={index * 0.1}>
-                <Card className="p-6 hover:border-gold/50 transition-all flex flex-col">
-                  <CardHeader className="p-0 mb-4">
+                <Card className="p-6 hover:border-gold/50 transition-all flex flex-col h-[220px] justify-between">
+                  <CardHeader className="p-0">
                     <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
                       <Icon className="w-6 h-6 text-gold" />
                     </div>
