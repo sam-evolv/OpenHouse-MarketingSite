@@ -25,7 +25,7 @@ export function ProblemSolutionEnhanced() {
                 </h2>
               </div>
 
-              <ul className="grid grid-rows-7 gap-4">
+              <ul className="grid grid-rows-7 auto-rows-[1fr] gap-4">
                 {content.problem.bullets.map((bullet: string, index: number) => (
                   <li key={index} className="flex items-start gap-3 leading-snug">
                     <Check className="w-5 h-5 text-yellow-500 shrink-0 mt-1" />
@@ -45,7 +45,7 @@ export function ProblemSolutionEnhanced() {
                 </h2>
               </div>
 
-              <ul className="grid grid-rows-7 gap-4">
+              <ul className="grid grid-rows-7 auto-rows-[1fr] gap-4">
                 {content.solution.benefits.map((bullet: string, index: number) => (
                   <li key={index} className="flex items-start gap-3 leading-snug">
                     <Check className="w-5 h-5 text-yellow-500 shrink-0 mt-1" />
