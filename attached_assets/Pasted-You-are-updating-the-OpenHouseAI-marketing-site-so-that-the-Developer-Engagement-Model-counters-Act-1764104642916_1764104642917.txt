@@ -1,0 +1,221 @@
+You are updating the OpenHouseAI marketing site so that the Developer Engagement Model counters (Active Users, Questions Answered, PDF Downloads, Engagement Rate) display LIVE data from Supabase.
+
+Complete ALL of the following tasks carefully.
+
+====================================================
+1. CREATE /api/analytics ROUTE
+====================================================
+Create the file:
+
+app/api/analytics/route.ts
+
+Inside it, paste this exact code:
+
+----------------------------------------------------
+import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+
+export async function GET() {
+  const supabase = createClient(
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
+  const { data, error } = await supabase
+    .from("analytics_platform_stats")
+    .select("*")
+    .eq("id", 1)
+    .single();
+
+  if (error) {
+    console.error("Supabase analytics fetch error:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch analytics stats" },
+      { status: 500 }
+    );
+  }
+
+  return NextResponse.json({
+    activeUsers: data.active_users,
+    questionsAnswered: data.questions_answered,
+    pdfDownloads: data.pdf_downloads,
+    engagementRate: data.engagement_rate,
+    updatedAt: data.updated_at,
+  });
+}
+----------------------------------------------------
+
+This route must fetch real analytics from Supabase using the service-role key.
+
+
+====================================================
+2. UPDATE THE SUPABASE SERVER CLIENT (IF NEEDED)
+====================================================
+Check the file:
+lib/supabase/server.ts
+or
+lib/supabase/admin.ts
+
+Make sure it uses:
+
+createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
+
+If any server-side code uses the ANON key, REPLACE it with SERVICE ROLE.
+
+
+====================================================
+3. UPDATE MARKETING DASHBOARD COMPONENT
+====================================================
+
+Locate the marketing dashboard counters here:
+
+app/(marketing)/developer-engagement/page.tsx
+OR
+sections/developer/EngagementModel.tsx
+(depending on where the counters live)
+
+Replace the static counter block with this LIVE version:
+
+----------------------------------------------------
+"use client";
+import { useEffect, useState } from "react";
+
+export default function EngagementCounters() {
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  async function loadStats() {
+    try {
+      const res = await fetch("/api/analytics");
+      const json = await res.json();
+      setStats(json);
+      setLoading(false);
+    } catch (e) {
+      console.error("Failed to load stats:", e);
+    }
+  }
+
+  useEffect(() => {
+    loadStats();
+
+    // auto-refresh every 30 seconds
+    const interval = setInterval(loadStats, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <SkeletonCard label="Active Users" />
+        <SkeletonCard label="Questions Answered" />
+        <SkeletonCard label="PDF Downloads" />
+        <SkeletonCard label="Engagement Rate" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+      <StatCard
+        label="Active Users"
+        value={stats.activeUsers}
+      />
+
+      <StatCard
+        label="Questions Answered"
+        value={stats.questionsAnswered}
+      />
+
+      <StatCard
+        label="PDF Downloads"
+        value={stats.pdfDownloads}
+      />
+
+      <StatCard
+        label="Engagement Rate"
+        value={`${(stats.engagementRate * 100).toFixed(0)}%`}
+      />
+    </div>
+  );
+}
+
+function StatCard({ label, value }) {
+  return (
+    <div className="rounded-xl bg-neutral-900 px-10 py-8 border border-neutral-800">
+      <div className="text-5xl font-bold text-white">{value}</div>
+      <div className="text-neutral-400 text-sm mt-2">{label}</div>
+    </div>
+  );
+}
+
+function SkeletonCard({ label }) {
+  return (
+    <div className="rounded-xl bg-neutral-900 px-10 py-8 border border-neutral-800 animate-pulse">
+      <div className="h-12 w-24 bg-neutral-800 rounded mb-3"></div>
+      <div className="h-4 w-32 bg-neutral-800 rounded"></div>
+    </div>
+  );
+}
+----------------------------------------------------
+
+
+====================================================
+4. REMOVE ANY HARDCODED NUMBERS
+====================================================
+Search the repository for:
+"2847"
+"18493"
+"4221"
+"94%"
+(These were the placeholder numbers.)
+
+Replace them with the dynamic <EngagementCounters /> block.
+
+
+====================================================
+5. VERIFY ENVIRONMENT VARIABLES ARE LOADED
+====================================================
+Confirm the following exist in `.env`:
+
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+
+They MUST NOT be prefixed with NEXT_PUBLIC.
+
+
+====================================================
+6. RESTART THE DEV SERVER
+====================================================
+Run:
+kill 1
+or restart workspace.
+
+Next.js MUST reload env vars.
+
+
+====================================================
+7. FINAL TEST
+====================================================
+
+After restart:
+
+Go to:
+http://localhost:5000/developer-engagement
+
+Verify:
+- Active Users matches Supabase value
+- Questions Answered updates when chat events fire
+- PDF Downloads increments on PDF events
+- Engagement Rate matches analytics_platform_stats
+
+Everything should now show REAL LIVE DATA exactly as stored in Supabase.
+=====================================================================
+
+Perform all changes now.
+Make no changes outside these steps.
+Ensure the UI matches the existing design.

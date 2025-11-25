@@ -110,13 +110,16 @@ Production-grade marketing website for OpenHouse AI (an AI resident assistant fo
 ### Live Analytics Integration with Supabase
 Complete analytics system for tracking platform usage and displaying live statistics.
 
+**Status: ✅ FULLY WORKING** - Live data flowing from Supabase
+
 **Architecture:**
 ```
 Frontend Event → /api/events → Supabase analytics_events table
                                     ↓
-                          Edge Function (cron every 10min)
+                          scheduler.js (every 10min) → Edge Function
                                     ↓
-/api/marketing/stats ← Supabase analytics_platform_stats
+/api/analytics ← Supabase analytics_platform_stats
+/api/marketing/stats ←┘
 ```
 
 **Implementation:**
@@ -126,9 +129,14 @@ Frontend Event → /api/events → Supabase analytics_events table
    - Proper error handling: 503 when Supabase not configured, 500 on errors
    - Input validation for event types
 
-2. **Marketing Stats API:** `app/api/marketing/stats/route.ts`
-   - Fetches stats from Supabase `analytics_platform_stats` table if configured
-   - Falls back to DEFAULT_STATS when Supabase not available
+2. **Analytics API:** `app/api/analytics/route.ts`
+   - Returns camelCase formatted stats (activeUsers, questionsAnswered, etc.)
+   - Auto-refresh every 30 seconds in dashboard components
+   - Used by dashboard-preview.tsx
+
+3. **Marketing Stats API:** `app/api/marketing/stats/route.ts`
+   - Returns snake_case formatted stats (active_users, questions_answered, etc.)
+   - Used by dashboard-preview-enhanced.tsx
    - No-cache headers prevent stale data
 
 3. **Frontend Event Logger:** `lib/logEvent.ts`

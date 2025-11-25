@@ -13,9 +13,9 @@ export interface AnalyticsEvent {
 }
 
 export const DEFAULT_STATS: PlatformStats = {
-  active_users: 2847,
-  questions_answered: 18493,
-  pdf_downloads: 4221,
-  engagement_rate: 0.94,
+  active_users: 0,
+  questions_answered: 0,
+  pdf_downloads: 0,
+  engagement_rate: 0,
   updated_at: new Date().toISOString(),
 };

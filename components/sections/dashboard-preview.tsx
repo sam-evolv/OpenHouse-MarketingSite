@@ -1,29 +1,78 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Container } from "../ui/container";
 import { SectionHeading } from "../ui/section-heading";
 import content from "@/i18n/en.json";
 import { TrendingUp, Download, Users, CheckCircle2 } from "lucide-react";
+import { CountUp } from "../effects/CountUp";
 
-const metrics = [
-  { label: "Active Users", value: "2,847", change: "+12%", icon: Users },
-  { label: "Questions Answered", value: "18,493", change: "+24%", icon: CheckCircle2 },
-  { label: "PDF Downloads", value: "4,221", change: "+8%", icon: Download },
-  { label: "Engagement Rate", value: "94%", change: "+3%", icon: TrendingUp },
-];
+interface AnalyticsStats {
+  activeUsers: number;
+  questionsAnswered: number;
+  pdfDownloads: number;
+  engagementRate: number;
+  updatedAt: string;
+}
 
 export function DashboardPreview() {
+  const [stats, setStats] = useState<AnalyticsStats | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const res = await fetch('/api/analytics', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          setStats(data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch analytics:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchStats();
+    const interval = setInterval(fetchStats, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const metrics = [
+    { 
+      label: "Active Users", 
+      value: stats?.activeUsers || 0, 
+      icon: Users 
+    },
+    { 
+      label: "Questions Answered", 
+      value: stats?.questionsAnswered || 0, 
+      icon: CheckCircle2 
+    },
+    { 
+      label: "PDF Downloads", 
+      value: stats?.pdfDownloads || 0, 
+      icon: Download 
+    },
+    { 
+      label: "Engagement Rate", 
+      value: stats ? Math.round(stats.engagementRate * 100) : 0, 
+      suffix: "%",
+      icon: TrendingUp 
+    },
+  ];
+
   return (
     <section className="py-24 bg-carbon">
       <Container>
         <SectionHeading
           title={content.dashboard.title}
           description={content.dashboard.description}
-          badge="Analytics"
+          badge="Live Analytics"
         />
 
         <div className="mt-16">
-          {/* Metrics Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {metrics.map((metric, index) => {
               const Icon = metric.icon;
@@ -34,12 +83,17 @@ export function DashboardPreview() {
                 >
                   <div className="flex items-center justify-between mb-4">
                     <Icon className="w-5 h-5 text-gold" />
-                    <span className="text-xs text-green-400 font-medium">
-                      {metric.change}
+                    <span className="flex items-center gap-1 text-xs text-green-400 font-medium">
+                      <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                      Live
                     </span>
                   </div>
                   <div className="text-display-md font-bold text-porcelain mb-1">
-                    {metric.value}
+                    {isLoading ? (
+                      <div className="h-10 w-24 bg-hint/20 rounded animate-pulse" />
+                    ) : (
+                      <CountUp end={metric.value} suffix={metric.suffix || ""} />
+                    )}
                   </div>
                   <div className="text-sm text-hint">{metric.label}</div>
                 </div>
@@ -47,7 +101,6 @@ export function DashboardPreview() {
             })}
           </div>
 
-          {/* Mock Chart */}
           <div className="bg-slate/50 border border-hint/20 rounded-lg p-8">
             <h3 className="text-heading-md font-bold text-porcelain mb-6">
               Top Questions This Week

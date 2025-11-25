@@ -22,20 +22,6 @@ export async function POST(req: Request) {
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-    console.log("ENV SUPABASE_URL:", supabaseUrl ? `OK (starts with: ${supabaseUrl.substring(0, 15)}...)` : "MISSING");
-    console.log("ENV SERVICE_ROLE:", supabaseServiceKey ? "OK" : "MISSING");
-    console.log("URL valid check:", supabaseUrl ? isValidUrl(supabaseUrl) : "N/A");
-    if (supabaseUrl && !isValidUrl(supabaseUrl)) {
-      console.log("URL starts with http:", supabaseUrl.startsWith('http://'));
-      console.log("URL starts with https:", supabaseUrl.startsWith('https://'));
-      try {
-        new URL(supabaseUrl);
-        console.log("URL parse: SUCCESS");
-      } catch (e: unknown) {
-        console.log("URL parse: FAILED -", e instanceof Error ? e.message : 'Unknown error');
-      }
-    }
-
     if (!type) {
       return NextResponse.json(
         { error: "Missing event type", success: false },
