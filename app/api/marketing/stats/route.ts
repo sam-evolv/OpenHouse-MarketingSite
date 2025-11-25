@@ -5,12 +5,21 @@ import { PlatformStats, DEFAULT_STATS } from '@/lib/types/analytics';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+function isValidUrl(url: string): boolean {
+  try {
+    new URL(url);
+    return url.startsWith('http://') || url.startsWith('https://');
+  } catch {
+    return false;
+  }
+}
+
 export async function GET() {
   try {
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
-    if (supabaseUrl && supabaseKey) {
+    if (supabaseUrl && supabaseKey && isValidUrl(supabaseUrl)) {
       const supabase = createClient(supabaseUrl, supabaseKey);
 
       const { data, error } = await supabase
@@ -38,7 +47,7 @@ export async function GET() {
       }
 
       if (error) {
-        console.error('Supabase error:', error.message);
+        console.log('Supabase query info:', error.message);
       }
     }
 
@@ -50,7 +59,7 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error('Error fetching platform stats:', error);
+    console.log('Using fallback stats');
     return NextResponse.json(DEFAULT_STATS, {
       headers: {
         'Cache-Control': 'no-cache, no-store, must-revalidate',

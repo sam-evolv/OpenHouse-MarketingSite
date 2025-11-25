@@ -5,6 +5,15 @@ export const dynamic = 'force-dynamic';
 
 const VALID_EVENT_TYPES = ['session', 'chat', 'pdf_download'];
 
+function isValidUrl(url: string): boolean {
+  try {
+    new URL(url);
+    return url.startsWith('http://') || url.startsWith('https://');
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -12,14 +21,14 @@ export async function POST(req: Request) {
 
     if (!type) {
       return NextResponse.json(
-        { error: "Missing event type" },
+        { error: "Missing event type", success: false },
         { status: 400 }
       );
     }
 
     if (!VALID_EVENT_TYPES.includes(type)) {
       return NextResponse.json(
-        { error: "Invalid event type" },
+        { error: "Invalid event type", success: false },
         { status: 400 }
       );
     }
@@ -27,10 +36,10 @@ export async function POST(req: Request) {
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-    if (!supabaseUrl || !supabaseServiceKey) {
-      console.error("Supabase credentials not configured");
+    if (!supabaseUrl || !supabaseServiceKey || !isValidUrl(supabaseUrl)) {
+      console.warn("Analytics event not persisted (Supabase not configured):", { type, development_id, unit_id });
       return NextResponse.json(
-        { error: "Service unavailable" },
+        { error: "Analytics service not configured", success: false },
         { status: 503 }
       );
     }
@@ -44,9 +53,9 @@ export async function POST(req: Request) {
     });
 
     if (error) {
-      console.error("Failed to insert event:", error);
+      console.error("Failed to insert analytics event:", error.message);
       return NextResponse.json(
-        { error: "Failed to log event" },
+        { error: "Failed to log event", success: false, details: error.message },
         { status: 500 }
       );
     }
@@ -55,7 +64,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Event logging error:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Internal server error", success: false },
       { status: 500 }
     );
   }

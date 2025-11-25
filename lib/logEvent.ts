@@ -1,5 +1,10 @@
 type EventType = 'session' | 'chat' | 'pdf_download';
 
+interface EventResponse {
+  success: boolean;
+  error?: string;
+}
+
 export async function logEvent(
   type: EventType,
   developmentId?: string,
@@ -16,26 +21,32 @@ export async function logEvent(
       }),
     });
 
-    if (!response.ok) {
-      console.error("Event log failed:", await response.text());
+    const data: EventResponse = await response.json();
+
+    if (!response.ok || !data.success) {
+      if (response.status === 503) {
+        console.warn("Analytics service not configured - event not persisted");
+      } else {
+        console.error("Event log failed:", data.error || "Unknown error");
+      }
       return false;
     }
 
     return true;
   } catch (err) {
-    console.error("Event log failed:", err);
+    console.error("Event log network error:", err);
     return false;
   }
 }
 
-export function logSession(developmentId?: string, unitId?: string) {
+export function logSession(developmentId?: string, unitId?: string): Promise<boolean> {
   return logEvent('session', developmentId, unitId);
 }
 
-export function logChat(developmentId?: string, unitId?: string) {
+export function logChat(developmentId?: string, unitId?: string): Promise<boolean> {
   return logEvent('chat', developmentId, unitId);
 }
 
-export function logPdfDownload(developmentId?: string, unitId?: string) {
+export function logPdfDownload(developmentId?: string, unitId?: string): Promise<boolean> {
   return logEvent('pdf_download', developmentId, unitId);
 }
