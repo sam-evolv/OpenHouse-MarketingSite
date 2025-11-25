@@ -105,6 +105,60 @@ Production-grade marketing website for OpenHouse AI (an AI resident assistant fo
 
 ---
 
+## Recent Changes (November 25, 2025)
+
+### Platform Integration Update - Production-Ready Deployment
+Unified the OpenHouseAI marketing site with the application platform, establishing environment-based URL routing and updated branding.
+
+**Implementation:**
+- **Environment Configuration:** `lib/env.ts`
+  - Production URLs: `app.openhouseai.ie` (app) and `openhouseai.ie` (marketing)
+  - Centralized route definitions for login, register, superadmin, developer dashboard
+  - Support email: support@openhouseai.ie
+
+- **Navigation Updates:** `components/navigation.tsx`
+  - Added "Login" pill button → app.openhouseai.ie/login
+  - Added "Start Onboarding" CTA → app.openhouseai.ie/register
+  - Retained "Book a demo" button → /contact
+  - Mobile menu includes all platform links
+
+- **Footer Updates:** `components/footer.tsx`
+  - New "Platform" section with:
+    - Developer Portal → login
+    - Superadmin Login → login?role=superadmin
+    - Start Onboarding → register
+  - Added Support mailto link
+  - Updated grid to 5 columns (brand + 4 link sections)
+
+- **Technology Section:** `components/sections/technology-section.tsx`
+  - "Unified AI Engine Across Every Home" headline
+  - 6 feature cards: NFC Activation, RAG Knowledge Engine, Intelligent Chat, QR Onboarding, Multi-Language Support, Enterprise Security
+  - Premium black/gold gradient styling
+  - Added to homepage between AudienceSlices and DashboardPreview
+
+- **Metadata Updates:** `app/layout.tsx`
+  - Title: "OpenHouse AI — The AI Resident Portal for Modern Developments"
+  - Production URL: openhouseai.ie
+  - Locale: en_IE
+  - Added keywords: NFC onboarding, property technology
+
+**Files Created:**
+- `lib/env.ts` - Environment configuration and app routes
+- `components/sections/technology-section.tsx` - New technology showcase section
+
+**Files Modified:**
+- `components/navigation.tsx` - Platform login/onboarding CTAs
+- `components/footer.tsx` - Platform links section
+- `app/page.tsx` - Added TechnologySection
+- `app/layout.tsx` - Updated metadata and branding
+
+**Architecture Review:** ✅ Approved by Architect
+- Environment-driven links eliminate hardcoded localhost references
+- Consistent black/gold theming across new components
+- Proper external link handling with anchor tags
+
+---
+
 ## Recent Changes (October 29, 2025)
 
 ### Architectural 3D Scene Implementation (In Progress - Debugging)
