@@ -1,0 +1,82 @@
+You are updating the OpenHouseAI project to fix the “Analytics service not configured” error by correctly loading Supabase environment variables inside the Next.js runtime.
+
+Perform ALL of the following steps carefully:
+
+1. CREATE OR UPDATE `.env` IN ROOT
+----------------------------------
+If `.env` does not exist, create it.  
+If it exists, update it to contain the following values pulled from Replit Secrets:
+
+SUPABASE_URL="${process.env.SUPABASE_URL}"
+SUPABASE_ANON_KEY="${process.env.SUPABASE_ANON_KEY}"
+SUPABASE_SERVICE_ROLE_KEY="${process.env.SUPABASE_SERVICE_ROLE_KEY}"
+
+These must be available to the Next.js server API at runtime.  
+Do NOT prefix them with NEXT_PUBLIC.
+
+2. ENSURE NEXT.JS READS `.env`
+-------------------------------
+Check that Next.js loads environment variables automatically by confirming `.env` is at the project root (same level as package.json).
+
+No extra config is required, but verify no conflicting code loads env vars manually.
+
+3. UPDATE THE SUPABASE SERVER CLIENT
+-------------------------------------
+Open `lib/supabase/admin.ts` or `lib/supabase/server.ts` (whichever is used by `/api/events`).
+
+Ensure it uses:
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
+
+If it uses the anon key for server-side, replace with the service-role key.
+
+4. UPDATE THE API ROUTE `/api/events` TO CHECK ENV VARS PROPERLY
+------------------------------------------------------------------
+Open: `app/api/events/route.ts` or `pages/api/events.ts`.
+
+Ensure this check is correct:
+
+if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  return NextResponse.json(
+    { error: "Analytics service not configured", success: false },
+    { status: 500 }
+  );
+}
+
+5. RESTART THE NEXT.JS SERVER (MANDATORY)
+-----------------------------------------
+Run the equivalent of:
+kill 1
+
+Replit will automatically restart the dev server.  
+This forces Next.js to reload the `.env` file.
+
+6. LOG CONFIRMATION
+-------------------
+Add console.log in the events API route:
+
+console.log("ENV SUPABASE_URL:", process.env.SUPABASE_URL ? "OK" : "MISSING");
+console.log("ENV SERVICE_ROLE:", process.env.SUPABASE_SERVICE_ROLE_KEY ? "OK" : "MISSING");
+
+This should print in Console every time the endpoint is hit.
+
+7. FINAL TEST (DON'T MODIFY)
+----------------------------
+Do NOT fix or touch the curl command.  
+Once the server is restarted and env vars load correctly, running this:
+
+curl -X POST http://localhost:5000/api/events \
+  -H "Content-Type: application/json" \
+  -d '{"type": "session", "development_id": "demo-dev", "unit_id": "unit-1"}'
+
+should return:
+
+{"success": true}
+
+If not, print logs and diagnose.
+
+Make the minimal code changes required. 
+Do not alter unrelated parts of the app.
