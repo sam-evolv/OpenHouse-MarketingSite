@@ -51,19 +51,19 @@ export function TechnologySection() {
           badge="Technology"
         />
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[1fr] gap-8">
           {technologies.map((tech, index) => {
             const Icon = tech.icon;
             return (
               <Reveal key={index} delay={index * 0.1}>
-                <div className="group p-8 bg-black/40 border border-white/5 rounded-2xl hover:border-gold/30 transition-all duration-300">
+                <div className="group h-full flex flex-col p-8 bg-black/40 border border-white/5 rounded-2xl hover:border-gold/30 transition-all duration-300">
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center mb-6 group-hover:from-gold/30 group-hover:to-gold/10 transition-all duration-300">
                     <Icon className="w-7 h-7 text-gold" />
                   </div>
                   <h3 className="text-xl font-semibold text-porcelain mb-3">
                     {tech.title}
                   </h3>
-                  <p className="text-hint text-body-md leading-relaxed">
+                  <p className="text-hint text-body-md leading-relaxed flex-1">
                     {tech.description}
                   </p>
                 </div>
