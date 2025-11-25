@@ -56,7 +56,7 @@ export function TechnologySection() {
             const Icon = tech.icon;
             return (
               <Reveal key={index} delay={index * 0.1}>
-                <div className="group h-full flex flex-col p-8 bg-black/40 border border-white/5 rounded-2xl hover:border-gold/30 transition-all duration-300">
+                <div className="group h-full min-h-[280px] flex flex-col p-8 bg-black/40 border border-white/5 rounded-2xl hover:border-gold/30 transition-all duration-300">
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center mb-6 group-hover:from-gold/30 group-hover:to-gold/10 transition-all duration-300">
                     <Icon className="w-7 h-7 text-gold" />
                   </div>
