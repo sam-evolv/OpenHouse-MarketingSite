@@ -151,6 +151,11 @@ Frontend Event → /api/events → Supabase analytics_events table
    - Aggregates events every 10 minutes
    - Updates platform stats table
 
+7. **Scheduler:** `scheduler.js`
+   - Node.js scheduler that calls the Edge Function every 10 minutes
+   - Runs alongside Next.js using `concurrently`
+   - Logs update attempts and responses
+
 **Environment Variables Required:**
 - `SUPABASE_URL` - Supabase project URL
 - `SUPABASE_ANON_KEY` - Public anon key for frontend reads

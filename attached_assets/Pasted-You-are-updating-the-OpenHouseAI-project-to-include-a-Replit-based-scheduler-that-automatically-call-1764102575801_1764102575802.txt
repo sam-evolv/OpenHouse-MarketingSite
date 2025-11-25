@@ -1,0 +1,93 @@
+You are updating the OpenHouseAI project to include a Replit-based scheduler
+that automatically calls the Supabase Edge Function "update-stats" every 10 minutes.
+
+Perform ALL of the following tasks carefully:
+
+==========================================================
+1. CREATE THE scheduler.js FILE
+==========================================================
+
+Create a new file at the project root named: scheduler.js
+
+Add the following code:
+
+----------------------------------------------------------
+import fetch from "node-fetch";
+
+const FUNCTION_URL = "https://qgkyuaagcrrynnkipbad.supabase.co/functions/v1/update-stats";
+const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+// Run immediately when server starts
+runUpdate();
+
+// Run every 10 minutes
+setInterval(runUpdate, 10 * 60 * 1000);
+
+async function runUpdate() {
+  try {
+    console.log("Running scheduled Supabase update...");
+
+    const res = await fetch(FUNCTION_URL, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${SERVICE_ROLE_KEY}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    const text = await res.text();
+    console.log("Supabase response:", text);
+  } catch (err) {
+    console.error("Scheduler error:", err);
+  }
+}
+----------------------------------------------------------
+
+==========================================================
+2. INSTALL node-fetch AND concurrently
+==========================================================
+
+Run:
+npm install node-fetch@2 concurrently --save-dev
+
+==========================================================
+3. UPDATE package.json TO RUN BOTH APP + SCHEDULER
+==========================================================
+
+Open package.json and update the scripts section so it looks like:
+
+"scripts": {
+  "dev": "concurrently \"next dev\" \"node scheduler.js\""
+}
+
+If any other scripts exist, preserve them.
+
+==========================================================
+4. VERIFY SUPABASE SECRETS
+==========================================================
+
+Check Replit Secrets for:
+
+SUPABASE_URL
+SUPABASE_ANON_KEY
+SUPABASE_SERVICE_ROLE_KEY
+
+If any are missing, stop and ask the user.
+
+==========================================================
+5. CLEAN UP ANY OLD PM2 OR BACKGROUND TASKS
+==========================================================
+
+Ensure no files named worker.js, cron.js, or similar exist.
+If they do, list them but do not delete unless asked.
+
+==========================================================
+6. PROVIDE A CLEAR COMPLETION SUMMARY
+==========================================================
+
+After all changes are done, output:
+
+- Confirmation that scheduler.js exists  
+- Confirmation that the project now runs scheduler + Next.js  
+- Instructions for the user on how to test the scheduler locally  
+- Instructions for deploying the environment so the scheduler runs 24/7  

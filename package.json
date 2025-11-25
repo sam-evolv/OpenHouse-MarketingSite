@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5000",
+    "dev": "concurrently \"next dev -p 5000\" \"node scheduler.js\"",
     "build": "next build",
-    "start": "next start -p 5000",
+    "start": "concurrently \"next start -p 5000\" \"node scheduler.js\"",
     "lint": "next lint"
   },
   "dependencies": {
@@ -27,9 +27,11 @@
     "autoprefixer": "^10.4.21",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "concurrently": "^9.2.1",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.548.0",
     "next": "^14.2.33",
+    "node-fetch": "^2.7.0",
     "postcss": "^8.5.6",
     "postprocessing": "^6.37.8",
     "react": "^18.3.1",
@@ -44,6 +46,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.14.4"
+    "@netlify/plugin-nextjs": "^5.14.4",
+    "supabase": "^2.62.5"
   }
 }
