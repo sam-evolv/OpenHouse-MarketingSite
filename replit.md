@@ -107,6 +107,47 @@ Production-grade marketing website for OpenHouse AI (an AI resident assistant fo
 
 ## Recent Changes (November 25, 2025)
 
+### Live Analytics Integration
+Implemented server-side analytics API and client-side live data fetching for the Dashboard Preview section.
+
+**Implementation:**
+- **API Endpoint:** `app/api/marketing/stats/route.ts`
+  - Fetches stats from Supabase `analytics_platform_stats` table if configured
+  - Falls back to DEFAULT_STATS when Supabase not available
+  - Returns: active_users, questions_answered, pdf_downloads, engagement_rate, updated_at
+  - No-cache headers prevent stale data
+
+- **TypeScript Types:** `lib/types/analytics.ts`
+  - `PlatformStats` interface for API response
+  - `AnalyticsEvent` interface for event tracking
+  - `DEFAULT_STATS` constant for fallback values
+
+- **Dashboard Component:** `components/sections/dashboard-preview-enhanced.tsx`
+  - Fetches live stats from `/api/marketing/stats`
+  - Auto-refreshes every 10 minutes
+  - Shows "Live" indicator with pulse animation
+  - Graceful loading state handling
+  - Badge changed to "Live Analytics"
+
+**Environment Variables (when Supabase is configured):**
+- `SUPABASE_URL` - Supabase project URL
+- `SUPABASE_ANON_KEY` - Supabase anon key
+
+**Example API Response:**
+```json
+{
+  "active_users": 2847,
+  "questions_answered": 18493,
+  "pdf_downloads": 4221,
+  "engagement_rate": 0.94,
+  "updated_at": "2025-11-25T19:44:48.079Z"
+}
+```
+
+**Architecture Review:** ✅ Approved by Architect
+
+---
+
 ### Platform Integration Update - Production-Ready Deployment
 Unified the OpenHouseAI marketing site with the application platform, establishing environment-based URL routing and updated branding.
 
