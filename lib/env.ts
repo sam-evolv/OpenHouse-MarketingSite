@@ -1,6 +1,7 @@
 export const env = {
   APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'https://app.openhouseai.ie',
   MARKETING_URL: process.env.NEXT_PUBLIC_MARKETING_URL || 'https://openhouseai.ie',
+  API_URL: process.env.NEXT_PUBLIC_API_URL || '',
   SUPPORT_EMAIL: 'support@openhouseai.ie',
   CONTACT_EMAIL: 'hello@openhouseai.ie',
 };

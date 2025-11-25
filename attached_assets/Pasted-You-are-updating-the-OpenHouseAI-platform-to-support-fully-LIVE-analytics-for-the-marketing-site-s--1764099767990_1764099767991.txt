@@ -1,0 +1,179 @@
+You are updating the OpenHouseAI platform to support fully LIVE analytics for the marketing site’s “Developer Engagement Model” section.
+
+Your tasks span: database migrations, event tracking, cron aggregation, API creation, and Next.js integration.
+
+====================================================
+PART 1 — SUPABASE SCHEMA CREATION
+====================================================
+
+1. Create a new table: analytics_events
+
+Fields:
+- id: uuid primary key default uuid_generate_v4()
+- type: text CHECK (type IN ('chat', 'pdf_download', 'session'))
+- development_id: text
+- unit_id: text
+- created_at: timestamp default now()
+
+Purpose:
+Stores raw event logs from the application.
+
+----------------------------------------------------
+
+2. Create an aggregated stats table: analytics_platform_stats
+
+Fields:
+- id: integer primary key default 1
+- active_users: integer
+- questions_answered: integer
+- pdf_downloads: integer
+- engagement_rate: numeric
+- updated_at: timestamp default now()
+
+Only ONE row should exist (id = 1).
+
+----------------------------------------------------
+
+3. Ensure RLS OFF for analytics_platform_stats
+Ensure RLS ON for analytics_events with appropriate inserts allowed from API layer only.
+
+====================================================
+PART 2 — ADD EVENT TRACKING IN THE APP
+====================================================
+
+Implement server-side POST requests to log events:
+
+A) When a tenant sends a chat message:
+POST /api/events with:
+{
+  type: "chat",
+  development_id,
+  unit_id
+}
+
+B) When a PDF is downloaded:
+{
+  type: "pdf_download",
+  development_id,
+  unit_id
+}
+
+C) When a tenant loads the tenant interface:
+{
+  type: "session",
+  development_id,
+  unit_id
+}
+
+Store all events in analytics_events.
+
+====================================================
+PART 3 — SUPABASE CRON AGGREGATOR
+====================================================
+
+Create a Supabase Edge Function: update-stats
+
+Path: supabase/functions/update-stats/index.ts
+
+This function must:
+
+1. Count last 30 days DISTINCT unit_id for active users:
+SELECT count(DISTINCT unit_id) FROM analytics_events WHERE type = 'session' AND created_at > now() - interval '30 days';
+
+2. Count total chat events:
+SELECT count(*) FROM analytics_events WHERE type = 'chat';
+
+3. Count total pdf downloads:
+SELECT count(*) FROM analytics_events WHERE type = 'pdf_download';
+
+4. Calculate engagement_rate:
+engagement = active_users / NULLIF(total_units, 0)
+(total_units fetched from units table)
+
+5. Write the values into analytics_platform_stats WHERE id = 1
+
+Schedule using Supabase Cron:
+EVERY 10 minutes:
+*/10 * * * *
+
+====================================================
+PART 4 — API ENDPOINT FOR MARKETING SITE
+====================================================
+
+Create a backend route: /marketing/stats
+
+This endpoint must:
+
+- Fetch the row WHERE id = 1 FROM analytics_platform_stats
+- Return JSON:
+{
+  active_users,
+  questions_answered,
+  pdf_downloads,
+  engagement_rate,
+  updated_at
+}
+- Disable caching at server level
+- Protect the route via a read-only key or IP protection if available
+
+Put this into: app/api/marketing/stats/route.ts
+
+====================================================
+PART 5 — MARKETING SITE (Next.js) INTEGRATION
+====================================================
+
+Update homepage section:
+
+Replace the hardcoded numbers in the Developer Engagement Model with server-side fetched values:
+
+In page.tsx or relevant component:
+
+async function getStats() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/marketing/stats`,
+    { next: { revalidate: 600 } } // cache 10 min
+  );
+  return res.ok ? res.json() : null;
+}
+
+const stats = await getStats() || {
+  active_users: 0,
+  questions_answered: 0,
+  pdf_downloads: 0,
+  engagement_rate: 0
+};
+
+Bind values:
+
+{stats.active_users.toLocaleString()}
+{stats.questions_answered.toLocaleString()}
+{stats.pdf_downloads.toLocaleString()}
+{(stats.engagement_rate * 100).toFixed(0)}%
+
+====================================================
+PART 6 — PRODUCTION CLEANUP
+====================================================
+
+1. Ensure NEXT_PUBLIC_API_URL is set in Netlify/Next environment.
+2. Remove all localhost URLs.
+3. Ensure no component reads Supabase directly from the browser.
+4. Validate CORS for the marketing site.
+5. Add rate limiting (10 req/min).
+
+====================================================
+PART 7 — EXECUTE NOW
+====================================================
+
+Perform all tasks in order:
+✓ Database migrations
+✓ Event tracking wiring
+✓ Cron job creation
+✓ API endpoint creation
+✓ Next.js marketing integration
+✓ Verification
+
+After completion, produce a summary of:
+- files changed
+- new endpoints
+- example response payload
+- testing instructions
