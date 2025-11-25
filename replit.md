@@ -107,22 +107,56 @@ Production-grade marketing website for OpenHouse AI (an AI resident assistant fo
 
 ## Recent Changes (November 25, 2025)
 
-### Live Analytics Integration
-Implemented server-side analytics API and client-side live data fetching for the Dashboard Preview section.
+### Live Analytics Integration with Supabase
+Complete analytics system for tracking platform usage and displaying live statistics.
+
+**Architecture:**
+```
+Frontend Event → /api/events → Supabase analytics_events table
+                                    ↓
+                          Edge Function (cron every 10min)
+                                    ↓
+/api/marketing/stats ← Supabase analytics_platform_stats
+```
 
 **Implementation:**
-- **API Endpoint:** `app/api/marketing/stats/route.ts`
-  - Fetches stats from Supabase `analytics_platform_stats` table if configured
-  - Falls back to DEFAULT_STATS when Supabase not available
-  - Returns: active_users, questions_answered, pdf_downloads, engagement_rate, updated_at
-  - No-cache headers prevent stale data
 
-- **TypeScript Types:** `lib/types/analytics.ts`
-  - `PlatformStats` interface for API response
-  - `AnalyticsEvent` interface for event tracking
-  - `DEFAULT_STATS` constant for fallback values
+1. **Events API:** `app/api/events/route.ts`
+   - POST endpoint for logging session/chat/pdf_download events
+   - Proper error handling: 503 when Supabase not configured, 500 on errors
+   - Input validation for event types
 
-- **Dashboard Component:** `components/sections/dashboard-preview-enhanced.tsx`
+2. **Marketing Stats API:** `app/api/marketing/stats/route.ts`
+   - Fetches stats from Supabase `analytics_platform_stats` table if configured
+   - Falls back to DEFAULT_STATS when Supabase not available
+   - No-cache headers prevent stale data
+
+3. **Frontend Event Logger:** `lib/logEvent.ts`
+   - `logEvent()`, `logSession()`, `logChat()`, `logPdfDownload()` functions
+   - Returns boolean indicating success/failure
+   - Proper error handling and console warnings
+
+4. **TypeScript Types:** `lib/types/analytics.ts`
+   - `PlatformStats` interface for API response
+   - `AnalyticsEvent` interface for event tracking
+   - `DEFAULT_STATS` constant for fallback values
+
+5. **Supabase Migration:** `supabase/migrations/001_create_analytics_tables.sql`
+   - `analytics_events` table for raw event logging
+   - `analytics_platform_stats` table for aggregated stats
+   - RPC functions for aggregation
+   - Row-level security policies
+
+6. **Edge Function:** `supabase/functions/update-stats/index.ts`
+   - Aggregates events every 10 minutes
+   - Updates platform stats table
+
+**Environment Variables Required:**
+- `SUPABASE_URL` - Supabase project URL
+- `SUPABASE_ANON_KEY` - Public anon key for frontend reads
+- `SUPABASE_SERVICE_ROLE_KEY` - Service role key for event inserts
+
+**Dashboard Component:** `components/sections/dashboard-preview-enhanced.tsx`
   - Fetches live stats from `/api/marketing/stats`
   - Auto-refreshes every 10 minutes
   - Shows "Live" indicator with pulse animation
