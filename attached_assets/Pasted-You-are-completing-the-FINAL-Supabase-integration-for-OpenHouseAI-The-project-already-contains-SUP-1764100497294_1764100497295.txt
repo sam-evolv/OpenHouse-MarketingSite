@@ -1,0 +1,269 @@
+You are completing the FINAL Supabase integration for OpenHouseAI. 
+The project already contains SUPABASE_URL, SUPABASE_ANON_KEY, and SUPABASE_SERVICE_ROLE_KEY as environment secrets.
+Your job is to fully wire up the production analytics pipeline.
+
+Perform all tasks below, file-by-file, using small incremental edits.
+
+==========================================================
+PART 1 — VALIDATE ENVIRONMENT SECRETS
+==========================================================
+Confirm the following secrets exist:
+
+- SUPABASE_URL
+- SUPABASE_ANON_KEY
+- SUPABASE_SERVICE_ROLE_KEY
+
+If any are missing, stop and request them.
+
+Then update lib/env.ts to export:
+
+export const env = {
+  SUPABASE_URL: process.env.SUPABASE_URL!,
+  SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY!,
+  SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  API_URL: process.env.API_URL || "http://localhost:5000/api"
+};
+
+==========================================================
+PART 2 — CREATE REQUIRED SUPABASE TABLES
+==========================================================
+Create SQL migration files or run schema creation inside the /supabase or /sql folder.
+
+Table 1: analytics_events
+----------------------------------------------------------
+id uuid default uuid_generate_v4() primary key
+type text not null check (type in ('session','chat','pdf_download'))
+development_id text
+unit_id text
+created_at timestamp with time zone default now()
+
+Table 2: analytics_platform_stats
+----------------------------------------------------------
+id integer primary key default 1
+active_users integer default 0
+questions_answered integer default 0
+pdf_downloads integer default 0
+engagement_rate numeric default 0
+updated_at timestamp default now()
+
+Disable RLS on analytics_platform_stats only.
+Leave RLS ON for analytics_events.
+
+==========================================================
+PART 3 — CREATE EVENT RECEIVER API ROUTE
+==========================================================
+Create file:
+
+app/api/events/route.ts
+
+Contents:
+----------------------------------------------------------
+import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+
+export async function POST(req: Request) {
+  const { type, development_id, unit_id } = await req.json();
+
+  if (!type) {
+    return NextResponse.json({ error: "Missing type" }, { status: 400 });
+  }
+
+  const supabase = createClient(
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!   // service role only here
+  );
+
+  await supabase.from("analytics_events").insert({
+    type,
+    development_id,
+    unit_id
+  });
+
+  return NextResponse.json({ success: true });
+}
+----------------------------------------------------------
+
+This will allow the frontend to log sessions, chats, and PDF downloads.
+
+==========================================================
+PART 4 — ADD FRONTEND EVENT LOGGING UTILITY
+==========================================================
+Create file:
+
+lib/logEvent.ts
+
+Contents:
+----------------------------------------------------------
+export async function logEvent(type: string, developmentId?: string, unitId?: string) {
+  try {
+    await fetch("/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type,
+        development_id: developmentId,
+        unit_id: unitId
+      }),
+    });
+  } catch (err) {
+    console.error("Event log failed:", err);
+  }
+}
+----------------------------------------------------------
+
+==========================================================
+PART 5 — INSTRUMENT TENANT CHAT
+==========================================================
+Open: components/TenantChat.tsx
+
+Inject after successful message send:
+
+import { logEvent } from "@/lib/logEvent";
+
+await logEvent("chat", developmentId, unitId);
+
+Ensure developmentId and unitId come from props or route params.
+
+==========================================================
+PART 6 — INSTRUMENT PDF DOWNLOADS
+==========================================================
+Locate the file that triggers document downloads:
+
+- components/DocumentsList.tsx OR
+- components/DocumentViewer.tsx
+
+Before triggering download:
+
+import { logEvent } from "@/lib/logEvent";
+
+await logEvent("pdf_download", developmentId, unitId);
+
+==========================================================
+PART 7 — INSTRUMENT TENANT SESSION START
+==========================================================
+Open: app/tenant/[development]/[unit]/page.tsx
+Or TenantLanding component.
+
+Add:
+
+import { logEvent } from "@/lib/logEvent";
+
+useEffect(() => {
+  logEvent("session", developmentId, unitId);
+}, []);
+
+==========================================================
+PART 8 — INSTRUMENT DEVELOPER + SUPERADMIN SESSIONS
+==========================================================
+Developer:
+
+app/developer/page.tsx
+
+useEffect(() => {
+  logEvent("session", "developer", "dashboard");
+}, []);
+
+Superadmin:
+
+app/superadmin/page.tsx
+
+useEffect(() => {
+  logEvent("session", "superadmin", "dashboard");
+}, []);
+
+==========================================================
+PART 9 — CREATE SUPABASE EDGE FUNCTION FOR AGGREGATION
+==========================================================
+Create file:
+
+supabase/functions/update-stats/index.ts
+
+Contents:
+----------------------------------------------------------
+import { serve } from "https://deno.land/std/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js";
+
+serve(async () => {
+  const supabase = createClient(
+    Deno.env.get("SUPABASE_URL")!,
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+  );
+
+  const { data: totalUnits } = await supabase.rpc("get_total_units");
+
+  const { data: activeUsers } = await supabase.rpc("get_active_users_last_30_days");
+
+  const { data: chats } = await supabase
+    .from("analytics_events")
+    .select("*", { count: "exact", head: true })
+    .eq("type", "chat");
+
+  const { data: pdfs } = await supabase
+    .from("analytics_events")
+    .select("*", { count: "exact", head: true })
+    .eq("type", "pdf_download");
+
+  const engagement =
+    totalUnits && totalUnits > 0
+      ? (activeUsers || 0) / totalUnits
+      : 0;
+
+  await supabase.from("analytics_platform_stats")
+    .update({
+      active_users: activeUsers || 0,
+      questions_answered: chats?.count || 0,
+      pdf_downloads: pdfs?.count || 0,
+      engagement_rate: engagement,
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", 1);
+
+  return new Response("OK");
+});
+----------------------------------------------------------
+
+Create RPCs:
+
+1) get_total_units  
+SELECT count(*) FROM units;
+
+2) get_active_users_last_30_days  
+SELECT count(DISTINCT unit_id) FROM analytics_events WHERE type = 'session' AND created_at > now() - interval '30 days';
+
+==========================================================
+PART 10 — CONFIGURE CRON JOB
+==========================================================
+Inside Supabase dashboard → Scheduled Jobs → Add new job:
+
+Name: update-platform-stats  
+Schedule: */10 * * * *  
+Invoke: update-stats
+
+==========================================================
+PART 11 — VERIFY MARKETING SITE LIVE ANALYTICS
+==========================================================
+Your marketing site already contains:
+
+- API_URL
+- Live stats fetch
+- Auto-refresh every 10 minutes
+- "Live" badge
+- Fallback values
+
+Perform verification:
+
+1. Open /api/marketing/stats
+2. Confirm it returns the analytics_platform_stats row
+3. Perform a chat event → confirm events table updates
+4. Reload marketing site → confirm new values appear
+
+==========================================================
+EXECUTE NOW
+==========================================================
+Perform all edits step-by-step, file-by-file, committing after each section.
+After finishing, output a summary including:
+- Files created
+- Files modified
+- Supabase RPCs created
+- Cron job instructions
+- Final testing instructions

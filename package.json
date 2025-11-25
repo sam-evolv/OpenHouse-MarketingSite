@@ -20,6 +20,7 @@
     "@react-three/fiber": "^8.18.0",
     "@react-three/postprocessing": "^2.19.1",
     "@studio-freight/lenis": "^1.0.42",
+    "@supabase/supabase-js": "^2.84.0",
     "@types/node": "^24.9.2",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",

@@ -2,6 +2,9 @@ export const env = {
   APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'https://app.openhouseai.ie',
   MARKETING_URL: process.env.NEXT_PUBLIC_MARKETING_URL || 'https://openhouseai.ie',
   API_URL: process.env.NEXT_PUBLIC_API_URL || '',
+  SUPABASE_URL: process.env.SUPABASE_URL!,
+  SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY!,
+  SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY!,
   SUPPORT_EMAIL: 'support@openhouseai.ie',
   CONTACT_EMAIL: 'hello@openhouseai.ie',
 };

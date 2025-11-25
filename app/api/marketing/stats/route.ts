@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 import { PlatformStats, DEFAULT_STATS } from '@/lib/types/analytics';
 
 export const dynamic = 'force-dynamic';
@@ -10,37 +11,34 @@ export async function GET() {
     const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
     if (supabaseUrl && supabaseKey) {
-      const response = await fetch(
-        `${supabaseUrl}/rest/v1/analytics_platform_stats?id=eq.1&select=*`,
-        {
-          headers: {
-            'apikey': supabaseKey,
-            'Authorization': `Bearer ${supabaseKey}`,
-            'Content-Type': 'application/json',
-          },
-          cache: 'no-store',
-        }
-      );
+      const supabase = createClient(supabaseUrl, supabaseKey);
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data && data.length > 0) {
-          const stats: PlatformStats = {
-            active_users: data[0].active_users || 0,
-            questions_answered: data[0].questions_answered || 0,
-            pdf_downloads: data[0].pdf_downloads || 0,
-            engagement_rate: data[0].engagement_rate || 0,
-            updated_at: data[0].updated_at || new Date().toISOString(),
-          };
-          
-          return NextResponse.json(stats, {
-            headers: {
-              'Cache-Control': 'no-cache, no-store, must-revalidate',
-              'Pragma': 'no-cache',
-              'Expires': '0',
-            },
-          });
-        }
+      const { data, error } = await supabase
+        .from('analytics_platform_stats')
+        .select('*')
+        .eq('id', 1)
+        .single();
+
+      if (!error && data) {
+        const stats: PlatformStats = {
+          active_users: data.active_users || 0,
+          questions_answered: data.questions_answered || 0,
+          pdf_downloads: data.pdf_downloads || 0,
+          engagement_rate: data.engagement_rate || 0,
+          updated_at: data.updated_at || new Date().toISOString(),
+        };
+
+        return NextResponse.json(stats, {
+          headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+          },
+        });
+      }
+
+      if (error) {
+        console.error('Supabase error:', error.message);
       }
     }
 
