@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
+import { appRoutes } from "@/lib/env";
 
 const navLinks = [
   { href: "/features", label: "Features" },
@@ -68,8 +69,26 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            {/* Developer Login Pill */}
+            <a
+              href={appRoutes.login}
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-porcelain hover:text-gold border border-white/10 hover:border-gold/50 rounded-full transition-all duration-200"
+            >
+              <LogIn className="w-4 h-4" />
+              Login
+            </a>
+            
+            {/* Start Onboarding */}
+            <a
+              href={appRoutes.register}
+              className="px-4 py-2 text-sm font-medium text-carbon bg-gold hover:bg-gold/90 rounded-full transition-all duration-200"
+            >
+              Start Onboarding
+            </a>
+            
+            {/* Book a Demo */}
             <Button asChild>
               <Link href="/contact" prefetch={true}>
                 Book a demo
@@ -107,6 +126,24 @@ export function Navigation() {
                   {link.label}
                 </Link>
               ))}
+              
+              {/* Mobile Login/Register */}
+              <a
+                href={appRoutes.login}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-2 text-sm font-medium text-porcelain hover:text-gold"
+              >
+                <LogIn className="w-4 h-4" />
+                Login
+              </a>
+              <a
+                href={appRoutes.register}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-sm font-medium text-gold hover:text-gold/80"
+              >
+                Start Onboarding
+              </a>
+              
               <Button asChild className="w-full">
                 <Link
                   href="/contact"

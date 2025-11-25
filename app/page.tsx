@@ -4,6 +4,7 @@ import { ArchitectureDiagram } from "@/components/sections/architecture-diagram"
 import { HowItWorksPinned } from "@/components/sections/how-it-works/HowItWorksPinned";
 import { FeatureGridEnhanced } from "@/components/sections/feature-grid-enhanced";
 import { AudienceSlices } from "@/components/sections/audience-slices";
+import { TechnologySection } from "@/components/sections/technology-section";
 import { DashboardPreviewEnhanced } from "@/components/sections/dashboard-preview-enhanced";
 import { IsoGallerySection } from "@/sections/Gallery/IsoGallerySection";
 import { PricingSection } from "@/components/sections/pricing-section";
@@ -21,6 +22,7 @@ export default function HomeEnhanced() {
       <HowItWorksPinned />
       <FeatureGridEnhanced />
       <AudienceSlices />
+      <TechnologySection />
       <DashboardPreviewEnhanced />
       <IsoGallerySection />
       <PricingSection />

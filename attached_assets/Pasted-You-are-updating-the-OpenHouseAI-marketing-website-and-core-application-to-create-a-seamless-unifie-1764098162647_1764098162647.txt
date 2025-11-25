@@ -1,0 +1,160 @@
+You are updating the OpenHouseAI marketing website and core application to create a seamless, unified, production-ready platform. Follow all instructions precisely.
+
+====================================================
+OBJECTIVE
+====================================================
+
+Unify the OpenHouseAI marketing site and the OpenHouseAI product (superadmin, developer portal, tenant interface) into one cohesive, enterprise-grade ecosystem ready for deployment next week.
+
+This requires:
+1. Creating final production URLs and linking flows.
+2. Implementing proper navigation between marketing site → app → tenant experience.
+3. Adding subtle cross-integration elements that make the product feel like one branded platform.
+4. Improving brand consistency across both codebases.
+5. Preparing the system for public release under the OpenHouseAI brand.
+
+====================================================
+TARGET ARCHITECTURE
+====================================================
+
+FRONT-ENDS:
+- Marketing website (Next.js)
+  URL: https://openhouseai.ie
+
+- Application (developer + superadmin + tenant)
+  URL: https://app.openhouseai.ie
+
+ROUTING STRUCTURE INSIDE THE APP:
+- /login
+- /register
+- /superadmin
+- /developer
+- /tenant/:developmentSlug/:unitSlug
+
+Ensure no hardcoded localhost URLs exist anywhere.
+
+====================================================
+TASK LIST
+====================================================
+
+A) MARKETING SITE UPDATES (Next.js)
+-----------------------------------
+1. Update primary navigation:
+   - Add “Login” → https://app.openhouseai.ie/login
+   - Add “Start Onboarding” → https://app.openhouseai.ie/register
+   - Keep “Book a demo” as is.
+
+2. Add a persistent top-right “Developer Login” button styled as a premium pill.
+
+3. Add new footer links:
+   - Developer Portal → https://app.openhouseai.ie/login
+   - Superadmin Login → https://app.openhouseai.ie/login?role=superadmin
+   - Tenant Portal (hidden link, no nav exposure) → placeholder link to tenant homepage
+
+4. Add a “Technology” section to the homepage with:
+   - "Unified AI Engine Across Every Home"
+   - “NFC activation, QR onboarding, instant RAG chat, and intelligent home support.”
+   - Styled premium visuals to match app styling (black/gold gradient).
+
+5. Ensure shared components (buttons, typography, theme colors) match the app's styling:
+   - Use gold #EAC66D for accents
+   - Use deep black background (#050505)
+   - Use matching rounded-2xl buttons
+
+6. Replace any old brand wording with:
+   “OpenHouse AI — The AI Resident Portal for Modern Developments.”
+
+B) APP (DEVELOPER/SUPERADMIN/TENANT) INTEGRATION TOUCHES
+---------------------------------------------------------
+1. Add OpenHouseAI logo in top-left of app, clicking → https://openhouseai.ie
+
+2. Add footer to app with:
+   - "Back to Marketing Site" → https://openhouseai.ie
+   - “Support” → mailto:support@openhouseai.ie
+   - “Docs” → marketing site Docs section
+
+3. Style the app’s header bars to match marketing site:
+   - Black background
+   - Gold hover states
+   - Medium weight font
+
+4. Add a unified “Platform Switcher” component (top right if logged in):
+   - Developer Dashboard
+   - Superadmin Dashboard (role-gated)
+   - Marketing Site
+
+5. Ensure all routes redirect correctly:
+   - /superadmin requires superadmin role
+   - /developer requires developer role
+   - /tenant/:id is public
+
+C) QR / TENANT EXPERIENCE MARKETING TOUCHES
+-------------------------------------------
+1. Add OpenHouseAI brand fade-in on QR landing page.
+2. Add “Powered by OpenHouse AI” microlabel under chat input.
+3. Add “Learn more → https://openhouseai.ie” small link on tenant home screen.
+
+D) GLOBAL CLEANUP TASKS
+-----------------------
+1. Remove all remaining “localhost:3000”, “localhost:5000”, and Replit preview URLs.
+2. Centralise environment variables:
+   NEXT_PUBLIC_APP_URL=https://app.openhouseai.ie
+   NEXT_PUBLIC_MARKETING_URL=https://openhouseai.ie
+
+3. Review all hyperlinks in the codebase and convert them to use env-based URLs.
+
+====================================================
+FILES TO UPDATE
+====================================================
+
+Marketing site (Next.js):
+- app/layout.tsx
+- app/page.tsx
+- components/Header.tsx
+- components/Footer.tsx
+- components/Hero.tsx
+- components/CTAButtons.tsx
+- components/Features.tsx
+- styles/globals.css
+
+App (Next.js / React):
+- app/layout.tsx
+- components/AppHeader.tsx
+- components/AppFooter.tsx
+- components/NavBar.tsx
+- components/PlatformSwitcher.tsx
+- components/TenantLanding.tsx
+- components/TenantChat.tsx
+- utils/env.ts
+- next.config.js
+
+====================================================
+IMPLEMENTATION REQUIREMENTS
+====================================================
+
+1. All new links MUST use absolute URLs (marketing → app) OR environment variables.
+2. Use identical CSS tokens as the marketing site for:
+   - button radius
+   - shadows
+   - transition timings
+   - gold border glow
+   - section padding
+3. Add guard clauses on routes using the existing auth middleware.
+4. Commit each change with clear checkpoints.
+
+====================================================
+VERIFICATION STEPS
+====================================================
+
+After changes:
+- Verify all links route correctly between marketing and app.
+- Verify nav height, padding, and colour are consistent across both platforms.
+- Test tenant onboarding flow using a mock QR.
+- Confirm buttons and typography match the marketing site.
+- Confirm no review URLs (local or dev) remain.
+
+====================================================
+EXECUTE NOW
+====================================================
+
+Perform all updates above. Make each edit in small, incremental actions. After finishing each section, show a visual summary of changes and confirm next actions.

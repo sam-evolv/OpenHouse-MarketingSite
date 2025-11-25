@@ -23,22 +23,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "OpenHouse AI - The AI Resident Assistant for Modern Developments",
+  title: "OpenHouse AI — The AI Resident Portal for Modern Developments",
   description:
-    "Cut support requests, wow buyers, and give residents answers in seconds. One assistant that knows your development inside out.",
+    "Cut support requests, wow buyers, and give residents answers in seconds. One AI portal that knows your development inside out.",
   keywords: [
     "property management",
     "AI assistant",
     "real estate",
     "resident portal",
     "smart building",
+    "NFC onboarding",
+    "property technology",
   ],
   authors: [{ name: "EvolvAi" }],
   openGraph: {
-    title: "OpenHouse AI - AI Resident Assistant",
+    title: "OpenHouse AI — The AI Resident Portal for Modern Developments",
     description:
       "Cut support requests, wow buyers, and give residents answers in seconds.",
-    url: "https://openhouse.ai",
+    url: "https://openhouseai.ie",
     siteName: "OpenHouse AI",
     images: [
       {
@@ -48,12 +50,12 @@ export const metadata: Metadata = {
         alt: "OpenHouse AI",
       },
     ],
-    locale: "en_US",
+    locale: "en_IE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "OpenHouse AI - AI Resident Assistant",
+    title: "OpenHouse AI — The AI Resident Portal for Modern Developments",
     description:
       "Cut support requests, wow buyers, and give residents answers in seconds.",
     images: ["/og.jpg"],
