@@ -2,12 +2,13 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
   const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
-  if (!supabaseUrl || !supabaseServiceKey || !supabaseUrl.startsWith('https://')) {
+  if (!supabaseUrl || !supabaseKey || !supabaseUrl.startsWith('https://')) {
     return NextResponse.json({
       activeUsers: 0,
       questionsAnswered: 0,
@@ -17,7 +18,7 @@ export async function GET() {
     });
   }
 
-  const supabase = createClient(supabaseUrl, supabaseServiceKey);
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
   const { data, error } = await supabase
     .from("analytics_platform_stats")
@@ -33,11 +34,16 @@ export async function GET() {
     );
   }
 
-  return NextResponse.json({
+  const response = NextResponse.json({
     activeUsers: data.active_users,
     questionsAnswered: data.questions_answered,
     pdfDownloads: data.pdf_downloads,
     engagementRate: data.engagement_rate,
     updatedAt: data.updated_at,
   });
+  
+  response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+  response.headers.set('Pragma', 'no-cache');
+  
+  return response;
 }
