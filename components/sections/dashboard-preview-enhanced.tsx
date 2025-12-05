@@ -47,9 +47,7 @@ export function DashboardPreviewEnhanced() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const res = await fetch('/api/analytics', {
-          cache: 'no-store',
-        });
+        const res = await fetch('/api/analytics', { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
           setStats(data);

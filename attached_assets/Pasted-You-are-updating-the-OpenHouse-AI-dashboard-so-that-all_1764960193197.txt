@@ -1,0 +1,175 @@
+You are updating the OpenHouse AI dashboard so that all four analytics counters
+(Active Users, Questions Answered, PDF Downloads, Engagement Rate) load live
+data from Supabase in real time.
+
+Perform the following tasks exactly:
+
+---------------------------------------------------------------------------
+1. CREATE OR REPLACE API ROUTE: app/api/analytics/route.ts
+---------------------------------------------------------------------------
+Replace the entire contents of this file with the following Supabase-powered
+code. This uses the Supabase Service Role key to aggregate counts across
+analytics tables and returns them as JSON with no caching.
+
+-------------------- START route.ts --------------------
+
+import { NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
+
+export async function GET() {
+  // ACTIVE USERS (last 5 minutes)
+  const { data: activeUsersData, error: activeErr } = await supabase
+    .from('user_events')
+    .select('*', { count: 'exact', head: true })
+    .gte('created_at', new Date(Date.now() - 5 * 60 * 1000).toISOString())
+
+  if (activeErr) console.error(activeErr)
+
+  // QUESTIONS ANSWERED
+  const { count: questionsAnswered } = await supabase
+    .from('question_logs')
+    .select('*', { count: 'exact', head: true })
+
+  // PDF DOWNLOADS
+  const { count: pdfDownloads } = await supabase
+    .from('pdf_logs')
+    .select('*', { count: 'exact', head: true })
+
+  // ENGAGEMENT RATE
+  const engagementRate =
+    activeUsersData?.length
+      ? ((questionsAnswered! + pdfDownloads!) / activeUsersData.length) * 100
+      : 0
+
+  return NextResponse.json({
+    activeUsers: activeUsersData?.length || 0,
+    questionsAnswered: questionsAnswered || 0,
+    pdfDownloads: pdfDownloads || 0,
+    engagementRate: Number(engagementRate.toFixed(2)),
+  })
+}
+
+--------------------- END route.ts ---------------------
+
+
+
+---------------------------------------------------------------------------
+2. UPDATE DASHBOARD UI TO CONSUME LIVE DATA
+---------------------------------------------------------------------------
+Open the file: components/sections/dashboard-preview.tsx
+
+Replace the entire component with the following version that fetches the new
+API endpoint on page load and refreshes every 20 seconds:
+
+---------------- START dashboard-preview.tsx ----------------
+
+'use client'
+
+import { useEffect, useState } from 'react'
+
+export default function DashboardPreview() {
+  const [stats, setStats] = useState({
+    activeUsers: 0,
+    questionsAnswered: 0,
+    pdfDownloads: 0,
+    engagementRate: 0,
+  })
+
+  async function loadStats() {
+    const res = await fetch('/api/analytics', { cache: 'no-store' })
+    const json = await res.json()
+    setStats(json)
+  }
+
+  useEffect(() => {
+    loadStats()
+
+    const interval = setInterval(loadStats, 20000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <StatCard title="Active Users" value={stats.activeUsers} />
+      <StatCard title="Questions Answered" value={stats.questionsAnswered} />
+      <StatCard title="PDF Downloads" value={stats.pdfDownloads} />
+      <StatCard title="Engagement Rate" value={`${stats.engagementRate}%`} />
+    </div>
+  )
+}
+
+function StatCard({ title, value }) {
+  return (
+    <div className="border border-zinc-700 rounded-xl px-6 py-6 flex flex-col">
+      <span className="text-sm text-zinc-400">{title}</span>
+      <span className="text-4xl font-semibold mt-3">{value}</span>
+    </div>
+  )
+}
+
+---------------- END dashboard-preview.tsx ----------------
+
+
+
+---------------------------------------------------------------------------
+3. VERIFY ENVIRONMENT VARIABLES
+---------------------------------------------------------------------------
+Ensure these keys exist in the Replit Secrets panel or .env file:
+
+NEXT_PUBLIC_SUPABASE_URL=<your-supabase-url>
+SUPABASE_SERVICE_ROLE_KEY=<your-service-role-key>
+
+Do NOT remove or rename these. The API route depends on them.
+
+
+
+---------------------------------------------------------------------------
+4. REMOVE ANY OLD ANALYTICS SCHEDULER OR HARDCODED VALUES
+---------------------------------------------------------------------------
+Delete or comment out any legacy analytics logic:
+- Old /api/marketing/stats logic
+- Old server-side counters
+- Any hardcoded values in the dashboard UI
+
+Only the new `/api/analytics` endpoint should supply numbers.
+
+
+
+---------------------------------------------------------------------------
+5. CONFIRM APPLICATION RUNS WITHOUT ERRORS
+---------------------------------------------------------------------------
+- No TypeScript errors
+- No missing imports
+- The dashboard should display the live Supabase values
+- The counters must update every ~20 seconds
+
+If any UI layout issues appear, resolve them automatically.
+
+
+
+---------------------------------------------------------------------------
+6. OPTIONAL: Ensure tables exist (only if missing)
+---------------------------------------------------------------------------
+If any of these tables are missing, create them automatically:
+
+user_events(id uuid default uuid_generate_v4(), user_id uuid, event_type text, created_at timestamptz default now())
+question_logs(id uuid default uuid_generate_v4(), question text, user_id uuid, created_at timestamptz default now())
+pdf_logs(id uuid default uuid_generate_v4(), pdf_name text, user_id uuid, created_at timestamptz default now())
+
+Also add indexes:
+
+create index on user_events(created_at);
+create index on question_logs(created_at);
+create index on pdf_logs(created_at);
+
+
+
+---------------------------------------------------------------------------
+FINAL GOAL
+---------------------------------------------------------------------------
+After running all steps, the dashboard counters must display real-time values pulled directly from Supabase with no caching and auto-refresh functionality.
