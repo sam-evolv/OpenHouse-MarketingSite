@@ -1,67 +1,51 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
-import { Container } from "../ui/container";
-import { SectionHeading } from "../ui/section-heading";
-import content from "@/i18n/en.json";
-import { TrendingUp, Download, Users, CheckCircle2 } from "lucide-react";
-import { CountUp } from "../effects/CountUp";
+import { useEffect, useState } from 'react'
+import { Container } from "../ui/container"
+import { SectionHeading } from "../ui/section-heading"
+import content from "@/i18n/en.json"
+import { TrendingUp, Download, Users, CheckCircle2 } from "lucide-react"
 
-interface AnalyticsStats {
-  activeUsers: number;
-  questionsAnswered: number;
-  pdfDownloads: number;
-  engagementRate: number;
-  updatedAt: string;
+interface Stats {
+  activeUsers: number
+  questionsAnswered: number
+  pdfDownloads: number
+  engagementRate: number
 }
 
 export function DashboardPreview() {
-  const [stats, setStats] = useState<AnalyticsStats | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [stats, setStats] = useState<Stats>({
+    activeUsers: 0,
+    questionsAnswered: 0,
+    pdfDownloads: 0,
+    engagementRate: 0,
+  })
+  const [isLoading, setIsLoading] = useState(true)
+
+  async function loadStats() {
+    try {
+      const res = await fetch('/api/analytics', { cache: 'no-store' })
+      const json = await res.json()
+      setStats(json)
+    } catch (error) {
+      console.error('Failed to load stats:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   useEffect(() => {
-    async function fetchStats() {
-      try {
-        const res = await fetch('/api/analytics', { cache: 'no-store' });
-        if (res.ok) {
-          const data = await res.json();
-          setStats(data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch analytics:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchStats();
-    const interval = setInterval(fetchStats, 30000);
-    return () => clearInterval(interval);
-  }, []);
+    loadStats()
+    const interval = setInterval(loadStats, 20000)
+    return () => clearInterval(interval)
+  }, [])
 
   const metrics = [
-    { 
-      label: "Active Users", 
-      value: stats?.activeUsers || 0, 
-      icon: Users 
-    },
-    { 
-      label: "Questions Answered", 
-      value: stats?.questionsAnswered || 0, 
-      icon: CheckCircle2 
-    },
-    { 
-      label: "PDF Downloads", 
-      value: stats?.pdfDownloads || 0, 
-      icon: Download 
-    },
-    { 
-      label: "Engagement Rate", 
-      value: stats ? Math.round(stats.engagementRate * 100) : 0, 
-      suffix: "%",
-      icon: TrendingUp 
-    },
-  ];
+    { label: "Active Users", value: stats.activeUsers, icon: Users },
+    { label: "Questions Answered", value: stats.questionsAnswered, icon: CheckCircle2 },
+    { label: "PDF Downloads", value: stats.pdfDownloads, icon: Download },
+    { label: "Engagement Rate", value: `${stats.engagementRate}%`, icon: TrendingUp },
+  ]
 
   return (
     <section className="py-24 bg-carbon">
@@ -73,13 +57,13 @@ export function DashboardPreview() {
         />
 
         <div className="mt-16">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
             {metrics.map((metric, index) => {
-              const Icon = metric.icon;
+              const Icon = metric.icon
               return (
                 <div
                   key={index}
-                  className="bg-slate/50 border border-hint/20 rounded-lg p-6 hover:border-gold/50 transition-colors"
+                  className="bg-slate/50 border border-hint/20 rounded-xl px-6 py-6 hover:border-gold/50 transition-colors flex flex-col"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <Icon className="w-5 h-5 text-gold" />
@@ -88,16 +72,16 @@ export function DashboardPreview() {
                       Live
                     </span>
                   </div>
-                  <div className="text-display-md font-bold text-porcelain mb-1">
+                  <span className="text-sm text-hint">{metric.label}</span>
+                  <span className="text-4xl font-semibold text-porcelain mt-2">
                     {isLoading ? (
-                      <div className="h-10 w-24 bg-hint/20 rounded animate-pulse" />
+                      <span className="inline-block h-10 w-16 bg-hint/20 rounded animate-pulse" />
                     ) : (
-                      <CountUp end={metric.value} suffix={metric.suffix || ""} />
+                      metric.value
                     )}
-                  </div>
-                  <div className="text-sm text-hint">{metric.label}</div>
+                  </span>
                 </div>
-              );
+              )
             })}
           </div>
 
@@ -133,5 +117,7 @@ export function DashboardPreview() {
         </div>
       </Container>
     </section>
-  );
+  )
 }
+
+export default DashboardPreview

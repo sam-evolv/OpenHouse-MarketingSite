@@ -8,36 +8,46 @@ import { Reveal } from "../effects/Reveal";
 import { CountUp } from "../effects/CountUp";
 import content from "@/i18n/en.json";
 import { TrendingUp, Download, Users, CheckCircle2 } from "lucide-react";
-import { PlatformStats, DEFAULT_STATS } from "@/lib/types/analytics";
 
 const CanvasHUD = dynamic(
   () => import("./dashboard-preview/CanvasHUD").then((mod) => ({ default: mod.CanvasHUD })),
   { ssr: false }
 );
 
+interface Stats {
+  activeUsers: number;
+  questionsAnswered: number;
+  pdfDownloads: number;
+  engagementRate: number;
+}
+
 interface MetricConfig {
   label: string;
-  key: keyof PlatformStats;
+  key: keyof Stats;
   icon: typeof Users;
   suffix?: string;
-  isPercentage?: boolean;
 }
 
 const metricConfigs: MetricConfig[] = [
-  { label: "Active Users", key: "active_users", icon: Users },
-  { label: "Questions Answered", key: "questions_answered", icon: CheckCircle2 },
-  { label: "PDF Downloads", key: "pdf_downloads", icon: Download },
-  { label: "Engagement Rate", key: "engagement_rate", icon: TrendingUp, suffix: "%", isPercentage: true },
+  { label: "Active Users", key: "activeUsers", icon: Users },
+  { label: "Questions Answered", key: "questionsAnswered", icon: CheckCircle2 },
+  { label: "PDF Downloads", key: "pdfDownloads", icon: Download },
+  { label: "Engagement Rate", key: "engagementRate", icon: TrendingUp, suffix: "%" },
 ];
 
 export function DashboardPreviewEnhanced() {
-  const [stats, setStats] = useState<PlatformStats>(DEFAULT_STATS);
+  const [stats, setStats] = useState<Stats>({
+    activeUsers: 0,
+    questionsAnswered: 0,
+    pdfDownloads: 0,
+    engagementRate: 0,
+  });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchStats() {
       try {
-        const res = await fetch('/api/marketing/stats', {
+        const res = await fetch('/api/analytics', {
           cache: 'no-store',
         });
         if (res.ok) {
@@ -52,17 +62,9 @@ export function DashboardPreviewEnhanced() {
     }
     
     fetchStats();
-    const interval = setInterval(fetchStats, 600000);
+    const interval = setInterval(fetchStats, 20000);
     return () => clearInterval(interval);
   }, []);
-
-  const getMetricValue = (config: MetricConfig): number => {
-    const value = stats[config.key];
-    if (typeof value === 'number') {
-      return config.isPercentage ? Math.round(value * 100) : value;
-    }
-    return 0;
-  };
 
   return (
     <section className="py-28 bg-slate">
@@ -77,7 +79,7 @@ export function DashboardPreviewEnhanced() {
           <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {metricConfigs.map((config, index) => {
               const Icon = config.icon;
-              const value = getMetricValue(config);
+              const value = stats[config.key];
               return (
                 <div
                   key={index}
