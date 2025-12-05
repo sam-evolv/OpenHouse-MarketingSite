@@ -4,10 +4,10 @@ import { createClient } from '@supabase/supabase-js'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-
 export async function GET() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY
+
   if (!supabaseUrl || !supabaseKey) {
     return NextResponse.json({
       activeUsers: 0,
@@ -26,21 +26,21 @@ export async function GET() {
       .select('*', { count: 'exact', head: true })
       .gte('created_at', new Date(Date.now() - 5 * 60 * 1000).toISOString())
 
-    if (activeErr) console.error('Active users error:', activeErr)
+    if (activeErr) console.error('Active users error:', activeErr.message)
 
     // QUESTIONS ANSWERED
     const { count: questionsAnswered, error: questionsErr } = await supabase
       .from('question_logs')
       .select('*', { count: 'exact', head: true })
 
-    if (questionsErr) console.error('Questions error:', questionsErr)
+    if (questionsErr) console.error('Questions error:', questionsErr.message)
 
     // PDF DOWNLOADS
     const { count: pdfDownloads, error: pdfErr } = await supabase
       .from('pdf_logs')
       .select('*', { count: 'exact', head: true })
 
-    if (pdfErr) console.error('PDF downloads error:', pdfErr)
+    if (pdfErr) console.error('PDF downloads error:', pdfErr.message)
 
     // ENGAGEMENT RATE
     const activeUsers = activeUsersCount || 0
