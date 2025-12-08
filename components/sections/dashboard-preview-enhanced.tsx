@@ -14,6 +14,8 @@ const CanvasHUD = dynamic(
   { ssr: false }
 );
 
+const STATS_API_URL = "https://84141d02-f316-41eb-8d70-a45b1b91c63c-00-140og66wspdkl.riker.replit.dev/api/stats/public";
+
 interface Stats {
   activeUsers: number;
   questionsAnswered: number;
@@ -47,10 +49,15 @@ export function DashboardPreviewEnhanced() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const res = await fetch('/api/analytics', { cache: 'no-store' });
+        const res = await fetch(STATS_API_URL, { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
-          setStats(data);
+          setStats({
+            activeUsers: data.active_users || 0,
+            questionsAnswered: data.questions_answered || 0,
+            pdfDownloads: data.pdf_downloads || 0,
+            engagementRate: data.engagement_rate || 0,
+          });
         }
       } catch (error) {
         console.error('Failed to fetch stats:', error);
