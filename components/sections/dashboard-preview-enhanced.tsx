@@ -52,11 +52,12 @@ export function DashboardPreviewEnhanced() {
         const res = await fetch(STATS_API_URL, { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
+          const engagementStr = String(data.engagement_rate || '0').replace('%', '');
           setStats({
-            activeUsers: data.active_users || 0,
-            questionsAnswered: data.questions_answered || 0,
-            pdfDownloads: data.pdf_downloads || 0,
-            engagementRate: data.engagement_rate || 0,
+            activeUsers: Number(data.active_users) || 0,
+            questionsAnswered: Number(data.questions_answered) || 0,
+            pdfDownloads: Number(data.pdf_downloads) || 0,
+            engagementRate: Number(engagementStr) || 0,
           });
         }
       } catch (error) {
