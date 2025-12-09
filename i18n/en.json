@@ -59,7 +59,7 @@
         "description": "AI assistant, manuals, drawings, warranties, POI mapping, community tools."
       },
       {
-        "title": "Developer Command Center",
+        "title": "Developer Command Centre",
         "description": "Manage multiple schemes, upload documents, push updates, global edits, role-based access, analytics."
       },
       {
@@ -230,11 +230,11 @@
     "items": [
       {
         "question": "Where is my data stored?",
-        "answer": "All data is stored in secure, enterprise-grade data centers. We offer EU hosting options for GDPR compliance."
+        "answer": "All data is stored in secure, enterprise-grade data centres. We offer EU hosting options for GDPR compliance."
       },
       {
         "question": "How quickly can I launch?",
-        "answer": "Most clients launch within 48 hours. Upload your content, customize branding, and you're live."
+        "answer": "Most clients launch within 48 hours. Upload your content, customise branding, and you're live."
       },
       {
         "question": "Do you support multiple languages?",
@@ -444,11 +444,11 @@
       },
       {
         "question": "How is data stored?",
-        "answer": "All data is stored in secure, GDPR-compliant data centers in the EU. We use encryption at rest and in transit, with scheme-level sandboxing for complete data isolation."
+        "answer": "All data is stored in secure, GDPR-compliant data centres in the EU. We use encryption at rest and in transit, with scheme-level sandboxing for complete data isolation."
       },
       {
         "question": "Do you support white-labelling?",
-        "answer": "Yes, our Enterprise plan includes full white-label options with custom domains, branding, and complete UI customization."
+        "answer": "Yes, our Enterprise plan includes full white-label options with custom domains, branding, and complete UI customisation."
       },
       {
         "question": "How quickly can we onboard a new scheme?",
