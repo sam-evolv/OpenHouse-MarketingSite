@@ -14,13 +14,13 @@ const CanvasHUD = dynamic(
   { ssr: false }
 );
 
-const STATS_API_URL = "https://84141d02-f316-41eb-8d70-a45b1b91c63c-00-140og66wspdkl.riker.replit.dev/api/stats/public";
+const STATS_API_URL = "https://portal.openhouseai.ie/api/stats/public";
 
 interface Stats {
   activeUsers: number;
   questionsAnswered: number;
-  pdfDownloads: number;
-  engagementRate: number;
+  documentsServed: number;
+  totalInteractions: number;
 }
 
 interface MetricConfig {
@@ -33,16 +33,16 @@ interface MetricConfig {
 const metricConfigs: MetricConfig[] = [
   { label: "Active Users", key: "activeUsers", icon: Users },
   { label: "Questions Answered", key: "questionsAnswered", icon: CheckCircle2 },
-  { label: "PDF Downloads", key: "pdfDownloads", icon: Download },
-  { label: "Engagement Rate", key: "engagementRate", icon: TrendingUp, suffix: "%" },
+  { label: "Documents Served", key: "documentsServed", icon: Download },
+  { label: "Total Interactions", key: "totalInteractions", icon: TrendingUp },
 ];
 
 export function DashboardPreviewEnhanced() {
   const [stats, setStats] = useState<Stats>({
     activeUsers: 0,
     questionsAnswered: 0,
-    pdfDownloads: 0,
-    engagementRate: 0,
+    documentsServed: 0,
+    totalInteractions: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -52,12 +52,15 @@ export function DashboardPreviewEnhanced() {
         const res = await fetch(STATS_API_URL, { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
-          const engagementStr = String(data.engagement_rate || '0').replace('%', '');
+          const activeUsers = Number(data.active_users) || 0;
+          const questionsAnswered = Number(data.questions_answered) || 0;
+          const documentsServed = Number(data.pdf_downloads) || 0;
+          const totalInteractions = Number(data.total_interactions) || (questionsAnswered + documentsServed);
           setStats({
-            activeUsers: Number(data.active_users) || 0,
-            questionsAnswered: Number(data.questions_answered) || 0,
-            pdfDownloads: Number(data.pdf_downloads) || 0,
-            engagementRate: Number(engagementStr) || 0,
+            activeUsers,
+            questionsAnswered,
+            documentsServed,
+            totalInteractions,
           });
         }
       } catch (error) {
