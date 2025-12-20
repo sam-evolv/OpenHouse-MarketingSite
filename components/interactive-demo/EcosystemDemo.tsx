@@ -418,86 +418,293 @@ interface DashboardMockupProps {
   logs: DashboardLog[];
 }
 
+interface MetricCardProps {
+  label: string;
+  value: number;
+  icon: React.ReactNode;
+  color: string;
+  isActive: boolean;
+}
+
+function MetricCard({ label, value, icon, color, isActive }: MetricCardProps) {
+  return (
+    <motion.div
+      className={`relative overflow-hidden rounded-xl p-4 backdrop-blur-sm border transition-all duration-300 ${
+        isActive
+          ? `bg-${color}/10 border-${color}/40`
+          : "bg-white/[0.03] border-white/[0.08]"
+      }`}
+      animate={isActive ? { scale: [1, 1.03, 1] } : { scale: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      {isActive && (
+        <motion.div
+          className={`absolute inset-0 bg-gradient-to-r from-transparent via-${color}/20 to-transparent`}
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ duration: 0.6 }}
+        />
+      )}
+      <div className="relative flex items-center gap-3">
+        <div className={`p-2 rounded-lg bg-${color}/10`}>
+          {icon}
+        </div>
+        <div>
+          <motion.div
+            key={value}
+            initial={{ scale: 1.2, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className={`text-2xl font-bold text-${color}`}
+          >
+            {value}
+          </motion.div>
+          <div className="text-xs text-hint">{label}</div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 function DashboardMockup({ step, logs }: DashboardMockupProps) {
   return (
     <div className="flex flex-col h-full">
-      <div className="bg-zinc-900/80 border border-white/10 rounded-2xl overflow-hidden flex-1 min-h-[560px]">
-        <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
+      <div className="relative overflow-hidden rounded-2xl min-h-[620px] backdrop-blur-xl bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 border border-white/[0.08] shadow-2xl">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gold/[0.03] via-transparent to-transparent pointer-events-none" />
+        
+        <div className="relative px-6 py-4 border-b border-white/[0.06] flex items-center justify-between bg-black/20">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <div className="w-3 h-3 rounded-full bg-green-500" />
+            <div className="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 transition-colors" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors" />
+            <div className="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors" />
           </div>
-          <span className="text-hint text-sm">Developer Dashboard</span>
-          <div className="flex items-center gap-2">
-            <span className={`w-2 h-2 rounded-full ${step > 0 ? "bg-green-400 animate-pulse" : "bg-zinc-600"}`} />
-            <span className="text-xs text-hint">{step > 0 ? "Live" : "Idle"}</span>
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06]">
+              <svg className="w-3 h-3 text-gold" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+              <span className="text-xs text-porcelain font-medium">Seaview Apartments</span>
+            </div>
+            <motion.div 
+              className="flex items-center gap-2 px-3 py-1 rounded-full"
+              animate={{ 
+                backgroundColor: step > 0 ? "rgba(34, 197, 94, 0.1)" : "rgba(255, 255, 255, 0.03)"
+              }}
+            >
+              <motion.span 
+                className="w-2 h-2 rounded-full"
+                animate={{ 
+                  backgroundColor: step > 0 ? "#22c55e" : "#52525b",
+                  boxShadow: step > 0 ? "0 0 8px #22c55e" : "none"
+                }}
+              />
+              <span className="text-xs text-hint">{step > 0 ? "LIVE" : "IDLE"}</span>
+            </motion.div>
           </div>
         </div>
 
-        <div className="p-6">
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            <motion.div
-              className="bg-white/5 rounded-lg p-4 text-center"
-              animate={{ scale: step === 1 ? [1, 1.05, 1] : 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="text-2xl font-bold text-gold">{step > 0 ? 1 : 0}</div>
-              <div className="text-xs text-hint">Active Session</div>
-            </motion.div>
-            <motion.div
-              className="bg-white/5 rounded-lg p-4 text-center"
-              animate={{ scale: step === 2 ? [1, 1.05, 1] : 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="text-2xl font-bold text-porcelain">{step >= 2 ? 1 : 0}</div>
-              <div className="text-xs text-hint">Queries</div>
-            </motion.div>
-            <motion.div
-              className="bg-white/5 rounded-lg p-4 text-center"
-              animate={{ scale: step === 3 ? [1, 1.05, 1] : 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="text-2xl font-bold text-green-400">{step >= 3 ? 1 : 0}</div>
-              <div className="text-xs text-hint">Resolved</div>
-            </motion.div>
+        <div className="relative p-6 space-y-6">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-1 h-4 bg-gold rounded-full" />
+              <h3 className="text-sm font-medium text-porcelain uppercase tracking-wider">Real-time Metrics</h3>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              <motion.div
+                className={`relative overflow-hidden rounded-xl p-4 backdrop-blur-sm border transition-all duration-300 ${
+                  step === 1 ? "bg-gold/10 border-gold/40" : "bg-white/[0.03] border-white/[0.08]"
+                }`}
+                animate={step === 1 ? { scale: [1, 1.03, 1] } : { scale: 1 }}
+                transition={{ duration: 0.4 }}
+              >
+                {step === 1 && (
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/20 to-transparent"
+                    initial={{ x: "-100%" }}
+                    animate={{ x: "100%" }}
+                    transition={{ duration: 0.6 }}
+                  />
+                )}
+                <div className="relative text-center">
+                  <motion.div
+                    key={step > 0 ? 1 : 0}
+                    initial={{ scale: 1.3, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="text-2xl font-bold text-gold"
+                  >
+                    {step > 0 ? 1 : 0}
+                  </motion.div>
+                  <div className="text-xs text-hint mt-1">Active Sessions</div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className={`relative overflow-hidden rounded-xl p-4 backdrop-blur-sm border transition-all duration-300 ${
+                  step === 2 ? "bg-blue-500/10 border-blue-500/40" : "bg-white/[0.03] border-white/[0.08]"
+                }`}
+                animate={step === 2 ? { scale: [1, 1.03, 1] } : { scale: 1 }}
+                transition={{ duration: 0.4 }}
+              >
+                {step === 2 && (
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"
+                    initial={{ x: "-100%" }}
+                    animate={{ x: "100%" }}
+                    transition={{ duration: 0.6 }}
+                  />
+                )}
+                <div className="relative text-center">
+                  <motion.div
+                    key={step >= 2 ? 1 : 0}
+                    initial={{ scale: 1.3, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="text-2xl font-bold text-blue-400"
+                  >
+                    {step >= 2 ? 1 : 0}
+                  </motion.div>
+                  <div className="text-xs text-hint mt-1">Queries</div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className={`relative overflow-hidden rounded-xl p-4 backdrop-blur-sm border transition-all duration-300 ${
+                  step === 3 ? "bg-green-500/10 border-green-500/40" : "bg-white/[0.03] border-white/[0.08]"
+                }`}
+                animate={step === 3 ? { scale: [1, 1.03, 1] } : { scale: 1 }}
+                transition={{ duration: 0.4 }}
+              >
+                {step === 3 && (
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/20 to-transparent"
+                    initial={{ x: "-100%" }}
+                    animate={{ x: "100%" }}
+                    transition={{ duration: 0.6 }}
+                  />
+                )}
+                <div className="relative text-center">
+                  <motion.div
+                    key={step >= 3 ? 1 : 0}
+                    initial={{ scale: 1.3, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="text-2xl font-bold text-green-400"
+                  >
+                    {step >= 3 ? 1 : 0}
+                  </motion.div>
+                  <div className="text-xs text-hint mt-1">Resolved</div>
+                </div>
+              </motion.div>
+            </div>
           </div>
 
-          <div className="bg-black/40 rounded-lg p-4">
-            <div className="text-xs text-hint mb-3 uppercase tracking-wide">Event Log</div>
-            <div className="space-y-2 max-h-[280px] overflow-y-auto">
-              <AnimatePresence>
-                {logs.length === 0 ? (
-                  <div className="text-hint text-sm italic">Waiting for activity...</div>
-                ) : (
-                  logs.map((log) => (
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-1 h-4 bg-blue-400 rounded-full" />
+                <h3 className="text-sm font-medium text-porcelain uppercase tracking-wider">Live Event Feed</h3>
+              </div>
+              {logs.length > 0 && (
+                <span className="text-xs text-hint px-2 py-1 rounded-full bg-white/[0.03]">
+                  {logs.length} event{logs.length !== 1 ? "s" : ""}
+                </span>
+              )}
+            </div>
+            
+            <div className="relative rounded-xl overflow-hidden border border-white/[0.06] bg-black/30 backdrop-blur-sm">
+              <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/50 to-transparent pointer-events-none z-10" />
+              
+              <div className="p-4 space-y-2 max-h-[260px] overflow-y-auto scrollbar-thin scrollbar-thumb-white/10">
+                <AnimatePresence mode="popLayout">
+                  {logs.length === 0 ? (
                     <motion.div
-                      key={log.id}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className={`text-sm py-2 px-3 rounded-lg ${
-                        log.type === "system"
-                          ? "bg-blue-500/10 text-blue-300"
-                          : log.type === "user"
-                          ? "bg-gold/10 text-gold"
-                          : "bg-green-500/10 text-green-300"
-                      }`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="flex flex-col items-center justify-center py-8 text-center"
                     >
-                      <span className="text-xs opacity-60 mr-2">
-                        {log.timestamp.toLocaleTimeString()}
-                      </span>
-                      {log.event}
+                      <div className="w-12 h-12 rounded-full bg-white/[0.03] flex items-center justify-center mb-3">
+                        <svg className="w-6 h-6 text-hint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </div>
+                      <div className="text-hint text-sm">Awaiting resident activity...</div>
+                      <div className="text-hint/50 text-xs mt-1">Events will appear here in real-time</div>
                     </motion.div>
-                  ))
-                )}
-              </AnimatePresence>
+                  ) : (
+                    logs.map((log, index) => (
+                      <motion.div
+                        key={log.id}
+                        initial={{ opacity: 0, x: -20, scale: 0.95 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                        className="group"
+                      >
+                        <motion.div
+                          className={`relative overflow-hidden rounded-lg p-3 border transition-all ${
+                            log.type === "system"
+                              ? "bg-blue-500/[0.08] border-blue-500/20 hover:border-blue-500/40"
+                              : log.type === "user"
+                              ? "bg-gold/[0.08] border-gold/20 hover:border-gold/40"
+                              : "bg-green-500/[0.08] border-green-500/20 hover:border-green-500/40"
+                          }`}
+                          initial={index === logs.length - 1 ? { boxShadow: log.type === "system" ? "0 0 20px rgba(59, 130, 246, 0.3)" : log.type === "user" ? "0 0 20px rgba(234, 179, 8, 0.3)" : "0 0 20px rgba(34, 197, 94, 0.3)" } : {}}
+                          animate={{ boxShadow: "0 0 0px transparent" }}
+                          transition={{ duration: 1 }}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                              log.type === "system" ? "bg-blue-500/20" : log.type === "user" ? "bg-gold/20" : "bg-green-500/20"
+                            }`}>
+                              {log.type === "system" && (
+                                <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                              )}
+                              {log.type === "user" && (
+                                <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                              )}
+                              {log.type === "ai" && (
+                                <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                              )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                                  log.type === "system" ? "bg-blue-500/20 text-blue-300" : log.type === "user" ? "bg-gold/20 text-gold" : "bg-green-500/20 text-green-300"
+                                }`}>
+                                  {log.type === "system" ? "SYSTEM" : log.type === "user" ? "USER" : "AI"}
+                                </span>
+                                <span className="text-xs text-hint">
+                                  {log.timestamp.toLocaleTimeString()}
+                                </span>
+                              </div>
+                              <p className={`text-sm leading-relaxed ${
+                                log.type === "system" ? "text-blue-200" : log.type === "user" ? "text-amber-200" : "text-green-200"
+                              }`}>
+                                {log.event}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </motion.div>
+                    ))
+                  )}
+                </AnimatePresence>
+              </div>
+              
+              <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
       </div>
       
-      <p className="mt-4 text-hint text-sm text-center">
-        Developer Dashboard (Real-time)
+      <p className="mt-4 text-hint text-sm text-center flex items-center justify-center gap-2">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        Live Developer Console
       </p>
     </div>
   );
