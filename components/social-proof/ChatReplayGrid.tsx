@@ -130,20 +130,18 @@ function ResultTag({ tag }: { tag: Scenario["resultTag"] }) {
   );
 }
 
-function ChatCard({ scenario, delay }: { scenario: Scenario; delay: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, margin: "-50px" });
+function ChatCard({ scenario, delay, triggerAnimation }: { scenario: Scenario; delay: number; triggerAnimation: boolean }) {
   const [visibleMessages, setVisibleMessages] = useState<number>(0);
   const [showTyping, setShowTyping] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [animationStarted, setAnimationStarted] = useState(false);
 
   useEffect(() => {
-    if (!isInView || animationStarted) return;
+    if (!triggerAnimation || animationStarted) return;
     
     setAnimationStarted(true);
     
-    const startDelay = delay * 300;
+    const startDelay = delay * 400;
     
     const timer = setTimeout(() => {
       let currentIndex = 0;
@@ -174,13 +172,12 @@ function ChatCard({ scenario, delay }: { scenario: Scenario; delay: number }) {
     }, startDelay);
     
     return () => clearTimeout(timer);
-  }, [isInView, animationStarted, delay, scenario.messages]);
+  }, [triggerAnimation, animationStarted, delay, scenario.messages]);
 
   return (
     <motion.div
-      ref={cardRef}
       initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: delay * 0.2 }}
       className="bg-carbon/50 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
     >
@@ -221,8 +218,11 @@ function ChatCard({ scenario, delay }: { scenario: Scenario; delay: number }) {
 }
 
 export function ChatReplayGrid() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  
   return (
-    <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
+    <section ref={sectionRef} className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(200,167,94,0.03)_0%,transparent_70%)]" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -254,7 +254,7 @@ export function ChatReplayGrid() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {SCENARIOS.map((scenario, index) => (
-            <ChatCard key={scenario.title} scenario={scenario} delay={index} />
+            <ChatCard key={scenario.title} scenario={scenario} delay={index} triggerAnimation={isInView} />
           ))}
         </div>
       </div>
