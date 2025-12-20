@@ -11,22 +11,25 @@ import {
   FileQuestion,
   PhoneMissed,
   MailWarning,
-  Smartphone
+  Smartphone,
+  X
 } from "lucide-react";
 
 const CHAOS_ICONS = [
-  { Icon: FileText, x: 8, y: 15, rotation: -15, delay: 0 },
-  { Icon: Phone, x: 25, y: 35, rotation: 12, delay: 0.1 },
-  { Icon: Mail, x: 15, y: 60, rotation: -8, delay: 0.2 },
-  { Icon: MessageSquare, x: 40, y: 20, rotation: 20, delay: 0.15 },
-  { Icon: AlertTriangle, x: 55, y: 55, rotation: -25, delay: 0.25 },
-  { Icon: FileQuestion, x: 70, y: 30, rotation: 15, delay: 0.3 },
-  { Icon: PhoneMissed, x: 30, y: 75, rotation: -12, delay: 0.35 },
-  { Icon: MailWarning, x: 60, y: 70, rotation: 8, delay: 0.4 },
-  { Icon: FileText, x: 80, y: 45, rotation: -20, delay: 0.45 },
-  { Icon: Phone, x: 45, y: 85, rotation: 25, delay: 0.5 },
-  { Icon: Mail, x: 75, y: 80, rotation: -18, delay: 0.55 },
-  { Icon: MessageSquare, x: 20, y: 45, rotation: 10, delay: 0.6 },
+  { Icon: FileText, x: 5, y: 10, rotation: -15, delay: 0, color: "text-red-400" },
+  { Icon: Phone, x: 20, y: 30, rotation: 12, delay: 0.1, color: "text-orange-400" },
+  { Icon: Mail, x: 10, y: 55, rotation: -8, delay: 0.2, color: "text-red-500" },
+  { Icon: MessageSquare, x: 35, y: 15, rotation: 20, delay: 0.15, color: "text-yellow-500" },
+  { Icon: AlertTriangle, x: 50, y: 50, rotation: -25, delay: 0.25, color: "text-red-500" },
+  { Icon: FileQuestion, x: 65, y: 25, rotation: 15, delay: 0.3, color: "text-orange-400" },
+  { Icon: PhoneMissed, x: 25, y: 70, rotation: -12, delay: 0.35, color: "text-red-400" },
+  { Icon: MailWarning, x: 55, y: 65, rotation: 8, delay: 0.4, color: "text-yellow-500" },
+  { Icon: FileText, x: 75, y: 40, rotation: -20, delay: 0.45, color: "text-orange-400" },
+  { Icon: Phone, x: 40, y: 80, rotation: 25, delay: 0.5, color: "text-red-400" },
+  { Icon: X, x: 70, y: 75, rotation: -18, delay: 0.55, color: "text-red-500" },
+  { Icon: AlertTriangle, x: 15, y: 40, rotation: 10, delay: 0.6, color: "text-yellow-500" },
+  { Icon: X, x: 85, y: 20, rotation: 45, delay: 0.65, color: "text-red-400" },
+  { Icon: MailWarning, x: 80, y: 60, rotation: -30, delay: 0.7, color: "text-orange-400" },
 ];
 
 function ChaosIcon({ 
@@ -35,7 +38,8 @@ function ChaosIcon({
   y, 
   rotation, 
   delay, 
-  progress 
+  progress,
+  color
 }: { 
   Icon: typeof FileText; 
   x: number; 
@@ -43,16 +47,17 @@ function ChaosIcon({
   rotation: number; 
   delay: number;
   progress: number;
+  color: string;
 }) {
-  const scatterX = (Math.random() - 0.5) * 200;
-  const scatterY = (Math.random() - 0.5) * 200;
-  const scatterRotation = (Math.random() - 0.5) * 180;
+  const scatterX = (x > 50 ? 1 : -1) * 150;
+  const scatterY = (y > 50 ? 1 : -1) * 150;
+  const scatterRotation = rotation * 3;
   
-  const opacity = Math.max(0, 1 - progress * 1.5);
+  const opacity = Math.max(0, 1 - progress * 1.8);
   const translateX = progress * scatterX;
   const translateY = progress * scatterY;
   const rotate = rotation + progress * scatterRotation;
-  const scale = 1 - progress * 0.5;
+  const scale = 1 - progress * 0.6;
 
   return (
     <motion.div
@@ -67,10 +72,13 @@ function ChaosIcon({
       animate={{ opacity: opacity, scale: scale }}
       transition={{ delay, duration: 0.3 }}
     >
-      <Icon 
-        className="w-6 h-6 sm:w-8 sm:h-8 text-gray-500/60" 
-        strokeWidth={1.5}
-      />
+      <div className="relative">
+        <Icon 
+          className={`w-8 h-8 sm:w-10 sm:h-10 ${color} drop-shadow-lg`}
+          strokeWidth={2}
+        />
+        <div className={`absolute inset-0 ${color} blur-md opacity-50`} />
+      </div>
     </motion.div>
   );
 }
@@ -200,17 +208,35 @@ export function ChaosControlSlider() {
         className="relative h-[400px] sm:h-[500px] rounded-2xl overflow-hidden border border-white/10 select-none"
         style={{ touchAction: "none" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-200/10 via-gray-300/5 to-gray-400/10">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950">
           <div 
             className="absolute inset-0"
             style={{
               backgroundImage: `
-                radial-gradient(circle at 20% 30%, rgba(239,68,68,0.1) 0%, transparent 30%),
-                radial-gradient(circle at 70% 60%, rgba(239,68,68,0.08) 0%, transparent 25%),
-                radial-gradient(circle at 40% 80%, rgba(239,68,68,0.06) 0%, transparent 20%)
+                radial-gradient(circle at 20% 30%, rgba(239,68,68,0.25) 0%, transparent 40%),
+                radial-gradient(circle at 70% 60%, rgba(249,115,22,0.2) 0%, transparent 35%),
+                radial-gradient(circle at 40% 80%, rgba(234,179,8,0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 20%, rgba(239,68,68,0.2) 0%, transparent 30%)
               `,
             }}
           />
+          
+          <div className="absolute inset-0 opacity-30" style={{
+            backgroundImage: `repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 50px,
+              rgba(255,255,255,0.03) 50px,
+              rgba(255,255,255,0.03) 51px
+            ),
+            repeating-linear-gradient(
+              90deg,
+              transparent,
+              transparent 50px,
+              rgba(255,255,255,0.03) 50px,
+              rgba(255,255,255,0.03) 51px
+            )`
+          }} />
           
           {CHAOS_ICONS.map((icon, index) => (
             <ChaosIcon
@@ -221,21 +247,25 @@ export function ChaosControlSlider() {
               rotation={icon.rotation}
               delay={icon.delay}
               progress={progressValue}
+              color={icon.color}
             />
           ))}
           
           <div 
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ opacity: Math.max(0, 1 - progressValue * 2) }}
+            className="absolute inset-0 flex items-center justify-center z-10"
+            style={{ opacity: Math.max(0, 1 - progressValue * 1.5) }}
           >
-            <div className="text-center px-8">
-              <p className="text-xs uppercase tracking-[0.3em] text-red-400/70 mb-2">Before</p>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-400">
+            <div className="text-center px-8 py-6 bg-black/60 backdrop-blur-sm rounded-2xl border border-red-500/30">
+              <p className="text-sm uppercase tracking-[0.3em] text-red-400 mb-3 font-semibold">Before</p>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
                 The Old Way:
               </h3>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-500 mt-1">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-400 mt-2">
                 Fragmentation
               </h3>
+              <p className="text-sm text-gray-400 mt-4 max-w-xs">
+                Scattered emails, missed calls, lost documents
+              </p>
             </div>
           </div>
         </div>
@@ -265,16 +295,16 @@ export function ChaosControlSlider() {
             <NFCTag progress={progressValue} />
             
             <div 
-              className="absolute inset-0 flex items-center justify-center"
-              style={{ opacity: Math.min(1, progressValue * 2) }}
+              className="absolute inset-0 flex items-center justify-center z-10"
+              style={{ opacity: Math.min(1, (progressValue - 0.2) * 2) }}
             >
-              <div className="text-center px-8 mt-48 sm:mt-56">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold/70 mb-2">After</p>
+              <div className="text-center px-8 py-6 bg-black/60 backdrop-blur-sm rounded-2xl border border-gold/30 mt-48 sm:mt-56">
+                <p className="text-sm uppercase tracking-[0.3em] text-gold mb-3 font-semibold">After</p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-porcelain">
                   The OpenHouse Way:
                 </h3>
                 <h3 
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-1"
+                  className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-2"
                   style={{
                     background: "linear-gradient(135deg, #C8A75E 0%, #E8D9A0 50%, #C8A75E 100%)",
                     WebkitBackgroundClip: "text",
@@ -284,6 +314,9 @@ export function ChaosControlSlider() {
                 >
                   Centralised Intelligence
                 </h3>
+                <p className="text-sm text-gray-400 mt-4 max-w-xs">
+                  One AI portal that knows everything
+                </p>
               </div>
             </div>
           </div>
