@@ -1,6 +1,6 @@
 import { HeroParallax } from "@/components/hero/HeroParallax";
 import { ProblemSolutionEnhanced } from "@/components/sections/problem-solution-enhanced";
-import { ArchitectureDiagram } from "@/components/sections/architecture-diagram";
+import { LiveSchema } from "@/components/architecture/LiveSchema";
 import { EcosystemDemo } from "@/components/interactive-demo/EcosystemDemo";
 import { BentoGrid } from "@/components/features/BentoGrid";
 import { AudienceSlices } from "@/components/sections/audience-slices";
@@ -18,7 +18,7 @@ export default function HomeEnhanced() {
     <>
       <HeroParallax />
       <ProblemSolutionEnhanced />
-      <ArchitectureDiagram />
+      <LiveSchema />
       <EcosystemDemo />
       <BentoGrid />
       <AudienceSlices />
