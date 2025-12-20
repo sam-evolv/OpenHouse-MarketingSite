@@ -43,7 +43,7 @@ const SCENARIOS: Scenario[] = [
     icon: "📐",
     messages: [
       { sender: "resident", text: "I'm looking at buying new flooring. Do you know exactly how big my living room is?" },
-      { sender: "ai", text: "Checking your unit plans (Type 2B)... Your living room area is 24.5 square meters. Here is the architectural floor plan highlighted for reference." },
+      { sender: "ai", text: "I can help with that! Here is your unit's architectural floor plan (Type 2B) with room dimensions marked. You can check the exact measurements there." },
     ],
     resultTag: { text: "Instant Documentation", style: "gold" },
   },
