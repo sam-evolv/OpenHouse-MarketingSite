@@ -4,6 +4,7 @@ import { Container } from "../ui/container";
 import { SectionHeading } from "../ui/section-heading";
 import { Reveal } from "../effects/Reveal";
 import { Check } from "lucide-react";
+import { ChaosControlSlider } from "../comparison/ChaosControlSlider";
 import content from "@/i18n/en.json";
 
 export function ProblemSolutionEnhanced() {
@@ -18,7 +19,11 @@ export function ProblemSolutionEnhanced() {
           badge="Why OpenHouse AI"
         />
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+        <Reveal className="mt-12">
+          <ChaosControlSlider />
+        </Reveal>
+
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
           {/* CARD 1 - Platform Architecture */}
           <Reveal>
             <div className="bg-black/20 border border-white/5 rounded-2xl p-10 h-full flex flex-col">
