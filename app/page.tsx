@@ -1,7 +1,7 @@
 import { HeroCinematic } from "@/components/sections/hero-cinematic";
 import { ProblemSolutionEnhanced } from "@/components/sections/problem-solution-enhanced";
 import { ArchitectureDiagram } from "@/components/sections/architecture-diagram";
-import { HowItWorksPinned } from "@/components/sections/how-it-works/HowItWorksPinned";
+import { EcosystemDemo } from "@/components/interactive-demo/EcosystemDemo";
 import { FeatureGridEnhanced } from "@/components/sections/feature-grid-enhanced";
 import { AudienceSlices } from "@/components/sections/audience-slices";
 import { TechnologySection } from "@/components/sections/technology-section";
@@ -19,7 +19,7 @@ export default function HomeEnhanced() {
       <HeroCinematic />
       <ProblemSolutionEnhanced />
       <ArchitectureDiagram />
-      <HowItWorksPinned />
+      <EcosystemDemo />
       <FeatureGridEnhanced />
       <AudienceSlices />
       <TechnologySection />

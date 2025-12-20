@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../ui/container";
 import { SectionHeading } from "../ui/section-heading";
 import { Smartphone, Wifi, Battery, Signal, RotateCcw } from "lucide-react";
 
 type SimulationStep = 0 | 1 | 2 | 3;
+type BeamState = "idle" | "sending" | "receiving";
 
 interface DashboardLog {
   id: string;
@@ -39,11 +40,87 @@ const AI_RESPONSES: Record<string, string> = {
   bike: "The bike storage is located in the basement level B1, accessible via the lift or stairwell A. Your fob grants 24/7 access. There are 45 secure bike racks available on a first-come basis. CCTV is monitored throughout.",
 };
 
+function DataBeam({ beamState }: { beamState: BeamState }) {
+  return (
+    <div className="absolute inset-0 pointer-events-none hidden lg:block">
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="#FFD700" stopOpacity="1" />
+            <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.8" />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        
+        <path
+          d="M 20 50 Q 50 35 80 50"
+          fill="none"
+          stroke="url(#beamGradient)"
+          strokeWidth="0.15"
+          strokeDasharray="2 2"
+          opacity={beamState !== "idle" ? 0.6 : 0.15}
+          className="transition-opacity duration-300"
+        />
+        
+        {beamState === "sending" && (
+          <motion.circle
+            r="1.5"
+            fill="#FFD700"
+            filter="url(#glow)"
+            initial={{ offsetDistance: "0%" }}
+            animate={{ offsetDistance: "100%" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            style={{ offsetPath: "path('M 20 50 Q 50 35 80 50')" }}
+          >
+            <animate
+              attributeName="r"
+              values="1;2;1"
+              dur="0.4s"
+              repeatCount="indefinite"
+            />
+          </motion.circle>
+        )}
+        
+        {beamState === "receiving" && (
+          <motion.circle
+            r="1.5"
+            fill="#22c55e"
+            filter="url(#glow)"
+            initial={{ offsetDistance: "100%" }}
+            animate={{ offsetDistance: "0%" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            style={{ offsetPath: "path('M 20 50 Q 50 35 80 50')" }}
+          >
+            <animate
+              attributeName="r"
+              values="1;2;1"
+              dur="0.4s"
+              repeatCount="indefinite"
+            />
+          </motion.circle>
+        )}
+      </svg>
+    </div>
+  );
+}
+
 export function EcosystemDemo() {
   const [simulationStep, setSimulationStep] = useState<SimulationStep>(0);
   const [dashboardLogs, setDashboardLogs] = useState<DashboardLog[]>([]);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [selectedQuery, setSelectedQuery] = useState<string | null>(null);
+  const [beamState, setBeamState] = useState<BeamState>("idle");
 
   const addLog = useCallback((event: string, type: "system" | "user" | "ai") => {
     const newLog: DashboardLog = {
@@ -56,16 +133,21 @@ export function EcosystemDemo() {
   }, []);
 
   const handleNfcScan = useCallback(() => {
-    setSimulationStep(1);
-    addLog("NFC tag scanned - Resident activated", "system");
+    setBeamState("sending");
     
-    setChatMessages([
-      {
-        id: "welcome",
-        role: "ai",
-        content: "Welcome home, Sarah! I'm your AI assistant for Parkview Residences. How can I help you today?",
-      },
-    ]);
+    setTimeout(() => {
+      setSimulationStep(1);
+      addLog("NFC tag scanned - Resident activated", "system");
+      setBeamState("idle");
+      
+      setChatMessages([
+        {
+          id: "welcome",
+          role: "ai",
+          content: "Welcome home, Sarah! I'm your AI assistant for Parkview Residences. How can I help you today?",
+        },
+      ]);
+    }, 800);
   }, [addLog]);
 
   const handleQuickAction = useCallback((actionId: string) => {
@@ -73,20 +155,25 @@ export function EcosystemDemo() {
     if (!action) return;
 
     setSelectedQuery(actionId);
-    setSimulationStep(2);
+    setBeamState("sending");
     
-    setChatMessages((prev) => [
-      ...prev,
-      { id: `user-${Date.now()}`, role: "user", content: action.query },
-    ]);
-    addLog(`Query received: '${action.query}'`, "user");
+    setTimeout(() => {
+      setSimulationStep(2);
+      setChatMessages((prev) => [
+        ...prev,
+        { id: `user-${Date.now()}`, role: "user", content: action.query },
+      ]);
+      addLog(`Query received: '${action.query}'`, "user");
+      setBeamState("idle");
+    }, 800);
 
     setTimeout(() => {
       setChatMessages((prev) => [
         ...prev,
         { id: `typing-${Date.now()}`, role: "ai", content: "", isTyping: true },
       ]);
-    }, 500);
+      setBeamState("receiving");
+    }, 1300);
 
     setTimeout(() => {
       setChatMessages((prev) => {
@@ -98,7 +185,8 @@ export function EcosystemDemo() {
       });
       setSimulationStep(3);
       addLog(`AI response delivered (RAG: ${actionId === "thermostat" ? "thermostat_manual.pdf" : "building_guide.pdf"})`, "ai");
-    }, 2000);
+      setBeamState("idle");
+    }, 2500);
   }, [addLog]);
 
   const resetSimulation = useCallback(() => {
@@ -106,33 +194,44 @@ export function EcosystemDemo() {
     setDashboardLogs([]);
     setChatMessages([]);
     setSelectedQuery(null);
+    setBeamState("idle");
   }, []);
 
   return (
-    <section className="py-28 bg-carbon">
+    <section className="py-28 bg-carbon font-sans">
       <Container>
         <SectionHeading
           title="See It In Action"
           badge="Interactive Demo"
         />
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          <div className="order-1 flex justify-center">
-            <PhoneMockup
-              step={simulationStep}
-              messages={chatMessages}
-              onNfcScan={handleNfcScan}
-              onQuickAction={handleQuickAction}
-              onReset={resetSimulation}
-              selectedQuery={selectedQuery}
-            />
-          </div>
+        <div className="relative mt-16">
+          <DataBeam beamState={beamState} />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+            <div className="order-1 flex justify-center lg:justify-end">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-gold/10 via-transparent to-transparent rounded-3xl blur-xl opacity-50" />
+                <PhoneMockup
+                  step={simulationStep}
+                  messages={chatMessages}
+                  onNfcScan={handleNfcScan}
+                  onQuickAction={handleQuickAction}
+                  onReset={resetSimulation}
+                  selectedQuery={selectedQuery}
+                />
+              </div>
+            </div>
 
-          <div className="order-2">
-            <DashboardMockup
-              step={simulationStep}
-              logs={dashboardLogs}
-            />
+            <div className="order-2 flex justify-center lg:justify-start">
+              <div className="w-full max-w-lg relative">
+                <div className="absolute -inset-4 bg-gradient-to-l from-blue-500/10 via-transparent to-transparent rounded-3xl blur-xl opacity-50" />
+                <DashboardMockup
+                  step={simulationStep}
+                  logs={dashboardLogs}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -141,7 +240,7 @@ export function EcosystemDemo() {
             {([0, 1, 2, 3] as SimulationStep[]).map((step) => (
               <div
                 key={step}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   simulationStep >= step
                     ? "bg-gold/20 text-gold border border-gold/40"
                     : "bg-white/5 text-hint border border-white/10"
@@ -155,6 +254,10 @@ export function EcosystemDemo() {
             ))}
           </div>
         </div>
+        
+        <p className="mt-8 text-center text-hint text-sm max-w-xl mx-auto">
+          Tap the NFC button on the phone to start the demo. Watch as data flows between the resident&apos;s device and the developer dashboard in real-time.
+        </p>
       </Container>
     </section>
   );
