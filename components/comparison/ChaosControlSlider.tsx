@@ -192,7 +192,7 @@ export function ChaosControlSlider() {
         <motion.div 
           className="absolute inset-0"
           style={{ 
-            clipPath: `inset(0 ${100 - smoothPosition.get()}% 0 0)`,
+            clipPath: `inset(0 ${smoothPosition.get()}% 0 0)`,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950">
@@ -257,7 +257,7 @@ export function ChaosControlSlider() {
         <motion.div 
           className="absolute inset-0"
           style={{ 
-            clipPath: `inset(0 0 0 ${smoothPosition.get()}%)`,
+            clipPath: `inset(0 0 0 ${100 - smoothPosition.get()}%)`,
           }}
         >
           <div 
