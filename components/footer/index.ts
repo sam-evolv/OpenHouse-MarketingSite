@@ -1,0 +1,1 @@
+export { PortalFooter } from "./PortalFooter";

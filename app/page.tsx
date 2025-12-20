@@ -11,7 +11,7 @@ import { PricingSection } from "@/components/sections/pricing-section";
 import { TrustVault } from "@/components/sections/TrustVault";
 import { FAQSection } from "@/components/sections/faq-section";
 import { WhyOpenHouse } from "@/components/sections/why-openhouse";
-import { FooterCTA } from "@/components/sections/footer-cta";
+import { PortalFooter } from "@/components/footer/PortalFooter";
 
 export default function HomeEnhanced() {
   return (
@@ -29,7 +29,7 @@ export default function HomeEnhanced() {
       <TrustVault />
       <FAQSection />
       <WhyOpenHouse />
-      <FooterCTA />
+      <PortalFooter />
     </>
   );
 }
