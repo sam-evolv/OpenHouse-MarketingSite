@@ -1,0 +1,57 @@
+"I need to replace the current Case Studies section (Section 9) with a dynamic 'Chat Replay' grid. This will show, rather than tell, how the AI solves problems.
+
+Step 1: Create the Component Create a new file components/social-proof/ChatReplayGrid.tsx.
+
+Step 2: The Data Structure Inside the component, define these 3 specific conversation scenarios:
+
+Scenario 1: Maintenance (Speed)
+
+Resident: 'The radiator in the bedroom is making a loud banging noise.'
+
+AI: 'That sounds like trapped air (kettling). I have a 30-second guide on how to bleed your specific radiator model. Would you like to see it?'
+
+Resident: 'Yes please.'
+
+Result Tag: 'Ticket Avoided' (Green style)
+
+Scenario 2: Revenue (Amenity Booking)
+
+Resident: 'Is the roof terrace available this Saturday evening for a private event?'
+
+AI: 'Yes, the South Terrace is available from 6 PM - 10 PM. The booking fee is £50. Shall I reserve this for you and add it to your monthly bill?'
+
+Result Tag: 'Revenue Captured' (Gold style)
+
+Scenario 3: Emergency (Asset Protection)
+
+Resident: 'There is water leaking under my kitchen sink!'
+
+AI: 'I am alerting the site manager immediately. In the meantime, your stopcock is located inside the utility cupboard on the bottom left. Here is a diagram.'
+
+Result Tag: 'Emergency Escalated' (Red style)
+
+Step 3: The UI Design
+
+Create a 3-column grid (stack vertically on mobile).
+
+Each column should contain a 'Chat Card' styled like a modern message thread (similar to iMessage or WhatsApp but with your OpenHouse branding).
+
+Resident bubbles: Gray background, right-aligned.
+
+AI bubbles: Deep Navy/Brand Blue background, left-aligned, with the OpenHouse logo avatar.
+
+Step 4: The Animation (Crucial)
+
+Use framer-motion.
+
+When the user scrolls into view, trigger the conversation.
+
+Animate the bubbles appearing sequentially with a delay, as if they are being typed in real-time.
+
+Add a 'Typing...' (3 dots) indicator for 1 second before each AI response appears to make it feel realistic.
+
+Step 5: Integration
+
+Export this component and place it in the main landing page, replacing the old IsoGallerySection or Case Studies area.
+
+Add a section header above it: 'Real conversations. Real solutions.'"

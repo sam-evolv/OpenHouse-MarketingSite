@@ -6,7 +6,7 @@ import { BentoGrid } from "@/components/features/BentoGrid";
 import { AudienceSlices } from "@/components/sections/audience-slices";
 import { TechnologySection } from "@/components/sections/technology-section";
 import { NetworkCommandCenter } from "@/components/sections/NetworkCommandCenter";
-import { IsoGallerySection } from "@/sections/Gallery/IsoGallerySection";
+import { ChatReplayGrid } from "@/components/social-proof/ChatReplayGrid";
 import { PricingSection } from "@/components/sections/pricing-section";
 import { TrustVault } from "@/components/sections/TrustVault";
 import { FAQSection } from "@/components/sections/faq-section";
@@ -24,7 +24,7 @@ export default function HomeEnhanced() {
       <AudienceSlices />
       <TechnologySection />
       <NetworkCommandCenter />
-      <IsoGallerySection />
+      <ChatReplayGrid />
       <PricingSection />
       <TrustVault />
       <FAQSection />
