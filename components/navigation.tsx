@@ -3,9 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X, LogIn } from "lucide-react";
+import { Menu, X, LogIn, ExternalLink } from "lucide-react";
 import { appRoutes } from "@/lib/env";
 
 const navLinks = [
@@ -19,6 +18,7 @@ const navLinks = [
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLoginTooltip, setShowLoginTooltip] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -70,30 +70,67 @@ export function Navigation() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            {/* Developer Login Pill */}
-            <a
-              href={appRoutes.login}
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-porcelain hover:text-gold border border-white/10 hover:border-gold/50 rounded-full transition-all duration-200"
+          <div className="hidden md:flex items-center space-x-3">
+            {/* Developer Login with Tooltip */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setShowLoginTooltip(true)}
+              onMouseLeave={() => setShowLoginTooltip(false)}
             >
-              <LogIn className="w-4 h-4" />
-              Login
-            </a>
+              <a
+                href={appRoutes.login}
+                className="group relative flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-full overflow-hidden transition-all duration-300 border border-white/20 hover:border-gold/60 bg-white/[0.03] hover:bg-white/[0.08]"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/10 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <LogIn className="w-4 h-4 text-porcelain group-hover:text-gold transition-colors relative z-10" />
+                <span className="text-porcelain group-hover:text-gold transition-colors relative z-10">Login</span>
+              </a>
+              
+              {/* Tooltip Dropdown */}
+              <div 
+                className={cn(
+                  "absolute top-full left-1/2 -translate-x-1/2 mt-2 transition-all duration-200",
+                  showLoginTooltip ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"
+                )}
+              >
+                <div className="relative bg-slate border border-white/10 rounded-lg p-3 shadow-xl min-w-[200px]">
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-slate border-l border-t border-white/10 rotate-45" />
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
+                      <ExternalLink className="w-4 h-4 text-gold" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-porcelain">Developer Dashboard</p>
+                      <p className="text-xs text-hint">Access your portal</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             
-            {/* Start Onboarding */}
+            {/* Start Onboarding - Subtle */}
             <a
               href={appRoutes.register}
-              className="px-4 py-2 text-sm font-medium text-carbon bg-gold hover:bg-gold/90 rounded-full transition-all duration-200"
+              className="px-4 py-2.5 text-sm font-medium text-porcelain hover:text-gold border border-white/10 hover:border-gold/40 rounded-full transition-all duration-200"
             >
-              Start Onboarding
+              Start Free
             </a>
             
-            {/* Book a Demo */}
-            <Button asChild>
-              <Link href="/contact" prefetch={true}>
-                Book a demo
-              </Link>
-            </Button>
+            {/* Book a Demo - Gold Gradient Primary CTA */}
+            <Link 
+              href="/contact" 
+              prefetch={true}
+              className="group relative px-5 py-2.5 text-sm font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-500 to-gold bg-[length:200%_100%] animate-shimmer" />
+              <span className="absolute inset-[1px] bg-gradient-to-r from-gold to-amber-500 rounded-full" />
+              <span className="relative z-10 text-carbon flex items-center gap-1.5">
+                Book a Demo
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </span>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -144,15 +181,14 @@ export function Navigation() {
                 Start Onboarding
               </a>
               
-              <Button asChild className="w-full">
-                <Link
-                  href="/contact"
-                  prefetch={true}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Book a demo
-                </Link>
-              </Button>
+              <Link
+                href="/contact"
+                prefetch={true}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full py-3 text-center text-sm font-semibold text-carbon bg-gradient-to-r from-gold to-amber-500 rounded-full"
+              >
+                Book a Demo
+              </Link>
             </div>
           </div>
         )}

@@ -93,10 +93,15 @@ const config: Config = {
             opacity: "1",
           },
         },
+        shimmer: {
+          "0%": { backgroundPosition: "200% 0" },
+          "100%": { backgroundPosition: "-200% 0" },
+        },
       },
       animation: {
         "fade-in-up": "fade-in-up 0.6s ease-out",
         "fade-in": "fade-in 0.4s ease-out",
+        shimmer: "shimmer 3s ease-in-out infinite",
       },
     },
   },
