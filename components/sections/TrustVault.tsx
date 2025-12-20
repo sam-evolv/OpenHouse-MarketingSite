@@ -79,64 +79,29 @@ function CentralShield() {
 }
 
 function OrbitingFeatures() {
-  const radius = 180;
-
   return (
     <div className="absolute inset-0">
-      <motion.div
-        className="absolute inset-0"
-        animate={{ rotate: 360 }}
-        transition={{
-          duration: 60,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        style={{ transformOrigin: "center center" }}
-      >
-        {SECURITY_FEATURES.map((feature, index) => {
-          const angle = (index / SECURITY_FEATURES.length) * 360;
-          const radian = (angle * Math.PI) / 180;
-          const x = Math.cos(radian) * radius;
-          const y = Math.sin(radian) * radius;
-
-          return (
-            <motion.div
-              key={feature.label}
-              className="absolute left-1/2 top-1/2"
-              style={{
-                transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-              }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <motion.div
-                className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/10 bg-carbon/90 backdrop-blur-sm hover:border-gold/40 hover:bg-gold/5 transition-all cursor-default group"
-                animate={{ rotate: -360 }}
-                transition={{
-                  duration: 60,
-                  repeat: Infinity,
-                  ease: "linear",
+      {SECURITY_FEATURES.map((feature, index) => {
+        const Icon = feature.icon;
+        return (
+          <div key={feature.label} className="orbit-item">
+            <div className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/20 bg-carbon backdrop-blur-sm hover:border-gold/50 transition-all cursor-default">
+              <Icon className="w-4 h-4 text-gold" />
+              <span 
+                className="text-sm font-medium whitespace-nowrap"
+                style={{
+                  background: "linear-gradient(135deg, #e8e8e8 0%, #a8a8a8 50%, #d0d0d0 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
                 }}
-                whileHover={{ scale: 1.05 }}
               >
-                <feature.icon className="w-4 h-4 text-gold/80 group-hover:text-gold transition-colors" />
-                <span 
-                  className="text-sm font-medium whitespace-nowrap group-hover:text-white transition-colors"
-                  style={{
-                    background: "linear-gradient(135deg, #e8e8e8 0%, #a8a8a8 50%, #d0d0d0 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  {feature.label}
-                </span>
-              </motion.div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+                {feature.label}
+              </span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

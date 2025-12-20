@@ -182,3 +182,29 @@ html.lenis body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Trust Vault Orbit Animation */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(200px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(200px) rotate(-360deg);
+  }
+}
+
+.orbit-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -75px;
+  margin-top: -20px;
+  animation: orbit 45s linear infinite;
+}
+
+.orbit-item:nth-child(1) { animation-delay: 0s; }
+.orbit-item:nth-child(2) { animation-delay: -7.5s; }
+.orbit-item:nth-child(3) { animation-delay: -15s; }
+.orbit-item:nth-child(4) { animation-delay: -22.5s; }
+.orbit-item:nth-child(5) { animation-delay: -30s; }
+.orbit-item:nth-child(6) { animation-delay: -37.5s; }
