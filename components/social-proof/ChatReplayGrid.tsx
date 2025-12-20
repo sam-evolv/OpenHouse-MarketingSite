@@ -123,7 +123,7 @@ function ChatCard({ scenario, cardDelay }: { scenario: Scenario; cardDelay: numb
       </div>
       
       <div className="p-4 h-[340px] flex flex-col">
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {isInView && scenario.messages.map((message, index) => (
             <ChatBubble
               key={index}
