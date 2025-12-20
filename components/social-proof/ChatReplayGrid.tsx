@@ -132,7 +132,7 @@ function ResultTag({ tag }: { tag: Scenario["resultTag"] }) {
 
 function ChatCard({ scenario, delay }: { scenario: Scenario; delay: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, margin: "-100px" });
+  const isInView = useInView(cardRef, { once: true, margin: "-50px" });
   const [visibleMessages, setVisibleMessages] = useState<number>(0);
   const [showTyping, setShowTyping] = useState(false);
   const [showResult, setShowResult] = useState(false);
@@ -143,7 +143,7 @@ function ChatCard({ scenario, delay }: { scenario: Scenario; delay: number }) {
     
     setAnimationStarted(true);
     
-    const startDelay = delay * 1000;
+    const startDelay = delay * 300;
     
     const timer = setTimeout(() => {
       let currentIndex = 0;
@@ -158,15 +158,15 @@ function ChatCard({ scenario, delay }: { scenario: Scenario; delay: number }) {
               setShowTyping(false);
               setVisibleMessages(currentIndex + 1);
               currentIndex++;
-              setTimeout(showNextMessage, 800);
-            }, 1000);
+              setTimeout(showNextMessage, 600);
+            }, 800);
           } else {
             setVisibleMessages(currentIndex + 1);
             currentIndex++;
-            setTimeout(showNextMessage, 600);
+            setTimeout(showNextMessage, 400);
           }
         } else {
-          setTimeout(() => setShowResult(true), 500);
+          setTimeout(() => setShowResult(true), 400);
         }
       };
       
