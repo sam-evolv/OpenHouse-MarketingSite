@@ -49,37 +49,40 @@ function ChaosIcon({
   progress: number;
   color: string;
 }) {
-  const scatterX = (x > 50 ? 1 : -1) * 150;
-  const scatterY = (y > 50 ? 1 : -1) * 150;
-  const scatterRotation = rotation * 3;
+  const scatterProgress = Math.max(0, (progress - 0.6) * 2.5);
+  const scatterX = (x > 50 ? 1 : -1) * 80 * scatterProgress;
+  const scatterY = (y > 50 ? 1 : -1) * 60 * scatterProgress;
+  const scatterRotation = rotation * 2 * scatterProgress;
   
-  const opacity = Math.max(0, 1 - progress * 1.8);
-  const translateX = progress * scatterX;
-  const translateY = progress * scatterY;
-  const rotate = rotation + progress * scatterRotation;
-  const scale = 1 - progress * 0.6;
+  const opacity = progress < 0.6 ? 1 : Math.max(0, 1 - (progress - 0.6) * 3);
+  const scale = progress < 0.6 ? 1 : 1 - scatterProgress * 0.5;
+  const rotate = rotation + scatterRotation;
 
   return (
-    <motion.div
-      className="absolute"
+    <div
+      className="absolute z-10"
       style={{
         left: `${x}%`,
         top: `${y}%`,
         opacity,
-        transform: `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg) scale(${scale})`,
+        transform: `translate(${scatterX}px, ${scatterY}px) rotate(${rotate}deg) scale(${scale})`,
+        transition: 'opacity 0.1s, transform 0.1s',
       }}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: opacity, scale: scale }}
-      transition={{ delay, duration: 0.3 }}
     >
       <div className="relative">
         <Icon 
-          className={`w-8 h-8 sm:w-10 sm:h-10 ${color} drop-shadow-lg`}
+          className={`w-10 h-10 sm:w-12 sm:h-12 ${color}`}
           strokeWidth={2}
         />
-        <div className={`absolute inset-0 ${color} blur-md opacity-50`} />
+        <div 
+          className="absolute inset-0 blur-lg opacity-60" 
+          style={{ 
+            background: color.includes('red') ? '#ef4444' : 
+                        color.includes('orange') ? '#f97316' : '#eab308'
+          }} 
+        />
       </div>
-    </motion.div>
+    </div>
   );
 }
 
