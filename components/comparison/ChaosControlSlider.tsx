@@ -47,21 +47,13 @@ function ChaosIcon({
   progress: number;
   color: string;
 }) {
-  const fadeStart = 0.5;
-  const opacity = progress < fadeStart ? 1 : Math.max(0, 1 - (progress - fadeStart) * 2);
-  const scatterAmount = Math.max(0, progress - fadeStart) * 100;
-  const moveX = (x > 50 ? 1 : -1) * scatterAmount;
-  const moveY = (y > 50 ? 1 : -1) * scatterAmount * 0.5;
-
   return (
     <div
       className="absolute"
       style={{
         left: `${x}%`,
         top: `${y}%`,
-        opacity,
-        transform: `translate(-50%, -50%) translate(${moveX}px, ${moveY}px) rotate(${rotation}deg)`,
-        zIndex: 20,
+        transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
       }}
     >
       <Icon 
@@ -197,66 +189,70 @@ export function ChaosControlSlider() {
         className="relative h-[400px] sm:h-[500px] rounded-2xl overflow-hidden border border-white/10 select-none"
         style={{ touchAction: "none" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950">
-          <div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `
-                radial-gradient(circle at 20% 30%, rgba(239,68,68,0.25) 0%, transparent 40%),
-                radial-gradient(circle at 70% 60%, rgba(249,115,22,0.2) 0%, transparent 35%),
-                radial-gradient(circle at 40% 80%, rgba(234,179,8,0.15) 0%, transparent 30%),
-                radial-gradient(circle at 80% 20%, rgba(239,68,68,0.2) 0%, transparent 30%)
-              `,
-            }}
-          />
-          
-          <div className="absolute inset-0 opacity-30" style={{
-            backgroundImage: `repeating-linear-gradient(
-              0deg,
-              transparent,
-              transparent 50px,
-              rgba(255,255,255,0.03) 50px,
-              rgba(255,255,255,0.03) 51px
-            ),
-            repeating-linear-gradient(
-              90deg,
-              transparent,
-              transparent 50px,
-              rgba(255,255,255,0.03) 50px,
-              rgba(255,255,255,0.03) 51px
-            )`
-          }} />
-          
-          {CHAOS_ICONS.map((icon, index) => (
-            <ChaosIcon
-              key={index}
-              Icon={icon.Icon}
-              x={icon.x}
-              y={icon.y}
-              rotation={icon.rotation}
-              progress={progressValue}
-              color={icon.color}
+        <motion.div 
+          className="absolute inset-0"
+          style={{ 
+            clipPath: `inset(0 ${100 - smoothPosition.get()}% 0 0)`,
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950">
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
+                  radial-gradient(circle at 20% 30%, rgba(239,68,68,0.25) 0%, transparent 40%),
+                  radial-gradient(circle at 70% 60%, rgba(249,115,22,0.2) 0%, transparent 35%),
+                  radial-gradient(circle at 40% 80%, rgba(234,179,8,0.15) 0%, transparent 30%),
+                  radial-gradient(circle at 80% 20%, rgba(239,68,68,0.2) 0%, transparent 30%)
+                `,
+              }}
             />
-          ))}
-          
-          <div 
-            className="absolute inset-0 flex items-center justify-center z-10"
-            style={{ opacity: Math.max(0, 1 - progressValue * 1.5) }}
-          >
-            <div className="text-center px-8 py-6 bg-black/60 backdrop-blur-sm rounded-2xl border border-red-500/30">
-              <p className="text-sm uppercase tracking-[0.3em] text-red-400 mb-3 font-semibold">Before</p>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
-                The Old Way:
-              </h3>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-400 mt-2">
-                Fragmentation
-              </h3>
-              <p className="text-sm text-gray-400 mt-4 max-w-xs">
-                Scattered emails, missed calls, lost documents
-              </p>
+            
+            <div className="absolute inset-0 opacity-30" style={{
+              backgroundImage: `repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 50px,
+                rgba(255,255,255,0.03) 50px,
+                rgba(255,255,255,0.03) 51px
+              ),
+              repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 50px,
+                rgba(255,255,255,0.03) 50px,
+                rgba(255,255,255,0.03) 51px
+              )`
+            }} />
+            
+            {CHAOS_ICONS.map((icon, index) => (
+              <ChaosIcon
+                key={index}
+                Icon={icon.Icon}
+                x={icon.x}
+                y={icon.y}
+                rotation={icon.rotation}
+                progress={progressValue}
+                color={icon.color}
+              />
+            ))}
+            
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center px-8 py-6 bg-black/60 backdrop-blur-sm rounded-2xl border border-red-500/30">
+                <p className="text-sm uppercase tracking-[0.3em] text-red-400 mb-3 font-semibold">Before</p>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
+                  The Old Way:
+                </h3>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-400 mt-2">
+                  Fragmentation
+                </h3>
+                <p className="text-sm text-gray-400 mt-4 max-w-xs">
+                  Scattered emails, missed calls, lost documents
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <motion.div 
           className="absolute inset-0"
