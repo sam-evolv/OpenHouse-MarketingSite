@@ -1,4 +1,4 @@
-import { HeroCinematic } from "@/components/sections/hero-cinematic";
+import { HeroParallax } from "@/components/hero/HeroParallax";
 import { ProblemSolutionEnhanced } from "@/components/sections/problem-solution-enhanced";
 import { ArchitectureDiagram } from "@/components/sections/architecture-diagram";
 import { EcosystemDemo } from "@/components/interactive-demo/EcosystemDemo";
@@ -16,7 +16,7 @@ import { FooterCTA } from "@/components/sections/footer-cta";
 export default function HomeEnhanced() {
   return (
     <>
-      <HeroCinematic />
+      <HeroParallax />
       <ProblemSolutionEnhanced />
       <ArchitectureDiagram />
       <EcosystemDemo />
