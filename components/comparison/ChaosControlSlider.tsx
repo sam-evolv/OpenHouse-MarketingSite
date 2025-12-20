@@ -66,7 +66,7 @@ function ChaosIcon({
 
 function NFCTag({ progress }: { progress: number }) {
   const opacity = Math.min(1, progress * 2);
-  const scale = 0.5 + progress * 0.5;
+  const scale = 0.85 + progress * 0.15;
   
   return (
     <motion.div
@@ -79,7 +79,7 @@ function NFCTag({ progress }: { progress: number }) {
         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         style={{ scale, transformStyle: "preserve-3d" }}
       >
-        <div className="relative w-24 h-24 sm:w-32 sm:h-32">
+        <div className="relative w-32 h-32 sm:w-40 sm:h-40">
           <motion.div
             className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold/30 to-gold/10 border border-gold/50"
             animate={{
@@ -93,7 +93,7 @@ function NFCTag({ progress }: { progress: number }) {
           />
           
           <div className="absolute inset-0 flex items-center justify-center">
-            <Smartphone className="w-10 h-10 sm:w-14 sm:h-14 text-gold" strokeWidth={1.5} />
+            <Smartphone className="w-14 h-14 sm:w-16 sm:h-16 text-gold" strokeWidth={1.5} />
           </div>
           
           <motion.div
@@ -247,7 +247,7 @@ export function ChaosControlSlider() {
                   Fragmentation
                 </h3>
                 <p className="text-sm text-gray-400 mt-4 max-w-xs">
-                  Scattered emails, missed calls, lost documents
+                  Scattered emails, missed calls, and traditional Handover Files lost in transit
                 </p>
               </div>
             </div>
@@ -279,10 +279,10 @@ export function ChaosControlSlider() {
             <NFCTag progress={progressValue} />
             
             <div 
-              className="absolute inset-0 flex items-center justify-center z-10"
+              className="absolute inset-0 flex flex-col items-center justify-end pb-24 sm:pb-28 z-10"
               style={{ opacity: Math.min(1, (progressValue - 0.2) * 2) }}
             >
-              <div className="text-center px-8 py-6 bg-black/60 backdrop-blur-sm rounded-2xl border border-gold/30 mt-48 sm:mt-56">
+              <div className="text-center px-8 py-6 bg-black/60 backdrop-blur-sm rounded-2xl border border-gold/30">
                 <p className="text-sm uppercase tracking-[0.3em] text-gold mb-3 font-semibold">After</p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-porcelain">
                   The OpenHouse Way:
