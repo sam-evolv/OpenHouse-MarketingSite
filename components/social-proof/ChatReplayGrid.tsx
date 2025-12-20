@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Bot } from "lucide-react";
 
@@ -50,46 +50,20 @@ const SCENARIOS: Scenario[] = [
   },
 ];
 
-function TypingIndicator() {
-  return (
-    <div className="flex items-center gap-1 px-4 py-3">
-      <motion.span
-        className="w-2 h-2 bg-gray-400 rounded-full"
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 1, repeat: Infinity, delay: 0 }}
-      />
-      <motion.span
-        className="w-2 h-2 bg-gray-400 rounded-full"
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
-      />
-      <motion.span
-        className="w-2 h-2 bg-gray-400 rounded-full"
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
-      />
-    </div>
-  );
-}
-
 function ChatBubble({ 
   message, 
-  index, 
-  isVisible 
+  delay 
 }: { 
   message: Message; 
-  index: number;
-  isVisible: boolean;
+  delay: number;
 }) {
   const isResident = message.sender === "resident";
   
-  if (!isVisible) return null;
-  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay, ease: "easeOut" }}
       className={`flex ${isResident ? "justify-end" : "justify-start"} mb-3`}
     >
       {!isResident && (
@@ -110,7 +84,7 @@ function ChatBubble({
   );
 }
 
-function ResultTag({ tag }: { tag: Scenario["resultTag"] }) {
+function ResultTag({ tag, delay }: { tag: Scenario["resultTag"]; delay: number }) {
   const styles = {
     green: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
     gold: "bg-gold/20 text-gold border-gold/30",
@@ -121,7 +95,7 @@ function ResultTag({ tag }: { tag: Scenario["resultTag"] }) {
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.4, delay, ease: "easeOut" }}
       className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${styles[tag.style]}`}
     >
       <span className="w-2 h-2 rounded-full bg-current" />
@@ -130,55 +104,18 @@ function ResultTag({ tag }: { tag: Scenario["resultTag"] }) {
   );
 }
 
-function ChatCard({ scenario, delay, triggerAnimation }: { scenario: Scenario; delay: number; triggerAnimation: boolean }) {
-  const [visibleMessages, setVisibleMessages] = useState<number>(0);
-  const [showTyping, setShowTyping] = useState(false);
-  const [showResult, setShowResult] = useState(false);
-  const [animationStarted, setAnimationStarted] = useState(false);
+function ChatCard({ scenario, cardDelay }: { scenario: Scenario; cardDelay: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.3 });
 
-  useEffect(() => {
-    if (!triggerAnimation || animationStarted) return;
-    
-    setAnimationStarted(true);
-    
-    const startDelay = delay * 400;
-    
-    const timer = setTimeout(() => {
-      let currentIndex = 0;
-      
-      const showNextMessage = () => {
-        if (currentIndex < scenario.messages.length) {
-          const message = scenario.messages[currentIndex];
-          
-          if (message.sender === "ai") {
-            setShowTyping(true);
-            setTimeout(() => {
-              setShowTyping(false);
-              setVisibleMessages(currentIndex + 1);
-              currentIndex++;
-              setTimeout(showNextMessage, 600);
-            }, 800);
-          } else {
-            setVisibleMessages(currentIndex + 1);
-            currentIndex++;
-            setTimeout(showNextMessage, 400);
-          }
-        } else {
-          setTimeout(() => setShowResult(true), 400);
-        }
-      };
-      
-      showNextMessage();
-    }, startDelay);
-    
-    return () => clearTimeout(timer);
-  }, [triggerAnimation, animationStarted, delay, scenario.messages]);
-
+  const baseDelay = cardDelay * 0.3;
+  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: delay * 0.2 }}
+      ref={cardRef}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.5, delay: baseDelay }}
       className="bg-carbon/50 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
     >
       <div className="px-5 py-4 border-b border-white/10 flex items-center gap-3">
@@ -188,29 +125,22 @@ function ChatCard({ scenario, delay, triggerAnimation }: { scenario: Scenario; d
       
       <div className="p-4 min-h-[280px] flex flex-col">
         <div className="flex-1">
-          {scenario.messages.map((message, index) => (
+          {isInView && scenario.messages.map((message, index) => (
             <ChatBubble
               key={index}
               message={message}
-              index={index}
-              isVisible={index < visibleMessages}
+              delay={baseDelay + 0.3 + index * 0.4}
             />
           ))}
-          
-          {showTyping && (
-            <div className="flex justify-start mb-3">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold to-gold/70 flex items-center justify-center mr-2 flex-shrink-0">
-                <Bot className="w-4 h-4 text-carbon" />
-              </div>
-              <div className="bg-gradient-to-br from-[#0a1628] to-[#0f2847] rounded-2xl rounded-bl-md border border-gold/20">
-                <TypingIndicator />
-              </div>
-            </div>
-          )}
         </div>
         
         <div className="pt-4 flex justify-center">
-          {showResult && <ResultTag tag={scenario.resultTag} />}
+          {isInView && (
+            <ResultTag 
+              tag={scenario.resultTag} 
+              delay={baseDelay + 0.3 + scenario.messages.length * 0.4 + 0.3} 
+            />
+          )}
         </div>
       </div>
     </motion.div>
@@ -218,11 +148,8 @@ function ChatCard({ scenario, delay, triggerAnimation }: { scenario: Scenario; d
 }
 
 export function ChatReplayGrid() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-  
   return (
-    <section ref={sectionRef} className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
+    <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(200,167,94,0.03)_0%,transparent_70%)]" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -254,7 +181,7 @@ export function ChatReplayGrid() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {SCENARIOS.map((scenario, index) => (
-            <ChatCard key={scenario.title} scenario={scenario} delay={index} triggerAnimation={isInView} />
+            <ChatCard key={scenario.title} scenario={scenario} cardDelay={index} />
           ))}
         </div>
       </div>
