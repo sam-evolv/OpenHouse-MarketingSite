@@ -2,7 +2,7 @@ import { HeroCinematic } from "@/components/sections/hero-cinematic";
 import { ProblemSolutionEnhanced } from "@/components/sections/problem-solution-enhanced";
 import { ArchitectureDiagram } from "@/components/sections/architecture-diagram";
 import { EcosystemDemo } from "@/components/interactive-demo/EcosystemDemo";
-import { FeatureGridEnhanced } from "@/components/sections/feature-grid-enhanced";
+import { BentoGrid } from "@/components/features/BentoGrid";
 import { AudienceSlices } from "@/components/sections/audience-slices";
 import { TechnologySection } from "@/components/sections/technology-section";
 import { DashboardPreviewEnhanced } from "@/components/sections/dashboard-preview-enhanced";
@@ -20,7 +20,7 @@ export default function HomeEnhanced() {
       <ProblemSolutionEnhanced />
       <ArchitectureDiagram />
       <EcosystemDemo />
-      <FeatureGridEnhanced />
+      <BentoGrid />
       <AudienceSlices />
       <TechnologySection />
       <DashboardPreviewEnhanced />
