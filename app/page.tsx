@@ -8,7 +8,7 @@ import { TechnologySection } from "@/components/sections/technology-section";
 import { NetworkCommandCenter } from "@/components/sections/NetworkCommandCenter";
 import { IsoGallerySection } from "@/sections/Gallery/IsoGallerySection";
 import { PricingSection } from "@/components/sections/pricing-section";
-import { SecurityStrip } from "@/components/sections/security-strip";
+import { TrustVault } from "@/components/sections/TrustVault";
 import { FAQSection } from "@/components/sections/faq-section";
 import { WhyOpenHouse } from "@/components/sections/why-openhouse";
 import { FooterCTA } from "@/components/sections/footer-cta";
@@ -26,7 +26,7 @@ export default function HomeEnhanced() {
       <NetworkCommandCenter />
       <IsoGallerySection />
       <PricingSection />
-      <SecurityStrip />
+      <TrustVault />
       <FAQSection />
       <WhyOpenHouse />
       <FooterCTA />
