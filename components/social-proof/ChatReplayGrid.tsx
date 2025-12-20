@@ -114,8 +114,13 @@ function ChatCard({ scenario, cardDelay }: { scenario: Scenario; cardDelay: numb
       ref={cardRef}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      whileHover={{ 
+        scale: 1.02, 
+        borderColor: "rgba(200, 167, 94, 0.4)",
+        boxShadow: "0 0 30px rgba(200, 167, 94, 0.15)"
+      }}
       transition={{ duration: 0.5, delay: baseDelay }}
-      className="bg-carbon/50 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
+      className="bg-carbon/50 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden cursor-pointer"
     >
       <div className="px-5 py-4 border-b border-white/10 flex items-center gap-3">
         <span className="text-xl">{scenario.icon}</span>
