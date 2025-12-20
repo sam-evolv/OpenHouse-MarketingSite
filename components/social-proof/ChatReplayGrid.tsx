@@ -15,7 +15,7 @@ type Scenario = {
   messages: Message[];
   resultTag: {
     text: string;
-    style: "green" | "gold" | "red";
+    style: "green" | "gold" | "purple";
   };
 };
 
@@ -26,27 +26,26 @@ const SCENARIOS: Scenario[] = [
     messages: [
       { sender: "resident", text: "The radiator in the bedroom is making a loud banging noise." },
       { sender: "ai", text: "That sounds like trapped air (kettling). I have a 30-second guide on how to bleed your specific radiator model. Would you like to see it?" },
-      { sender: "resident", text: "Yes please." },
     ],
     resultTag: { text: "Ticket Avoided", style: "green" },
   },
   {
-    title: "Amenity Booking",
-    icon: "🎉",
+    title: "Local Knowledge",
+    icon: "🗺️",
     messages: [
-      { sender: "resident", text: "Is the roof terrace available this Saturday evening for a private event?" },
-      { sender: "ai", text: "Yes, the South Terrace is available from 6 PM - 10 PM. The booking fee is £50. Shall I reserve this for you and add it to your monthly bill?" },
+      { sender: "resident", text: "How far is the closest convenience store? We need milk." },
+      { sender: "ai", text: "The closest is Spar on High Street, which is about 800 meters away (a 10-minute walk). Would you like me to send the walking directions to your phone?" },
     ],
-    resultTag: { text: "Revenue Captured", style: "gold" },
+    resultTag: { text: "Local Area Guide", style: "purple" },
   },
   {
-    title: "Emergency",
-    icon: "🚨",
+    title: "Home Specifications",
+    icon: "📐",
     messages: [
-      { sender: "resident", text: "There is water leaking under my kitchen sink!" },
-      { sender: "ai", text: "I am alerting the site manager immediately. In the meantime, your stopcock is located inside the utility cupboard on the bottom left. Here is a diagram." },
+      { sender: "resident", text: "I'm looking at buying new flooring. Do you know exactly how big my living room is?" },
+      { sender: "ai", text: "Checking your unit plans (Type 2B)... Your living room area is 24.5 square meters. Here is the architectural floor plan highlighted for reference." },
     ],
-    resultTag: { text: "Emergency Escalated", style: "red" },
+    resultTag: { text: "Instant Documentation", style: "gold" },
   },
 ];
 
@@ -88,7 +87,7 @@ function ResultTag({ tag, delay }: { tag: Scenario["resultTag"]; delay: number }
   const styles = {
     green: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
     gold: "bg-gold/20 text-gold border-gold/30",
-    red: "bg-red-500/20 text-red-400 border-red-500/30",
+    purple: "bg-violet-500/20 text-violet-400 border-violet-500/30",
   };
   
   return (
