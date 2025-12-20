@@ -5,7 +5,7 @@ import { EcosystemDemo } from "@/components/interactive-demo/EcosystemDemo";
 import { BentoGrid } from "@/components/features/BentoGrid";
 import { AudienceSlices } from "@/components/sections/audience-slices";
 import { TechnologySection } from "@/components/sections/technology-section";
-import { DashboardPreviewEnhanced } from "@/components/sections/dashboard-preview-enhanced";
+import { NetworkCommandCenter } from "@/components/sections/NetworkCommandCenter";
 import { IsoGallerySection } from "@/sections/Gallery/IsoGallerySection";
 import { PricingSection } from "@/components/sections/pricing-section";
 import { SecurityStrip } from "@/components/sections/security-strip";
@@ -23,7 +23,7 @@ export default function HomeEnhanced() {
       <BentoGrid />
       <AudienceSlices />
       <TechnologySection />
-      <DashboardPreviewEnhanced />
+      <NetworkCommandCenter />
       <IsoGallerySection />
       <PricingSection />
       <SecurityStrip />
