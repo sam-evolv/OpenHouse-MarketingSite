@@ -37,7 +37,6 @@ function ChaosIcon({
   x, 
   y, 
   rotation, 
-  delay, 
   progress,
   color
 }: { 
@@ -45,43 +44,30 @@ function ChaosIcon({
   x: number; 
   y: number; 
   rotation: number; 
-  delay: number;
   progress: number;
   color: string;
 }) {
-  const scatterProgress = Math.max(0, (progress - 0.6) * 2.5);
-  const scatterX = (x > 50 ? 1 : -1) * 80 * scatterProgress;
-  const scatterY = (y > 50 ? 1 : -1) * 60 * scatterProgress;
-  const scatterRotation = rotation * 2 * scatterProgress;
-  
-  const opacity = progress < 0.6 ? 1 : Math.max(0, 1 - (progress - 0.6) * 3);
-  const scale = progress < 0.6 ? 1 : 1 - scatterProgress * 0.5;
-  const rotate = rotation + scatterRotation;
+  const fadeStart = 0.5;
+  const opacity = progress < fadeStart ? 1 : Math.max(0, 1 - (progress - fadeStart) * 2);
+  const scatterAmount = Math.max(0, progress - fadeStart) * 100;
+  const moveX = (x > 50 ? 1 : -1) * scatterAmount;
+  const moveY = (y > 50 ? 1 : -1) * scatterAmount * 0.5;
 
   return (
     <div
-      className="absolute z-10"
+      className="absolute"
       style={{
         left: `${x}%`,
         top: `${y}%`,
         opacity,
-        transform: `translate(${scatterX}px, ${scatterY}px) rotate(${rotate}deg) scale(${scale})`,
-        transition: 'opacity 0.1s, transform 0.1s',
+        transform: `translate(-50%, -50%) translate(${moveX}px, ${moveY}px) rotate(${rotation}deg)`,
+        zIndex: 20,
       }}
     >
-      <div className="relative">
-        <Icon 
-          className={`w-10 h-10 sm:w-12 sm:h-12 ${color}`}
-          strokeWidth={2}
-        />
-        <div 
-          className="absolute inset-0 blur-lg opacity-60" 
-          style={{ 
-            background: color.includes('red') ? '#ef4444' : 
-                        color.includes('orange') ? '#f97316' : '#eab308'
-          }} 
-        />
-      </div>
+      <Icon 
+        className={`w-8 h-8 sm:w-10 sm:h-10 ${color}`}
+        strokeWidth={2.5}
+      />
     </div>
   );
 }
@@ -248,7 +234,6 @@ export function ChaosControlSlider() {
               x={icon.x}
               y={icon.y}
               rotation={icon.rotation}
-              delay={icon.delay}
               progress={progressValue}
               color={icon.color}
             />
