@@ -122,8 +122,8 @@ function ChatCard({ scenario, cardDelay }: { scenario: Scenario; cardDelay: numb
         <h3 className="text-lg font-semibold text-porcelain">{scenario.title}</h3>
       </div>
       
-      <div className="p-4 h-[320px] flex flex-col">
-        <div className="flex-1 overflow-hidden">
+      <div className="p-4 h-[340px] flex flex-col">
+        <div className="flex-1 overflow-y-auto">
           {isInView && scenario.messages.map((message, index) => (
             <ChatBubble
               key={index}
