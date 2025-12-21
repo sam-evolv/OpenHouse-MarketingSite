@@ -59,7 +59,7 @@ export function FeatureGrid() {
         <div className="mt-16 text-center">
           <a
             href="/contact"
-            className="inline-flex items-center justify-center h-14 px-8 text-base font-medium rounded-lg bg-gold text-carbon hover:bg-gold/90 transition-colors"
+            className="inline-flex items-center justify-center h-14 px-8 text-base font-medium rounded-lg border-2 border-gold/60 text-gold hover:border-gold hover:bg-gold/10 transition-colors"
           >
             See it in action
           </a>

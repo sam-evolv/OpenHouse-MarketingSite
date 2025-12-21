@@ -91,7 +91,7 @@ export function PricingComparison() {
             </h3>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-carbon font-semibold rounded-lg hover:bg-gold/90 transition-all shadow-lg shadow-gold/20"
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gold/60 text-gold font-semibold rounded-lg hover:border-gold hover:bg-gold/10 transition-all"
               aria-label="Contact sales for enterprise pricing"
             >
               {content.pricingComparison.enterpriseCta.button}

@@ -34,21 +34,6 @@ export function FAQSection() {
           </Accordion>
         </div>
 
-        {/* Final CTA */}
-        <div className="mt-16 text-center bg-slate/50 border border-gold/20 rounded-lg p-12">
-          <h3 className="text-heading-lg font-bold text-porcelain mb-4">
-            Ready to transform your development?
-          </h3>
-          <p className="text-body-lg text-hint mb-8 max-w-2xl mx-auto">
-            Join leading developers using AI to deliver exceptional resident experiences.
-          </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center justify-center h-14 px-8 text-base font-medium rounded-lg bg-gold text-carbon hover:bg-gold/90 transition-colors"
-          >
-            Book your demo
-          </a>
-        </div>
       </Container>
     </section>
   );
