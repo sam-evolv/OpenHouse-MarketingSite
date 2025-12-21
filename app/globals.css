@@ -80,17 +80,47 @@ html.lenis body {
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-carbon text-porcelain font-sans antialiased;
-    cursor: auto !important;
-  }
+
   html {
     scroll-behavior: smooth;
     overscroll-behavior: none;
     cursor: auto !important;
+    font-size: 16px;
   }
+
   body {
+    @apply bg-carbon text-porcelain font-sans antialiased;
+    line-height: 1.5;
     overscroll-behavior: none;
+    cursor: auto !important;
+  }
+
+  h1, .h1 {
+    @apply text-display-sm md:text-display-md font-heading font-bold;
+    line-height: 1.1;
+  }
+
+  h2, .h2 {
+    @apply text-heading-lg md:text-heading-xl font-heading font-bold;
+    line-height: 1.2;
+  }
+
+  h3, .h3 {
+    @apply text-heading-md font-heading font-semibold;
+    line-height: 1.2;
+  }
+
+  h4, .h4 {
+    @apply text-heading-sm font-heading font-semibold;
+    line-height: 1.25;
+  }
+
+  p, li, span, label {
+    line-height: 1.5;
+  }
+
+  ul, ol {
+    line-height: 1.5;
   }
 }
 
