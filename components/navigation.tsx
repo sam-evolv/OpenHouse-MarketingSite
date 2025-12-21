@@ -50,6 +50,8 @@ export function Navigation() {
           ? "bg-carbon/90 border-b border-hint/10 shadow-lg"
           : "bg-carbon/30"
       )}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
@@ -133,15 +135,17 @@ export function Navigation() {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-porcelain hover:text-gold"
-            aria-label="Toggle menu"
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-hint/10">
+          <div id="mobile-menu" className="md:hidden py-4 border-t border-hint/10" role="menu">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <a
