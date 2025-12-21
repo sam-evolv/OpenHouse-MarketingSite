@@ -116,9 +116,57 @@ function NFCTag({ progress }: { progress: number }) {
   );
 }
 
+function DragHandle({ isDragging }: { isDragging: boolean }) {
+  return (
+    <svg 
+      width="48" 
+      height="48" 
+      viewBox="0 0 48 48" 
+      className="drop-shadow-lg"
+      aria-hidden="true"
+    >
+      <circle 
+        cx="24" 
+        cy="24" 
+        r="22" 
+        fill="#0A0A0A"
+        stroke="#C8A75E"
+        strokeWidth="3"
+      />
+      <circle 
+        cx="24" 
+        cy="24" 
+        r="18" 
+        fill="none"
+        stroke="rgba(200,167,94,0.3)"
+        strokeWidth="1"
+      />
+      <line x1="18" y1="16" x2="18" y2="32" stroke="#C8A75E" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+      <line x1="24" y1="14" x2="24" y2="34" stroke="#C8A75E" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="30" y1="16" x2="30" y2="32" stroke="#C8A75E" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+      {isDragging && (
+        <circle 
+          cx="24" 
+          cy="24" 
+          r="22" 
+          fill="none"
+          stroke="#C8A75E"
+          strokeWidth="2"
+          opacity="0.5"
+        >
+          <animate attributeName="r" values="22;28;22" dur="1s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="1s" repeatCount="indefinite" />
+        </circle>
+      )}
+    </svg>
+  );
+}
+
 export function ChaosControlSlider() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
   
   const sliderPosition = useMotionValue(50);
@@ -167,6 +215,32 @@ export function ChaosControlSlider() {
     setIsDragging(false);
   }, []);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    const step = e.shiftKey ? 10 : 2;
+    let newPosition = sliderPosition.get();
+    
+    switch (e.key) {
+      case "ArrowLeft":
+        e.preventDefault();
+        newPosition = Math.max(5, newPosition - step);
+        sliderPosition.set(newPosition);
+        break;
+      case "ArrowRight":
+        e.preventDefault();
+        newPosition = Math.min(95, newPosition + step);
+        sliderPosition.set(newPosition);
+        break;
+      case "Home":
+        e.preventDefault();
+        sliderPosition.set(5);
+        break;
+      case "End":
+        e.preventDefault();
+        sliderPosition.set(95);
+        break;
+    }
+  }, [sliderPosition]);
+
   useEffect(() => {
     if (isDragging) {
       window.addEventListener("mousemove", handleMouseMove);
@@ -184,11 +258,26 @@ export function ChaosControlSlider() {
 
   return (
     <div className="w-full max-w-5xl mx-auto px-4">
+      {/* Top Labels */}
+      <div className="flex justify-between items-center mb-4 px-2">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-red-500" />
+          <span className="text-sm font-semibold text-red-400">Before: Fragmentation</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-semibold text-gold">After: Centralised Intelligence</span>
+          <div className="w-3 h-3 rounded-full bg-gold" />
+        </div>
+      </div>
+
       <div 
         ref={containerRef}
         className="relative h-[400px] sm:h-[500px] rounded-2xl overflow-hidden border border-white/10 select-none"
         style={{ touchAction: "none" }}
+        role="group"
+        aria-label="Before and after comparison slider"
       >
+        {/* Before Panel */}
         <motion.div 
           className="absolute inset-0"
           style={{ 
@@ -239,12 +328,8 @@ export function ChaosControlSlider() {
             
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center px-8 py-6 bg-black/60 backdrop-blur-sm rounded-2xl border border-red-500/30">
-                <p className="text-sm uppercase tracking-[0.3em] text-red-400 mb-3 font-semibold">Before</p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
-                  The Old Way:
-                </h3>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-400 mt-2">
-                  Fragmentation
+                  The Old Way
                 </h3>
                 <p className="text-sm text-gray-400 mt-4 max-w-xs">
                   Scattered emails, missed calls, and traditional Handover Files lost in transit
@@ -254,6 +339,7 @@ export function ChaosControlSlider() {
           </div>
         </motion.div>
 
+        {/* After Panel */}
         <motion.div 
           className="absolute inset-0"
           style={{ 
@@ -283,60 +369,62 @@ export function ChaosControlSlider() {
               style={{ opacity: Math.min(1, (progressValue - 0.2) * 2) }}
             >
               <div className="text-center px-8 py-6 bg-black/60 backdrop-blur-sm rounded-2xl border border-gold/30">
-                <p className="text-sm uppercase tracking-[0.3em] text-gold mb-3 font-semibold">After</p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-porcelain">
-                  The OpenHouse Way:
-                </h3>
-                <h3 
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-2"
-                  style={{
-                    background: "linear-gradient(135deg, #C8A75E 0%, #E8D9A0 50%, #C8A75E 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Centralised Intelligence
+                  The OpenHouse Way
                 </h3>
                 <p className="text-sm text-gray-400 mt-4 max-w-xs">
-                  One AI portal that knows everything
+                  One AI portal that knows everything about your home
                 </p>
               </div>
             </div>
           </div>
         </motion.div>
 
+        {/* Draggable Handle */}
         <motion.div
-          className="absolute top-0 bottom-0 w-1 bg-gradient-to-b from-gold/80 via-gold to-gold/80 cursor-ew-resize z-20"
-          style={{ left: `${smoothPosition.get()}%`, marginLeft: "-2px" }}
+          ref={handleRef}
+          className={`absolute top-0 bottom-0 w-1 cursor-ew-resize z-20 ${
+            isFocused ? "outline-none" : ""
+          }`}
+          style={{ left: `${smoothPosition.get()}%`, marginLeft: "-24px", width: "48px" }}
           onMouseDown={() => setIsDragging(true)}
           onTouchStart={() => setIsDragging(true)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+          role="slider"
+          aria-label="Comparison slider"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(sliderPosition.get())}
+          aria-valuetext={`${Math.round(100 - sliderPosition.get())}% Before, ${Math.round(sliderPosition.get())}% After`}
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-carbon border-2 border-gold flex items-center justify-center shadow-lg shadow-gold/20">
-            <div className="flex items-center gap-0.5">
-              <div className="w-0.5 h-4 bg-gold/60 rounded-full" />
-              <div className="w-0.5 h-6 bg-gold rounded-full" />
-              <div className="w-0.5 h-4 bg-gold/60 rounded-full" />
-            </div>
+          {/* Vertical line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-1 -ml-0.5 bg-gradient-to-b from-gold/80 via-gold to-gold/80" />
+          
+          {/* Center handle */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <DragHandle isDragging={isDragging || isFocused} />
           </div>
           
+          {/* Glow effect */}
           <motion.div
-            className="absolute top-0 bottom-0 w-px bg-gold/30"
-            style={{ left: "50%" }}
+            className="absolute left-1/2 top-0 bottom-0 w-px -ml-px bg-gold/30"
             animate={{ opacity: [0.3, 0.8, 0.3] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />
         </motion.div>
 
-        <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center text-xs text-hint/60">
-          <span className={progressValue < 0.3 ? "text-red-400/80" : ""}>
-            Chaos
-          </span>
-          <span className="text-hint/40">← Drag to compare →</span>
-          <span className={progressValue > 0.7 ? "text-gold" : ""}>
-            Control
-          </span>
+        {/* Bottom instruction */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-hint/60 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full">
+          <span>← Drag or use arrow keys →</span>
         </div>
+
+        {/* Focus ring for accessibility */}
+        {isFocused && (
+          <div className="absolute inset-0 rounded-2xl ring-2 ring-gold/50 ring-offset-2 ring-offset-carbon pointer-events-none" />
+        )}
       </div>
     </div>
   );
