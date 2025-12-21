@@ -63,8 +63,8 @@ function FeatureCard({ icon: Icon, title, description, index }: FeatureCardProps
       }}
       className="flex-shrink-0 w-[280px] md:w-auto bg-carbon/60 border border-white/10 rounded-xl p-6 cursor-pointer transition-colors hover:border-gold/30"
     >
-      <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
-        <Icon className="w-6 h-6 text-gold" />
+      <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-4 hover-animate">
+        <Icon className="w-6 h-6 text-gold" aria-hidden="true" />
       </div>
       <h3 className="text-lg font-semibold text-porcelain mb-2">{title}</h3>
       <p className="text-sm text-porcelain/70 leading-relaxed">{description}</p>

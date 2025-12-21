@@ -27,8 +27,8 @@ export function FeatureGridEnhanced() {
                 <Card className="min-h-[260px] flex flex-col justify-between p-6 hover:border-gold/50 transition-all">
                   <CardHeader className="p-0 mb-4">
                     <Parallax strength={20}>
-                      <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center mb-4">
-                        <Icon className="w-8 h-8 text-gold" />
+                      <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center mb-4 hover-animate">
+                        <Icon className="w-8 h-8 text-gold" aria-hidden="true" />
                       </div>
                     </Parallax>
                     <CardTitle className="text-heading-md line-clamp-2">{feature.title}</CardTitle>
