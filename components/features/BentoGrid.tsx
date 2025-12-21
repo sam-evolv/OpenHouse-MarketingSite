@@ -36,7 +36,7 @@ function BentoCard({ children, className = "", glowColor = "gold" }: BentoCardPr
   return (
     <motion.div
       ref={cardRef}
-      className={`relative overflow-hidden rounded-2xl bg-slate-900/80 border border-white/[0.08] backdrop-blur-sm transition-all duration-300 ${className}`}
+      className={`relative overflow-hidden rounded-2xl bg-slate-900/80 border border-white/[0.08] backdrop-blur-sm transition-all duration-300 elev-1-dark ${className}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

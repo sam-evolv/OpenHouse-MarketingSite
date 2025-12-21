@@ -61,7 +61,7 @@ function FeatureCard({ icon: Icon, title, description, index }: FeatureCardProps
         y: -4,
         boxShadow: "0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(200, 167, 94, 0.1)"
       }}
-      className="flex-shrink-0 w-[280px] md:w-auto bg-carbon/60 border border-white/10 rounded-xl p-6 cursor-pointer transition-colors hover:border-gold/30"
+      className="flex-shrink-0 w-[280px] md:w-auto bg-carbon/60 border border-white/10 rounded-xl p-6 cursor-pointer transition-colors hover:border-gold/30 elev-1-dark"
     >
       <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-4 hover-animate">
         <Icon className="w-6 h-6 text-gold" aria-hidden="true" />

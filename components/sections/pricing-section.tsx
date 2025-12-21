@@ -164,9 +164,9 @@ function PricingCard({ tier, billingCycle, currency, index }: PricingCardProps) 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`relative flex flex-col h-full rounded-2xl border backdrop-blur-sm transition-all duration-300 ${
+      className={`relative flex flex-col h-full rounded-2xl border backdrop-blur-sm transition-all duration-300 elev-1-dark ${
         tier.popular 
-          ? "bg-gold/5 border-gold/40 shadow-lg shadow-gold/10" 
+          ? "bg-gold/5 border-gold/40" 
           : "bg-carbon/50 border-white/10 hover:border-white/20"
       }`}
       role="article"

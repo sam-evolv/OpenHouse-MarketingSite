@@ -207,6 +207,50 @@ html.lenis body {
   .text-block-margin {
     @apply mb-6 md:mb-8;
   }
+
+  /* Elevation System - Box Shadow Utility Classes */
+  .elev-1 {
+    box-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+
+  .elev-2 {
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.15),
+      0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .elev-3 {
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.2),
+      0 4px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Dark theme elevation with subtle gold accent */
+  .dark .elev-1,
+  .elev-1-dark {
+    box-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.4),
+      0 1px 2px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(212, 175, 55, 0.03);
+  }
+
+  .dark .elev-2,
+  .elev-2-dark {
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.5),
+      0 2px 4px rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(212, 175, 55, 0.05);
+  }
+
+  .dark .elev-3,
+  .elev-3-dark {
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.6),
+      0 4px 8px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(212, 175, 55, 0.08);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

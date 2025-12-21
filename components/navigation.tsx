@@ -47,7 +47,7 @@ export function Navigation() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md",
         isScrolled
-          ? "bg-carbon/90 border-b border-hint/10 shadow-lg"
+          ? "bg-carbon/90 border-b border-hint/10 elev-3-dark"
           : "bg-carbon/30"
       )}
       role="navigation"
