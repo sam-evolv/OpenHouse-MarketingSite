@@ -1,6 +1,7 @@
 import { HeroParallax } from "@/components/hero/HeroParallax";
 import { ProblemSolutionEnhanced } from "@/components/sections/problem-solution-enhanced";
 import { BentoGrid } from "@/components/features/BentoGrid";
+import { NFCDemo } from "@/components/demo/NFCDemo";
 import { ChatReplayGrid } from "@/components/social-proof/ChatReplayGrid";
 import { TrustVault } from "@/components/sections/TrustVault";
 import { FooterCTA } from "@/components/sections/footer-cta";
@@ -29,6 +30,7 @@ export default function Home() {
         className="scroll-mt-20"
       >
         <BentoGrid />
+        <NFCDemo />
       </section>
 
       {/* Section 4: Social Proof - Case studies and testimonials */}
