@@ -31,11 +31,11 @@ export function ProblemSolutionEnhanced() {
                 A Modern Multi-Tenant Platform Architected for Scale.
               </h2>
 
-              <ul className="flex-1 grid grid-rows-7 gap-0">
+              <ul className="flex-1 flex flex-col">
                 {leftItems.map((bullet: string, index: number) => (
-                  <li key={index} className="flex items-start gap-3 py-3 border-b border-white/5 last:border-b-0">
+                  <li key={index} className="flex items-start gap-4 py-3.5 border-b border-white/5 last:border-b-0">
                     <Check className="w-5 h-5 text-yellow-500 shrink-0 mt-0.5" />
-                    <span className="text-hint text-body-md">{bullet}</span>
+                    <span className="text-hint text-body-md break-words hyphens-none">{bullet}</span>
                   </li>
                 ))}
               </ul>
@@ -49,11 +49,11 @@ export function ProblemSolutionEnhanced() {
                 Built for Developers. Loved by Residents.
               </h2>
 
-              <ul className="flex-1 grid grid-rows-7 gap-0">
+              <ul className="flex-1 flex flex-col">
                 {rightItems.map((bullet: string, index: number) => (
-                  <li key={index} className="flex items-start gap-3 py-3 border-b border-white/5 last:border-b-0">
+                  <li key={index} className="flex items-start gap-4 py-3.5 border-b border-white/5 last:border-b-0">
                     <Check className="w-5 h-5 text-yellow-500 shrink-0 mt-0.5" />
-                    <span className="text-hint text-body-md">{bullet}</span>
+                    <span className="text-hint text-body-md break-words hyphens-none">{bullet}</span>
                   </li>
                 ))}
               </ul>
