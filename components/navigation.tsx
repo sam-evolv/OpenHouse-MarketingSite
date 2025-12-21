@@ -8,10 +8,10 @@ import { Menu, X, LogIn, ExternalLink } from "lucide-react";
 import { appRoutes } from "@/lib/env";
 
 const navLinks = [
-  { href: "/features", label: "Features" },
-  { href: "/solutions", label: "Solutions" },
+  { href: "/#solution", label: "Solution" },
+  { href: "/#capabilities", label: "Capabilities" },
+  { href: "/#proof", label: "Case Studies" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/case-studies", label: "Case Studies" },
   { href: "/docs", label: "Docs" },
 ];
 
@@ -29,6 +29,18 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("/#") && pathname === "/") {
+      e.preventDefault();
+      const targetId = href.replace("/#", "");
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   return (
     <nav
@@ -53,10 +65,10 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
-                prefetch={true}
+                onClick={(e) => handleAnchorClick(e, link.href)}
                 className={cn(
                   "text-sm font-medium transition-colors duration-200",
                   pathname === link.href
@@ -65,7 +77,7 @@ export function Navigation() {
                 )}
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -132,11 +144,10 @@ export function Navigation() {
           <div className="md:hidden py-4 border-t border-hint/10">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.href}
                   href={link.href}
-                  prefetch={true}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => handleAnchorClick(e, link.href)}
                   className={cn(
                     "text-sm font-medium transition-colors",
                     pathname === link.href
@@ -145,7 +156,7 @@ export function Navigation() {
                   )}
                 >
                   {link.label}
-                </Link>
+                </a>
               ))}
               
               {/* Mobile Login/Register */}
