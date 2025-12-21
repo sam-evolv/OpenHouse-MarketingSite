@@ -283,7 +283,7 @@ export function NetworkCommandCenter() {
   }, []);
 
   return (
-    <section className="py-28 bg-carbon relative overflow-hidden">
+    <section className="section-padding bg-carbon relative overflow-hidden">
       <UKIrelandMap pulses={pulses} />
       
       <div className="absolute inset-0 bg-gradient-to-b from-carbon via-transparent to-carbon pointer-events-none" />

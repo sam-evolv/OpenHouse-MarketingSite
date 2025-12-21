@@ -11,7 +11,7 @@ const icons = [Building2, TrendingDown, Shield, Zap, Cpu];
 
 export function WhyOpenHouse() {
   return (
-    <section className="py-28 bg-slate">
+    <section className="section-padding bg-slate">
       <Container>
         <SectionHeading
           title={content.whyOpenHouse.title}

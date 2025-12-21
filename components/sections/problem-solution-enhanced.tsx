@@ -176,7 +176,7 @@ function CardCarousel({ features, title }: CardCarouselProps) {
 
 export function ProblemSolutionEnhanced() {
   return (
-    <section className="py-28 bg-slate">
+    <section className="section-padding bg-slate">
       <Container>
         <SectionHeading
           title="Built for Developers. Loved by Residents."

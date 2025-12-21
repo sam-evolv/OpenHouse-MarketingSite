@@ -27,7 +27,7 @@ const config: Config = {
         gold: "#D4AF37",
         slate: "#141414",
         hint: "#B8BCC5",
-        muted: "#8A8F9A",
+        mutedGrey: "#8A8F9A",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -82,8 +82,9 @@ const config: Config = {
         "caption": ["12px", { lineHeight: "1.5" }],
       },
       spacing: {
-        "section": "7rem",
-        "section-lg": "9rem",
+        "section": "5rem",
+        "section-lg": "7rem",
+        "card": "1.5rem",
       },
       keyframes: {
         "fade-in-up": {

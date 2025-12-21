@@ -243,7 +243,7 @@ export function PricingSection() {
   const currency = useLocalisedCurrency();
 
   return (
-    <section className="py-28 bg-slate" aria-labelledby="pricing-heading">
+    <section className="section-padding bg-slate" aria-labelledby="pricing-heading">
       <Container>
         <SectionHeading
           title="Simple, Transparent Pricing"

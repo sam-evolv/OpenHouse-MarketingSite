@@ -187,6 +187,28 @@ html.lenis body {
   }
 }
 
+@layer components {
+  .section-padding {
+    @apply py-10 md:py-20;
+  }
+
+  .section-padding-lg {
+    @apply py-14 md:py-24;
+  }
+
+  .card-padding {
+    @apply p-6;
+  }
+
+  .heading-margin {
+    @apply mb-4 md:mb-6;
+  }
+
+  .text-block-margin {
+    @apply mb-6 md:mb-8;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .iso-scene,
   .iso,

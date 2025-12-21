@@ -12,7 +12,7 @@ const icons = [MessageSquare, Map, Map, Bell, Globe, BarChart3, Shield, Lock];
 
 export function FeatureGridEnhanced() {
   return (
-    <section className="py-28 bg-carbon">
+    <section className="section-padding bg-carbon">
       <Container>
         <SectionHeading
           title={content.features.title}

@@ -138,7 +138,7 @@ function MobileOrbitingFeatures() {
 
 export function TrustVault() {
   return (
-    <section className="py-28 bg-carbon relative overflow-hidden">
+    <section className="section-padding bg-carbon relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(200,167,94,0.05)_0%,transparent_70%)]" />
       
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
