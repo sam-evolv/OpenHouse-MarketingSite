@@ -47,6 +47,7 @@ function DataBeam({ beamState }: { beamState: BeamState }) {
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
+        aria-hidden="true"
       >
         <defs>
           <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">

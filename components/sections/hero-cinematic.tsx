@@ -236,6 +236,7 @@ export function HeroCinematic() {
             strokeLinecap="round"
             strokeLinejoin="round"
             style={{ margin: "0 auto" }}
+            aria-hidden="true"
           >
             <polyline points="6 9 12 15 18 9" />
           </svg>

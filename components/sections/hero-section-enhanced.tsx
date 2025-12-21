@@ -49,6 +49,7 @@ export function HeroSectionEnhanced() {
               strokeLinecap="round"
               strokeLinejoin="round"
               className="text-gold"
+              aria-hidden="true"
             >
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>

@@ -175,7 +175,7 @@ export function HeroParallax() {
           className="flex flex-col items-center gap-2"
         >
           <span className="text-xs font-medium uppercase tracking-wider text-porcelain/70">Scroll to explore</span>
-          <svg className="w-5 h-5 text-porcelain/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-porcelain/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </motion.div>

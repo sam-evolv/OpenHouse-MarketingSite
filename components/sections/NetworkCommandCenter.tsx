@@ -119,6 +119,7 @@ function UKIrelandMap({ pulses }: { pulses: PulseEffect[] }) {
         viewBox="0 0 100 100"
         className="absolute inset-0 w-full h-full"
         preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
       >
         <defs>
           <radialGradient id="pulseGradient">
