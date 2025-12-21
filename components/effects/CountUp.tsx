@@ -10,36 +10,38 @@ interface CountUpProps {
   suffix?: string;
   prefix?: string;
   className?: string;
+  isLoading?: boolean;
 }
 
 export function CountUp({
   end,
-  duration = 1.2,
+  duration = 1.5,
   decimals = 0,
   suffix = "",
   prefix = "",
   className = "",
+  isLoading = false,
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement | null>(null);
   const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.5 });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || isLoading) return;
 
     let startTime: number | null = null;
     const startValue = 0;
     const change = end - startValue;
 
-    function easeOutQuad(t: number): number {
-      return t * (2 - t);
+    function easeOutExpo(t: number): number {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
     }
 
     function animate(currentTime: number) {
       if (startTime === null) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / (duration * 1000), 1);
-      const easedProgress = easeOutQuad(progress);
+      const easedProgress = easeOutExpo(progress);
 
       setCount(startValue + change * easedProgress);
 
@@ -51,7 +53,15 @@ export function CountUp({
     }
 
     requestAnimationFrame(animate);
-  }, [isInView, end, duration]);
+  }, [isInView, end, duration, isLoading]);
+
+  if (isLoading) {
+    return (
+      <span ref={ref} className={className}>
+        <SkeletonLoader width="4rem" />
+      </span>
+    );
+  }
 
   return (
     <span ref={ref} className={className}>
@@ -59,5 +69,27 @@ export function CountUp({
       {count.toFixed(decimals)}
       {suffix}
     </span>
+  );
+}
+
+export function SkeletonLoader({ 
+  width = "100%", 
+  height = "1em",
+  className = "" 
+}: { 
+  width?: string; 
+  height?: string;
+  className?: string;
+}) {
+  return (
+    <span
+      className={`inline-block bg-gradient-to-r from-white/5 via-white/10 to-white/5 rounded animate-shimmer ${className}`}
+      style={{ 
+        width, 
+        height,
+        backgroundSize: "200% 100%",
+      }}
+      aria-hidden="true"
+    />
   );
 }

@@ -50,13 +50,27 @@ interface PulseEffect {
   city: string;
 }
 
-function CountUpMono({ end, duration = 2 }: { end: number; duration?: number }) {
+function SkeletonBar({ width = "5rem" }: { width?: string }) {
+  return (
+    <span
+      className="inline-block h-8 bg-gradient-to-r from-white/5 via-white/15 to-white/5 rounded animate-shimmer"
+      style={{ 
+        width,
+        backgroundSize: "200% 100%",
+      }}
+      aria-label="Loading..."
+    />
+  );
+}
+
+function CountUpMono({ end, duration = 1.5, isLoading = false }: { end: number; duration?: number; isLoading?: boolean }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.3 });
   const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!isInView || end === 0) return;
+    if (!isInView || isLoading || end === 0 || hasAnimated) return;
 
     let startTime: number | null = null;
     const startValue = 0;
@@ -78,11 +92,16 @@ function CountUpMono({ end, duration = 2 }: { end: number; duration?: number }) 
         requestAnimationFrame(animate);
       } else {
         setCount(end);
+        setHasAnimated(true);
       }
     }
 
     requestAnimationFrame(animate);
-  }, [isInView, end, duration]);
+  }, [isInView, end, duration, isLoading, hasAnimated]);
+
+  if (isLoading) {
+    return <SkeletonBar width="5rem" />;
+  }
 
   const formatted = count.toLocaleString();
   
@@ -311,11 +330,7 @@ export function NetworkCommandCenter() {
                         <span className="text-xs font-mono text-hint">{config.label}</span>
                       </div>
                       <div className="text-4xl font-bold text-porcelain">
-                        {isLoading ? (
-                          <span className="font-mono text-hint animate-pulse">---</span>
-                        ) : (
-                          <CountUpMono end={value} duration={2.5} />
-                        )}
+                        <CountUpMono end={value} duration={1.5} isLoading={isLoading} />
                       </div>
                     </div>
                     
