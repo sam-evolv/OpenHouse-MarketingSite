@@ -254,3 +254,63 @@ html.lenis body {
 .orbit-item:nth-child(4) { animation-delay: -22.5s; }
 .orbit-item:nth-child(5) { animation-delay: -30s; }
 .orbit-item:nth-child(6) { animation-delay: -37.5s; }
+
+/* Hero Animated Gradient Background */
+@keyframes heroGradientShift {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.4;
+  }
+  25% {
+    background-position: 50% 100%;
+    opacity: 0.5;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.45;
+  }
+  75% {
+    background-position: 50% 0%;
+    opacity: 0.5;
+  }
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.4;
+  }
+}
+
+.hero-gradient-animated {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 1) 0%,
+    rgba(30, 25, 15, 1) 25%,
+    rgba(45, 35, 20, 1) 50%,
+    rgba(25, 20, 12, 1) 75%,
+    rgba(10, 10, 10, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: heroGradientShift 30s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero-gradient-animated::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    rgba(212, 175, 55, 0.08) 0%,
+    rgba(212, 175, 55, 0.03) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient-animated {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}

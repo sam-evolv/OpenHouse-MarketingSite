@@ -61,6 +61,9 @@ export function HeroCinematic() {
         backgroundColor: "#0A0A0A",
       }}
     >
+      {/* Animated gradient background */}
+      <div className="hero-gradient-animated" aria-hidden="true" />
+
       {/* Dynamic cursor glow */}
       {isMounted && (
         <div
