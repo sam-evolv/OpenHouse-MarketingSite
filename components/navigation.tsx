@@ -115,22 +115,6 @@ export function Navigation() {
             >
               Start Free
             </a>
-            
-            {/* Book a Demo - Gold Gradient Primary CTA */}
-            <Link 
-              href="/contact" 
-              prefetch={true}
-              className="group relative px-5 py-2.5 text-sm font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-500 to-gold bg-[length:200%_100%] animate-shimmer" />
-              <span className="absolute inset-[1px] bg-gradient-to-r from-gold to-amber-500 rounded-full" />
-              <span className="relative z-10 text-carbon flex items-center gap-1.5">
-                Book a Demo
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -180,15 +164,6 @@ export function Navigation() {
               >
                 Start Onboarding
               </a>
-              
-              <Link
-                href="/contact"
-                prefetch={true}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full py-3 text-center text-sm font-semibold text-carbon bg-gradient-to-r from-gold to-amber-500 rounded-full"
-              >
-                Book a Demo
-              </Link>
             </div>
           </div>
         )}
