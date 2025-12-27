@@ -11,7 +11,7 @@ export function FooterCTA() {
             Ready to transform your resident experience?
           </h2>
           <p className="text-lg text-porcelain/60 mb-10 max-w-2xl mx-auto">
-            Join leading developers using AI to deliver exceptional support and reduce after-sales costs by up to 90%.
+            Join leading developers using AI to deliver exceptional support and streamline after-sales operations.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
