@@ -233,13 +233,17 @@ function ChatBubbleCard() {
       <div className="p-4 space-y-3">
         <div className="flex justify-start">
           <div className="bg-white/10 rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[85%]">
-            <p className="text-sm text-porcelain">Your parcel has arrived at reception.</p>
+            <p className="text-sm text-porcelain">What size is my living room?</p>
             <p className="text-[9px] text-hint mt-1">Just now</p>
           </div>
         </div>
         <div className="flex justify-start">
           <div className="bg-white/10 rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[85%]">
-            <p className="text-sm text-porcelain">Collection hours: 8am - 8pm daily. Your reference: #PKG-4521</p>
+            <p className="text-sm text-porcelain">
+              I've found your architectural floor plans.
+              <br />
+              View or download them here for the official room dimensions.
+            </p>
           </div>
         </div>
       </div>

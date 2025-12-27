@@ -1,0 +1,42 @@
+You are working inside the repository: OpenHouseAI (Next.js + TS). Objective: update the HERO “chat replay” card copy so it no longer says “Your parcel has arrived at reception.” Replace it with a GDPR-safe, liability-safe scenario that reflects real OpenHouse functionality (document retrieval), without providing any specific measurements or personal/sensitive data.
+
+NON-NEGOTIABLES
+- Do NOT change layout, styling, animations, timings, or card positions.
+- Do NOT introduce new libraries.
+- Do NOT add API calls.
+- Only change the hardcoded demo text for the OpenHouse Assistant chat card in the hero.
+- Keep text short so it fits the card at all breakpoints.
+
+TARGET COPY (use exactly this)
+Card header: "OpenHouse Assistant"
+Status: "Online"
+User message (top bubble):
+"What size is my living room?"
+Assistant response (second bubble):
+"I’ve found your architectural floor plans.
+View or download them here for the official room dimensions."
+
+IMPLEMENTATION STEPS
+1) Find where the hero chat replay cards are defined:
+   - Search the repo for the exact string: "Your parcel has arrived at reception"
+   - Also search for: "OpenHouse Assistant" and "Online"
+2) Identify the component that renders the hero animated cards (likely under one of these folders):
+   - sections/
+   - components/
+   - app/
+3) Update ONLY the text content for that specific OpenHouse Assistant card:
+   - Replace the existing “parcel/reception” user message with the new user question.
+   - Replace the existing second bubble text with the new assistant response.
+   - If the component expects the assistant response as a single string, keep the line break using \n (or <br /> if it is JSX). Prefer \n if the existing code uses it.
+   - If there is a “Collection …” line underneath, replace it with something neutral and true (no times, no tracking codes). Use:
+     "Document available in your Home Pack."
+     If that line does not exist, do not add it.
+4) Ensure no measurements, addresses, names, unit numbers, or any identifiable info appear in this card.
+5) Run and verify:
+   - `npm run dev`
+   - Confirm the hero card now shows the new question and the document-based answer.
+   - Confirm text does not overflow or clip on mobile and desktop.
+
+OUTPUT REQUIRED
+- Tell me the exact file path(s) edited.
+- Paste the before/after snippet of the edited object/JSX block only (not the whole file).
