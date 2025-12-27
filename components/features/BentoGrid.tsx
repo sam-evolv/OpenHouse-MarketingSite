@@ -425,7 +425,7 @@ function SecurityCard() {
           </div>
           <div>
             <h3 className="text-lg font-semibold text-porcelain">Enterprise Security</h3>
-            <p className="text-xs text-hint">GDPR compliant, SOC 2 ready</p>
+            <p className="text-xs text-hint">Designed with GDPR principles in mind and aligned to recognised security frameworks</p>
           </div>
         </div>
         

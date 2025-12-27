@@ -22,7 +22,7 @@
     "description": "",
     "benefits_title": "",
     "benefits": [
-      "Reduce after-sales volumes by 70–90%",
+      "Reduce manual after-sales enquiries",
       "Effortless, automated handover experience",
       "Premium, modern resident experience from day one",
       "Centralised knowledge reduces repeated queries",
@@ -161,7 +161,7 @@
           "White-label options",
           "Dedicated account manager",
           "Custom integrations",
-          "SLA guarantee"
+          "SLA terms"
         ]
       }
     ]
@@ -169,7 +169,7 @@
   "highlights": {
     "title": "Built for Developers. Loved by Residents.",
     "items": [
-      "Reduce after-sales volumes by 70–90%",
+      "Reduce manual after-sales enquiries",
       "Effortless, automated handover experience",
       "Premium, modern resident experience from day one"
     ]
@@ -291,7 +291,7 @@
     "useCases": [
       {
         "title": "After-Sales Support",
-        "description": "Reduce inbound queries by 70-90% with intelligent AI responses"
+        "description": "Reduce manual after-sales enquiries with intelligent AI responses"
       },
       {
         "title": "Handover & Completions",
@@ -315,7 +315,7 @@
         "description": "Multi-tenant architecture designed for scale"
       },
       {
-        "title": "Reduces queries 70–90%",
+        "title": "Reduces manual after-sales enquiries",
         "description": "AI-powered automation cuts support overhead"
       },
       {
@@ -401,7 +401,7 @@
         "name": "SLA",
         "starter": "No",
         "growth": "No",
-        "enterprise": "99.9% uptime"
+        "enterprise": "High-availability infrastructure"
       },
       {
         "name": "Developer dashboard",

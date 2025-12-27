@@ -166,7 +166,7 @@ export function TrustVault() {
             Enterprise-Grade Security by Default
           </h2>
           <p className="mt-4 text-hint text-lg max-w-xl mx-auto">
-            Your data is protected by industry-leading security measures and compliance standards.
+            Your data is protected by robust security measures aligned with recognised industry standards.
           </p>
         </motion.div>
 
@@ -192,9 +192,8 @@ export function TrustVault() {
           className="mt-16 flex flex-wrap justify-center gap-6 text-center"
         >
           {[
-            { value: "SOC 2", label: "Compliant" },
             { value: "256-bit", label: "Encryption" },
-            { value: "99.9%", label: "Uptime SLA" },
+            { value: "High-availability", label: "Infrastructure" },
           ].map((stat) => (
             <div key={stat.label} className="px-6">
               <p className="text-2xl sm:text-3xl font-bold font-mono text-gold">{stat.value}</p>

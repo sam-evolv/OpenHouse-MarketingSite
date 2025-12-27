@@ -239,8 +239,7 @@ export function LiveSchema() {
           >
             {[
               { label: "Response Time", value: "<2s", color: "text-green-400" },
-              { label: "Accuracy", value: "99.2%", color: "text-gold" },
-              { label: "Uptime SLA", value: "99.9%", color: "text-amber-400" },
+              { label: "Reliability", value: "High-availability", color: "text-gold" },
             ].map((stat) => (
               <div key={stat.label} className="text-center px-6">
                 <p className={`text-2xl sm:text-3xl font-bold font-mono ${stat.color}`}>{stat.value}</p>

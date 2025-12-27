@@ -30,11 +30,11 @@ const platformFeatures = [
   { icon: LayoutDashboard, title: "Developer Dashboard", description: "Complete visibility across all your developments" },
   { icon: MapPin, title: "POI Engine", description: "Local area intelligence for every resident" },
   { icon: BarChart3, title: "Analytics Layer", description: "Query trends, knowledge gaps, monthly reporting" },
-  { icon: Shield, title: "Enterprise Security", description: "GDPR compliant with EU data residency and audit logs" },
+  { icon: Shield, title: "Enterprise Security", description: "Built to support EU data residency, audit logging, and privacy-first data handling" },
 ];
 
 const businessOutcomes = [
-  { icon: TrendingDown, title: "70-90% Reduction", description: "Dramatically reduce after-sales support volumes" },
+  { icon: TrendingDown, title: "Reduce Manual Enquiries", description: "Decrease after-sales support volumes" },
   { icon: Sparkles, title: "Effortless Handover", description: "Automated, seamless resident onboarding experience" },
   { icon: Star, title: "Premium Experience", description: "Modern resident experience from day one" },
   { icon: Database, title: "Centralised Knowledge", description: "Single source of truth reduces repeated queries" },

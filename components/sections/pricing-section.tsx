@@ -68,7 +68,7 @@ const pricingTiers: PricingTier[] = [
       "White-label platform",
       "Custom integrations",
       "Dedicated support team",
-      "SLA guarantees",
+      "SLA terms",
       "On-premise deployment option",
       "Custom training & onboarding",
       "Advanced security features",

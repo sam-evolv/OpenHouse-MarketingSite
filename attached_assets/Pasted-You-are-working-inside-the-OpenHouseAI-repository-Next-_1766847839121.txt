@@ -1,0 +1,76 @@
+You are working inside the OpenHouseAI repository (Next.js / React / Tailwind).
+
+OBJECTIVE
+Resolve all items flagged in the Marketing Language Audit Report dated December 27, 2025 by replacing risky or unsubstantiated marketing language with legally safe, non-quantified UK English copy.
+
+NON-NEGOTIABLE RULES
+- Do NOT change layout, styling, spacing, animations, or component structure.
+- Do NOT add numbers, percentages, guarantees, certifications, or compliance claims.
+- Change copy only.
+- Use UK English spelling.
+
+APPLY THE FOLLOWING REPLACEMENTS EXACTLY
+
+1) Comparative / Superlative Claims
+Replace:
+"industry-leading security measures and compliance standards"
+With:
+"robust security measures aligned with recognised industry standards"
+
+2) Compliance / Legal Language
+Replace:
+"GDPR compliant, SOC 2 ready"
+With:
+"Designed with GDPR principles in mind and aligned to recognised security frameworks"
+
+Replace:
+"GDPR compliant with EU data residency and audit logs"
+With:
+"Built to support EU data residency, audit logging, and privacy-first data handling"
+
+3) Guarantee Language
+Replace ALL instances of:
+"SLA guarantees"
+"SLA guarantee"
+With:
+"SLA terms"
+
+4) Quantified / Outcome Claims
+Replace:
+"70-90% Reduction"
+"Dramatically reduce after-sales support volumes"
+"Reduce after-sales volumes by 70–90%"
+With:
+"Reduce manual after-sales enquiries"
+
+5) Specific Performance Claims
+Replace:
+"99.9%"
+(when used in uptime / SLA context)
+With:
+"High-availability infrastructure with uptime targets defined in SLA terms"
+
+IMPLEMENTATION STEPS
+1) Update the following files as required:
+- components/sections/TrustVault.tsx
+- components/features/BentoGrid.tsx
+- components/sections/problem-solution-enhanced.tsx
+- components/sections/pricing-section.tsx
+- i18n/en.json
+2) Ensure replacements are applied consistently across all occurrences.
+3) Preserve punctuation, casing, and formatting consistency.
+
+VERIFICATION
+- Run `npm run dev`
+- Confirm no instances of:
+  "industry-leading"
+  "GDPR compliant"
+  "SOC 2"
+  "guarantee"
+  "70-90%"
+  "99.9%"
+  remain in user-facing copy.
+
+OUTPUT REQUIRED
+- List all files edited
+- Provide before/after snippets for each modified string only
