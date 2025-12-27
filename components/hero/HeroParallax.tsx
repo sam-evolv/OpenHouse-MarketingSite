@@ -101,7 +101,7 @@ export function HeroParallax() {
                 </h1>
 
                 <p className="text-lg sm:text-xl text-porcelain/80 mb-8 max-w-xl leading-relaxed">
-                  Cut support requests by 80%, delight residents with instant answers, 
+                  Reduce resident friction, deliver instant answers, 
                   and give your development a premium digital concierge.
                 </p>
 
