@@ -5,6 +5,7 @@ import { BentoGrid } from "@/components/features/BentoGrid";
 import { NFCDemo } from "@/components/demo/NFCDemo";
 import { ChatReplayGrid } from "@/components/social-proof/ChatReplayGrid";
 import { TrustVault } from "@/components/sections/TrustVault";
+import { DashboardPreviewEnhanced } from "@/components/sections/dashboard-preview-enhanced";
 import { FooterCTA } from "@/components/sections/footer-cta";
 
 export default function Home() {
@@ -45,6 +46,15 @@ export default function Home() {
       >
         <ChatReplayGrid />
         <TrustVault />
+      </section>
+
+      {/* Section 5: Live Platform Stats */}
+      <section 
+        id="stats" 
+        aria-label="Platform Statistics"
+        className="scroll-mt-20"
+      >
+        <DashboardPreviewEnhanced />
       </section>
 
       {/* Final CTA */}
