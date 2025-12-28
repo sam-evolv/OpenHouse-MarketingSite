@@ -1,4 +1,5 @@
 import { HeroParallax } from "@/components/hero/HeroParallax";
+import { TwoPortals } from "@/components/sections/TwoPortals";
 import { ProblemSolutionEnhanced } from "@/components/sections/problem-solution-enhanced";
 import { BentoGrid } from "@/components/features/BentoGrid";
 import { NFCDemo } from "@/components/demo/NFCDemo";
@@ -13,6 +14,9 @@ export default function Home() {
       <section id="hero" aria-label="Hero">
         <HeroParallax />
       </section>
+
+      {/* Section 1.5: Two Portals - Resident and Developer clarity */}
+      <TwoPortals />
 
       {/* Section 2: Pain vs Solution - Fragmentation vs AI-powered centralisation */}
       <section 
