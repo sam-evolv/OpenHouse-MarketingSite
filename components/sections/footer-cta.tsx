@@ -11,17 +11,20 @@ export function FooterCTA() {
             Ready to transform your resident experience?
           </h2>
           <p className="text-lg text-porcelain/60 mb-10 max-w-2xl mx-auto">
-            Join leading developers using AI to deliver exceptional support and streamline after-sales operations.
+            See how developers are using AI to deliver exceptional support and streamline after-sales operations.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-carbon font-semibold rounded-full hover:bg-gold/90 transition-all shadow-lg shadow-gold/20 hover:shadow-gold/30 hover:scale-105"
-            >
-              Book a Demo
-              <ArrowRight className="w-5 h-5" />
-            </a>
+            <div className="flex flex-col items-center gap-2">
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-carbon font-semibold rounded-full hover:bg-gold/90 transition-all shadow-lg shadow-gold/20 hover:shadow-gold/30 hover:scale-105"
+              >
+                Book a Demo
+                <ArrowRight className="w-5 h-5" />
+              </a>
+              <span className="text-sm text-porcelain/50">No commitment. Short walkthrough.</span>
+            </div>
             <a
               href="/overview.pdf"
               className="inline-flex items-center gap-2 px-6 py-3 text-porcelain/70 hover:text-gold transition-colors"

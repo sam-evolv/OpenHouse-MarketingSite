@@ -132,10 +132,10 @@ export function Navigation() {
             
             {/* Start Onboarding - Subtle */}
             <a
-              href={appRoutes.register}
+              href="/contact"
               className="px-4 py-2.5 text-sm font-medium text-porcelain hover:text-gold border border-white/10 hover:border-gold/40 rounded-full transition-all duration-200"
             >
-              Start Free
+              Book a Demo
             </a>
           </div>
 
@@ -181,11 +181,11 @@ export function Navigation() {
                 Login
               </a>
               <a
-                href={appRoutes.register}
+                href="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-sm font-medium text-gold hover:text-gold/80"
               >
-                Start Onboarding
+                Book a Demo
               </a>
             </div>
           </div>

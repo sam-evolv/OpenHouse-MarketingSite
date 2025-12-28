@@ -1,0 +1,58 @@
+Replit Agent Prompt (Final Optional Phase – Conversion Sanity Check)
+
+Goal:
+Validate and lightly refine the conversion flow so the primary CTA feels inevitable, well-timed, and low-friction. No redesign. No new sections. Minimal, reversible changes only.
+
+Scope:
+Marketing site only.
+Hero → mid-page → final CTA band.
+
+Tasks:
+
+1) Primary CTA consistency check
+   - Confirm the primary CTA label is consistent everywhere (e.g. “Book a Demo”).
+   - If any variants exist (e.g. “Request Demo”, “Get Started”), standardise all to the single strongest version already in use.
+   - Do not change button styling, colour, or animation.
+
+2) CTA timing and placement audit
+   - Verify there is:
+     a) One primary CTA in the hero
+     b) One supporting CTA after the core explanation sections (Two Portals + AI clarification)
+     c) One final CTA band above the footer
+   - If any extra CTA blocks exist beyond these three, remove the weakest one.
+   - Do not add new CTAs.
+
+3) CTA microcopy (optional but recommended)
+   - If the primary CTA supports helper text beneath it, add a single low-risk reassurance line:
+     “No commitment. Short walkthrough.”
+   - If helper text already exists, do not add another.
+
+4) Audience ambiguity check
+   - Ensure CTA copy does not assume the user is already a customer or resident.
+   - Avoid language like “Get started now” if the product is demo-led.
+   - Keep the CTA neutral and invitation-based.
+
+5) Friction scan
+   - Click the CTA and confirm:
+     - No unexpected form length
+     - No jargon-heavy first screen
+     - No pricing wall before explanation
+   - If friction exists, note it but do not redesign unless explicitly instructed.
+
+Constraints (critical):
+- Copy and removal only.
+- No new components.
+- No visual redesign.
+- No analytics or tracking changes.
+- No backend or form logic changes.
+
+Acceptance checks:
+1) The first CTA feels safe to click for a developer.
+2) The final CTA feels like a natural conclusion, not a sales push.
+3) There is exactly one dominant action a visitor can take at any moment.
+
+Deliverable:
+- Short summary of:
+  - CTA count before vs after
+  - Any text standardised
+  - Any CTA removed (if applicable)
