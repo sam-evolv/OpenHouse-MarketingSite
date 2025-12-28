@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../ui/container";
 import { SectionHeading } from "../ui/section-heading";
-import { Smartphone, FileText, Languages, QrCode, Sparkles } from "lucide-react";
+import { Smartphone, FileText, Languages, QrCode, Sparkles, Activity } from "lucide-react";
 
 interface BentoCardProps {
   children: React.ReactNode;
@@ -413,6 +413,45 @@ function AnalyticsCard() {
   );
 }
 
+function PlatformActivityCard() {
+  return (
+    <BentoCard className="col-span-1 row-span-1" glowColor="gold">
+      <div className="p-6 h-full flex flex-col">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-gold/20 flex items-center justify-center">
+            <Activity className="w-5 h-5 text-gold" />
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-porcelain">Platform Activity</h3>
+            <p className="text-xs text-hint">Ongoing interaction across documents, queries, and resident usage</p>
+          </div>
+        </div>
+        
+        <div className="flex-1 flex flex-col justify-center gap-3 overflow-hidden">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="relative h-2 bg-white/5 rounded-full overflow-hidden">
+              <motion.div
+                className="absolute inset-y-0 left-0 bg-gradient-to-r from-gold/40 via-gold/60 to-gold/40 rounded-full"
+                initial={{ x: "-100%", width: "60%" }}
+                animate={{ x: "200%" }}
+                transition={{
+                  duration: 3 + i * 0.5,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: i * 0.8,
+                }}
+                style={{ 
+                  width: `${40 + i * 15}%`,
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </BentoCard>
+  );
+}
+
 function SecurityCard() {
   return (
     <BentoCard className="col-span-2 row-span-1" glowColor="blue">
@@ -460,6 +499,7 @@ export function BentoGrid() {
           <MultiLanguageCard />
           <HandoverAutomationCard />
           <AnalyticsCard />
+          <PlatformActivityCard />
           <SecurityCard />
         </div>
       </Container>

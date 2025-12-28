@@ -1,0 +1,58 @@
+Replit Agent Prompt – Dynamic Feature Tile (No Alerts, No Claims)
+
+Goal:
+Add a dynamic, animated feature tile beneath the existing “Live Analytics” card that feels active and alive, without implying alerts, notifications, or unshipped functionality.
+
+Context:
+There is currently a feature grid containing:
+- Multi-Language
+- Handover Automation
+- Live Analytics
+
+There is visual space beneath Live Analytics that must be filled with a tile of equal visual weight and motion.
+
+Instructions:
+
+1. Add ONE new feature card directly beneath “Live Analytics” using the same card component, layout, spacing, borders, and hover behaviour.
+
+2. Card content (use verbatim):
+
+   Title:
+   Platform Activity
+
+   Description:
+   Ongoing interaction across documents, queries, and resident usage.
+
+3. Visual behaviour (required):
+
+   Implement a subtle, continuous animation inside the card using ONE of the following patterns:
+   - Soft gold pulse lines moving horizontally (preferred), OR
+   - Slowly cycling generic activity rows with fade transitions, OR
+   - A calm oscillating waveform or bar animation.
+
+   The animation must:
+   - Loop continuously
+   - Be passive (no user interaction required)
+   - Use existing gold/porcelain colour palette
+   - Have lower visual intensity than “Live Analytics”
+
+4. Icon:
+   Use a neutral system or activity-style icon.
+   Do NOT use bells, alerts, notifications, warnings, or badges.
+
+Critical Constraints:
+- Do NOT mention alerts, notifications, or real-time triggers
+- Do NOT introduce numbers, percentages, or metrics
+- Do NOT add tooltips or hover text implying action
+- Do NOT modify grid CSS or breakpoints
+- Reuse existing animation utilities if available
+- Respect reduced-motion preferences
+
+Acceptance Criteria:
+- The tile feels alive and dynamic on first glance
+- It complements Live Analytics without competing
+- No implied promises beyond passive system activity
+- Grid looks visually complete on desktop and mobile
+
+Deliverable:
+One animated feature card added beneath Live Analytics with no other diffs.
