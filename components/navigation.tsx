@@ -60,16 +60,15 @@ export function Navigation() {
           <Link
             href="/"
             prefetch={true}
-            className="flex items-center space-x-2"
+            className="flex items-center"
           >
             <Image
               src="/images/openhouseai-logo.png"
-              alt="OpenHouse AI"
+              alt="OpenHouse Ai"
               width={200}
               height={50}
               priority
               className="h-8 sm:h-10 w-auto"
-              style={{ filter: 'brightness(1.05) saturate(1.2) hue-rotate(-5deg)' }}
             />
           </Link>
 
