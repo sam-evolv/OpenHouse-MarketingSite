@@ -183,6 +183,10 @@ export function ProblemSolutionEnhanced() {
           badge="Why OpenHouse AI"
         />
 
+        <p className="text-center text-porcelain/60 text-lg max-w-3xl mx-auto mt-4 mb-10">
+          Every home includes an AI assistant trained on its handover files, maps, and local development information.
+        </p>
+
         <Reveal className="mt-12">
           <ChaosControlSlider />
         </Reveal>
