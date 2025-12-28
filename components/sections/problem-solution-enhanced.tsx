@@ -20,7 +20,9 @@ import {
   Database,
   Zap,
   Heart,
-  Layers
+  Layers,
+  Puzzle,
+  Eye
 } from "lucide-react";
 
 const platformFeatures = [
@@ -31,6 +33,7 @@ const platformFeatures = [
   { icon: MapPin, title: "POI Engine", description: "Local area intelligence for every resident" },
   { icon: BarChart3, title: "Analytics Layer", description: "Query trends, knowledge gaps, monthly reporting" },
   { icon: Shield, title: "Enterprise Security", description: "Built to support EU data residency, audit logging, and privacy-first data handling" },
+  { icon: Puzzle, title: "Platform Extensibility", description: "Designed to support future integrations, features, and evolving development needs without rework" },
 ];
 
 const businessOutcomes = [
@@ -41,6 +44,7 @@ const businessOutcomes = [
   { icon: Zap, title: "Faster Resolution", description: "Accelerate warranty issue handling" },
   { icon: Heart, title: "Better Satisfaction", description: "Improved resident satisfaction and brand perception" },
   { icon: Layers, title: "Instant Scale", description: "Deploy across all developments instantly" },
+  { icon: Eye, title: "Operational Clarity", description: "Clear visibility into recurring issues, documentation gaps, and resident needs over time" },
 ];
 
 interface FeatureCardProps {
