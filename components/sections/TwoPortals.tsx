@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Container } from "../ui/container";
-import { Home, Building2, MessageCircle, FileText, Bell, BarChart3, Eye, Lightbulb } from "lucide-react";
+import { Home, Building2, MessageCircle, FileText, Bell, BarChart3, Eye, Lightbulb, MapPin, Clock } from "lucide-react";
 
 const residentFeatures = [
   { icon: MessageCircle, text: "Instant answers to everyday home questions" },
+  { icon: MapPin, text: "Maps for local places and essential services" },
   { icon: FileText, text: "Digital handover documents in one place" },
   { icon: Bell, text: "Local updates via a built-in notice board" },
 ];
@@ -13,6 +14,8 @@ const residentFeatures = [
 const developerFeatures = [
   { icon: Eye, text: "Visibility into resident questions and recurring issues" },
   { icon: BarChart3, text: "Spot patterns early and reduce after-sales overhead" },
+  { icon: Clock, text: "Reduce time, effort, and unnecessary after-sales cost" },
+  { icon: FileText, text: "Handover files and documentation delivered digitally" },
   { icon: Lightbulb, text: "Understand what residents actually need, post-handover" },
 ];
 

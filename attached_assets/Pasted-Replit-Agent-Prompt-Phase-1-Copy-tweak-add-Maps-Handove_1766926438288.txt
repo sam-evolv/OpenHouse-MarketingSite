@@ -1,0 +1,46 @@
+Replit Agent Prompt (Phase 1 - Copy tweak: add Maps + Handover files and savings)
+
+Goal:
+Update the existing “Two portals. One platform.” section copy only. Do not change layout, styling, spacing, animations, or component structure. Keep the design identical.
+
+Context:
+This section already exists and is rendering (Two cards: Resident Portal, Developer Portal). We only need to adjust the bullet points.
+
+Tasks:
+1) Resident Portal card:
+   - Add a new bullet that explicitly mentions the Maps function.
+   - Keep it in the same bullet style and icon pattern used for the other bullets.
+   - Recommended wording (UK English, no quantified claims):
+     "Maps for local places and essential services"
+
+2) Developer Portal card:
+   - Add a new bullet that explicitly references saving time, effort, and money.
+   - Add a new bullet that explicitly references handover files.
+   - Keep them in the same bullet style and icon pattern used for the other bullets.
+   - Recommended wording (UK English, no quantified claims):
+     "Reduce time, effort, and unnecessary after-sales cost"
+     "Handover files and documentation delivered digitally"
+
+3) Ordering:
+   - Keep the existing bullets, just insert the new ones in a logical order:
+     Resident Portal (example order):
+     - Instant answers to everyday home questions
+     - Maps for local places and essential services
+     - Digital handover documents in one place
+     - Local updates via a built-in notice board
+
+     Developer Portal (example order):
+     - Visibility into resident questions and recurring issues
+     - Spot patterns early and reduce after-sales overhead
+     - Reduce time, effort, and unnecessary after-sales cost
+     - Handover files and documentation delivered digitally
+     - Understand what residents actually need, post-handover
+
+Implementation Notes:
+- Find the component that renders this section (likely components/sections/TwoPortals.tsx).
+- Modify only the copy/content array for the bullet list(s).
+- Reuse existing icon components already imported in the file. If there is no suitable icon, reuse an existing one rather than importing a new library.
+- Do not touch any other sections, navigation, or CSS.
+
+Deliverable:
+- Copy updates applied and verified in Preview on desktop and mobile.
