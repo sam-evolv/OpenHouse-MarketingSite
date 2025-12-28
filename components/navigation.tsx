@@ -68,7 +68,7 @@ export function Navigation() {
               width={600}
               height={150}
               priority
-              className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto"
+              className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
             />
           </Link>
 

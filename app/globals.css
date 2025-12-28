@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Logo Breathing Animation */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0px rgba(212, 175, 55, 0));
+  }
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.1) drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+  }
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-breathe {
+    animation: none;
+  }
+}
+
 /* Lenis Smooth Scroll */
 html.lenis,
 html.lenis body {
