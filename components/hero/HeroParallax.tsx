@@ -90,19 +90,18 @@ export function HeroParallax() {
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30 mb-6"
                 >
                   <span className="w-2 h-2 bg-gold rounded-full animate-pulse" />
-                  <span className="text-sm font-medium text-gold">AI-Powered Resident Experience</span>
+                  <span className="text-sm font-medium text-gold">From handover to everyday living</span>
                 </motion.div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] mb-6">
-                  The AI resident portal for{" "}
+                  The AI platform for{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-                    modern developments
+                    modern residential developments
                   </span>
                 </h1>
 
                 <p className="text-lg sm:text-xl text-porcelain/80 mb-8 max-w-xl leading-relaxed">
-                  Reduce resident friction, deliver instant answers, 
-                  and give your development a premium digital concierge.
+                  Give residents clear answers, reduce post-handover friction, and give developers visibility into what happens after keys are handed over.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">

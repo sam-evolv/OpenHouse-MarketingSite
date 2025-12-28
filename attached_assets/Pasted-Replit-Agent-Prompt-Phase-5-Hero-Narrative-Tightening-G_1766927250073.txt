@@ -1,0 +1,58 @@
+Replit Agent Prompt (Phase 5 – Hero Narrative Tightening)
+
+Goal:
+Tighten the hero section narrative so it clearly sets up the full story of the page:
+AI assistant → resident experience → developer visibility → modern handover.
+This is a copy and hierarchy refinement only. Do not change layout, animations, or visual structure.
+
+Context:
+The page now correctly explains:
+- Two portals (Resident + Developer)
+- AI assistant trained on home-specific data
+- Community framed as infrastructure
+The hero must now tee this up clearly and cleanly.
+
+Tasks:
+
+1) Locate the hero section component (headline, subheading, primary CTA).
+2) Update the hero copy ONLY (no layout or style changes).
+
+Replace the current hero headline with (verbatim):
+
+"The AI platform for modern residential developments"
+
+3) Update the hero subheading to (verbatim):
+
+"Give residents clear answers, reduce post-handover friction, and give developers visibility into what happens after keys are handed over."
+
+4) Optional emphasis line (only if the hero already supports a secondary line or highlighted phrase):
+If there is an existing accent/emphasis line, update it to:
+
+"From handover to everyday living"
+
+Do NOT add this if it would require new markup.
+
+5) CTA alignment check:
+- Keep the primary CTA exactly as-is (e.g. “Book a Demo” / “Start Free”).
+- Do not add, remove, or rename buttons.
+- Ensure the copy supports both residents and developers without explicitly naming them again (this avoids redundancy with the next section).
+
+Tone and language constraints (critical):
+- UK English
+- No quantified claims
+- No superlatives (e.g. “best”, “leading”)
+- No buzzwords (e.g. “revolutionary”, “next-gen”)
+- Calm, confident, infrastructure-level language
+
+Narrative acceptance test:
+After this change, the page should read logically as:
+Hero (what + why) →
+Two Portals (who) →
+AI Assistant (how) →
+Community & Documents (what it replaces) →
+Developer Insight (why it matters)
+
+Deliverable:
+- Copy-only changes in the hero section.
+- Confirm no CLS, spacing, or animation regressions.
+- Brief summary listing the file edited and the old vs new copy.
