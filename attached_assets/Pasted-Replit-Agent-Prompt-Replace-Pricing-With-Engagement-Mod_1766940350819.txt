@@ -1,0 +1,88 @@
+Replit Agent Prompt - Replace “Pricing” With “Engagement Model” (Per-Scheme Pricing, Relationship-Friendly)
+
+Goal
+- Remove the current “Pricing” section and replace it with a new section called “Engagement Model” that explains per-scheme pricing and relationship-based rollout.
+- Update the top navigation so the “Pricing” item becomes “Engagement Model” and scrolls to the new section anchor.
+- Do this without changing the visual style, spacing system, or CTA design language.
+- Keep it fully reversible by isolating changes to a small set of files.
+
+Constraints
+- Do NOT introduce hard prices, tiers, or SaaS-style plans.
+- Do NOT change global typography, colours, layout grid, animations, or existing CTA styling.
+- Reuse the existing section component patterns and spacing utilities.
+- Keep UK English spelling (scheme, enrolment if used, etc.).
+- Avoid casual language. Keep it infrastructure-grade.
+
+What to build
+
+Phase A - Navigation update
+1) Find where the top nav items are defined (likely in one of these):
+   - components/navigation/*.tsx
+   - components/layout/Header*.tsx
+   - components/Nav*.tsx
+2) Replace the nav label “Pricing” with “Engagement Model”.
+3) Ensure it links to an anchor id that you will add on the page: #engagement-model
+4) Keep order the same (Solution, Capabilities, Case Studies, Engagement Model, Docs).
+5) Ensure the mobile nav menu mirrors the same label and link.
+
+Phase B - Replace the Pricing section with Engagement Model section
+1) Locate the current pricing section component. Search for:
+   - “Pricing”
+   - “Starter”
+   - “Growth”
+   - “Enterprise”
+   - “billing”
+   Likely locations:
+   - components/sections/Pricing*.tsx
+   - sections/Pricing*.tsx
+   - app/page.tsx or app/(marketing)/page.tsx section imports
+2) Remove the pricing section from the page composition and replace with a new section component:
+   - components/sections/EngagementModel.tsx (create this file if it does not exist)
+3) Insert the new section in the same place the Pricing section used to appear (do not reorder other sections).
+
+Engagement Model section content (exact copy)
+- Section anchor id: engagement-model
+
+Headline:
+Designed around each development
+
+Subheading:
+Every scheme is different. OpenHouse AI is structured per development, taking into account scale, phase, and operational needs. We work directly with developers to define the right rollout and scope.
+
+Cards (use the same card styling as other grids, 4 cards on desktop, 2 on tablet, 1 on mobile):
+1) Per-scheme scope
+   Define what is included per development, based on your handover needs and resident experience.
+
+2) Rollout by phase
+   Start with one block or phase, then expand across the full scheme once the model is proven.
+
+3) Clear onboarding model
+   QR and NFC activation aligned to your handover process, with documentation structured per home.
+
+4) Long-term partnership
+   Designed to leave room for continuous improvement and new modules over time.
+
+CTA row (reuse existing CTA styling and button components)
+- Primary button: Book a Demo (existing behaviour, do not change routing)
+- Secondary text link/button: Discuss your scheme
+  If you already have a contact section or demo booking flow, link there.
+  If not, link to the same destination as Book a Demo for now, but keep a distinct label.
+
+Micro-line under CTAs (small muted text, optional):
+No fixed tiers. Scope agreed per development.
+
+Phase C - Remove dead references
+1) Search the site for “Pricing” and update any internal anchor references and labels that were specifically pointing to the old pricing section.
+2) Keep any general copy that mentions “pricing available” out of the site unless it is rewritten to reflect per-scheme scoping.
+
+Acceptance criteria
+- The nav item now reads “Engagement Model” on desktop and mobile.
+- Clicking it smoothly scrolls to the new section (id="engagement-model").
+- The Pricing section no longer exists on the page.
+- The new section matches the existing site styling (cards, spacing, typography, hover behaviour).
+- No other visual diffs across the site.
+
+Deliverables
+- New section component: components/sections/EngagementModel.tsx (or existing pattern location)
+- Updated page composition to render Engagement Model instead of Pricing
+- Updated navigation labels and anchors

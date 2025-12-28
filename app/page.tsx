@@ -6,6 +6,7 @@ import { NFCDemo } from "@/components/demo/NFCDemo";
 import { ChatReplayGrid } from "@/components/social-proof/ChatReplayGrid";
 import { TrustVault } from "@/components/sections/TrustVault";
 import { DashboardPreviewEnhanced } from "@/components/sections/dashboard-preview-enhanced";
+import { EngagementModel } from "@/components/sections/EngagementModel";
 import { FooterCTA } from "@/components/sections/footer-cta";
 
 export default function Home() {
@@ -56,6 +57,9 @@ export default function Home() {
       >
         <DashboardPreviewEnhanced />
       </section>
+
+      {/* Section 6: Engagement Model - Per-scheme pricing */}
+      <EngagementModel />
 
       {/* Final CTA */}
       <FooterCTA />

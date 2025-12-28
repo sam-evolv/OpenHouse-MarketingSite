@@ -12,7 +12,7 @@ const navLinks = [
   { href: "/#solution", label: "Solution" },
   { href: "/#capabilities", label: "Capabilities" },
   { href: "/#proof", label: "Case Studies" },
-  { href: "/pricing", label: "Pricing" },
+  { href: "/#engagement-model", label: "Engagement Model" },
   { href: "/docs", label: "Docs" },
 ];
 
