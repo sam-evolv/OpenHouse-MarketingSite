@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Menu, X, LogIn, ExternalLink } from "lucide-react";
@@ -61,7 +62,14 @@ export function Navigation() {
             prefetch={true}
             className="flex items-center space-x-2"
           >
-            <span className="text-2xl font-bold text-gold">OpenHouse AI</span>
+            <Image
+              src="/images/openhouseai-logo.png"
+              alt="OpenHouse AI"
+              width={200}
+              height={50}
+              priority
+              className="h-8 sm:h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
