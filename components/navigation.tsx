@@ -55,7 +55,7 @@ export function Navigation() {
       aria-label="Main navigation"
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 sm:h-24">
+        <div className="flex items-center justify-between h-24 sm:h-28">
           {/* Logo */}
           <Link
             href="/"
@@ -65,10 +65,10 @@ export function Navigation() {
             <Image
               src="/images/openhouseai-logo.png"
               alt="OpenHouse Ai"
-              width={400}
-              height={100}
+              width={480}
+              height={120}
               priority
-              className="h-14 sm:h-16 md:h-[4.5rem] w-auto"
+              className="h-[4.2rem] sm:h-[4.8rem] md:h-[5.4rem] w-auto"
             />
           </Link>
 
