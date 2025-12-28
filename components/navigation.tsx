@@ -69,6 +69,7 @@ export function Navigation() {
               height={50}
               priority
               className="h-8 sm:h-10 w-auto"
+              style={{ filter: 'brightness(1.05) saturate(1.2) hue-rotate(-5deg)' }}
             />
           </Link>
 
