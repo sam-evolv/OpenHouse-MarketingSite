@@ -105,6 +105,34 @@ Production-grade marketing website for OpenHouse AI (an AI resident assistant fo
 
 ---
 
+## Recent Changes (December 28, 2025)
+
+### Pricing → Engagement Model Replacement
+Replaced the "Pricing" section and navigation with a new "Engagement Model" section focused on per-scheme pricing.
+
+**Changes Made:**
+- Navigation: "Pricing" → "Engagement Model" with `#engagement-model` anchor
+- New section: `components/sections/EngagementModel.tsx`
+- Footer link updated to point to engagement model anchor
+- PrefetchProvider: Removed `/pricing` route from prefetch list
+
+**Engagement Model Content:**
+- Headline: "Designed around each development"
+- 4 cards: Per-scheme scope, Rollout by phase, Clear onboarding model, Long-term partnership
+- CTAs: "Book a Demo" + "Discuss your scheme"
+- Micro-line: "No fixed tiers. Scope agreed per development."
+
+**Files Modified:**
+- `components/navigation.tsx`
+- `components/footer.tsx`
+- `components/providers/PrefetchProvider.tsx`
+- `app/page.tsx`
+
+**Files Created:**
+- `components/sections/EngagementModel.tsx`
+
+---
+
 ## Recent Changes (November 25, 2025)
 
 ### Live Analytics Integration with Supabase
