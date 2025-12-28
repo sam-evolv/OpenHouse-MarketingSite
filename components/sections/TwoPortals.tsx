@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Container } from "../ui/container";
-import { Home, Building2, MessageCircle, FileText, Bell, BarChart3, Eye, Lightbulb, MapPin, Clock } from "lucide-react";
+import { Home, Building2, MessageCircle, FileText, Bell, BarChart3, Eye, Lightbulb, MapPin } from "lucide-react";
 
 const residentFeatures = [
   { icon: MessageCircle, text: "Instant answers to everyday home questions" },
@@ -14,7 +14,6 @@ const residentFeatures = [
 const developerFeatures = [
   { icon: Eye, text: "Visibility into resident questions and recurring issues" },
   { icon: BarChart3, text: "Spot patterns early and reduce after-sales overhead" },
-  { icon: Clock, text: "Reduce time, effort, and unnecessary after-sales cost" },
   { icon: FileText, text: "Handover files and documentation delivered digitally" },
   { icon: Lightbulb, text: "Understand what residents actually need, post-handover" },
 ];
