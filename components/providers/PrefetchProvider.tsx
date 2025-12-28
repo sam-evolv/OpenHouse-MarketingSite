@@ -7,7 +7,6 @@ const routesToPrefetch = [
   "/",
   "/features",
   "/solutions",
-  "/pricing",
   "/case-studies",
   "/docs",
   "/contact",

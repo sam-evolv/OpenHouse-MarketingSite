@@ -3,7 +3,7 @@ import { env } from "@/lib/env";
 
 const productLinks = [
   { label: "Features", href: "/features" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "Engagement Model", href: "/#engagement-model" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Documentation", href: "/docs" },
   { label: "Contact", href: "/contact" },
