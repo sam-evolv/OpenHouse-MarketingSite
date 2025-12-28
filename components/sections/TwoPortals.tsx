@@ -8,7 +8,7 @@ const residentFeatures = [
   { icon: MessageCircle, text: "Instant answers to everyday home questions" },
   { icon: MapPin, text: "Maps for local places and essential services" },
   { icon: FileText, text: "Digital handover documents in one place" },
-  { icon: Bell, text: "Local updates via a built-in notice board" },
+  { icon: Bell, text: "Development-wide updates via the Resident Notice Board" },
 ];
 
 const developerFeatures = [

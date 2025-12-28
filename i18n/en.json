@@ -56,7 +56,7 @@
     "items": [
       {
         "title": "Resident Portal",
-        "description": "AI assistant, manuals, drawings, warranties, POI mapping, community tools."
+        "description": "AI assistant, manuals, drawings, warranties, POI mapping, resident notice board."
       },
       {
         "title": "Developer Command Centre",
@@ -283,7 +283,7 @@
           "Personalised home AI assistant",
           "Local POI mapping",
           "Manuals, drawings, warranties",
-          "Community tools",
+          "Resident Notice Board",
           "24/7 support"
         ]
       }
@@ -303,7 +303,7 @@
       },
       {
         "title": "Resident Engagement",
-        "description": "Build community with POI mapping and communication tools"
+        "description": "A shared place for development-wide updates and local information"
       }
     ]
   },

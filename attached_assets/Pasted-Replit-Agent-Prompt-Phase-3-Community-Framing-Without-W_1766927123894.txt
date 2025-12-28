@@ -1,0 +1,66 @@
+Replit Agent Prompt (Phase 3 – Community Framing Without WhatsApp Language)
+
+Goal:
+Refine how the community feature is framed across the marketing site so it reads as a considered, built-in development communication layer, not a replacement for WhatsApp or informal group chats.
+
+This is a copy and framing pass only. Do not add new sections, cards, or visuals.
+
+Scope:
+Marketing site sections that reference:
+- Community
+- Notice boards
+- Resident updates
+- Local announcements
+
+Primary objective:
+Position the feature as a structured, development-owned communication channel that builds clarity and connection, not noise.
+
+Tasks:
+
+1) Locate the feature card or copy that references:
+   - “Community notice board”
+   - “Local updates”
+   - Any language that could imply casual group chat behaviour
+
+2) Update the wording to the following approved framing (use verbatim where possible):
+
+Title (if applicable):
+"Resident Notice Board"
+
+Primary description:
+"A shared, development-wide notice board for official updates, local information, and resident announcements."
+
+Supporting line (optional, if space allows):
+"Clear communication, without fragmented channels or message overload."
+
+3) If bullets are used, ensure they are structured and professional:
+- "Development-wide updates and notices"
+- "Local information relevant to residents"
+- "A single, shared place for communication"
+
+4) Explicitly avoid:
+- Mentioning WhatsApp, group chats, social feeds, or messaging apps
+- Casual or social language (e.g. “chat”, “message”, “post to the group”)
+- Emojis or informal phrasing
+
+5) Tone guardrails:
+- Calm
+- Structured
+- Trustworthy
+- Reads like infrastructure, not social media
+
+Constraints (critical):
+- Copy-only changes.
+- No layout, spacing, animation, or icon changes.
+- No new sections or cards.
+- Do not rename the feature in navigation or product code.
+- Do not touch portals, backend, or demo components.
+
+Acceptance checks:
+1) A developer reading this sees it as controlled, useful, and low-risk.
+2) A resident understands it as an official source of information.
+3) The feature feels complementary to the AI assistant, not redundant.
+
+Deliverable:
+- Updated copy in-place.
+- Brief summary listing which file(s) were edited and what text was changed.
