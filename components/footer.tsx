@@ -81,7 +81,7 @@ export function Footer() {
             © {new Date().getFullYear()} OpenHouse AI. All rights reserved.
           </p>
           <a 
-            href="https://evolvai.io" 
+            href="https://www.evolvai.ie" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-xs text-porcelain/40 hover:text-porcelain/60 transition-colors"
