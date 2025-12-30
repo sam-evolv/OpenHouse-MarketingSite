@@ -23,7 +23,6 @@ export function FooterCTA() {
                 Book a Demo
                 <ArrowRight className="w-5 h-5" />
               </a>
-              <span className="text-sm text-porcelain/50">No commitment. Short walkthrough.</span>
             </div>
             <a
               href="/overview.pdf"
