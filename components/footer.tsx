@@ -80,7 +80,19 @@ export function Footer() {
           <p className="text-xs text-porcelain/40">
             © {new Date().getFullYear()} OpenHouse AI. All rights reserved.
           </p>
-          <p className="text-xs text-porcelain/30">Made by EvolvAi</p>
+          <a 
+            href="https://evolvai.io" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-xs text-porcelain/40 hover:text-porcelain/60 transition-colors"
+          >
+            <span>Designed & Developed by EvolvAi</span>
+            <img 
+              src="/images/evolvai-logo.png" 
+              alt="EvolvAi" 
+              className="h-4 w-auto"
+            />
+          </a>
         </div>
       </div>
     </footer>
