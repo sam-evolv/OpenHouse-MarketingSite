@@ -10,7 +10,7 @@ export const env = {
 };
 
 export const appRoutes = {
-  login: `${env.APP_URL}/login`,
+  login: 'https://portal.openhouseai.ie/login',
   register: `${env.APP_URL}/register`,
   superadminLogin: `${env.APP_URL}/login?role=superadmin`,
   developerDashboard: `${env.APP_URL}/developer`,
