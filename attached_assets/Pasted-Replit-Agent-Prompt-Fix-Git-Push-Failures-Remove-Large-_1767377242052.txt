@@ -1,0 +1,105 @@
+Replit Agent Prompt - Fix Git Push Failures (Remove Large ZIPs, Purge History, Stabilise main)
+
+Context
+GitHub is rejecting pushes with GH001 (file size limit 100 MB). Two ZIP artifacts are in the repo history:
+
+* OpenHouseAI-netlify.zip (~123 MB)
+* OpenHouseAI-static.zip (~123 MB)
+
+Goal
+
+1. Remove these ZIP files from the working tree and ensure they never get re-committed.
+2. Purge them from Git history so GitHub will accept pushes.
+3. Confirm the remote default branch and restore a clean push to origin/main.
+4. Keep the repo clean: no build artifacts tracked.
+
+Instructions for Agent
+
+1. Inspect current repo state
+
+* Open Shell and run:
+
+  * git status
+  * git branch -vv
+  * git remote -v
+  * git ls-tree -r --name-only HEAD | grep -i ".zip$" || true
+  * git log --name-only --pretty=format: | grep -i ".zip$" | head -n 50 || true
+
+2. Stop tracking ZIP artifacts and ignore them going forward
+
+* Ensure .gitignore contains patterns:
+
+  * *.zip
+  * *.7z
+  * *.tar
+  * *.gz
+  * *.rar
+* If patterns are missing, add them.
+* Remove the zip files from Git tracking if present:
+
+  * git rm -f --cached OpenHouseAI-netlify.zip OpenHouseAI-static.zip 2>/dev/null || true
+* If the files exist locally, delete them from the workspace as well.
+* Commit these changes with message:
+
+  * "chore: remove zip artifacts and ignore archives"
+
+3. Purge ZIP blobs from entire git history (required to pass GitHub hooks)
+
+* Install git-filter-repo in a way that works on Replit:
+
+  * python3 -m pip install --user git-filter-repo
+* Run it via module invocation (avoid PATH issues):
+
+  * python3 -m git_filter_repo --path OpenHouseAI-netlify.zip --invert-paths
+  * python3 -m git_filter_repo --path OpenHouseAI-static.zip --invert-paths
+* If the module name fails, find the binary and run it directly:
+
+  * ~/.local/bin/git-filter-repo --path OpenHouseAI-netlify.zip --invert-paths
+  * ~/.local/bin/git-filter-repo --path OpenHouseAI-static.zip --invert-paths
+
+4. Confirm remote branch name and fix any "couldn't find remote ref main" issues
+
+* Fetch all refs:
+
+  * git fetch --all --prune
+* Determine remote HEAD:
+
+  * git remote show origin
+* If origin default branch is not main (e.g. master), align local branch:
+
+  * If origin uses master, switch local to master and push there, or rename accordingly.
+* Ensure we are on the correct branch before pushing:
+
+  * git checkout main (or the correct default)
+  * git branch -u origin/main (or origin/master)
+
+5. Force push safely after history rewrite
+
+* Push using force-with-lease:
+
+  * git push --force-with-lease origin main
+* If the correct branch is master:
+
+  * git push --force-with-lease origin master
+
+6. Verification (must be done)
+
+* Confirm no ZIPs exist in history anymore:
+
+  * git log --all --name-only --pretty=format: | grep -i ".zip$" || true
+  * git count-objects -vH
+* Attempt a normal push afterward:
+
+  * git push origin main
+
+Acceptance Criteria
+
+* GitHub push succeeds without GH001 / pre-receive hook errors.
+* ZIP files are not present in the repo, and .gitignore prevents re-adding.
+* Local branch correctly tracks the remote default branch.
+* Repo remains deployable without storing build bundles in Git.
+
+Notes
+
+* Do not use plain "git push --force" unless "force-with-lease" fails.
+* If conflicts occur from remote divergence, prioritise the history purge first; then rebase/merge as needed after the repository is pushable.

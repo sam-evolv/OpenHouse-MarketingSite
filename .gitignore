@@ -37,3 +37,10 @@ next-env.d.ts
 
 # netlify
 .netlify
+
+# archives
+*.zip
+*.7z
+*.tar
+*.gz
+*.rar
