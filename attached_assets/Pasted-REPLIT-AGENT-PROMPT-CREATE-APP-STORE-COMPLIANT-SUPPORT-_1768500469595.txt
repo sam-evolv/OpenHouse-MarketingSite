@@ -1,0 +1,91 @@
+REPLIT AGENT PROMPT — CREATE APP STORE–COMPLIANT SUPPORT PAGE
+
+Objective
+Create a public Support page at:
+https://openhouseai.ie/support
+
+This page is required for Apple App Store submission and must be clear, functional, and aligned with the existing OpenHouse AI marketing site design and tone.
+
+Constraints
+- Do NOT redesign the site.
+- Do NOT introduce new branding styles.
+- Reuse existing fonts, colours, spacing, and layout patterns.
+- Page must load quickly and work on mobile.
+- No animations beyond what already exists on the site.
+- No gated content or login.
+
+Content requirements (must include all)
+
+1. Page Header
+Title:
+“OpenHouse AI Support”
+
+Subtitle:
+“Help and support for homeowners using the OpenHouse AI app.”
+
+2. What the App Is (Apple clarity requirement)
+Short paragraph explaining:
+- OpenHouse AI is a property information portal for homeowners
+- Accessed via a property-specific access code provided by the developer
+- Used to view documents, notices, local information, and an AI assistant
+
+Keep this factual. No marketing language.
+
+3. Support Contact (mandatory)
+Clearly display:
+- Support email: support@openhouseai.ie
+- Instruction: “For support, please email us and include your property access code if available.”
+
+Email should be mailto-linked.
+
+4. Common Support Topics (simple list)
+Include a short bullet list such as:
+- Trouble accessing the app with a property code
+- Missing or incorrect documents
+- Questions about local amenities or notices
+- General app feedback or technical issues
+
+This reassures Apple that support exists.
+
+5. App Review Transparency Section (important)
+Add a clearly labeled section:
+“App Review Information”
+
+Text must explain:
+- The app does not use usernames or passwords
+- Access is via a property-specific code
+- No personal account creation is required
+- Codes are issued by property developers
+- Demo access is available for App Review upon request
+
+This helps Apple reviewers and reduces rejection risk.
+
+6. Privacy & Data Handling (brief)
+Include a short paragraph stating:
+- No advertising
+- No selling of user data
+- Analytics are used only to improve app performance
+- No unnecessary personal data is collected
+
+Do NOT restate the full privacy policy. Keep it short.
+
+7. Footer
+Reuse the existing site footer unchanged.
+Ensure links to:
+- Privacy Policy
+- Main site
+
+Technical requirements
+- Page path: /support
+- SEO title: “OpenHouse AI Support”
+- Meta description: “Support and help for the OpenHouse AI homeowner app.”
+- Ensure page returns HTTP 200
+- No broken links
+
+Final check
+After implementation:
+- Verify page loads publicly without authentication
+- Verify support email is visible without scrolling
+- Verify page visually matches the rest of openhouseai.ie
+
+Proceed to implement now.
