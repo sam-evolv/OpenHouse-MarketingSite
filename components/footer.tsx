@@ -7,6 +7,7 @@ const productLinks = [
   { label: "Case Studies", href: "/case-studies" },
   { label: "Documentation", href: "/docs" },
   { label: "Contact", href: "/contact" },
+  { label: "Support", href: "/support" },
 ];
 
 const legalLinks = [
