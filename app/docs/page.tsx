@@ -8,7 +8,7 @@ export default function DocsPage() {
           Documentation
         </h1>
         <p className="text-body-lg text-hint text-center max-w-3xl mx-auto">
-          Everything you need to get started with OpenHouse AI.
+          Everything you need to get started with OpenHouse Ai.
         </p>
         <div className="mt-16 text-center text-hint">
           Documentation coming soon.

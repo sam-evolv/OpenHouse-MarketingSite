@@ -91,7 +91,7 @@ export function HeroSection() {
             <p className="text-body-lg text-hint mb-8">
               {content.hero.subtitle}
             </p>
-            <img src="/hero-poster.jpg" alt="OpenHouse AI platform interface showing resident assistant dashboard" className="w-full rounded-lg" />
+            <img src="/hero-poster.jpg" alt="OpenHouse Ai platform interface showing resident assistant dashboard" className="w-full rounded-lg" />
           </div>
         </div>
       </noscript>

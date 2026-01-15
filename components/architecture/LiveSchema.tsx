@@ -223,7 +223,7 @@ export function LiveSchema() {
       <Container className="relative z-10">
         <SectionHeading
           title="System Architecture"
-          description="How OpenHouse AI processes resident queries in real-time"
+          description="How OpenHouse Ai processes resident queries in real-time"
           badge="Live Data Flow"
         />
 

@@ -5,8 +5,8 @@ import { CASE_STUDIES } from "@/data/caseStudies";
 import { SplitText } from "@/components/effects/SplitText";
 
 export const metadata: Metadata = {
-  title: "Case Studies - OpenHouse AI",
-  description: "See how OpenHouse AI transforms resident experience across diverse property developments.",
+  title: "Case Studies - OpenHouse Ai",
+  description: "See how OpenHouse Ai transforms resident experience across diverse property developments.",
 };
 
 export default function CaseStudiesPage() {
@@ -22,7 +22,7 @@ export default function CaseStudiesPage() {
             Case Studies
           </SplitText>
           <p className="text-body-lg text-hint max-w-3xl mx-auto">
-            See how leading developers are using OpenHouse AI to transform their resident experience.
+            See how leading developers are using OpenHouse Ai to transform their resident experience.
           </p>
         </div>
 

@@ -15,7 +15,7 @@ export default function PrivacyPage() {
             Data Collection
           </h2>
           <p className="text-hint mb-4">
-            OpenHouse AI is committed to protecting your privacy. This policy outlines how we collect, use, and safeguard your data.
+            OpenHouse Ai is committed to protecting your privacy. This policy outlines how we collect, use, and safeguard your data.
           </p>
           <h2 className="text-heading-md font-bold text-porcelain mt-8 mb-4">
             Data Security

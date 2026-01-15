@@ -29,7 +29,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OpenHouse AI — The AI Resident Portal for Modern Developments",
+  title: "OpenHouse Ai — The AI Resident Portal for Modern Developments",
   description:
     "Cut support requests, wow buyers, and give residents answers in seconds. One AI portal that knows your development inside out.",
   keywords: [
@@ -43,17 +43,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "EvolvAi" }],
   openGraph: {
-    title: "OpenHouse AI — The AI Resident Portal for Modern Developments",
+    title: "OpenHouse Ai — The AI Resident Portal for Modern Developments",
     description:
       "Cut support requests, wow buyers, and give residents answers in seconds.",
     url: "https://openhouseai.ie",
-    siteName: "OpenHouse AI",
+    siteName: "OpenHouse Ai",
     images: [
       {
         url: "/og.jpg",
         width: 1200,
         height: 630,
-        alt: "OpenHouse AI",
+        alt: "OpenHouse Ai",
       },
     ],
     locale: "en_IE",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OpenHouse AI — The AI Resident Portal for Modern Developments",
+    title: "OpenHouse Ai — The AI Resident Portal for Modern Developments",
     description:
       "Cut support requests, wow buyers, and give residents answers in seconds.",
     images: ["/og.jpg"],

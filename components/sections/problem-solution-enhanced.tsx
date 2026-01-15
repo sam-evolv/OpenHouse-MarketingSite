@@ -184,7 +184,7 @@ export function ProblemSolutionEnhanced() {
       <Container>
         <SectionHeading
           title="Built for Developers. Loved by Residents."
-          badge="Why OpenHouse AI"
+          badge="Why OpenHouse Ai"
         />
 
         <p className="text-center text-porcelain/60 text-lg max-w-3xl mx-auto mt-4 mb-10">

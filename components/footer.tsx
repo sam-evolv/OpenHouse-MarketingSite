@@ -23,7 +23,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Company Info */}
           <div>
-            <h3 className="text-lg font-bold text-gold mb-3">OpenHouse AI</h3>
+            <h3 className="text-lg font-bold text-gold mb-3">OpenHouse Ai</h3>
             <p className="text-xs text-porcelain/50 leading-relaxed mb-4">
               The AI Resident Portal for Modern Developments. 
               Transforming how developers support their residents.
@@ -79,7 +79,7 @@ export function Footer() {
 
         <div className="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-2">
           <p className="text-xs text-porcelain/40">
-            © {new Date().getFullYear()} OpenHouse AI. All rights reserved.
+            © {new Date().getFullYear()} OpenHouse Ai. All rights reserved.
           </p>
           <a 
             href="https://www.evolvai.ie" 

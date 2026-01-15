@@ -238,7 +238,7 @@
       },
       {
         "question": "Do you support multiple languages?",
-        "answer": "Yes, OpenHouse AI supports 50+ languages out of the box, with automatic translation capabilities."
+        "answer": "Yes, OpenHouse Ai supports 50+ languages out of the box, with automatic translation capabilities."
       },
       {
         "question": "Can I white-label the assistant?",
@@ -308,7 +308,7 @@
     ]
   },
   "whyOpenHouse": {
-    "title": "Why OpenHouse AI",
+    "title": "Why OpenHouse Ai",
     "cards": [
       {
         "title": "Built for developers",
@@ -333,7 +333,7 @@
     ]
   },
   "architecture": {
-    "title": "How OpenHouse AI Works Behind the Scenes",
+    "title": "How OpenHouse Ai Works Behind the Scenes",
     "subtitle": "A modern AI platform connecting residents, developers, and property managers",
     "flow": [
       {
@@ -429,7 +429,7 @@
   },
   "footerCta": {
     "title": "Ready to modernise the resident experience across your developments?",
-    "subtitle": "Book a demo and see how OpenHouse AI transforms handover, support, and homeowner satisfaction.",
+    "subtitle": "Book a demo and see how OpenHouse Ai transforms handover, support, and homeowner satisfaction.",
     "buttons": {
       "primary": "Book a demo",
       "secondary": "Download Overview PDF"
@@ -439,8 +439,8 @@
     "title": "Frequently Asked Questions",
     "items": [
       {
-        "question": "How do residents access OpenHouse AI?",
-        "answer": "Residents can access OpenHouse AI by scanning an NFC tag or QR code provided during handover. They can also access it directly via a custom URL on any device."
+        "question": "How do residents access OpenHouse Ai?",
+        "answer": "Residents can access OpenHouse Ai by scanning an NFC tag or QR code provided during handover. They can also access it directly via a custom URL on any device."
       },
       {
         "question": "How is data stored?",
@@ -460,7 +460,7 @@
       },
       {
         "question": "What languages do you support?",
-        "answer": "OpenHouse AI supports 50+ languages out of the box, with automatic translation for international buyers and multilingual residents."
+        "answer": "OpenHouse Ai supports 50+ languages out of the box, with automatic translation for international buyers and multilingual residents."
       }
     ]
   },

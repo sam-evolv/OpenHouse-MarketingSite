@@ -39,7 +39,7 @@ export function EngagementModel() {
       <Container>
         <SectionHeading
           title="Designed around each development"
-          description="Every scheme is different. OpenHouse AI is structured per development, taking into account scale, phase, and operational needs. We work directly with developers to define the right rollout and scope."
+          description="Every scheme is different. OpenHouse Ai is structured per development, taking into account scale, phase, and operational needs. We work directly with developers to define the right rollout and scope."
           badge="Engagement Model"
         />
 

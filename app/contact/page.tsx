@@ -12,7 +12,7 @@ export default function ContactPage() {
             Book your demo
           </h1>
           <p className="text-body-lg text-hint mb-12">
-            See OpenHouse AI in action. Schedule a personalized demo with our team.
+            See OpenHouse Ai in action. Schedule a personalized demo with our team.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">

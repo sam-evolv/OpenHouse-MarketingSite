@@ -27,7 +27,7 @@ export function IsoGallerySection() {
             Proven results across properties
           </SplitText>
           <p className="text-hint text-heading-sm max-w-2xl mx-auto">
-            See how OpenHouse AI transforms resident experience and reduces support load
+            See how OpenHouse Ai transforms resident experience and reduces support load
             across diverse property developments.
           </p>
         </div>

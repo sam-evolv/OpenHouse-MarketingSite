@@ -15,7 +15,7 @@ export default function TermsPage() {
             Agreement to Terms
           </h2>
           <p className="text-hint mb-4">
-            By accessing OpenHouse AI, you agree to be bound by these Terms of Service and all applicable laws and regulations.
+            By accessing OpenHouse Ai, you agree to be bound by these Terms of Service and all applicable laws and regulations.
           </p>
         </div>
       </Container>

@@ -76,7 +76,7 @@ export function TechnologySection() {
         <Reveal delay={0.5}>
           <div className="mt-16 text-center">
             <p className="text-lg text-hint">
-              <span className="text-gold font-semibold">OpenHouse AI</span> — The AI Resident Portal for Modern Developments
+              <span className="text-gold font-semibold">OpenHouse Ai</span> — The AI Resident Portal for Modern Developments
             </p>
           </div>
         </Reveal>

@@ -3,8 +3,8 @@ import { Mail, HelpCircle, Shield, Smartphone } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "OpenHouse AI Support",
-  description: "Support and help for the OpenHouse AI homeowner app.",
+  title: "OpenHouse Ai Support",
+  description: "Support and help for the OpenHouse Ai homeowner app.",
 };
 
 export default function SupportPage() {
@@ -12,10 +12,10 @@ export default function SupportPage() {
     <div className="pt-32 pb-24 min-h-screen bg-carbon">
       <Container className="max-w-4xl">
         <h1 className="text-display-md font-bold text-porcelain mb-4">
-          OpenHouse AI Support
+          OpenHouse Ai Support
         </h1>
         <p className="text-body-lg text-hint mb-12">
-          Help and support for homeowners using the OpenHouse AI app.
+          Help and support for homeowners using the OpenHouse Ai app.
         </p>
 
         <section className="mb-12">
@@ -24,7 +24,7 @@ export default function SupportPage() {
             About the App
           </h2>
           <p className="text-hint leading-relaxed">
-            OpenHouse AI is a property information portal for homeowners. Access is provided via a property-specific code issued by your property developer. The app allows you to view documents related to your home, read notices and updates, find local amenity information, and interact with an AI assistant for property-related queries.
+            OpenHouse Ai is a property information portal for homeowners. Access is provided via a property-specific code issued by your property developer. The app allows you to view documents related to your home, read notices and updates, find local amenity information, and interact with an AI assistant for property-related queries.
           </p>
         </section>
 
@@ -75,7 +75,7 @@ export default function SupportPage() {
           </h2>
           <div className="space-y-3 text-hint">
             <p>
-              The OpenHouse AI app does not use usernames or passwords. Access is granted via a property-specific code provided by the property developer.
+              The OpenHouse Ai app does not use usernames or passwords. Access is granted via a property-specific code provided by the property developer.
             </p>
             <p>
               No personal account creation is required to use the app. Codes are issued directly by property developers to homeowners upon handover.
@@ -92,7 +92,7 @@ export default function SupportPage() {
             Privacy & Data Handling
           </h2>
           <p className="text-hint leading-relaxed">
-            OpenHouse AI does not display advertising or sell user data. Analytics are used solely to improve app performance and user experience. We do not collect unnecessary personal data. For full details, please refer to our <a href="/privacy" className="text-gold hover:text-gold/80">Privacy Policy</a>.
+            OpenHouse Ai does not display advertising or sell user data. Analytics are used solely to improve app performance and user experience. We do not collect unnecessary personal data. For full details, please refer to our <a href="/privacy" className="text-gold hover:text-gold/80">Privacy Policy</a>.
           </p>
         </section>
       </Container>
