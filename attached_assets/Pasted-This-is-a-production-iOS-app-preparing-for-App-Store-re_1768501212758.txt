@@ -1,0 +1,135 @@
+This is a production iOS app preparing for App Store review. The app is already functionally complete. The goal is to remove any remaining ambiguity for Apple reviewers and align metadata, support, and review flow with App Store best practice.
+
+Objectives
+
+Implement the following improvements without altering core app functionality:
+
+1. App Review Sign-In Clarity (Critical)
+
+The app does not use usernames or passwords. Access is via a property-specific access code.
+
+Actions:
+
+Update App Review notes copy (and any surfaced reviewer-facing text) to explicitly state:
+
+No accounts
+
+No passwords
+
+Access via developer-issued property code
+
+Ensure the review flow is obvious on first launch (code entry is the only gate).
+
+If a demo code exists, ensure it is clearly documented for reviewers.
+
+Required wording intent (not verbatim):
+
+“This app does not require login credentials. Reviewers can access the demo environment using the provided property access code.”
+
+2. Support Page Compliance Check
+
+Confirm the support page at
+https://openhouseai.ie/support
+meets Apple’s expectations:
+
+It must clearly include:
+
+App description and purpose
+
+Support contact email (already present)
+
+App Review Information section explaining access model
+
+Privacy & data handling summary
+
+Links to Privacy Policy and Terms
+
+Actions:
+
+Verify headings are semantic and clear
+
+Ensure content is readable on mobile
+
+No marketing fluff – functional, factual tone only
+
+No redesign required. Content clarity only.
+
+3. Screenshots & App Previews (No Changes Needed)
+
+Confirm and lock in:
+
+0 App Previews is acceptable (screenshots only is valid)
+
+iPhone screenshots are sufficient
+
+No iPad or Apple Watch screenshots required
+
+No action required unless warnings appear.
+
+4. Promotional Text Guardrail
+
+Ensure promotional text:
+
+Is under character limit
+
+Does not include claims Apple could challenge (no “AI guarantees”, no automation promises)
+
+Focuses on clarity, access, and organisation
+
+Lock copy once validated.
+
+5. Routing App Coverage File (Explicitly Skip)
+
+Do not add a Routing App Coverage .geojson file.
+
+Reason:
+
+App is not a navigation or routing app
+
+Feature is optional and not applicable
+
+Ensure no placeholder or empty file is attached.
+
+6. Final App Review Notes (Add This)
+
+Populate the App Review Notes field with a short, professional explanation including:
+
+Access method
+
+Demo availability
+
+Support contact
+
+Statement that app content is property-specific and static per development
+
+Tone: factual, cooperative, concise.
+
+7. Risk Guardrails
+
+Do NOT:
+
+Introduce user accounts
+
+Add authentication complexity
+
+Add App Clips
+
+Add analytics disclosures beyond what already exists
+
+Change privacy posture
+
+Acceptance Criteria
+
+Apple reviewer can access the app in under 30 seconds
+
+No ambiguity around sign-in
+
+Support page satisfies App Review checklist
+
+No unnecessary optional assets attached
+
+Submission is clean, minimal, and defensible
+
+Proceed step-by-step.
+Do not refactor unrelated code.
+Confirm each item as completed before moving on.

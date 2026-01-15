@@ -73,15 +73,18 @@ export default function SupportPage() {
           <h2 className="text-heading-md font-bold text-porcelain mb-4">
             App Review Information
           </h2>
-          <div className="space-y-3 text-hint">
+          <div className="space-y-4 text-hint">
             <p>
-              The OpenHouse Ai app does not use usernames or passwords. Access is granted via a property-specific code provided by the property developer.
+              <strong className="text-porcelain">No login credentials required.</strong> This app does not use usernames or passwords. Access is granted via a property-specific code provided by the property developer.
             </p>
             <p>
-              No personal account creation is required to use the app. Codes are issued directly by property developers to homeowners upon handover.
+              <strong className="text-porcelain">No account creation.</strong> Codes are issued directly by property developers to homeowners upon handover. The code entry screen is the only gate to access the app.
             </p>
             <p>
-              Demo access is available for App Review upon request. Please contact <a href="mailto:support@openhouseai.ie" className="text-gold hover:text-gold/80">support@openhouseai.ie</a> for reviewer access credentials.
+              <strong className="text-porcelain">Demo access for reviewers.</strong> A demo property code is available for App Store review. Please contact <a href="mailto:support@openhouseai.ie" className="text-gold hover:text-gold/80">support@openhouseai.ie</a> to request reviewer access credentials.
+            </p>
+            <p>
+              <strong className="text-porcelain">Static content.</strong> App content is property-specific and managed by the property developer. Each property code unlocks documents, notices, and information relevant to that specific home.
             </p>
           </div>
         </section>
@@ -91,9 +94,18 @@ export default function SupportPage() {
             <Shield className="w-6 h-6 text-gold" />
             Privacy & Data Handling
           </h2>
-          <p className="text-hint leading-relaxed">
-            OpenHouse Ai does not display advertising or sell user data. Analytics are used solely to improve app performance and user experience. We do not collect unnecessary personal data. For full details, please refer to our <a href="/privacy" className="text-gold hover:text-gold/80">Privacy Policy</a>.
+          <p className="text-hint leading-relaxed mb-4">
+            OpenHouse Ai does not display advertising or sell user data. Analytics are used solely to improve app performance and user experience. We do not collect unnecessary personal data.
           </p>
+          <div className="flex flex-wrap gap-4">
+            <a href="/privacy" className="text-gold hover:text-gold/80 font-medium">
+              Privacy Policy
+            </a>
+            <span className="text-hint">|</span>
+            <a href="/terms" className="text-gold hover:text-gold/80 font-medium">
+              Terms of Service
+            </a>
+          </div>
         </section>
       </Container>
     </div>
