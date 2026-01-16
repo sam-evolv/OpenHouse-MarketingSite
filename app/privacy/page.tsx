@@ -66,7 +66,7 @@ export default function PrivacyPage() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0" />
-                <span>Improve and personalize your app experience</span>
+                <span>Improve and personalise your app experience</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0" />
@@ -108,7 +108,7 @@ export default function PrivacyPage() {
               Data Security
             </h2>
             <p className="text-hint leading-relaxed">
-              We implement appropriate technical and organizational measures to protect your information against unauthorized access, alteration, disclosure, or destruction. All data transmission is encrypted using industry-standard protocols.
+              We implement appropriate technical and organisational measures to protect your information against unauthorised access, alteration, disclosure, or destruction. All data transmission is encrypted using industry-standard protocols.
             </p>
           </section>
 
