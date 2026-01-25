@@ -6,7 +6,7 @@ export const env = {
   SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY!,
   SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY!,
   SUPPORT_EMAIL: 'sam@openhouseai.ie',
-  CONTACT_EMAIL: 'hello@openhouseai.ie',
+  CONTACT_EMAIL: 'sam@openhouseai.ie',
 };
 
 export const appRoutes = {

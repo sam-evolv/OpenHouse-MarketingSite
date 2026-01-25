@@ -230,7 +230,7 @@ Unified the OpenHouseAI marketing site with the application platform, establishi
 - **Environment Configuration:** `lib/env.ts`
   - Production URLs: `app.openhouseai.ie` (app) and `openhouseai.ie` (marketing)
   - Centralized route definitions for login, register, superadmin, developer dashboard
-  - Support email: support@openhouseai.ie
+  - Support email: sam@openhouseai.ie
 
 - **Navigation Updates:** `components/navigation.tsx`
   - Added "Login" pill button → app.openhouseai.ie/login
