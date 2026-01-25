@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { env } from "@/lib/env";
 
 const productLinks = [
@@ -23,7 +24,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Company Info */}
           <div>
-            <h3 className="text-lg font-bold text-gold mb-3">OpenHouse Ai</h3>
+            <Link href="/" className="inline-block mb-3">
+              <Image
+                src="/images/openhouseai-logo.png"
+                alt="OpenHouse Ai"
+                width={300}
+                height={75}
+                className="h-10 w-auto animate-breathe"
+              />
+            </Link>
             <p className="text-xs text-porcelain/50 leading-relaxed mb-4">
               The AI Resident Portal for Modern Developments. 
               Transforming how developers support their residents.
