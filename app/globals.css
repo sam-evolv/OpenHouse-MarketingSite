@@ -384,3 +384,45 @@ html.lenis body {
     background-position: 50% 50%;
   }
 }
+
+/* Terms of Service Content Styling */
+.terms-content {
+  @apply text-hint leading-relaxed;
+}
+
+.terms-content p {
+  @apply mb-4;
+}
+
+.terms-content h4 {
+  @apply text-porcelain font-semibold mt-6 mb-3;
+}
+
+.terms-content ul {
+  @apply space-y-2 my-4 list-none pl-0;
+}
+
+.terms-content li {
+  @apply flex items-start gap-3;
+}
+
+.terms-content li::before {
+  content: '';
+  @apply w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0;
+}
+
+.terms-content strong {
+  @apply text-porcelain;
+}
+
+.terms-content a {
+  @apply text-gold hover:underline;
+}
+
+.terms-content .info-box {
+  @apply bg-slate/30 border border-white/10 rounded-lg p-4 mt-4;
+}
+
+.terms-content .info-box p {
+  @apply mb-1;
+}
