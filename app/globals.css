@@ -55,6 +55,19 @@ html.lenis body {
   display: none;
 }
 
+/* Header Height Variables for responsive layout */
+:root {
+  --header-height: 8rem;
+  --header-height-sm: 9rem;
+  --header-height-md: 9rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-height: 9rem;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
