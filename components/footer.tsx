@@ -28,9 +28,10 @@ export function Footer() {
               <Image
                 src="/images/openhouseai-logo.png"
                 alt="OpenHouse Ai"
-                width={300}
-                height={75}
-                className="h-10 w-auto animate-breathe"
+                width={600}
+                height={150}
+                priority
+                className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
               />
             </Link>
             <p className="text-xs text-porcelain/50 leading-relaxed mb-4">
