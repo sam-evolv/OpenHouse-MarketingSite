@@ -373,14 +373,15 @@ export default function HowItWorksPage() {
                 </div>
               </div>
               
-              <div className="relative w-[260px] mx-auto lg:mx-0">
+              <div className="relative w-[280px] sm:w-[300px] mx-auto lg:mx-0">
                 <div className="bg-neutral-900 rounded-[2.5rem] p-2 shadow-2xl border border-neutral-800">
-                  <div className="bg-[#0b0c0f] rounded-[2.25rem] overflow-hidden aspect-[9/19] relative">
-                    {/* Crop Safari toolbar by showing only top 92% of image */}
+                  <div className="bg-black rounded-[2.25rem] overflow-hidden aspect-[9/19.5] relative">
+                    {/* Crop Safari toolbar by scaling image to fill and hiding overflow */}
                     <img 
                       src="/images/app-portal.png" 
                       alt="Pre-Handover Portal showing build progress, key dates, and property details"
-                      className="absolute inset-0 w-full h-[108%] object-cover object-top"
+                      className="absolute top-0 left-0 w-full h-[115%] object-cover object-top"
+                      style={{ imageRendering: 'auto' }}
                     />
                   </div>
                 </div>
@@ -459,13 +460,14 @@ export default function HowItWorksPage() {
                 </div>
               </div>
               
-              <div className="relative w-[260px] mx-auto lg:mx-0">
+              <div className="relative w-[280px] sm:w-[300px] mx-auto lg:mx-0">
                 <div className="bg-neutral-900 rounded-[2.5rem] p-2 shadow-2xl border border-neutral-800">
-                  <div className="bg-[#0b0c0f] rounded-[2.25rem] overflow-hidden aspect-[9/19] relative">
+                  <div className="bg-black rounded-[2.25rem] overflow-hidden aspect-[9/19.5] relative">
                     <img 
                       src="/images/app-assistant.png" 
                       alt="AI Property Assistant with chat interface and quick action buttons"
-                      className="absolute inset-0 w-full h-full object-cover object-top"
+                      className="absolute top-0 left-0 w-full h-full object-cover object-top"
+                      style={{ imageRendering: 'auto' }}
                     />
                   </div>
                 </div>
