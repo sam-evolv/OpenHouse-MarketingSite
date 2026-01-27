@@ -243,16 +243,17 @@ export default function HowItWorksPage() {
           variants={fadeInUp}
           className="mt-20"
         >
-          <div className="relative rounded-2xl overflow-hidden border border-[#1e2531] shadow-2xl max-w-5xl mx-auto bg-[#0f1115] group cursor-pointer">
-            <div className="aspect-video relative overflow-hidden">
+          <div className="relative rounded-2xl overflow-hidden border border-[#1e2531] shadow-2xl max-w-6xl mx-auto bg-[#0f1115] group cursor-pointer">
+            <div className="relative overflow-hidden">
               <Image 
                 src="/images/dashboard-preview.png" 
                 alt="Developer Dashboard showing total units, registered users, active chat interactions, messages, and documents"
-                fill
-                sizes="(max-width: 1024px) 100vw, 1024px"
+                width={1920}
+                height={900}
                 quality={100}
                 priority
-                className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+                unoptimized
+                className="w-full h-auto transition-transform duration-500 ease-out group-hover:scale-105"
               />
             </div>
           </div>
