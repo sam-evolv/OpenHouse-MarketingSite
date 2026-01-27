@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import {
   Upload,
   Cpu,
@@ -20,31 +19,31 @@ import {
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
+const getFadeInUp = (reducedMotion: boolean | null) => ({
+  hidden: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 30 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: easeOut }
+    transition: { duration: reducedMotion ? 0 : 0.5, ease: easeOut }
   }
-};
+});
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
+const getStaggerContainer = (reducedMotion: boolean | null) => ({
+  hidden: { opacity: reducedMotion ? 1 : 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+    transition: { staggerChildren: reducedMotion ? 0 : 0.1, delayChildren: reducedMotion ? 0 : 0.2 }
   }
-};
+});
 
-const staggerItem = {
-  hidden: { opacity: 0, y: 20 },
+const getStaggerItem = (reducedMotion: boolean | null) => ({
+  hidden: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 20 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: easeOut }
+    transition: { duration: reducedMotion ? 0 : 0.5, ease: easeOut }
   }
-};
+});
 
 const journeySteps = [
   {
@@ -142,33 +141,39 @@ const exampleQuestions = [
 ];
 
 export default function HowItWorksPage() {
+  const prefersReducedMotion = useReducedMotion();
+  
+  const fadeInUp = getFadeInUp(prefersReducedMotion);
+  const staggerContainer = getStaggerContainer(prefersReducedMotion);
+  const staggerItem = getStaggerItem(prefersReducedMotion);
+
   return (
     <main className="bg-[#0b0c0f] min-h-screen pt-32 lg:pt-36">
       {/* SECTION 1: HERO */}
       <section className="relative min-h-[calc(100vh-8rem)] flex items-center justify-center">
         <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: easeOut }}
             className="inline-flex items-center px-4 py-1.5 rounded-full border border-gold/30 text-gold text-xs tracking-widest font-medium uppercase"
           >
             For Developers
           </motion.div>
           
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay: 0.1, ease: easeOut }}
             className="mt-6 text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight"
           >
             See How It Works
           </motion.h1>
           
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay: 0.2, ease: easeOut }}
             className="mt-6 text-lg text-neutral-400 max-w-xl mx-auto leading-relaxed"
           >
             One platform that replaces folders, spreadsheets, and phone calls. From document upload to live analytics in minutes.
@@ -176,13 +181,13 @@ export default function HowItWorksPage() {
         </div>
         
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.8 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
           <span className="text-xs text-neutral-500 tracking-widest">SCROLL TO EXPLORE</span>
-          <ChevronDown className="w-5 h-5 text-neutral-500 animate-bounce" />
+          <ChevronDown className={`w-5 h-5 text-neutral-500 ${prefersReducedMotion ? '' : 'motion-safe:animate-bounce'}`} />
         </motion.div>
       </section>
 
