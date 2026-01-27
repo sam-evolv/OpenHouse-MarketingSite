@@ -26,7 +26,7 @@ const HeroVisual = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <div className="relative flex items-center justify-center gap-8 md:gap-16 py-8">
+      <div className="relative flex items-center justify-center gap-8 md:gap-16 py-8 translate-x-4 md:translate-x-8">
         
         {/* Light trail (behind everything) */}
         <div 
