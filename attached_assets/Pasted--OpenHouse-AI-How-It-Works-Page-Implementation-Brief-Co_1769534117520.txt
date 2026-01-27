@@ -1,0 +1,750 @@
+# OpenHouse AI - "How It Works" Page Implementation Brief
+
+## Context Prompt for Replit
+
+You are building a new "How It Works" page for OpenHouse AI, a premium property-technology platform. This page will be added to the existing marketing website and must match the exact design system and quality level of the current site.
+
+**What OpenHouse AI does:** It's an AI-powered resident portal that replaces paper handover folders for property developers. Developers upload documents, AI processes them, residents activate via NFC/QR, and developers get analytics on what residents are asking.
+
+**Target audience:** Property developers in Ireland (B2B). This page must convince developers that OpenHouse AI will save them time, money, and legal risk.
+
+**Design requirements:** 
+- Dark theme matching existing site (bg: #0b0c0f)
+- Gold accent color: #D4AF37 (brand-500)
+- Premium, polished feel - NOT generic SaaS
+- Lucide React icons ONLY (no emoji, no Unicode symbols)
+- Inter font family
+- Generous whitespace
+- Subtle animations with ease-premium: cubic-bezier(0.16, 1, 0.3, 1)
+
+**Critical:** Review the existing OpenHouse AI website styling before building. Match it exactly.
+
+---
+
+## Navigation Addition
+
+Add "How It Works" to the main navigation bar:
+- Position: After "Solution", before "Capabilities"
+- Route: `/how-it-works`
+- Styling: Match existing nav items exactly
+
+---
+
+## Page Structure
+
+The page has 5 sections that scroll vertically:
+
+1. Hero
+2. The Setup (4-step journey)
+3. Your Tools (4 feature cards)
+4. The Purchaser Journey (timeline with 2 phases)
+5. The Transformation (before/after comparison)
+6. CTA
+
+---
+
+## SECTION 1: HERO
+
+**Layout:** Full viewport height, centered content, dark background (#0b0c0f)
+
+**Content:**
+
+```
+Eyebrow Badge: "FOR DEVELOPERS"
+Headline: "See How It Works"
+Subheadline: "One platform that replaces folders, spreadsheets, and phone calls. From document upload to live analytics in minutes."
+Scroll Indicator: "SCROLL TO EXPLORE" + ChevronDown icon (animated)
+```
+
+**Styling:**
+
+```tsx
+// Eyebrow badge
+className="inline-flex items-center px-4 py-1.5 rounded-full 
+  border border-brand-500/30 text-brand-500 
+  text-xs tracking-widest font-medium uppercase"
+
+// Headline
+className="mt-6 text-5xl md:text-6xl font-bold text-white tracking-tight"
+
+// Subheadline
+className="mt-6 text-lg text-neutral-400 max-w-xl mx-auto leading-relaxed"
+
+// Scroll indicator container
+className="absolute bottom-12 left-1/2 -translate-x-1/2 
+  flex flex-col items-center gap-2"
+
+// Scroll text
+className="text-xs text-neutral-500 tracking-widest"
+
+// Scroll icon (ChevronDown from Lucide)
+className="w-5 h-5 text-neutral-500 animate-bounce"
+```
+
+**Animation:**
+- Headline and subheadline fade in and slide up on page load
+- Scroll indicator has subtle continuous bounce animation
+
+---
+
+## SECTION 2: THE SETUP
+
+**Section Header:**
+
+```
+Eyebrow: "GETTING STARTED"
+Headline: "Live in Minutes. Not Months."
+```
+
+**Styling for section headers (use throughout page):**
+
+```tsx
+// Section container
+className="py-24 md:py-32"
+
+// Eyebrow
+className="text-brand-500 text-xs tracking-widest font-medium uppercase"
+
+// Headline
+className="mt-4 text-4xl md:text-5xl font-bold text-white tracking-tight"
+```
+
+**4-Step Journey:**
+
+Create a horizontal journey on desktop (vertical on mobile) with 4 steps connected by a line.
+
+**Step Data:**
+
+| Step | Icon (Lucide) | Title | Description |
+|------|---------------|-------|-------------|
+| 1 | Upload | Upload Documents | Drawings, manuals, warranties, video tutorials — drop them in once |
+| 2 | Cpu | AI Processes | Every document becomes instantly searchable and answerable |
+| 3 | Smartphone | Residents Activate | One tap via NFC or QR. No apps to download. No passwords. |
+| 4 | BarChart3 | You See Everything | Questions, trends, acknowledgments — all in one dashboard |
+
+**Step Component Styling:**
+
+```tsx
+// Steps container (desktop)
+className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative"
+
+// Connecting line (desktop only, positioned between step numbers)
+className="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px 
+  bg-gradient-to-r from-brand-500/50 via-brand-500/30 to-brand-500/50"
+
+// Individual step container
+className="relative flex flex-col items-center text-center"
+
+// Step number circle
+className="relative z-10 w-12 h-12 rounded-full bg-brand-500 text-white 
+  flex items-center justify-center text-lg font-semibold
+  shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+
+// Icon container
+className="mt-6 w-16 h-16 rounded-2xl bg-[#12151b] border border-[#1e2531]
+  flex items-center justify-center"
+
+// Icon
+className="w-8 h-8 text-brand-500"
+
+// Step title
+className="mt-4 text-lg font-semibold text-white"
+
+// Step description
+className="mt-2 text-sm text-neutral-400 max-w-[220px]"
+```
+
+**Screenshot Showcase (below steps):**
+
+Add a container for a dashboard screenshot below the steps.
+
+```tsx
+// Screenshot container
+className="mt-20 relative rounded-2xl overflow-hidden 
+  border border-[#1e2531] shadow-2xl max-w-5xl mx-auto"
+
+// Image
+className="w-full h-auto"
+
+// Caption
+className="mt-6 text-center text-sm text-neutral-500"
+```
+
+**Caption text:** "The Developer Dashboard — your single source of truth"
+
+**Placeholder:** Add an image placeholder or use an existing dashboard screenshot.
+
+---
+
+## SECTION 3: YOUR TOOLS
+
+**Section Header:**
+
+```
+Eyebrow: "DEVELOPER TOOLS"
+Headline: "One Dashboard. Everything You Need."
+```
+
+**Layout:** 2x2 grid on desktop, single column on mobile
+
+```tsx
+// Cards grid
+className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6"
+```
+
+**Card Component Styling:**
+
+```tsx
+// Card container
+className="group relative bg-[#0f1115] rounded-2xl p-8
+  border border-[#1e2531] 
+  hover:border-brand-500/30 
+  hover:shadow-[0_8px_32px_rgba(212,175,55,0.12)]
+  transition-all duration-300"
+
+// Icon container
+className="w-14 h-14 rounded-xl bg-brand-500/10 
+  flex items-center justify-center
+  group-hover:bg-brand-500/20 transition-colors duration-300"
+
+// Icon
+className="w-7 h-7 text-brand-500"
+
+// Card title
+className="mt-6 text-xl font-semibold text-white"
+
+// Features list
+className="mt-4 space-y-3"
+
+// Feature item
+className="flex items-start gap-3"
+
+// Feature check icon (Lucide Check)
+className="w-5 h-5 text-brand-500/70 mt-0.5 flex-shrink-0"
+
+// Feature text
+className="text-sm text-neutral-300"
+
+// Result container
+className="mt-6 pt-6 border-t border-[#1e2531]"
+
+// Result text
+className="text-sm text-brand-500 font-medium"
+```
+
+**Card 1: Slash After-Sales Burden**
+
+```
+Icon: MessageSquareX (Lucide)
+
+Features:
+- AI answers purchaser queries 24/7 — trained on your documents
+- Embed video tutorials for heat pumps, thermostats, appliances
+- Trigger seasonal notifications automatically
+
+Result: Your team stops fielding repetitive calls.
+```
+
+**Card 2: Early Warning System**
+
+```
+Icon: Radar (Lucide)
+
+Features:
+- AI analyses every question across your development
+- Spots trends and recurring issues automatically
+- Flags potential problems before they escalate
+
+Result: Fix issues in week 2, not court in month 6.
+```
+
+**Card 3: Legal Protection Built In**
+
+```
+Icon: ShieldCheck (Lucide)
+
+Features:
+- Mark any document or video as "Must Read"
+- Purchasers prompted to acknowledge before continuing
+- Every agreement logged with timestamp
+
+Result: When they say "nobody told me" — you have the receipt.
+```
+
+**Card 4: Sales & Build Pipeline**
+
+```
+Icon: LayoutDashboard (Lucide)
+
+Features:
+- Sales Pipeline — live status shared with agents and solicitors
+- Kitchen Selection — auto-emails at contract signing
+- Build Progress — BCMS, Homebond, snag dates updated live
+- Smart Alerts — issues flagged, right person notified
+- Weekly Briefings — Monday updates + analytics email
+
+Result: Everyone sees the same truth. No chasing.
+```
+
+---
+
+## SECTION 4: THE PURCHASER JOURNEY
+
+**Section Header:**
+
+```
+Eyebrow: "PURCHASER EXPERIENCE"
+Headline: "A Premium Experience That Reflects Your Brand"
+Subheadline: "From the day they sign to the day they move in — and every day after."
+```
+
+```tsx
+// Subheadline styling
+className="mt-4 text-lg text-neutral-400 max-w-2xl"
+```
+
+**Layout:** Vertical timeline on the left, content and phone mockups on the right
+
+**Timeline Structure:**
+
+```tsx
+// Timeline container
+className="mt-16 relative"
+
+// Vertical line
+className="absolute left-4 md:left-8 top-0 bottom-0 w-px 
+  bg-gradient-to-b from-brand-500 via-brand-500/50 to-brand-500"
+```
+
+**Phase 1: Pre-Handover Portal**
+
+```tsx
+// Phase container
+className="relative pl-16 md:pl-24 pb-16"
+
+// Phase marker (circle)
+className="absolute left-2 md:left-6 w-4 h-4 rounded-full bg-brand-500 
+  shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+
+// Phase label
+className="text-xs text-brand-500 tracking-widest font-medium uppercase"
+
+// Phase title
+className="mt-2 text-2xl font-semibold text-white"
+
+// Phase period
+className="mt-1 text-sm text-neutral-500"
+
+// Phase description
+className="mt-4 text-neutral-300 max-w-lg"
+
+// Features list
+className="mt-6 space-y-3"
+
+// Feature item (same styling as tool cards)
+className="flex items-start gap-3 text-sm text-neutral-300"
+
+// Developer benefit callout
+className="mt-6 p-4 rounded-xl bg-[#12151b] border border-[#1e2531]"
+
+// Benefit text
+className="text-sm text-neutral-400 italic"
+```
+
+**Phase 1 Content:**
+
+```
+Label: PHASE 1
+Title: Pre-Handover Portal
+Period: Contract to Keys
+
+Description:
+As soon as contracts are signed, purchasers receive a unique code to their personal portal.
+
+Features:
+- Watch their home being built — live progress updates
+- See important dates as they arise
+- Access FAQs and key documents
+- Feel informed on the biggest purchase of their life
+
+Developer Benefit:
+"No more 'when will my house be ready?' calls to your sales team."
+```
+
+**Keys Day Transition:**
+
+```tsx
+// Transition container
+className="relative pl-16 md:pl-24 py-8"
+
+// Diamond marker
+className="absolute left-1 md:left-5 w-6 h-6 rotate-45 bg-brand-500 
+  shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+
+// Transition text
+className="text-brand-500 font-semibold"
+```
+
+**Transition text:** "KEYS DAY — The portal transforms"
+
+**Phase 2: Property Assistant**
+
+```
+Label: PHASE 2
+Title: Property Assistant
+Period: Keys Onwards — Forever
+
+Description:
+At handover, the AI assistant activates — trained on their specific home.
+
+What they can ask (display as example questions):
+"What size is my living room?"
+"How do I adjust the heat pump?"
+"Is the boiler still under warranty?"
+"Where's the nearest GP?"
+
+What they get:
+- All documents and video tutorials in one place
+- Local area navigation via Google Maps
+- Community noticeboard for their development
+- Seasonal tips and developer updates
+
+Developer Benefit:
+"No more Monday morning voicemails asking how the heat pump works."
+```
+
+**Example Questions Styling:**
+
+```tsx
+// Questions container
+className="mt-6 space-y-2"
+
+// Individual question
+className="inline-block px-4 py-2 rounded-full bg-[#12151b] 
+  border border-[#1e2531] text-sm text-neutral-300"
+```
+
+**Phone Mockups:**
+
+Position phone mockups to the right of each phase on desktop. Stack below on mobile.
+
+```tsx
+// Phone frame container
+className="relative w-[260px] mx-auto md:mx-0"
+
+// Phone bezel
+className="bg-neutral-900 rounded-[2.5rem] p-2 shadow-2xl 
+  border border-neutral-800"
+
+// Phone screen
+className="bg-[#0b0c0f] rounded-[2.25rem] overflow-hidden aspect-[9/19]"
+
+// Phone content (placeholder or actual screenshot)
+className="w-full h-full object-cover"
+```
+
+**Placeholder content for phone screens:**
+- Phase 1: Show a build progress interface or dates list
+- Phase 2: Show the chat interface with an example Q&A
+
+---
+
+## SECTION 5: THE TRANSFORMATION
+
+**Section Header:**
+
+```
+Eyebrow: "THE RESULT"
+Headline: "Replace Cost with Value"
+```
+
+**Layout:** Two cards side by side on desktop, stacked on mobile
+
+```tsx
+// Cards container
+className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6"
+```
+
+**Before Card:**
+
+```tsx
+// Before card
+className="bg-[#0b0c0f] rounded-2xl p-8 border border-[#1e2531]"
+
+// Before header
+className="text-xs text-neutral-500 tracking-widest font-medium uppercase mb-8"
+
+// Before items container
+className="space-y-5"
+
+// Before item
+className="flex items-start gap-3"
+
+// Before icon (Lucide X)
+className="w-5 h-5 text-red-400/70 mt-0.5 flex-shrink-0"
+
+// Before text
+className="text-neutral-400"
+```
+
+**Before Items:**
+
+```
+- €30-50k on printed folders
+- Weeks of manual collation
+- Excel spreadsheets via email
+- Repetitive calls for months
+- "Nobody told me" disputes
+- No insight post-handover
+- Chasing agents for updates
+```
+
+**After Card:**
+
+```tsx
+// After card
+className="bg-[#0f1115] rounded-2xl p-8 border border-brand-500/20
+  shadow-[0_8px_32px_rgba(212,175,55,0.12)]"
+
+// After header
+className="text-xs text-brand-500 tracking-widest font-medium uppercase mb-8"
+
+// After items container
+className="space-y-5"
+
+// After item
+className="flex items-start gap-3"
+
+// After icon (Lucide Check)
+className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"
+
+// After text
+className="text-white"
+```
+
+**After Items:**
+
+```
+- One-time digital setup
+- Minutes to upload
+- One live dashboard
+- AI answers 24/7
+- Timestamped acknowledgments
+- Trend analysis & early warnings
+- Everyone updates one system
+```
+
+**Closing Statement:**
+
+```tsx
+// Closing text
+className="mt-16 text-2xl md:text-3xl font-semibold text-white text-center"
+```
+
+**Text:** "Turn your biggest admin headache into a competitive advantage."
+
+---
+
+## SECTION 6: CTA
+
+**Layout:** Centered content with subtle gold gradient glow behind
+
+```tsx
+// Section container
+className="py-24 md:py-32 relative"
+
+// Background gradient
+className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.08),transparent_70%)]"
+
+// Content container
+className="relative text-center max-w-2xl mx-auto"
+
+// Headline
+className="text-3xl md:text-4xl font-bold text-white"
+
+// Subheadline
+className="mt-4 text-lg text-neutral-400"
+
+// Buttons container
+className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
+```
+
+**Content:**
+
+```
+Headline: "Ready to See It in Action?"
+Subheadline: "Book a 15-minute demo and see how OpenHouse AI works for your next development."
+```
+
+**Primary Button (Book a Demo):**
+
+```tsx
+className="inline-flex items-center justify-center gap-2 
+  bg-brand-500 text-white 
+  h-12 px-8 text-base font-medium rounded-xl
+  hover:bg-brand-600 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]
+  active:scale-[0.98] 
+  shadow-sm border border-brand-600/20 
+  transition-all duration-150"
+```
+
+Include ArrowRight icon from Lucide inside the button.
+
+**Secondary Button (Contact Us):**
+
+```tsx
+className="inline-flex items-center justify-center gap-2 
+  bg-transparent text-neutral-300 
+  h-12 px-8 text-base font-medium rounded-xl
+  border border-[#374151]
+  hover:bg-white/5 hover:border-neutral-500 hover:text-white
+  active:scale-[0.98] 
+  transition-all duration-150"
+```
+
+---
+
+## ICONS REFERENCE (Lucide React)
+
+Import all icons from `lucide-react`:
+
+```tsx
+import { 
+  Upload,
+  Cpu,
+  Smartphone,
+  BarChart3,
+  MessageSquareX,
+  Radar,
+  ShieldCheck,
+  LayoutDashboard,
+  Check,
+  X,
+  ChevronDown,
+  ArrowRight,
+  Calendar,
+  Home,
+  Key
+} from 'lucide-react'
+```
+
+| Purpose | Icon | Size |
+|---------|------|------|
+| Journey step 1 | Upload | w-8 h-8 |
+| Journey step 2 | Cpu | w-8 h-8 |
+| Journey step 3 | Smartphone | w-8 h-8 |
+| Journey step 4 | BarChart3 | w-8 h-8 |
+| Tool card 1 | MessageSquareX | w-7 h-7 |
+| Tool card 2 | Radar | w-7 h-7 |
+| Tool card 3 | ShieldCheck | w-7 h-7 |
+| Tool card 4 | LayoutDashboard | w-7 h-7 |
+| Feature checkmark | Check | w-5 h-5 |
+| Before/negative | X | w-5 h-5 |
+| Scroll indicator | ChevronDown | w-5 h-5 |
+| CTA button arrow | ArrowRight | w-4 h-4 |
+
+---
+
+## RESPONSIVE BREAKPOINTS
+
+| Element | Desktop (1024px+) | Tablet (768-1023px) | Mobile (<768px) |
+|---------|-------------------|---------------------|-----------------|
+| Hero headline | text-6xl | text-5xl | text-4xl |
+| Section headlines | text-5xl | text-4xl | text-3xl |
+| 4-Step Journey | Horizontal row | 2x2 grid | Vertical stack |
+| Tool Cards | 2x2 grid | 2x2 grid | Single column |
+| Timeline | Side-by-side with mockups | Stacked | Stacked |
+| Phone mockups | Beside timeline | Below content | Below content |
+| Comparison cards | Side-by-side | Side-by-side | Stacked |
+| CTA buttons | Horizontal | Horizontal | Stacked |
+
+---
+
+## ANIMATIONS
+
+Use CSS or Framer Motion. All animations use:
+- Duration: 300ms for hovers, 500ms for scroll reveals
+- Easing: cubic-bezier(0.16, 1, 0.3, 1)
+
+| Element | Animation | Trigger |
+|---------|-----------|---------|
+| Hero content | Fade in + slide up 20px | Page load |
+| Scroll indicator | Gentle bounce | Continuous |
+| Section content | Fade in + slide up 30px | Scroll into view |
+| Journey steps | Staggered fade in (100ms delay each) | Scroll into view |
+| Tool cards | Border glow + subtle lift on hover | Hover |
+| Phone mockups | Subtle float (optional) | Continuous |
+| CTA buttons | Scale to 0.98 | Active/pressed |
+
+**Reduced motion:** Wrap animations in `@media (prefers-reduced-motion: no-preference)` or use Tailwind's `motion-safe:` prefix.
+
+---
+
+## COLOUR REFERENCE
+
+```css
+/* Backgrounds */
+--bg-primary: #0b0c0f;
+--bg-surface-1: #0f1115;
+--bg-surface-2: #12151b;
+
+/* Borders */
+--border-default: #1e2531;
+--border-strong: #374151;
+
+/* Brand */
+--brand-500: #D4AF37;
+--brand-600: #C9A961;
+
+/* Text */
+--text-white: #ffffff;
+--text-neutral-300: #d1d5db;
+--text-neutral-400: #9ca3af;
+--text-neutral-500: #6b7280;
+
+/* Semantic */
+--success: #10b981;
+--error-muted: rgba(248, 113, 113, 0.7);
+
+/* Shadows */
+--shadow-gold-glow: 0 0 20px rgba(212, 175, 55, 0.3);
+--shadow-premium: 0 8px 32px rgba(212, 175, 55, 0.12);
+```
+
+---
+
+## IMPLEMENTATION CHECKLIST
+
+```
+[ ] Add "How It Works" to navigation
+[ ] Create page route /how-it-works
+[ ] Build Hero section
+[ ] Build Section 2: The Setup (4-step journey)
+[ ] Build Section 3: Your Tools (4 cards)
+[ ] Build Section 4: Purchaser Journey (timeline)
+[ ] Build Section 5: The Transformation (comparison)
+[ ] Build Section 6: CTA
+[ ] Add placeholder images for screenshots/mockups
+[ ] Implement hover states on all interactive elements
+[ ] Implement scroll animations
+[ ] Test responsive behaviour at all breakpoints
+[ ] Test reduced motion preferences
+[ ] Cross-browser test (Chrome, Safari, Firefox)
+[ ] Mobile test (iOS Safari, Android Chrome)
+```
+
+---
+
+## NOTES FOR DEVELOPER
+
+1. **Match existing site exactly** - Review the current OpenHouse AI website before building. Typography, spacing, and interaction patterns must be consistent.
+
+2. **No emoji** - Use only Lucide React icons. The X and Check icons replace any ❌ or ✓ symbols.
+
+3. **Premium feel** - Generous whitespace, subtle animations, gold accents used sparingly. This is enterprise software, not a startup landing page.
+
+4. **Image placeholders** - Add placeholder containers for screenshots. These will be replaced with actual product screenshots.
+
+5. **Performance** - Lazy load images, optimise animations for 60fps, minimise layout shift.
+
+6. **Accessibility** - Ensure colour contrast meets WCAG AA, all interactive elements are keyboard accessible, animations respect prefers-reduced-motion.

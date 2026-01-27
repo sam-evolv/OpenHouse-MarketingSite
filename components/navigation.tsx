@@ -9,7 +9,7 @@ import { Menu, X, LogIn, ExternalLink } from "lucide-react";
 import { appRoutes } from "@/lib/env";
 
 const navLinks = [
-  { href: "/#solution", label: "Solution" },
+  { href: "/how-it-works", label: "How It Works" },
   { href: "/#capabilities", label: "Capabilities" },
   { href: "/#proof", label: "Case Studies" },
   { href: "/#engagement-model", label: "Engagement Model" },
