@@ -17,6 +17,7 @@ import {
   ChevronDown,
   ArrowRight,
 } from "lucide-react";
+import HeroVisual from "@/components/HeroVisual";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
@@ -179,12 +180,22 @@ export default function HowItWorksPage() {
           >
             One platform that replaces folders, spreadsheets, and phone calls. From document upload to live analytics in minutes.
           </motion.p>
+          
+          {/* Hero Visual - Document to Conversation */}
+          <motion.div
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, delay: 0.4, ease: easeOut }}
+            className="mt-12"
+          >
+            <HeroVisual />
+          </motion.div>
         </div>
         
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.8 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.2 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
           <span className="text-xs text-neutral-500 tracking-widest">SCROLL TO EXPLORE</span>

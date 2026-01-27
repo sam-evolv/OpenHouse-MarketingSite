@@ -28,6 +28,96 @@
   }
 }
 
+/* Hero Visual Animations - Document to Conversation */
+@keyframes float-front {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0deg); }
+}
+
+@keyframes float-middle {
+  0%, 100% { transform: translateX(2px) translateY(-1px) rotate(-3deg); }
+  50% { transform: translateX(2px) translateY(-9px) rotate(-3deg); }
+}
+
+@keyframes float-back {
+  0%, 100% { transform: translateX(4px) translateY(-2px) rotate(-6deg); }
+  50% { transform: translateX(4px) translateY(-10px) rotate(-6deg); }
+}
+
+@keyframes particle-flow {
+  0% {
+    transform: translateX(0) translateY(0) scale(0);
+    opacity: 0;
+  }
+  15% {
+    transform: translateX(30px) translateY(-5px) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(100px) translateY(-10px) scale(0.8);
+    opacity: 1;
+  }
+  85% {
+    transform: translateX(170px) translateY(-5px) scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(200px) translateY(0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes float-chat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes message-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float-front { 
+  animation: float-front 6s ease-in-out infinite;
+  will-change: transform;
+}
+.animate-float-middle { 
+  animation: float-middle 6s ease-in-out infinite 0.3s;
+  will-change: transform;
+}
+.animate-float-back { 
+  animation: float-back 6s ease-in-out infinite 0.6s;
+  will-change: transform;
+}
+.animate-particle { 
+  animation: particle-flow 3.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.animate-float-chat { 
+  animation: float-chat 5s ease-in-out infinite 0.2s;
+  will-change: transform;
+}
+.animate-message-appear { 
+  animation: message-appear 0.5s ease-out 1.2s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-front,
+  .animate-float-middle,
+  .animate-float-back,
+  .animate-particle,
+  .animate-float-chat,
+  .animate-message-appear {
+    animation: none !important;
+  }
+}
+
 /* Lenis Smooth Scroll */
 html.lenis,
 html.lenis body {
