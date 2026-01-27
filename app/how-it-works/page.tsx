@@ -243,12 +243,17 @@ export default function HowItWorksPage() {
           variants={fadeInUp}
           className="mt-20"
         >
-          <div className="relative rounded-2xl overflow-hidden border border-[#1e2531] shadow-2xl max-w-5xl mx-auto bg-[#0f1115]">
-            <div className="aspect-video flex items-center justify-center bg-gradient-to-br from-[#12151b] to-[#0b0c0f]">
-              <div className="text-center p-8">
-                <LayoutDashboard className="w-16 h-16 text-gold/30 mx-auto mb-4" />
-                <p className="text-neutral-500 text-sm">Developer Dashboard Preview</p>
-              </div>
+          <div className="relative rounded-2xl overflow-hidden border border-[#1e2531] shadow-2xl max-w-5xl mx-auto bg-[#0f1115] group cursor-pointer">
+            <div className="aspect-video relative overflow-hidden">
+              <Image 
+                src="/images/dashboard-preview.png" 
+                alt="Developer Dashboard showing total units, registered users, active chat interactions, messages, and documents"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                quality={100}
+                priority
+                className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+              />
             </div>
           </div>
           <p className="mt-6 text-center text-sm text-neutral-500">

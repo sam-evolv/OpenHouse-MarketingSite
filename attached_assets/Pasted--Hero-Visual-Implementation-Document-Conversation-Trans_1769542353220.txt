@@ -1,0 +1,689 @@
+# Hero Visual Implementation: Document → Conversation Transformation
+
+## Design Philosophy
+
+This visual must feel **premium, understated, and intelligent**. Think Apple product reveals, not generic SaaS. Every element earns its place. Animation is subtle and purposeful, never flashy or gimmicky.
+
+**Key principles:**
+- Depth through layering and shadows, not bright colours
+- Gold used as an accent, never overwhelming
+- Smooth, slow animations that feel considered
+- Glass/frosted effects for premium material feel
+- Generous negative space
+
+---
+
+## Visual Composition
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│                         [FOR DEVELOPERS badge]                          │
+│                                                                         │
+│                        See How It Works                                 │
+│                                                                         │
+│              One platform that replaces folders...                      │
+│                                                                         │
+│                                                                         │
+│    ┌─────────┐                                      ┌──────────────┐    │
+│    │ ░░░░░░░ │                                      │  AI  Online  │    │
+│    │ ░░░░░░  │         ·  · ·  ·  ·  ·             │              │    │
+│    │ ░░░░░░░ │        ·    ·    ·    ·              │  ░░░░░░░░░░  │    │
+│    │ ░░░░░   │       ·  ·    ·  ·   ·               │  ░░░░░░░░    │    │
+│    └─────────┘                                      └──────────────┘    │
+│     Documents              Particles                   AI Chat          │
+│                                                                         │
+│                       SCROLL TO EXPLORE                                 │
+│                             ↓                                           │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Element 1: Document Stack (Left Side)
+
+**Concept:** A refined stack of 3 documents, slightly offset and rotated, suggesting multiple files being processed.
+
+### Structure
+
+```tsx
+// Container for document stack
+<div className="relative w-[140px] h-[180px]">
+  {/* Back document */}
+  <div className="absolute document-back" />
+  {/* Middle document */}
+  <div className="absolute document-middle" />
+  {/* Front document */}
+  <div className="absolute document-front" />
+</div>
+```
+
+### Styling
+
+```tsx
+// Back document (most faded, most rotated)
+className="w-[120px] h-[160px] rounded-xl 
+  bg-gradient-to-br from-[#1a1d24] to-[#14161b]
+  border border-[#2a2f3a]
+  shadow-2xl
+  -rotate-6 translate-x-4 -translate-y-2
+  opacity-40"
+
+// Middle document
+className="w-[120px] h-[160px] rounded-xl 
+  bg-gradient-to-br from-[#1a1d24] to-[#14161b]
+  border border-[#2a2f3a]
+  shadow-2xl
+  -rotate-3 translate-x-2 -translate-y-1
+  opacity-70"
+
+// Front document (primary, most visible)
+className="w-[120px] h-[160px] rounded-xl 
+  bg-gradient-to-br from-[#1e222a] to-[#15181f]
+  border border-[#2a2f3a]
+  shadow-2xl"
+```
+
+### Document Content (Front document only)
+
+Inside the front document, add subtle "content lines" to suggest text:
+
+```tsx
+<div className="p-5 space-y-3">
+  {/* Document icon at top */}
+  <div className="w-8 h-8 rounded-lg bg-[#2a2f3a] flex items-center justify-center mb-4">
+    <svg className="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
+        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+  </div>
+  
+  {/* Text lines */}
+  <div className="h-2 bg-[#2a2f3a] rounded-full w-full" />
+  <div className="h-2 bg-[#2a2f3a] rounded-full w-4/5" />
+  <div className="h-2 bg-[#2a2f3a] rounded-full w-full" />
+  <div className="h-2 bg-[#2a2f3a] rounded-full w-3/5" />
+  <div className="h-2 bg-[#2a2f3a] rounded-full w-4/5" />
+  <div className="h-2 bg-[#2a2f3a] rounded-full w-2/5" />
+</div>
+```
+
+### Document Animation
+
+Subtle floating effect - documents gently rise and fall:
+
+```css
+@keyframes float-document {
+  0%, 100% { 
+    transform: translateY(0) rotate(-3deg); 
+  }
+  50% { 
+    transform: translateY(-8px) rotate(-3deg); 
+  }
+}
+
+.document-front {
+  animation: float-document 6s ease-in-out infinite;
+}
+
+.document-middle {
+  animation: float-document 6s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.document-back {
+  animation: float-document 6s ease-in-out infinite;
+  animation-delay: 1s;
+}
+```
+
+---
+
+## Element 2: Particle Flow (Center)
+
+**Concept:** Golden particles that appear to emanate from the documents and flow toward the chat interface. NOT a chaotic spray - a controlled, elegant stream suggesting data transformation.
+
+### Particle Design
+
+Each particle is a small, soft circle with blur and varying opacity:
+
+```tsx
+// Single particle
+className="absolute rounded-full bg-amber-400"
+style={{
+  width: '6px',
+  height: '6px',
+  filter: 'blur(1px)',
+  boxShadow: '0 0 8px rgba(212, 175, 55, 0.5)',
+}}
+```
+
+### Particle Path
+
+Particles should follow a subtle curved path (bezier) from left to right, not a straight line:
+
+```
+Start (documents) ──╮
+                     ╰──────────────────╮
+                                         ╰── End (chat)
+```
+
+### Particle Animation
+
+```css
+@keyframes particle-flow {
+  0% {
+    transform: translateX(0) translateY(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(20px) translateY(-5px) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(150px) translateY(-15px) scale(0.8);
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(280px) translateY(-5px) scale(0.6);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(300px) translateY(0) scale(0);
+    opacity: 0;
+  }
+}
+```
+
+### Particle Generation
+
+Generate 12-15 particles, each with:
+- Staggered animation delay (spread over 3 seconds)
+- Slightly different vertical offset
+- Varying sizes (4px to 8px)
+- Varying opacity (0.4 to 1.0)
+
+```tsx
+const particles = Array.from({ length: 15 }, (_, i) => ({
+  id: i,
+  delay: (i * 0.2) % 3, // Stagger over 3 seconds
+  yOffset: Math.sin(i * 0.5) * 20, // Slight wave pattern
+  size: 4 + Math.random() * 4,
+  opacity: 0.4 + Math.random() * 0.6,
+}));
+
+// Render
+{particles.map((p) => (
+  <div
+    key={p.id}
+    className="absolute rounded-full bg-amber-400"
+    style={{
+      width: `${p.size}px`,
+      height: `${p.size}px`,
+      left: '140px', // Start from document edge
+      top: `calc(50% + ${p.yOffset}px)`,
+      filter: 'blur(1px)',
+      boxShadow: '0 0 8px rgba(212, 175, 55, 0.4)',
+      animation: `particle-flow 3s ease-in-out infinite`,
+      animationDelay: `${p.delay}s`,
+      opacity: p.opacity,
+    }}
+  />
+))}
+```
+
+### Subtle Light Trail
+
+Behind the particles, add a very subtle gradient beam:
+
+```tsx
+// Light trail (positioned behind particles)
+<div 
+  className="absolute h-[2px] opacity-20"
+  style={{
+    left: '160px',
+    right: '160px',
+    top: '50%',
+    background: 'linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3) 20%, rgba(212, 175, 55, 0.3) 80%, transparent)',
+  }}
+/>
+```
+
+---
+
+## Element 3: Chat Interface (Right Side)
+
+**Concept:** A premium chat bubble showing the AI assistant responding with a property-specific answer. This is the "destination" of the transformation.
+
+### Structure
+
+```tsx
+<div className="relative">
+  {/* Glow effect behind */}
+  <div className="absolute inset-0 bg-amber-400/10 rounded-3xl blur-2xl" />
+  
+  {/* Chat container */}
+  <div className="relative chat-container">
+    {/* Header */}
+    <div className="chat-header" />
+    
+    {/* Messages */}
+    <div className="chat-messages">
+      <div className="user-message" />
+      <div className="ai-message" />
+    </div>
+  </div>
+</div>
+```
+
+### Chat Container Styling
+
+```tsx
+// Main container
+className="w-[280px] rounded-2xl overflow-hidden
+  bg-gradient-to-br from-[#1e222a] to-[#15181f]
+  border border-[#2a2f3a]
+  shadow-2xl"
+```
+
+### Chat Header
+
+```tsx
+// Header
+className="px-4 py-3 border-b border-[#2a2f3a] flex items-center gap-3"
+
+// AI Avatar
+className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 
+  flex items-center justify-center shadow-lg"
+
+// Avatar inner
+<span className="text-sm font-bold text-neutral-900">AI</span>
+
+// Name and status
+<div>
+  <div className="text-sm font-medium text-white">OpenHouse</div>
+  <div className="flex items-center gap-1.5">
+    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+    <span className="text-xs text-emerald-400">Online</span>
+  </div>
+</div>
+```
+
+### Chat Messages
+
+```tsx
+// Messages container
+className="p-4 space-y-3"
+
+// User message (right-aligned)
+<div className="flex justify-end">
+  <div className="px-4 py-2.5 rounded-2xl rounded-br-md 
+    bg-amber-400/10 border border-amber-400/20
+    text-sm text-neutral-200 max-w-[200px]">
+    What size is my living room?
+  </div>
+</div>
+
+// AI message (left-aligned)
+<div className="flex justify-start">
+  <div className="px-4 py-2.5 rounded-2xl rounded-bl-md 
+    bg-[#2a2f3a] 
+    text-sm text-neutral-200 max-w-[220px]">
+    Your living room is <span className="text-amber-400 font-medium">4.2m × 5.1m</span> (21.4m²). 
+    That's approximately <span className="text-amber-400 font-medium">230 sq ft</span>.
+  </div>
+</div>
+```
+
+### Chat Animation
+
+The AI message should have a subtle "typing complete" animation - it fades in slightly after page load:
+
+```css
+@keyframes message-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-message {
+  animation: message-appear 0.6s ease-out;
+  animation-delay: 1s;
+  animation-fill-mode: both;
+}
+```
+
+### Chat Float Animation
+
+Subtle float matching the documents:
+
+```css
+@keyframes float-chat {
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+  50% { 
+    transform: translateY(-6px); 
+  }
+}
+
+.chat-container {
+  animation: float-chat 5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+```
+
+---
+
+## Complete Component Structure
+
+```tsx
+const HeroVisual = () => {
+  return (
+    <div className="relative flex items-center justify-center gap-16 py-8">
+      
+      {/* Light trail (behind everything) */}
+      <div 
+        className="absolute h-[2px] opacity-20 pointer-events-none"
+        style={{
+          left: 'calc(50% - 200px)',
+          right: 'calc(50% - 200px)',
+          top: '50%',
+          background: 'linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3) 20%, rgba(212, 175, 55, 0.3) 80%, transparent)',
+        }}
+      />
+      
+      {/* Document Stack */}
+      <div className="relative w-[140px] h-[180px]">
+        {/* Back document */}
+        <div className="absolute inset-0 w-[120px] h-[160px] rounded-xl 
+          bg-gradient-to-br from-[#1a1d24] to-[#14161b]
+          border border-[#2a2f3a] shadow-2xl
+          -rotate-6 translate-x-4 -translate-y-2 opacity-40
+          animate-float-back" 
+        />
+        
+        {/* Middle document */}
+        <div className="absolute inset-0 w-[120px] h-[160px] rounded-xl 
+          bg-gradient-to-br from-[#1a1d24] to-[#14161b]
+          border border-[#2a2f3a] shadow-2xl
+          -rotate-3 translate-x-2 -translate-y-1 opacity-70
+          animate-float-middle" 
+        />
+        
+        {/* Front document */}
+        <div className="absolute inset-0 w-[120px] h-[160px] rounded-xl 
+          bg-gradient-to-br from-[#1e222a] to-[#15181f]
+          border border-[#2a2f3a] shadow-2xl
+          animate-float-front">
+          
+          <div className="p-5 space-y-3">
+            <div className="w-8 h-8 rounded-lg bg-[#2a2f3a] flex items-center justify-center mb-4">
+              <FileText className="w-4 h-4 text-neutral-500" />
+            </div>
+            <div className="h-2 bg-[#2a2f3a] rounded-full w-full" />
+            <div className="h-2 bg-[#2a2f3a] rounded-full w-4/5" />
+            <div className="h-2 bg-[#2a2f3a] rounded-full w-full" />
+            <div className="h-2 bg-[#2a2f3a] rounded-full w-3/5" />
+            <div className="h-2 bg-[#2a2f3a] rounded-full w-4/5" />
+          </div>
+        </div>
+      </div>
+
+      {/* Particles */}
+      <div className="relative w-[200px] h-[100px]">
+        {Array.from({ length: 15 }, (_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-amber-400 animate-particle"
+            style={{
+              width: `${4 + Math.random() * 4}px`,
+              height: `${4 + Math.random() * 4}px`,
+              left: '0',
+              top: `calc(50% + ${Math.sin(i * 0.5) * 15}px)`,
+              filter: 'blur(1px)',
+              boxShadow: '0 0 8px rgba(212, 175, 55, 0.4)',
+              animationDelay: `${(i * 0.2) % 3}s`,
+              '--particle-y-offset': `${Math.sin(i * 0.7) * 20}px`,
+            } as React.CSSProperties}
+          />
+        ))}
+      </div>
+
+      {/* Chat Interface */}
+      <div className="relative">
+        {/* Glow */}
+        <div className="absolute -inset-4 bg-amber-400/5 rounded-3xl blur-2xl" />
+        
+        {/* Chat container */}
+        <div className="relative w-[280px] rounded-2xl overflow-hidden
+          bg-gradient-to-br from-[#1e222a] to-[#15181f]
+          border border-amber-400/20 shadow-2xl
+          animate-float-chat">
+          
+          {/* Header */}
+          <div className="px-4 py-3 border-b border-[#2a2f3a] flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 
+              flex items-center justify-center shadow-lg">
+              <span className="text-sm font-bold text-neutral-900">AI</span>
+            </div>
+            <div>
+              <div className="text-sm font-medium text-white">OpenHouse</div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-xs text-emerald-400">Online</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Messages */}
+          <div className="p-4 space-y-3">
+            {/* User message */}
+            <div className="flex justify-end">
+              <div className="px-4 py-2.5 rounded-2xl rounded-br-md 
+                bg-amber-400/10 border border-amber-400/20
+                text-sm text-neutral-200">
+                What size is my living room?
+              </div>
+            </div>
+            
+            {/* AI message */}
+            <div className="flex justify-start animate-message-appear">
+              <div className="px-4 py-2.5 rounded-2xl rounded-bl-md 
+                bg-[#2a2f3a] text-sm text-neutral-200">
+                Your living room is{' '}
+                <span className="text-amber-400 font-medium">4.2m × 5.1m</span>{' '}
+                (21.4m²).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+## CSS Animations (Add to global CSS or Tailwind config)
+
+```css
+/* Document floating */
+@keyframes float-front {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0deg); }
+}
+
+@keyframes float-middle {
+  0%, 100% { transform: translateX(2px) translateY(-1px) rotate(-3deg); }
+  50% { transform: translateX(2px) translateY(-9px) rotate(-3deg); }
+}
+
+@keyframes float-back {
+  0%, 100% { transform: translateX(4px) translateY(-2px) rotate(-6deg); }
+  50% { transform: translateX(4px) translateY(-10px) rotate(-6deg); }
+}
+
+/* Particle flow */
+@keyframes particle-flow {
+  0% {
+    transform: translateX(0) translateY(0) scale(0);
+    opacity: 0;
+  }
+  15% {
+    transform: translateX(30px) translateY(calc(-5px + var(--particle-y-offset, 0px))) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(100px) translateY(calc(-10px + var(--particle-y-offset, 0px))) scale(0.8);
+    opacity: 1;
+  }
+  85% {
+    transform: translateX(170px) translateY(calc(-5px + var(--particle-y-offset, 0px))) scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(200px) translateY(0) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Chat floating */
+@keyframes float-chat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Message appear */
+@keyframes message-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tailwind custom classes */
+.animate-float-front { animation: float-front 6s ease-in-out infinite; }
+.animate-float-middle { animation: float-middle 6s ease-in-out infinite 0.3s; }
+.animate-float-back { animation: float-back 6s ease-in-out infinite 0.6s; }
+.animate-particle { animation: particle-flow 3.5s ease-in-out infinite; }
+.animate-float-chat { animation: float-chat 5s ease-in-out infinite 0.2s; }
+.animate-message-appear { animation: message-appear 0.5s ease-out 1.2s both; }
+```
+
+---
+
+## Tailwind Config Additions
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      animation: {
+        'float-front': 'float-front 6s ease-in-out infinite',
+        'float-middle': 'float-middle 6s ease-in-out infinite 0.3s',
+        'float-back': 'float-back 6s ease-in-out infinite 0.6s',
+        'particle': 'particle-flow 3.5s ease-in-out infinite',
+        'float-chat': 'float-chat 5s ease-in-out infinite 0.2s',
+        'message-appear': 'message-appear 0.5s ease-out 1.2s both',
+      },
+      keyframes: {
+        'float-front': {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-8px) rotate(0deg)' },
+        },
+        // ... add all keyframes
+      },
+    },
+  },
+};
+```
+
+---
+
+## Responsive Behaviour
+
+### Desktop (1024px+)
+- Full layout as described
+- Documents: 120x160px
+- Chat: 280px wide
+- Gap between elements: 64px (gap-16)
+
+### Tablet (768-1023px)
+- Reduce gap to 32px (gap-8)
+- Documents: 100x140px
+- Chat: 260px wide
+- Particles: Reduce count to 10
+
+### Mobile (<768px)
+- Stack vertically or hide entirely
+- Consider showing only the chat interface on mobile
+- Or simplify to just the particle trail as a divider
+
+```tsx
+// Mobile alternative - simplified
+<div className="md:hidden">
+  {/* Just show a subtle gold line with a few particles */}
+  <div className="h-px w-48 mx-auto bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+</div>
+```
+
+---
+
+## Quality Checklist
+
+Before shipping, verify:
+
+- [ ] Animations are smooth (60fps)
+- [ ] Particles don't cause layout shift
+- [ ] Chat glow is subtle, not overwhelming
+- [ ] Document stack has proper depth (shadows, layering)
+- [ ] Gold colour matches brand (#D4AF37)
+- [ ] Respects `prefers-reduced-motion` (disable animations)
+- [ ] Works on Safari (check animation compatibility)
+- [ ] Dark backgrounds match existing site (#0b0c0f, #1e222a)
+- [ ] No horizontal scroll on any viewport
+
+---
+
+## Reduced Motion Support
+
+```tsx
+// Wrap component or use media query
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Or in CSS
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-front,
+  .animate-float-middle,
+  .animate-float-back,
+  .animate-particle,
+  .animate-float-chat,
+  .animate-message-appear {
+    animation: none;
+  }
+}
+```
+
+---
+
+## Implementation Notes for Replit
+
+1. **Create as a separate component** - `HeroVisual.tsx` in your components folder
+2. **Import Lucide icon** - `FileText` for the document icon
+3. **Add keyframes to global CSS** or tailwind.config.js
+4. **Test on multiple browsers** - Safari can be finicky with CSS animations
+5. **Performance** - Use `will-change: transform` on animated elements if needed
+
+This spec should give Replit everything it needs to build a premium, polished hero visual that matches your brand quality.
