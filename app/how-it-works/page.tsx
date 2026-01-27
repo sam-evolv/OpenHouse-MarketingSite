@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Upload,
   Cpu,
@@ -376,11 +377,14 @@ export default function HowItWorksPage() {
               <div className="relative w-[280px] sm:w-[300px] mx-auto lg:mx-0">
                 <div className="bg-neutral-900 rounded-[2.5rem] p-2 shadow-2xl border border-neutral-800">
                   <div className="bg-black rounded-[2.25rem] overflow-hidden aspect-[9/19.5] relative">
-                    <img 
+                    <Image 
                       src="/images/app-portal.png" 
                       alt="Pre-Handover Portal showing build progress, key dates, and property details"
-                      className="absolute top-0 left-0 w-full h-full object-cover object-top"
-                      style={{ imageRendering: 'auto' }}
+                      fill
+                      sizes="(max-width: 640px) 280px, 300px"
+                      quality={100}
+                      priority
+                      className="object-cover object-top"
                     />
                   </div>
                 </div>
@@ -462,11 +466,14 @@ export default function HowItWorksPage() {
               <div className="relative w-[280px] sm:w-[300px] mx-auto lg:mx-0">
                 <div className="bg-neutral-900 rounded-[2.5rem] p-2 shadow-2xl border border-neutral-800">
                   <div className="bg-black rounded-[2.25rem] overflow-hidden aspect-[9/19.5] relative">
-                    <img 
+                    <Image 
                       src="/images/app-assistant.png" 
                       alt="AI Property Assistant with chat interface and quick action buttons"
-                      className="absolute top-0 left-0 w-full h-full object-cover object-top"
-                      style={{ imageRendering: 'auto' }}
+                      fill
+                      sizes="(max-width: 640px) 280px, 300px"
+                      quality={100}
+                      priority
+                      className="object-cover object-top"
                     />
                   </div>
                 </div>
