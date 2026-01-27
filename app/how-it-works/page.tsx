@@ -376,11 +376,10 @@ export default function HowItWorksPage() {
               <div className="relative w-[280px] sm:w-[300px] mx-auto lg:mx-0">
                 <div className="bg-neutral-900 rounded-[2.5rem] p-2 shadow-2xl border border-neutral-800">
                   <div className="bg-black rounded-[2.25rem] overflow-hidden aspect-[9/19.5] relative">
-                    {/* Crop Safari toolbar by scaling image to fill and hiding overflow */}
                     <img 
                       src="/images/app-portal.png" 
                       alt="Pre-Handover Portal showing build progress, key dates, and property details"
-                      className="absolute top-0 left-0 w-full h-[115%] object-cover object-top"
+                      className="absolute top-0 left-0 w-full h-full object-cover object-top"
                       style={{ imageRendering: 'auto' }}
                     />
                   </div>
