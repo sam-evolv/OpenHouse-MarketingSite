@@ -27,7 +27,9 @@ export default function ContactPage() {
                 <p className="text-hint mb-6">
                   Book a 30-minute demo tailored to your development's needs.
                 </p>
-                <Button className="w-full">Schedule now</Button>
+                <Button className="w-full" asChild>
+                  <a href="mailto:sam@openhouseai.ie?subject=Demo%20Request%20-%20OpenHouse%20Ai">Schedule now</a>
+                </Button>
               </CardContent>
             </Card>
 
@@ -43,7 +45,7 @@ export default function ContactPage() {
                   Have questions? Get in touch with our team directly.
                 </p>
                 <Button variant="outline" className="w-full" asChild>
-                  <a href="mailto:hello@openhouse.ai">hello@openhouse.ai</a>
+                  <a href="mailto:sam@openhouseai.ie">sam@openhouseai.ie</a>
                 </Button>
               </CardContent>
             </Card>
