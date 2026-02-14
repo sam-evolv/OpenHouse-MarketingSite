@@ -1,300 +1,215 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
+import { Container } from "@/components/ui/container";
+import { ModuleHero } from "@/components/hero/ModuleHero";
+import { SalesFloatingCards } from "@/components/hero/cards/SalesCards";
+import heroBackground from "@/attached_assets/stock_images/apartment_building_l_a39a5316.jpg";
 import {
-  ArrowRight,
   TrendingUp,
   Users,
   CreditCard,
-  BarChart2,
-  ClipboardList,
-  CalendarCheck,
-  UserCheck,
-  PieChart,
+  BarChart3,
+  Bell,
+  FileText,
+  ArrowRight,
+  Home,
+  ChevronLeft,
 } from "lucide-react";
 import Link from "next/link";
-import { Container } from "@/components/ui/container";
 
-/* ─── animation variants ─── */
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
-  },
+export const metadata = {
+  title: "Sales Module — Pipeline to Contract | OpenHouse Ai",
+  description:
+    "Track every lead, viewing, and deposit in one place. Replace scattered spreadsheets with a single sales pipeline built for property developers.",
 };
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-  },
-};
-
-/* ─── data ─── */
 const features = [
+  {
+    icon: TrendingUp,
+    title: "Visual Pipeline",
+    description:
+      "See every unit from enquiry to contract signed. Drag-and-drop stages, no training needed.",
+  },
   {
     icon: Users,
     title: "Lead Management",
     description:
-      "Capture and track every enquiry from the moment it arrives. No more lost leads in email threads or scribbled on notepads at show houses.",
-  },
-  {
-    icon: CalendarCheck,
-    title: "Booking Management",
-    description:
-      "Manage booking deposits, reservation agreements, and purchaser timelines from one dashboard. Know exactly where every unit stands.",
+      "Capture leads from Savills, Sherry Fitz, your website — all in one feed with source tracking.",
   },
   {
     icon: CreditCard,
     title: "Deposit Tracking",
     description:
-      "Track booking deposits, stage payments, and balance due dates. Automated reminders mean nothing falls through the cracks.",
+      "Record booking deposits, track payment status, and flag outstanding balances automatically.",
   },
   {
-    icon: BarChart2,
-    title: "Agent Dashboards",
+    icon: Bell,
+    title: "Real-Time Alerts",
     description:
-      "Give your sales agents real-time visibility into their pipeline. See conversion rates, response times, and revenue by agent.",
+      "Get notified when new enquiries land, viewings are booked, or contracts are signed.",
   },
   {
-    icon: ClipboardList,
-    title: "Unit Inventory",
+    icon: FileText,
+    title: "Agent Reporting",
     description:
-      "Live availability across every phase and house type. Update status in seconds — available, reserved, sale agreed, closed.",
+      "See which agents convert and which developments move fastest — data you never had before.",
   },
   {
-    icon: PieChart,
-    title: "Sales Reporting",
+    icon: BarChart3,
+    title: "Sales Analytics",
     description:
-      "Weekly pipeline reports generated automatically. Revenue forecasting, conversion funnels, and phase-by-phase performance at a glance.",
-  },
-];
-
-const painPoints = [
-  {
-    before: "Sales leads tracked in personal email inboxes",
-    after: "Centralised pipeline visible to the entire team",
-  },
-  {
-    before: "Booking status updated via WhatsApp messages",
-    after: "Real-time unit status dashboard with audit trail",
-  },
-  {
-    before: "Deposit tracking in Excel with manual formulas",
-    after: "Automated deposit tracking with payment reminders",
-  },
-  {
-    before: "Weekly reports compiled manually every Friday",
-    after: "Live dashboards and auto-generated reports",
+      "Weekly velocity, conversion rates, average time-to-sale — all calculated, never estimated.",
   },
 ];
 
 export default function SalesPage() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <div className="min-h-screen bg-carbon">
-      {/* ━━━ HERO ━━━ */}
-      <section className="relative min-h-[85vh] md:min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 hero-gradient-animated" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(96,165,250,0.08)_0%,transparent_50%)]" />
+    <main>
+      {/* ── Module Badge ── */}
+      <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
+        <Link
+          href="/"
+          className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium backdrop-blur-md hover:bg-blue-500/20 transition-all duration-300"
+        >
+          <ChevronLeft className="w-3 h-3" />
+          <Home className="w-3 h-3" />
+          <span className="hidden sm:inline">Platform</span>
+        </Link>
+      </div>
 
-        <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-44 sm:pt-48 md:pt-40 lg:pt-32 pb-20">
-          <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-            className="max-w-3xl"
-          >
-            {/* Breadcrumb badge */}
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 mb-8 hover:bg-blue-500/15 transition-colors"
-            >
-              <TrendingUp className="w-4 h-4 text-blue-400" />
-              <span className="text-sm font-medium text-blue-400">
-                OpenHouse Sales
-              </span>
-            </Link>
+      {/* ── Hero ── */}
+      <ModuleHero
+        backgroundImage={heroBackground}
+        backgroundAlt="Modern property sales reception"
+        badge={
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30">
+            <TrendingUp className="w-4 h-4 text-blue-400" />
+            <span className="text-sm font-medium text-blue-400">Sales Module</span>
+          </div>
+        }
+        title={
+          <>
+            From first enquiry to{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400">
+              contract signed
+            </span>
+          </>
+        }
+        subtitle="Track every lead, viewing, and deposit across your developments. One pipeline replaces the spreadsheets, agent emails, and guesswork."
+        primaryCta={{ href: "/contact", label: "Book a Demo" }}
+        secondaryCta={{ href: "#features", label: "See Features" }}
+      >
+        <SalesFloatingCards />
+      </ModuleHero>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] mb-6 font-heading">
-              Manage your pipeline from{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400">
-                enquiry to contract
-              </span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-porcelain/70 max-w-2xl mb-10 leading-relaxed">
-              Stop losing leads in email threads. Track every enquiry, booking,
-              and deposit from one dashboard built specifically for residential
-              developers.
+      {/* ── Before / After ── */}
+      <section className="relative py-24 bg-carbon">
+        <Container>
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
+              Before &amp; After
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/contact"
-                className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-500 to-gold" />
-                <span className="relative z-10 text-carbon flex items-center gap-2">
-                  Book a Demo
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-porcelain border border-white/20 hover:border-gold/50 rounded-full transition-all duration-300 hover:bg-white/5"
-              >
-                ← Back to Platform
-              </Link>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
+              What changes when you switch
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.03]">
+              <p className="text-sm font-semibold text-red-400 mb-4 uppercase tracking-wider">
+                Without OpenHouse
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Sales tracked across 3+ spreadsheets",
+                  "Agent updates via WhatsApp and email",
+                  "No visibility on conversion rates",
+                  "Deposits tracked manually with errors",
+                  "Weekly sales meetings just to get updates",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-porcelain/60">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-400/40 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </motion.div>
-        </div>
+            <div className="p-8 rounded-2xl border border-blue-500/20 bg-blue-500/[0.03]">
+              <p className="text-sm font-semibold text-blue-400 mb-4 uppercase tracking-wider">
+                With OpenHouse Sales
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "One visual pipeline for all developments",
+                  "Real-time lead feed with source tracking",
+                  "Conversion rates calculated automatically",
+                  "Deposit status updated in real-time",
+                  "Dashboard replaces status meetings",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-porcelain">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
       </section>
 
-      {/* ━━━ BEFORE / AFTER ━━━ */}
-      <section className="py-20 sm:py-28 bg-slate">
+      {/* ── Features ── */}
+      <section id="features" className="relative py-24 bg-carbon">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
         <Container>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="text-center mb-16"
-          >
-            <motion.p
-              variants={fadeInUp}
-              className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold"
-            >
-              Before &amp; After
-            </motion.p>
-            <motion.h2
-              variants={fadeInUp}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-porcelain mb-4 font-heading"
-            >
-              From chaos to clarity
-            </motion.h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {painPoints.map((point, index) => (
-              <motion.div
-                key={index}
-                initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-carbon/60 border border-white/10 rounded-2xl p-6 elev-1-dark"
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
+              Capabilities
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
+              Everything you need to sell smarter
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {features.map((f) => (
+              <div
+                key={f.title}
+                className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-blue-500/20 hover:bg-blue-500/[0.03] transition-all duration-500"
               >
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-red-400 text-xs font-bold">✕</span>
-                  </div>
-                  <p className="text-sm text-red-300 leading-relaxed line-through decoration-red-400/40">
-                    {point.before}
-                  </p>
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4">
+                  <f.icon className="w-5 h-5 text-blue-400" />
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-emerald-400 text-xs font-bold">✓</span>
-                  </div>
-                  <p className="text-sm text-emerald-300 leading-relaxed">
-                    {point.after}
-                  </p>
-                </div>
-              </motion.div>
+                <h3 className="text-lg font-semibold text-white mb-2">{f.title}</h3>
+                <p className="text-sm text-porcelain/60 leading-relaxed">
+                  {f.description}
+                </p>
+              </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* ━━━ FEATURES ━━━ */}
-      <section className="py-20 sm:py-28 bg-carbon">
+      {/* ── CTA ── */}
+      <section className="relative py-24 bg-carbon">
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-500/[0.04] to-transparent" />
         <Container>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="text-center mb-16"
-          >
-            <motion.div
-              variants={fadeInUp}
-              className="inline-flex items-center px-4 py-1.5 rounded-full border border-gold/30 text-gold text-xs tracking-widest font-medium uppercase mb-6"
-            >
-              Capabilities
-            </motion.div>
-            <motion.h2
-              variants={fadeInUp}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-porcelain font-heading"
-            >
-              Everything your sales team needs
-            </motion.h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <motion.div
-                  key={feature.title}
-                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ y: -4 }}
-                  className="bg-carbon/60 border border-white/10 rounded-2xl p-6 hover:border-gold/30 transition-colors elev-1-dark"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-porcelain mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-porcelain/70 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
-
-      {/* ━━━ CTA ━━━ */}
-      <section className="py-20 bg-gradient-to-b from-carbon to-slate border-t border-gold/10">
-        <Container>
-          <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-porcelain mb-4 font-heading">
-              Ready to take control of your{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400">
-                sales pipeline?
-              </span>
+          <div className="relative text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-heading">
+              See the Sales module live
             </h2>
-            <p className="text-lg text-hint max-w-xl mx-auto mb-10">
-              See how OpenHouse Sales replaces spreadsheets and WhatsApp with a
-              purpose-built pipeline.
+            <p className="text-lg text-porcelain/70 mb-8">
+              We&apos;ll walk you through the pipeline running on a live 238-home development.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-carbon font-semibold rounded-full hover:bg-gold/90 transition-all shadow-lg shadow-gold/20 hover:shadow-gold/30 hover:scale-105"
+              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
             >
-              Book a Demo
-              <ArrowRight className="w-5 h-5" />
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500" />
+              <span className="relative z-10 text-white flex items-center gap-2">
+                Book a Demo
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </span>
             </Link>
-          </motion.div>
+          </div>
         </Container>
       </section>
-    </div>
+    </main>
   );
 }
 

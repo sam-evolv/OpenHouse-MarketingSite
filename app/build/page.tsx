@@ -1,300 +1,215 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
+import { Container } from "@/components/ui/container";
+import { ModuleHero } from "@/components/hero/ModuleHero";
+import { BuildFloatingCards } from "@/components/hero/cards/BuildCards";
+import heroBackground from "@/attached_assets/stock_images/apartment_building_l_645cb5c9.jpg";
 import {
-  ArrowRight,
   FolderOpen,
-  FileCheck,
-  Calculator,
-  ShieldCheck,
-  Users,
-  FolderArchive,
-  ClipboardCheck,
+  Shield,
+  FileText,
+  CircleDollarSign,
+  Search,
+  Upload,
+  ArrowRight,
+  Home,
+  ChevronLeft,
 } from "lucide-react";
 import Link from "next/link";
-import { Container } from "@/components/ui/container";
 
-/* ─── animation variants ─── */
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
-  },
+export const metadata = {
+  title: "Build Module — Compliance & Document Hub | OpenHouse Ai",
+  description:
+    "Organise every certificate, specification, and document before handover. Compliance tracking that works across all your developments.",
 };
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-  },
-};
-
-/* ─── data ─── */
 const features = [
   {
-    icon: FolderArchive,
-    title: "Smart Document Archive",
+    icon: Shield,
+    title: "Compliance Tracker",
     description:
-      "Every cert, drawing, spec, and compliance document — organised by phase, house type, and unit. Searchable, version-controlled, always accessible.",
+      "Planning certs, fire safety, BER, BCAR — track every requirement per unit with deadline alerts.",
   },
   {
-    icon: Calculator,
-    title: "PC Sum Tracking",
+    icon: FileText,
+    title: "Smart Archive",
     description:
-      "Track provisional and prime cost sums against actuals. Purchasers see their selections and balances without you fielding calls.",
+      "Upload once, access forever. Every document tagged by development, phase, unit, and category.",
   },
   {
-    icon: ShieldCheck,
-    title: "Compliance Management",
+    icon: CircleDollarSign,
+    title: "PC Sum Management",
     description:
-      "BER certs, HomeBond cover, planning compliance, assigned certifier sign-offs — all tracked against completion milestones.",
+      "Track provisional cost sums, customer selections, and approved upgrades in one place.",
   },
   {
-    icon: Users,
-    title: "Purchaser Portal",
+    icon: Search,
+    title: "AI-Powered Search",
     description:
-      "Give buyers a branded portal showing their unit's progress, document access, selections, and key dates. Reduces calls by up to 70%.",
+      "Find any document instantly. Search across all developments by keyword, unit, or spec type.",
   },
   {
-    icon: ClipboardCheck,
-    title: "Snagging & Defects",
+    icon: Upload,
+    title: "Bulk Upload",
     description:
-      "Digital snagging lists with photo evidence, assigned trades, and completion tracking. No more paper lists that get lost on site.",
+      "Drop entire folders of specs and certificates. Auto-categorised by AI, ready for handover.",
   },
   {
-    icon: FileCheck,
-    title: "Handover Preparation",
+    icon: FolderOpen,
+    title: "Handover Packs",
     description:
-      "Automatically compile handover packs from your document archive. Every cert, manual, and warranty — ready when keys are handed over.",
-  },
-];
-
-const painPoints = [
-  {
-    before: "Documents scattered across Dropbox, email, and site offices",
-    after: "Single searchable archive organised by scheme, phase, and unit",
-  },
-  {
-    before: "PC sum tracking in spreadsheets with manual updates",
-    after: "Live PC sum dashboard with purchaser self-service",
-  },
-  {
-    before: "Compliance tracked on whiteboards and memory",
-    after: "Automated compliance checklist tied to build milestones",
-  },
-  {
-    before: "Buyers calling weekly asking 'what's happening with my house?'",
-    after: "Purchaser portal with live progress and document access",
+      "Auto-generate complete handover packs per unit — every cert, manual, and spec in one bundle.",
   },
 ];
 
 export default function BuildPage() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <div className="min-h-screen bg-carbon">
-      {/* ━━━ HERO ━━━ */}
-      <section className="relative min-h-[85vh] md:min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 hero-gradient-animated" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(52,211,153,0.08)_0%,transparent_50%)]" />
+    <main>
+      {/* ── Module Badge ── */}
+      <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
+        <Link
+          href="/"
+          className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium backdrop-blur-md hover:bg-emerald-500/20 transition-all duration-300"
+        >
+          <ChevronLeft className="w-3 h-3" />
+          <Home className="w-3 h-3" />
+          <span className="hidden sm:inline">Platform</span>
+        </Link>
+      </div>
 
-        <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-44 sm:pt-48 md:pt-40 lg:pt-32 pb-20">
-          <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-            className="max-w-3xl"
-          >
-            {/* Breadcrumb badge */}
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-8 hover:bg-emerald-500/15 transition-colors"
-            >
-              <FolderOpen className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm font-medium text-emerald-400">
-                OpenHouse Build
-              </span>
-            </Link>
+      {/* ── Hero ── */}
+      <ModuleHero
+        backgroundImage={heroBackground}
+        backgroundAlt="Modern apartment building architecture"
+        badge={
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+            <FolderOpen className="w-4 h-4 text-emerald-400" />
+            <span className="text-sm font-medium text-emerald-400">Build Module</span>
+          </div>
+        }
+        title={
+          <>
+            Every cert, spec, and document{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-400">
+              organised before handover
+            </span>
+          </>
+        }
+        subtitle="Stop chasing compliance documents across email threads and shared drives. One hub for every certificate, specification, and PC sum across all your developments."
+        primaryCta={{ href: "/contact", label: "Book a Demo" }}
+        secondaryCta={{ href: "#features", label: "See Features" }}
+      >
+        <BuildFloatingCards />
+      </ModuleHero>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] mb-6 font-heading">
-              Compliance, documents, and selections —{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-400">
-                under control
-              </span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-porcelain/70 max-w-2xl mb-10 leading-relaxed">
-              Stop chasing documents across Dropbox folders and email chains.
-              Manage every cert, spec, and purchaser selection from one
-              centralised platform.
+      {/* ── Before / After ── */}
+      <section className="relative py-24 bg-carbon">
+        <Container>
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+              Before &amp; After
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/contact"
-                className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-500 to-gold" />
-                <span className="relative z-10 text-carbon flex items-center gap-2">
-                  Book a Demo
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-porcelain border border-white/20 hover:border-gold/50 rounded-full transition-all duration-300 hover:bg-white/5"
-              >
-                ← Back to Platform
-              </Link>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
+              What changes when you switch
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.03]">
+              <p className="text-sm font-semibold text-red-400 mb-4 uppercase tracking-wider">
+                Without OpenHouse
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Certs scattered across emails and drives",
+                  "Compliance tracked in spreadsheets per phase",
+                  "PC sums managed in separate files",
+                  "Handover packs assembled manually",
+                  "Missing documents discovered at completion",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-porcelain/60">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-400/40 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </motion.div>
-        </div>
+            <div className="p-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.03]">
+              <p className="text-sm font-semibold text-emerald-400 mb-4 uppercase tracking-wider">
+                With OpenHouse Build
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Every document in one searchable archive",
+                  "Compliance dashboard with deadline tracking",
+                  "PC sums linked to units with approval flow",
+                  "Handover packs auto-generated per unit",
+                  "Nothing missing — AI flags gaps before you do",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-porcelain">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
       </section>
 
-      {/* ━━━ BEFORE / AFTER ━━━ */}
-      <section className="py-20 sm:py-28 bg-slate">
+      {/* ── Features ── */}
+      <section id="features" className="relative py-24 bg-carbon">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.02] to-transparent" />
         <Container>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="text-center mb-16"
-          >
-            <motion.p
-              variants={fadeInUp}
-              className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold"
-            >
-              Before &amp; After
-            </motion.p>
-            <motion.h2
-              variants={fadeInUp}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-porcelain mb-4 font-heading"
-            >
-              From scattered to structured
-            </motion.h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {painPoints.map((point, index) => (
-              <motion.div
-                key={index}
-                initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-carbon/60 border border-white/10 rounded-2xl p-6 elev-1-dark"
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+              Capabilities
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
+              Construction-grade document control
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {features.map((f) => (
+              <div
+                key={f.title}
+                className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/20 hover:bg-emerald-500/[0.03] transition-all duration-500"
               >
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-red-400 text-xs font-bold">✕</span>
-                  </div>
-                  <p className="text-sm text-red-300 leading-relaxed line-through decoration-red-400/40">
-                    {point.before}
-                  </p>
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
+                  <f.icon className="w-5 h-5 text-emerald-400" />
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-emerald-400 text-xs font-bold">✓</span>
-                  </div>
-                  <p className="text-sm text-emerald-300 leading-relaxed">
-                    {point.after}
-                  </p>
-                </div>
-              </motion.div>
+                <h3 className="text-lg font-semibold text-white mb-2">{f.title}</h3>
+                <p className="text-sm text-porcelain/60 leading-relaxed">
+                  {f.description}
+                </p>
+              </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* ━━━ FEATURES ━━━ */}
-      <section className="py-20 sm:py-28 bg-carbon">
+      {/* ── CTA ── */}
+      <section className="relative py-24 bg-carbon">
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/[0.04] to-transparent" />
         <Container>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="text-center mb-16"
-          >
-            <motion.div
-              variants={fadeInUp}
-              className="inline-flex items-center px-4 py-1.5 rounded-full border border-gold/30 text-gold text-xs tracking-widest font-medium uppercase mb-6"
-            >
-              Capabilities
-            </motion.div>
-            <motion.h2
-              variants={fadeInUp}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-porcelain font-heading"
-            >
-              Control your build, end to end
-            </motion.h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <motion.div
-                  key={feature.title}
-                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ y: -4 }}
-                  className="bg-carbon/60 border border-white/10 rounded-2xl p-6 hover:border-gold/30 transition-colors elev-1-dark"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-emerald-400" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-porcelain mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-porcelain/70 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
-
-      {/* ━━━ CTA ━━━ */}
-      <section className="py-20 bg-gradient-to-b from-carbon to-slate border-t border-gold/10">
-        <Container>
-          <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-porcelain mb-4 font-heading">
-              Ready to bring your{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-400">
-                build process
-              </span>{" "}
-              into one place?
+          <div className="relative text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-heading">
+              See the Build module live
             </h2>
-            <p className="text-lg text-hint max-w-xl mx-auto mb-10">
-              See how OpenHouse Build replaces scattered folders with a
-              centralised document and compliance platform.
+            <p className="text-lg text-porcelain/70 mb-8">
+              We&apos;ll show you compliance tracking and document management running on a live development.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-carbon font-semibold rounded-full hover:bg-gold/90 transition-all shadow-lg shadow-gold/20 hover:shadow-gold/30 hover:scale-105"
+              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
             >
-              Book a Demo
-              <ArrowRight className="w-5 h-5" />
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-500" />
+              <span className="relative z-10 text-white flex items-center gap-2">
+                Book a Demo
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </span>
             </Link>
-          </motion.div>
+          </div>
         </Container>
       </section>
-    </div>
+    </main>
   );
 }
 
