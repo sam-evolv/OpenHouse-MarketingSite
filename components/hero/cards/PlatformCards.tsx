@@ -8,7 +8,7 @@ export function PlatformFloatingCards() {
   return (
     <>
       {/* Card 1: Sales mini */}
-      <FloatingCard depth={1} className="-translate-x-20 -translate-y-8" delay={0.6}>
+      <FloatingCard depth={1} className="-translate-x-28 -translate-y-4" delay={0.6}>
         <div className="w-56 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-center gap-3 mb-3">
@@ -34,7 +34,7 @@ export function PlatformFloatingCards() {
       </FloatingCard>
 
       {/* Card 2: Build mini */}
-      <FloatingCard depth={2} className="translate-x-16 -translate-y-24" delay={0.8}>
+      <FloatingCard depth={2} className="translate-x-12 -translate-y-32" delay={0.8}>
         <div className="w-56 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-center gap-3 mb-3">
@@ -60,7 +60,7 @@ export function PlatformFloatingCards() {
       </FloatingCard>
 
       {/* Card 3: AI Chat mini */}
-      <FloatingCard depth={2} className="-translate-x-8 translate-y-16" delay={0.9}>
+      <FloatingCard depth={2} className="-translate-x-12 translate-y-20" delay={0.9}>
         <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-center gap-3 mb-3">
@@ -92,7 +92,7 @@ export function PlatformFloatingCards() {
       </FloatingCard>
 
       {/* Card 4: Intelligence mini */}
-      <FloatingCard depth={3} className="translate-x-24 translate-y-20" delay={1.1}>
+      <FloatingCard depth={3} className="translate-x-36 translate-y-28" delay={1.1}>
         <div className="w-48 bg-gradient-to-br from-violet-500/20 to-violet-500/5 backdrop-blur-md rounded-2xl border border-violet-500/30 shadow-2xl overflow-hidden">
           <div className="p-4 text-center">
             <div className="w-8 h-8 mx-auto mb-2 rounded-lg bg-violet-500/20 flex items-center justify-center">

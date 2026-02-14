@@ -8,7 +8,7 @@ export function IntelligenceFloatingCards() {
   return (
     <>
       {/* Card 1: Analytics chart */}
-      <FloatingCard depth={1} className="-translate-x-16 translate-y-12" delay={0.6}>
+      <FloatingCard depth={1} className="-translate-x-24 translate-y-6" delay={0.6}>
         <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center">
@@ -41,7 +41,7 @@ export function IntelligenceFloatingCards() {
       </FloatingCard>
 
       {/* Card 2: Pattern alert */}
-      <FloatingCard depth={2} className="translate-x-8 -translate-y-16" delay={0.8}>
+      <FloatingCard depth={2} className="translate-x-4 -translate-y-28" delay={0.8}>
         <div className="w-72 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-start gap-3">
@@ -69,7 +69,7 @@ export function IntelligenceFloatingCards() {
       </FloatingCard>
 
       {/* Card 3: Engagement metric */}
-      <FloatingCard depth={3} className="translate-x-24 translate-y-20" delay={1.0}>
+      <FloatingCard depth={3} className="translate-x-32 translate-y-24" delay={1.0}>
         <div className="w-56 bg-gradient-to-br from-violet-500/20 to-violet-500/5 backdrop-blur-md rounded-2xl border border-violet-500/30 shadow-2xl overflow-hidden">
           <div className="p-5 text-center">
             <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-violet-500/20 flex items-center justify-center">
