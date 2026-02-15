@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -10,68 +10,21 @@ import {
   X,
   LogIn,
   ExternalLink,
-  ChevronDown,
-  TrendingUp,
-  FolderOpen,
-  Home,
-  BarChart3,
-  ArrowRight,
 } from "lucide-react";
 import { appRoutes } from "@/lib/env";
 
-/* ─── module dropdown data ─── */
-const platformModules = [
-  {
-    title: "Sales",
-    href: "/sales",
-    description: "Pipeline & lead management",
-    icon: TrendingUp,
-    color: "text-blue-400",
-    bg: "bg-blue-500/10",
-    border: "border-blue-500/20",
-  },
-  {
-    title: "Build",
-    href: "/build",
-    description: "Compliance & documents",
-    icon: FolderOpen,
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10",
-    border: "border-emerald-500/20",
-  },
-  {
-    title: "Handover",
-    href: "/handover",
-    description: "AI resident portal",
-    icon: Home,
-    color: "text-gold",
-    bg: "bg-gold/10",
-    border: "border-gold/20",
-  },
-  {
-    title: "Intelligence",
-    href: "/intelligence",
-    description: "Insights & analytics",
-    icon: BarChart3,
-    color: "text-violet-400",
-    bg: "bg-violet-500/10",
-    border: "border-violet-500/20",
-  },
-];
-
-const navLinks = [
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/docs", label: "Docs" },
+const moduleLinks = [
+  { href: "/sales", label: "Sales" },
+  { href: "/build", label: "Build" },
+  { href: "/handover", label: "Handover" },
+  { href: "/intelligence", label: "Intelligence" },
 ];
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showLoginTooltip, setShowLoginTooltip] = useState(false);
-  const [isPlatformOpen, setIsPlatformOpen] = useState(false);
   const pathname = usePathname();
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,23 +33,6 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  /* close dropdown on click outside */
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setIsPlatformOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const isModulePage =
-    pathname === "/sales" ||
-    pathname === "/build" ||
-    pathname === "/handover" ||
-    pathname === "/intelligence";
 
   return (
     <nav
@@ -123,98 +59,9 @@ export function Navigation() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation — modules across the top */}
           <div className="hidden md:flex items-center space-x-8">
-            {/* Platform dropdown */}
-            <div ref={dropdownRef} className="relative">
-              <button
-                onClick={() => setIsPlatformOpen(!isPlatformOpen)}
-                className={cn(
-                  "flex items-center gap-1.5 text-sm font-medium transition-colors duration-200",
-                  isModulePage || isPlatformOpen
-                    ? "text-gold"
-                    : "text-porcelain hover:text-gold"
-                )}
-              >
-                Platform
-                <ChevronDown
-                  className={cn(
-                    "w-3.5 h-3.5 transition-transform duration-200",
-                    isPlatformOpen && "rotate-180"
-                  )}
-                />
-              </button>
-
-              {/* Dropdown */}
-              <div
-                className={cn(
-                  "absolute top-full left-1/2 -translate-x-1/2 mt-4 transition-all duration-200",
-                  isPlatformOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 -translate-y-2 pointer-events-none"
-                )}
-              >
-                <div className="relative bg-carbon/95 border border-white/10 rounded-2xl p-3 shadow-2xl backdrop-blur-xl w-[340px]">
-                  {/* Arrow */}
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-carbon/95 border-l border-t border-white/10 rotate-45" />
-
-                  {/* Module cards */}
-                  <div className="space-y-1">
-                    {platformModules.map((mod) => {
-                      const Icon = mod.icon;
-                      return (
-                        <Link
-                          key={mod.href}
-                          href={mod.href}
-                          onClick={() => setIsPlatformOpen(false)}
-                          className={cn(
-                            "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group",
-                            pathname === mod.href
-                              ? "bg-white/5"
-                              : "hover:bg-white/5"
-                          )}
-                        >
-                          <div
-                            className={cn(
-                              "w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0",
-                              mod.bg,
-                              "border",
-                              mod.border
-                            )}
-                          >
-                            <Icon className={cn("w-4.5 h-4.5", mod.color)} />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-porcelain">
-                              {mod.title}
-                            </p>
-                            <p className="text-xs text-hint truncate">
-                              {mod.description}
-                            </p>
-                          </div>
-                          <ArrowRight className="w-3.5 h-3.5 text-porcelain/20 group-hover:text-gold transition-colors" />
-                        </Link>
-                      );
-                    })}
-                  </div>
-
-                  {/* View all link */}
-                  <div className="mt-2 pt-2 border-t border-white/5">
-                    <Link
-                      href="/"
-                      onClick={() => setIsPlatformOpen(false)}
-                      className="flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium text-gold hover:text-gold/80 transition-colors"
-                    >
-                      View Platform Overview
-                      <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Other nav links */}
-            {navLinks.map((link) => (
+            {moduleLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -313,43 +160,7 @@ export function Navigation() {
             role="menu"
           >
             <div className="flex flex-col space-y-4">
-              {/* Platform modules */}
-              <p className="text-xs font-semibold uppercase tracking-wider text-hint px-1">
-                Platform
-              </p>
-              {platformModules.map((mod) => {
-                const Icon = mod.icon;
-                return (
-                  <Link
-                    key={mod.href}
-                    href={mod.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={cn(
-                      "flex items-center gap-3 px-1 text-sm font-medium transition-colors",
-                      pathname === mod.href
-                        ? "text-gold"
-                        : "text-porcelain hover:text-gold"
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        "w-7 h-7 rounded-md flex items-center justify-center",
-                        mod.bg,
-                        "border",
-                        mod.border
-                      )}
-                    >
-                      <Icon className={cn("w-3.5 h-3.5", mod.color)} />
-                    </div>
-                    {mod.title}
-                  </Link>
-                );
-              })}
-
-              <div className="border-t border-hint/10 pt-4" />
-
-              {/* Other links */}
-              {navLinks.map((link) => (
+              {moduleLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -364,6 +175,8 @@ export function Navigation() {
                   {link.label}
                 </Link>
               ))}
+
+              <div className="border-t border-hint/10 pt-4" />
 
               {/* Mobile Login/Register */}
               <a
@@ -388,4 +201,3 @@ export function Navigation() {
     </nav>
   );
 }
-

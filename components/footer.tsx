@@ -3,12 +3,11 @@ import Image from "next/image";
 import { env } from "@/lib/env";
 
 const productLinks = [
-  { label: "Features", href: "/features" },
-  { label: "Engagement Model", href: "/#engagement-model" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Documentation", href: "/docs" },
+  { label: "Sales", href: "/sales" },
+  { label: "Build", href: "/build" },
+  { label: "Handover", href: "/handover" },
+  { label: "Intelligence", href: "/intelligence" },
   { label: "Contact", href: "/contact" },
-  { label: "Support", href: "/support" },
 ];
 
 const legalLinks = [
@@ -49,7 +48,7 @@ export function Footer() {
           {/* Product Links */}
           <div>
             <h4 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
-              Product
+              Platform
             </h4>
             <ul className="space-y-2">
               {productLinks.map((link) => (

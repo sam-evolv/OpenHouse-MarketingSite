@@ -376,12 +376,6 @@ export default function PlatformPage() {
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
-            <p className="text-sm text-porcelain/40 mt-6">
-              From €75 per home &middot; No long-term contracts &middot;{" "}
-              <Link href="/pricing" className="text-gold/60 hover:text-gold transition-colors underline underline-offset-2">
-                See pricing
-              </Link>
-            </p>
           </div>
         </Container>
       </section>
