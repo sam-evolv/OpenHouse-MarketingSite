@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { PlatformFloatingCards } from "@/components/hero/cards/PlatformCards";
-import heroBackground from "@/attached_assets/stock_images/apartment_building_l_6b93b17d.jpg";
+import heroBackground from "@/attached_assets/stock_images/platform_aerial_network.png";
 import {
   TrendingUp,
   FolderOpen,
@@ -80,6 +80,7 @@ export default function PlatformPage() {
       <ModuleHero
         backgroundImage={heroBackground}
         accentColor="gold"
+        imagePosition="object-top"
         backgroundAlt="Modern apartment lobby with warm golden light"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">

@@ -10,6 +10,7 @@ interface ModuleHeroProps {
   backgroundImage: StaticImageData;
   backgroundAlt: string;
   accentColor?: string; // e.g. "blue" | "emerald" | "violet" | "gold"
+  imagePosition?: string; // e.g. "object-bottom" | "object-top"
   badge: ReactNode;
   title: ReactNode;
   subtitle: string;
@@ -29,6 +30,7 @@ export function ModuleHero({
   backgroundImage,
   backgroundAlt,
   accentColor,
+  imagePosition,
   badge,
   title,
   subtitle,
@@ -84,7 +86,7 @@ export function ModuleHero({
           alt={backgroundAlt}
           fill
           priority
-          className="object-cover"
+          className={`object-cover ${imagePosition || ""}`}
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-carbon/60" />
