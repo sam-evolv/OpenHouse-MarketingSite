@@ -2,6 +2,9 @@ import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { BuildFloatingCards } from "@/components/hero/cards/BuildCards";
 import heroBackground from "@/attached_assets/stock_images/build_construction_aerial.png";
+import smartArchive from "@/attached_assets/stock_images/smart_archive.png";
+import complianceTracker from "@/attached_assets/stock_images/compliance_tracker.png";
+import Image from "next/image";
 import {
   FolderOpen,
   Shield,
@@ -12,6 +15,8 @@ import {
   ArrowRight,
   Home,
   ChevronLeft,
+  Archive,
+  ClipboardCheck,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -83,7 +88,9 @@ export default function BuildPage() {
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
             <FolderOpen className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm font-medium text-emerald-400">Build Module</span>
+            <span className="text-sm font-medium text-emerald-400">
+              Build Module
+            </span>
           </div>
         }
         title={
@@ -125,7 +132,10 @@ export default function BuildPage() {
                   "Handover packs assembled manually",
                   "Missing documents discovered at completion",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-porcelain/60">
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm text-porcelain/60"
+                  >
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-400/40 flex-shrink-0" />
                     {item}
                   </li>
@@ -144,12 +154,127 @@ export default function BuildPage() {
                   "Handover packs auto-generated per unit",
                   "Nothing missing — AI flags gaps before you do",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-porcelain">
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm text-porcelain"
+                  >
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Smart Archive Showcase ── */}
+      <section className="relative py-24 bg-carbon overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.03] via-transparent to-transparent" />
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Screenshot first on mobile, second on desktop */}
+            <div className="relative order-2 lg:order-1">
+              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-emerald-400/5 to-emerald-500/20 rounded-3xl blur-2xl" />
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-emerald-500/10">
+                <Image
+                  src={smartArchive}
+                  alt="Smart Archive showing 98 documents organised by discipline — Architectural, Mechanical, Electrical, Handover Documentation and more"
+                  className="w-full h-auto"
+                  quality={95}
+                  priority
+                />
+              </div>
+            </div>
+            {/* Text */}
+            <div className="order-1 lg:order-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                  <Archive className="w-5 h-5 text-emerald-400" />
+                </div>
+                <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 font-semibold">
+                  Smart Archive
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-6">
+                950 documents, zero chaos
+              </h2>
+              <p className="text-lg text-porcelain/60 mb-8 leading-relaxed">
+                Every file automatically sorted by discipline — Architectural,
+                Mechanical, Electrical, Civil, Plumbing, Structural. Must-Read
+                docs are flagged. Videos get their own tab. Search finds
+                anything in seconds.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  "9 disciplines",
+                  "Must-Read tab",
+                  "Video walkthroughs",
+                  "AI search",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Compliance Tracker Showcase ── */}
+      <section className="relative py-24 bg-carbon overflow-hidden">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Text */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                  <ClipboardCheck className="w-5 h-5 text-emerald-400" />
+                </div>
+                <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 font-semibold">
+                  Compliance Tracker
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-6">
+                Every cert, every unit, nothing missing
+              </h2>
+              <p className="text-lg text-porcelain/60 mb-8 leading-relaxed">
+                Electrical, BCMS, BER, HomeBond, Gas Safety, Fire Safety,
+                Structural Warranty — tracked per unit with upload buttons and
+                progress bars. You see exactly what&apos;s missing before your
+                solicitor does.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  "7 cert types",
+                  "Per-unit tracking",
+                  "Progress %",
+                  "Bulk upload",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            {/* Screenshot */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-emerald-400/5 to-emerald-500/20 rounded-3xl blur-2xl" />
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-emerald-500/10">
+                <Image
+                  src={complianceTracker}
+                  alt="Compliance Documents tracker showing 75 units with Electrical, BCMS, BER, HomeBond, Gas Safety, Fire Safety, and Structural Warranty certificates per unit"
+                  className="w-full h-auto"
+                  quality={95}
+                />
+              </div>
             </div>
           </div>
         </Container>
@@ -176,7 +301,9 @@ export default function BuildPage() {
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
                   <f.icon className="w-5 h-5 text-emerald-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{f.title}</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  {f.title}
+                </h3>
                 <p className="text-sm text-porcelain/60 leading-relaxed">
                   {f.description}
                 </p>
@@ -195,7 +322,8 @@ export default function BuildPage() {
               See the Build module live
             </h2>
             <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;ll show you compliance tracking and document management running on a live development.
+              We&apos;ll show you compliance tracking and document management
+              running on a live development.
             </p>
             <Link
               href="/contact"
@@ -213,4 +341,3 @@ export default function BuildPage() {
     </main>
   );
 }
-

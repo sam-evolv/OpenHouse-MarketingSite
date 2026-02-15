@@ -2,6 +2,11 @@ import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { SalesFloatingCards } from "@/components/hero/cards/SalesCards";
 import heroBackground from "@/attached_assets/stock_images/sales_show_home.png";
+import salesPipeline from "@/attached_assets/stock_images/sales_pipeline.png";
+import portfolioOverview from "@/attached_assets/stock_images/portfolio_overview.png";
+import portfolioComparison from "@/attached_assets/stock_images/portfolio_comparison.png";
+import salesVelocity from "@/attached_assets/stock_images/sales_velocity.png";
+import Image from "next/image";
 import {
   TrendingUp,
   Users,
@@ -12,6 +17,10 @@ import {
   ArrowRight,
   Home,
   ChevronLeft,
+  Columns3,
+  PieChart,
+  GitCompareArrows,
+  Activity,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -155,6 +164,158 @@ export default function SalesPage() {
         </Container>
       </section>
 
+      {/* ── Pipeline Showcase ── */}
+      <section className="relative py-24 bg-carbon overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] via-transparent to-transparent" />
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Text */}
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
+                Sales Pipeline
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-6">
+                Every unit, every stage, one screen
+              </h2>
+              <p className="text-lg text-porcelain/60 mb-8 leading-relaxed">
+                Track 15 data points per unit — price, release date, deposits,
+                contracts, queries, snag lists, drawdown dates, and more. No
+                more ringing agents for updates on a Tuesday morning.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {["75 units", "15 columns", "€27.8M revenue", "Real-time"].map(
+                  (tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-medium text-blue-300"
+                    >
+                      {tag}
+                    </span>
+                  ),
+                )}
+              </div>
+            </div>
+            {/* Screenshot */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-blue-400/5 to-blue-500/20 rounded-3xl blur-2xl" />
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-500/10">
+                <Image
+                  src={salesPipeline}
+                  alt="OpenHouse Sales Pipeline tracking 75 units with real-time deposit, contract, and handover status"
+                  className="w-full h-auto"
+                  quality={95}
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Portfolio Analytics ── */}
+      <section className="relative py-24 bg-carbon overflow-hidden">
+        <Container>
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
+              Portfolio Analytics
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
+              All your developments, one dashboard
+            </h2>
+            <p className="text-lg text-porcelain/60 max-w-2xl mx-auto">
+              Stop logging into separate spreadsheets per estate. See total
+              revenue, pipeline health, and performance benchmarks across every
+              development you manage.
+            </p>
+          </div>
+
+          {/* Three analytics screenshots in staggered grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Overview — large left */}
+            <div className="lg:row-span-2 group">
+              <div className="relative h-full rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-blue-500/30 transition-all duration-500">
+                <Image
+                  src={portfolioOverview}
+                  alt="Portfolio overview — 5 developments, 242 units, €76.1M revenue with pipeline funnel"
+                  className="w-full h-full object-cover object-top"
+                  quality={90}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+                      <PieChart className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">
+                      Portfolio Overview
+                    </h3>
+                  </div>
+                  <p className="text-sm text-porcelain/60">
+                    Total revenue, pipeline funnel, kitchen selection impact, and
+                    revenue split by development — one glance tells you
+                    everything.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Comparison — top right */}
+            <div className="group">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-blue-500/30 transition-all duration-500">
+                <Image
+                  src={portfolioComparison}
+                  alt="Development comparison — units, revenue, avg price, and performance benchmarks across estates"
+                  className="w-full h-auto"
+                  quality={90}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+                      <GitCompareArrows className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">
+                      Development Comparison
+                    </h3>
+                  </div>
+                  <p className="text-sm text-porcelain/60">
+                    Compare avg days to sale agreed, query response times, and
+                    completion rates side by side.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Velocity — bottom right */}
+            <div className="group">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-blue-500/30 transition-all duration-500">
+                <Image
+                  src={salesVelocity}
+                  alt="Sales velocity chart — units sold per month across all developments"
+                  className="w-full h-auto"
+                  quality={90}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+                      <Activity className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">
+                      Sales Velocity
+                    </h3>
+                  </div>
+                  <p className="text-sm text-porcelain/60">
+                    Monthly sales volume per development. See which estates are
+                    moving and which need attention.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* ── Features ── */}
       <section id="features" className="relative py-24 bg-carbon">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
@@ -176,7 +337,9 @@ export default function SalesPage() {
                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4">
                   <f.icon className="w-5 h-5 text-blue-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{f.title}</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  {f.title}
+                </h3>
                 <p className="text-sm text-porcelain/60 leading-relaxed">
                   {f.description}
                 </p>
@@ -195,7 +358,8 @@ export default function SalesPage() {
               See the Sales module live
             </h2>
             <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;ll walk you through the pipeline running on a live 238-home development.
+              We&apos;ll walk you through the pipeline running on a live
+              238-home development.
             </p>
             <Link
               href="/contact"
@@ -213,4 +377,3 @@ export default function SalesPage() {
     </main>
   );
 }
-
