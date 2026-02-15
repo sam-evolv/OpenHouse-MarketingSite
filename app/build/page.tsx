@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { BuildFloatingCards } from "@/components/hero/cards/BuildCards";
-import heroBackground from "@/attached_assets/stock_images/apartment_building_l_645cb5c9.jpg";
+import heroBackground from "@/attached_assets/stock_images/build_construction_aerial.png";
 import {
   FolderOpen,
   Shield,
@@ -79,7 +79,7 @@ export default function BuildPage() {
       <ModuleHero
         backgroundImage={heroBackground}
         accentColor="emerald"
-        backgroundAlt="Modern apartment building architecture"
+        backgroundAlt="Aerial view of residential development under construction at sunset"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
             <FolderOpen className="w-4 h-4 text-emerald-400" />

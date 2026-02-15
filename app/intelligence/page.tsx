@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { IntelligenceFloatingCards } from "@/components/hero/cards/IntelligenceCards";
-import heroBackground from "@/attached_assets/stock_images/modern_apartment_liv_8293bb50.jpg";
+import heroBackground from "@/attached_assets/stock_images/intelligence_data_network.png";
 import {
   BarChart3,
   AlertTriangle,
@@ -100,7 +100,7 @@ export default function IntelligencePage() {
       <ModuleHero
         backgroundImage={heroBackground}
         accentColor="violet"
-        backgroundAlt="Modern apartment living room with premium finishes"
+        backgroundAlt="Aerial housing estate with golden data connection lines"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/30">
             <BarChart3 className="w-4 h-4 text-violet-400" />
