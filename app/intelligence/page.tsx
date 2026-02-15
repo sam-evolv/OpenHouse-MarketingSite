@@ -1,10 +1,10 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { IntelligenceFloatingCards } from "@/components/hero/cards/IntelligenceCards";
+import { ScreenshotLightbox } from "@/components/ui/ScreenshotLightbox";
 import heroBackground from "@/attached_assets/stock_images/intelligence_data_network.png";
 import analyticsInsights from "@/attached_assets/stock_images/analytics_insights.png";
 import aiInsights from "@/attached_assets/stock_images/ai_insights.png";
-import Image from "next/image";
 import {
   BarChart3,
   AlertTriangle,
@@ -15,7 +15,6 @@ import {
   ArrowRight,
   Home,
   ChevronLeft,
-  Brain,
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
@@ -189,118 +188,105 @@ export default function IntelligencePage() {
         </Container>
       </section>
 
-      {/* ── Analytics Dashboard Showcase ── */}
+      {/* ── Analytics Dashboard — Full Width ── */}
       <section className="relative py-24 bg-carbon overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.03] via-transparent to-transparent" />
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            {/* Text */}
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
-                  <BarChart3 className="w-5 h-5 text-violet-400" />
-                </div>
-                <p className="text-sm uppercase tracking-[0.3em] text-violet-400 font-semibold">
-                  Analytics Dashboard
-                </p>
+          <div className="max-w-3xl mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
+                <BarChart3 className="w-4 h-4 text-violet-400" />
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-6">
-                Know exactly who&apos;s engaged — and who isn&apos;t
-              </h2>
-              <p className="text-lg text-porcelain/60 mb-8 leading-relaxed">
-                See how many homeowners have onboarded, how many are active this
-                month, and who your high engagers are. Filter by 7 days, 30
-                days, 90 days, or custom ranges. Export everything.
+              <p className="text-sm uppercase tracking-[0.3em] text-violet-400 font-semibold">
+                Analytics Dashboard
               </p>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  "100% AI resolution",
-                  "Engagement funnel",
-                  "Time filters",
-                  "CSV export",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-medium text-violet-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
-            {/* Screenshot */}
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
+              Know exactly who&apos;s engaged — and who isn&apos;t
+            </h2>
+            <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
+              See how many homeowners have onboarded, how many are active this
+              month, and who your high engagers are. Filter by 7 days, 30 days,
+              90 days, or custom ranges. Export everything.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {[
+                "100% AI resolution",
+                "Engagement funnel",
+                "Time filters",
+                "CSV export",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-medium text-violet-300"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 via-violet-400/5 to-violet-500/20 rounded-3xl blur-2xl" />
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 via-violet-400/5 to-violet-500/20 rounded-3xl blur-2xl" />
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-violet-500/10">
-                <Image
-                  src={analyticsInsights}
-                  alt="Analytics dashboard showing 250 homeowners, 33 active this month, 338 total messages, 100% AI resolution rate, and engagement funnel breakdown"
-                  className="w-full h-auto"
-                  quality={95}
-                  priority
-                />
-              </div>
+              <ScreenshotLightbox
+                src={analyticsInsights}
+                alt="Analytics dashboard showing 250 homeowners, 33 active this month, 338 total messages, 100% AI resolution rate, engagement funnel breakdown, and PC Sum revenue impact"
+              />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* ── AI Insights Showcase ── */}
+      {/* ── AI Insights — Full Width ── */}
       <section className="relative py-24 bg-carbon overflow-hidden">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            {/* Screenshot first */}
-            <div className="relative order-2 lg:order-1">
-              <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 via-violet-400/5 to-violet-500/20 rounded-3xl blur-2xl" />
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-violet-500/10">
-                <Image
-                  src={aiInsights}
-                  alt="AI Insights showing prioritised recommendations, 100% resolution rate, suggested content to create with impact scores, and question topic breakdown"
-                  className="w-full h-auto"
-                  quality={95}
-                />
+          <div className="max-w-3xl mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
+                <Sparkles className="w-4 h-4 text-violet-400" />
               </div>
-            </div>
-            {/* Text */}
-            <div className="order-1 lg:order-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-violet-400" />
-                </div>
-                <p className="text-sm uppercase tracking-[0.3em] text-violet-400 font-semibold">
-                  AI Insights
-                </p>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-6">
-                AI tells you what to fix — and why
-              </h2>
-              <p className="text-lg text-porcelain/60 mb-8 leading-relaxed">
-                Prioritised recommendations with impact scores. If 58 people
-                asked general questions your docs don&apos;t cover, the AI flags
-                it and suggests creating a guide. Less repeat queries, happier
-                homeowners, fewer phone calls.
+              <p className="text-sm uppercase tracking-[0.3em] text-violet-400 font-semibold">
+                AI Insights
               </p>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  "Priority badges",
-                  "Impact scores",
-                  "Content suggestions",
-                  "Topic breakdown",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-medium text-violet-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
+              AI tells you what to fix — and why
+            </h2>
+            <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
+              Prioritised recommendations with impact scores. If 58 people asked
+              general questions your docs don&apos;t cover, the AI flags it and
+              suggests creating a guide. Less repeat queries, happier
+              homeowners, fewer phone calls.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {[
+                "Priority badges",
+                "Impact scores",
+                "Content suggestions",
+                "Topic breakdown",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-medium text-violet-300"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 via-violet-400/5 to-violet-500/20 rounded-3xl blur-2xl" />
+            <div className="relative">
+              <ScreenshotLightbox
+                src={aiInsights}
+                alt="AI Insights showing prioritised recommendations with impact scores, 100% resolution rate, suggested content to create per category, and question topic breakdown"
+              />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* ── Example Insights (kept from original) ── */}
+      {/* ── Example Insights ── */}
       <section className="relative py-24 bg-carbon">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-500/[0.02] to-transparent" />
         <Container>
@@ -342,7 +328,9 @@ export default function IntelligencePage() {
                     <p className="text-white font-medium mb-1">
                       {insight.title}
                     </p>
-                    <p className="text-sm text-porcelain/50">{insight.action}</p>
+                    <p className="text-sm text-porcelain/50">
+                      {insight.action}
+                    </p>
                   </div>
                 </div>
               </div>

@@ -5,7 +5,7 @@ import heroBackground from "@/attached_assets/stock_images/platform_aerial_netwo
 import developerDashboard from "@/attached_assets/stock_images/developer_dashboard.png";
 import communicationsHub from "@/attached_assets/stock_images/communications_hub.png";
 import homeownersManagement from "@/attached_assets/stock_images/homeowners_management.png";
-import Image from "next/image";
+import { ScreenshotLightbox } from "@/components/ui/ScreenshotLightbox";
 import {
   TrendingUp,
   FolderOpen,
@@ -225,95 +225,83 @@ export default function PlatformPage() {
             </h2>
             <p className="text-lg text-porcelain/60 max-w-2xl mx-auto">
               No mockups, no concepts. This is the actual platform running on
-              live developments today.
+              live developments today. Click any screenshot to view full size.
             </p>
           </div>
 
-          {/* Dashboard — full width hero */}
-          <div className="relative max-w-6xl mx-auto mb-8">
-            <div className="absolute -inset-4 bg-gradient-to-r from-gold/20 via-amber-500/5 to-gold/20 rounded-3xl blur-2xl" />
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-gold/10">
-              <Image
-                src={developerDashboard}
-                alt="OpenHouse developer dashboard showing 250 total units, 170 registered, 30 active this week, 384 messages, recent activity feed, and quick links"
-                className="w-full h-auto"
-                quality={95}
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-carbon via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
-                    <LayoutDashboard className="w-4 h-4 text-gold" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white">
-                    Developer Command Centre
-                  </h3>
-                </div>
-                <p className="text-sm text-porcelain/60 max-w-lg">
-                  Log in and instantly see total units, registrations, active
-                  homeowners, messages, and documents — with quick actions to
-                  add units, send emails, or export reports.
-                </p>
+          {/* Dashboard — full width */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
+                <LayoutDashboard className="w-4 h-4 text-gold" />
+              </div>
+              <h3 className="text-lg font-semibold text-white">
+                Developer Command Centre
+              </h3>
+            </div>
+            <p className="text-sm text-porcelain/60 max-w-2xl mb-6">
+              Log in and instantly see total units, registrations, active
+              homeowners, messages, and documents — with quick actions to add
+              units, send emails, or export reports.
+            </p>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-gold/20 via-amber-500/5 to-gold/20 rounded-3xl blur-2xl" />
+              <div className="relative">
+                <ScreenshotLightbox
+                  src={developerDashboard}
+                  alt="OpenHouse developer dashboard showing 250 total units, 170 registered, 30 active this week, 384 messages, recent activity feed, and quick links"
+                />
               </div>
             </div>
           </div>
 
-          {/* Two screenshots side by side */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Communications Hub */}
-            <div className="group">
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-gold/30 transition-all duration-500">
-                <Image
+          {/* Communications Hub — full width */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
+                <Send className="w-4 h-4 text-gold" />
+              </div>
+              <h3 className="text-lg font-semibold text-white">
+                Communications Hub
+              </h3>
+            </div>
+            <p className="text-sm text-porcelain/60 max-w-2xl mb-6">
+              Send emails, push notifications, and bulk messages to homeowners.
+              Track delivery, open rates, and failed sends — all in one place.
+            </p>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-gold/15 via-transparent to-gold/15 rounded-3xl blur-2xl" />
+              <div className="relative">
+                <ScreenshotLightbox
                   src={communicationsHub}
-                  alt="Communications Hub showing messages sent, scheduled, failed, team members, open rate, recent communications, and quick actions for email, notification, and bulk messaging"
-                  className="w-full h-auto"
-                  quality={90}
+                  alt="Communications Hub showing messages sent, scheduled, failed, team members online, 78% open rate, recent communications timeline, and quick actions"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
-                      <Send className="w-4 h-4 text-gold" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-white">
-                      Communications Hub
-                    </h3>
-                  </div>
-                  <p className="text-sm text-porcelain/60">
-                    Send emails, push notifications, and bulk messages to
-                    homeowners. Track delivery, open rates, and failed sends —
-                    all in one place.
-                  </p>
-                </div>
               </div>
             </div>
+          </div>
 
-            {/* Homeowners Management */}
-            <div className="group">
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-gold/30 transition-all duration-500">
-                <Image
+          {/* Homeowner Management — full width */}
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
+                <Users className="w-4 h-4 text-gold" />
+              </div>
+              <h3 className="text-lg font-semibold text-white">
+                Homeowner Management
+              </h3>
+            </div>
+            <p className="text-sm text-porcelain/60 max-w-2xl mb-6">
+              Every resident across every development. Filter by status,
+              generate QR codes for NFC access, and see who&apos;s acknowledged
+              their portal at a glance.
+            </p>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-gold/15 via-transparent to-gold/15 rounded-3xl blur-2xl" />
+              <div className="relative">
+                <ScreenshotLightbox
                   src={homeownersManagement}
-                  alt="Homeowners management showing 250 total residents across all developments, filter by private, social, for sale, sold, with status badges and QR code downloads"
-                  className="w-full h-auto"
-                  quality={90}
+                  alt="Homeowners management showing 250 total residents, 75 acknowledged, 175 pending, filterable by development, private/social, sale status, with QR code downloads"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
-                      <Users className="w-4 h-4 text-gold" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-white">
-                      Homeowner Management
-                    </h3>
-                  </div>
-                  <p className="text-sm text-porcelain/60">
-                    Every resident across every development. Filter by status,
-                    generate QR codes for NFC access, and see who&apos;s
-                    acknowledged their portal at a glance.
-                  </p>
-                </div>
               </div>
             </div>
           </div>
