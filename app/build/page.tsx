@@ -59,9 +59,9 @@ const features = [
   },
   {
     icon: FolderOpen,
-    title: "Handover Packs",
+    title: "Pre-Handover Portal",
     description:
-      "Auto-generate complete handover packs per unit — every cert, manual, and spec in one bundle.",
+      "Give buyers access before key handover. They see specs, selections, and progress — reducing questions on closing day.",
   },
 ];
 

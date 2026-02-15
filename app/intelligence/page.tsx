@@ -205,9 +205,10 @@ export default function IntelligencePage() {
               Know exactly who&apos;s engaged — and who isn&apos;t
             </h2>
             <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-              See how many homeowners have onboarded, how many are active this
-              month, and who your high engagers are. Filter by 7 days, 30 days,
-              90 days, or custom ranges. Export everything.
+              100% AI resolution rate means zero support calls forwarded to your
+              team. See how many homeowners have onboarded, how many are active
+              this month, and who your high engagers are. Filter by 7 days, 30
+              days, 90 days, or custom ranges. Export everything.
             </p>
             <div className="flex flex-wrap gap-3">
               {[

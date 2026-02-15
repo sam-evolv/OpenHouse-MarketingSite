@@ -234,9 +234,9 @@ export default function SalesPage() {
               All your developments, one dashboard
             </h2>
             <p className="text-lg text-porcelain/60 leading-relaxed">
-              Total revenue, pipeline funnel, kitchen selection impact, and
-              revenue split across every development you manage — no more
-              logging into separate spreadsheets per estate.
+              Total revenue, pipeline funnel, and performance benchmarks across
+              every development. Kitchen selections and PC sum impact tracked in
+              real-time — see exactly how upgrades affect your bottom line.
             </p>
           </div>
           <div className="relative">
@@ -357,7 +357,7 @@ export default function SalesPage() {
             </h2>
             <p className="text-lg text-porcelain/70 mb-8">
               We&apos;ll walk you through the pipeline running on a live
-              238-home development.
+              250-home development across 5 estates.
             </p>
             <Link
               href="/contact"

@@ -93,7 +93,7 @@ export default function PlatformPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
             <span className="w-2 h-2 bg-gold rounded-full animate-pulse" />
             <span className="text-sm font-medium text-gold">
-              Live on 238 homes at Longview Estates
+              Live on 250+ homes across 5 developments
             </span>
           </div>
         }
@@ -314,10 +314,10 @@ export default function PlatformPage() {
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
             {[
-              { value: "238", label: "Homes Live", suffix: "" },
+              { value: "250+", label: "Homes Live", suffix: "" },
               { value: "24/7", label: "AI Support", suffix: "" },
               { value: "1–2s", label: "Response Time", suffix: "" },
-              { value: "0", label: "Competitors", suffix: "" },
+              { value: "€76M+", label: "Revenue Tracked", suffix: "" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl sm:text-4xl font-bold text-gold font-heading">
@@ -342,8 +342,8 @@ export default function PlatformPage() {
               Built by a developer, for developers
             </h2>
             <p className="text-lg text-porcelain/70 leading-relaxed mb-4">
-              OpenHouse wasn&apos;t designed in a lab. It was built on a live
-              development of 238 homes in Cork City because the founder needed it
+              OpenHouse wasn&apos;t designed in a lab. It was built on live
+              developments of 250+ homes across Cork City because the founder needed it
               for his own builds.
             </p>
             <p className="text-lg text-porcelain/70 leading-relaxed">
@@ -364,7 +364,7 @@ export default function PlatformPage() {
             </h2>
             <p className="text-lg text-porcelain/70 mb-8">
               Book a 20-minute walkthrough and we&apos;ll show you OpenHouse
-              running on 238 real homes.
+              running on 250+ real homes across 5 developments.
             </p>
             <Link
               href="/contact"
@@ -376,6 +376,12 @@ export default function PlatformPage() {
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
+            <p className="text-sm text-porcelain/40 mt-6">
+              From €75 per home &middot; No long-term contracts &middot;{" "}
+              <Link href="/pricing" className="text-gold/60 hover:text-gold transition-colors underline underline-offset-2">
+                See pricing
+              </Link>
+            </p>
           </div>
         </Container>
       </section>
