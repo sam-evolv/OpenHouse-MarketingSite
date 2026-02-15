@@ -79,6 +79,7 @@ export default function PlatformPage() {
       {/* ── Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
+        accentColor="gold"
         backgroundAlt="Modern apartment lobby with warm golden light"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">

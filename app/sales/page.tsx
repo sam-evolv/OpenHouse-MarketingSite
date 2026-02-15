@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { SalesFloatingCards } from "@/components/hero/cards/SalesCards";
-import heroBackground from "@/attached_assets/stock_images/modern_apartment_liv_c8a1fa10.jpg";
+import heroBackground from "@/attached_assets/stock_images/apartment_building_l_a39a5316.jpg";
 import {
   TrendingUp,
   Users,
@@ -78,7 +78,8 @@ export default function SalesPage() {
       {/* ── Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
-        backgroundAlt="Luxury penthouse dining with sea view"
+        accentColor="blue"
+        backgroundAlt="Property sales reception with visitors"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30">
             <TrendingUp className="w-4 h-4 text-blue-400" />

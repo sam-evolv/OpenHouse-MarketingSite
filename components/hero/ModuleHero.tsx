@@ -9,6 +9,7 @@ import { ArrowRight } from "lucide-react";
 interface ModuleHeroProps {
   backgroundImage: StaticImageData;
   backgroundAlt: string;
+  accentColor?: string; // e.g. "blue" | "emerald" | "violet" | "gold"
   badge: ReactNode;
   title: ReactNode;
   subtitle: string;
@@ -17,9 +18,17 @@ interface ModuleHeroProps {
   children?: ReactNode; // Floating cards
 }
 
+const accentOverlays: Record<string, string> = {
+  blue: "bg-gradient-to-br from-blue-950/40 via-transparent to-blue-900/20",
+  emerald: "bg-gradient-to-br from-emerald-950/40 via-transparent to-emerald-900/20",
+  violet: "bg-gradient-to-br from-violet-950/50 via-transparent to-purple-900/30",
+  gold: "bg-gradient-to-br from-amber-950/30 via-transparent to-amber-900/10",
+};
+
 export function ModuleHero({
   backgroundImage,
   backgroundAlt,
+  accentColor,
   badge,
   title,
   subtitle,
@@ -81,6 +90,9 @@ export function ModuleHero({
         <div className="absolute inset-0 bg-carbon/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-carbon via-transparent to-carbon/30" />
+        {accentColor && accentOverlays[accentColor] && (
+          <div className={`absolute inset-0 ${accentOverlays[accentColor]}`} />
+        )}
       </motion.div>
 
       {/* Content */}
@@ -210,13 +222,15 @@ export function FloatingCard({ children, depth, className = "", delay = 0.6 }: F
 
   return (
     <motion.div
-      className={`absolute ${className}`}
+      className="absolute"
       style={{ x: cardX, y: cardY, zIndex: depth * 10 }}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
     >
-      {children}
+      <div className={`relative ${className}`}>
+        {children}
+      </div>
     </motion.div>
   );
 }

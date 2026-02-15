@@ -99,6 +99,7 @@ export default function IntelligencePage() {
       {/* ── Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
+        accentColor="violet"
         backgroundAlt="Modern apartment living room with premium finishes"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/30">

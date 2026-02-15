@@ -78,6 +78,7 @@ export default function BuildPage() {
       {/* ── Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
+        accentColor="emerald"
         backgroundAlt="Modern apartment building architecture"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
