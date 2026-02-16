@@ -21,7 +21,7 @@ import {
 import Link from "next/link";
 
 export const metadata = {
-  title: "Build Module — Compliance & Document Hub | OpenHouse Ai",
+  title: "Build Module - Compliance & Document Hub | OpenHouse Ai",
   description:
     "Organise every certificate, specification, and document before handover. Compliance tracking that works across all your developments.",
 };
@@ -31,7 +31,7 @@ const features = [
     icon: Shield,
     title: "Compliance Tracker",
     description:
-      "Planning certs, fire safety, BER, BCAR — track every requirement per unit with deadline alerts.",
+      "Planning certs, fire safety, BER, BCAR - track every requirement per unit with deadline alerts.",
   },
   {
     icon: FileText,
@@ -61,7 +61,7 @@ const features = [
     icon: FolderOpen,
     title: "Pre-Handover Portal",
     description:
-      "Give buyers access before key handover. They see specs, selections, and progress — reducing questions on closing day.",
+      "Give buyers access before key handover. They see specs, selections, and progress - reducing questions on closing day.",
   },
 ];
 
@@ -152,7 +152,7 @@ export default function BuildPage() {
                   "Compliance dashboard with deadline tracking",
                   "PC sums linked to units with approval flow",
                   "Handover packs auto-generated per unit",
-                  "Nothing missing — AI flags gaps before you do",
+                  "Nothing missing - AI flags gaps before you do",
                 ].map((item) => (
                   <li
                     key={item}
@@ -168,7 +168,7 @@ export default function BuildPage() {
         </Container>
       </section>
 
-      {/* ── Smart Archive — Full Width ── */}
+      {/* ── Smart Archive - Full Width ── */}
       <section className="relative py-24 bg-carbon overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.03] via-transparent to-transparent" />
         <Container>
@@ -185,7 +185,7 @@ export default function BuildPage() {
               950 documents, zero chaos
             </h2>
             <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-              Every file automatically sorted by discipline — Architectural,
+              Every file automatically sorted by discipline - Architectural,
               Mechanical, Electrical, Civil, Plumbing, Structural. Must-Read
               docs are flagged. Videos get their own tab. Search finds anything
               in seconds.
@@ -212,14 +212,14 @@ export default function BuildPage() {
             <div className="relative">
               <ScreenshotLightbox
                 src={smartArchive}
-                alt="Smart Archive showing 98 documents organised by discipline — Architectural (40), Mechanical (11), Electrical (7), Handover Documentation (14), with tabs for Documents, Must-Read, Insights, and Videos"
+                alt="Smart Archive showing 98 documents organised by discipline - Architectural (40), Mechanical (11), Electrical (7), Handover Documentation (14), with tabs for Documents, Must-Read, Insights, and Videos"
               />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* ── Compliance Tracker — Full Width ── */}
+      {/* ── Compliance Tracker - Full Width ── */}
       <section className="relative py-24 bg-carbon overflow-hidden">
         <Container>
           <div className="max-w-3xl mb-10">
@@ -236,7 +236,7 @@ export default function BuildPage() {
             </h2>
             <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
               Electrical, BCMS, BER, HomeBond, Gas Safety, Fire Safety,
-              Structural Warranty — tracked per unit with upload buttons and
+              Structural Warranty - tracked per unit with upload buttons and
               progress bars. You see exactly what&apos;s missing before your
               solicitor does.
             </p>

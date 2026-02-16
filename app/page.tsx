@@ -20,7 +20,7 @@ import {
 import Link from "next/link";
 
 export const metadata = {
-  title: "OpenHouse Ai — The Developer Operating System",
+  title: "OpenHouse Ai - The Developer Operating System",
   description:
     "One platform for every stage of residential property development. Sales, Build, Handover, Intelligence.",
 };
@@ -31,7 +31,7 @@ const modules = [
     href: "/sales",
     icon: TrendingUp,
     color: "blue",
-    description: "Pipeline, leads, deposits — one view from enquiry to contract.",
+    description: "Pipeline, leads, deposits - one view from enquiry to contract.",
     bg: "bg-blue-500/10",
     border: "border-blue-500/20",
     iconColor: "text-blue-400",
@@ -42,7 +42,7 @@ const modules = [
     href: "/build",
     icon: FolderOpen,
     color: "emerald",
-    description: "Compliance, documents, specs — organised before handover day.",
+    description: "Compliance, documents, specs - organised before handover day.",
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/20",
     iconColor: "text-emerald-400",
@@ -64,7 +64,7 @@ const modules = [
     href: "/intelligence",
     icon: BarChart3,
     color: "violet",
-    description: "Patterns, gaps, engagement — learn what residents actually need.",
+    description: "Patterns, gaps, engagement - learn what residents actually need.",
     bg: "bg-violet-500/10",
     border: "border-violet-500/20",
     iconColor: "text-violet-400",
@@ -93,7 +93,7 @@ export default function PlatformPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
             <span className="w-2 h-2 bg-gold rounded-full animate-pulse" />
             <span className="text-sm font-medium text-gold">
-              Live on 250+ homes across 5 developments
+              Live on active developments today
             </span>
           </div>
         }
@@ -229,7 +229,7 @@ export default function PlatformPage() {
             </p>
           </div>
 
-          {/* Dashboard — full width */}
+          {/* Dashboard - full width */}
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
@@ -241,7 +241,7 @@ export default function PlatformPage() {
             </div>
             <p className="text-sm text-porcelain/60 max-w-2xl mb-6">
               Log in and instantly see total units, registrations, active
-              homeowners, messages, and documents — with quick actions to add
+              homeowners, messages, and documents - with quick actions to add
               units, send emails, or export reports.
             </p>
             <div className="relative">
@@ -249,13 +249,13 @@ export default function PlatformPage() {
               <div className="relative">
                 <ScreenshotLightbox
                   src={developerDashboard}
-                  alt="OpenHouse developer dashboard showing 250 total units, 170 registered, 30 active this week, 384 messages, recent activity feed, and quick links"
+                  alt="OpenHouse developer dashboard showing total units, registrations, active homeowners, messages, recent activity feed, and quick links"
                 />
               </div>
             </div>
           </div>
 
-          {/* Communications Hub — full width */}
+          {/* Communications Hub - full width */}
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
@@ -267,7 +267,7 @@ export default function PlatformPage() {
             </div>
             <p className="text-sm text-porcelain/60 max-w-2xl mb-6">
               Send emails, push notifications, and bulk messages to homeowners.
-              Track delivery, open rates, and failed sends — all in one place.
+              Track delivery, open rates, and failed sends - all in one place.
             </p>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-gold/15 via-transparent to-gold/15 rounded-3xl blur-2xl" />
@@ -280,7 +280,7 @@ export default function PlatformPage() {
             </div>
           </div>
 
-          {/* Homeowner Management — full width */}
+          {/* Homeowner Management - full width */}
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
@@ -300,7 +300,7 @@ export default function PlatformPage() {
               <div className="relative">
                 <ScreenshotLightbox
                   src={homeownersManagement}
-                  alt="Homeowners management showing 250 total residents, 75 acknowledged, 175 pending, filterable by development, private/social, sale status, with QR code downloads"
+                  alt="Homeowners management showing total residents, acknowledged and pending status, filterable by development, private/social, sale status, with QR code downloads"
                 />
               </div>
             </div>
@@ -314,10 +314,10 @@ export default function PlatformPage() {
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
             {[
-              { value: "250+", label: "Homes Live", suffix: "" },
+              { value: "Live", label: "On Real Homes", suffix: "" },
               { value: "24/7", label: "AI Support", suffix: "" },
               { value: "1–2s", label: "Response Time", suffix: "" },
-              { value: "€76M+", label: "Revenue Tracked", suffix: "" },
+              { value: "0", label: "App Downloads", suffix: "" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl sm:text-4xl font-bold text-gold font-heading">
@@ -343,11 +343,11 @@ export default function PlatformPage() {
             </h2>
             <p className="text-lg text-porcelain/70 leading-relaxed mb-4">
               OpenHouse wasn&apos;t designed in a lab. It was built on live
-              developments of 250+ homes across Cork City because the founder needed it
+              developments in Cork City because the founder needed it
               for his own builds.
             </p>
             <p className="text-lg text-porcelain/70 leading-relaxed">
-              Every feature exists because it solved a real problem — not because
+              Every feature exists because it solved a real problem - not because
               it looked good on a pitch deck.
             </p>
           </div>
@@ -364,7 +364,7 @@ export default function PlatformPage() {
             </h2>
             <p className="text-lg text-porcelain/70 mb-8">
               Book a 20-minute walkthrough and we&apos;ll show you OpenHouse
-              running on 250+ real homes across 5 developments.
+              running on real homes today.
             </p>
             <Link
               href="/contact"

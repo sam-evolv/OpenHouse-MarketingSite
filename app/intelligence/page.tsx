@@ -20,7 +20,7 @@ import {
 import Link from "next/link";
 
 export const metadata = {
-  title: "Intelligence Module — Patterns & Insights | OpenHouse Ai",
+  title: "Intelligence Module - Patterns & Insights | OpenHouse Ai",
   description:
     "Turn resident interactions into actionable insights. See what homeowners actually need, spot knowledge gaps, and improve every future development.",
 };
@@ -51,7 +51,7 @@ const features = [
     icon: BarChart3,
     title: "Query Analytics",
     description:
-      "See every question residents ask — by category, frequency, and development. Spot trends before they become complaints.",
+      "See every question residents ask - by category, frequency, and development. Spot trends before they become complaints.",
   },
   {
     icon: AlertTriangle,
@@ -63,7 +63,7 @@ const features = [
     icon: Users,
     title: "Engagement Tracking",
     description:
-      "Monthly active residents, portal adoption rates, and interaction frequency — all tracked per development.",
+      "Monthly active residents, portal adoption rates, and interaction frequency - all tracked per development.",
   },
   {
     icon: Lightbulb,
@@ -188,7 +188,7 @@ export default function IntelligencePage() {
         </Container>
       </section>
 
-      {/* ── Analytics Dashboard — Full Width ── */}
+      {/* ── Analytics Dashboard - Full Width ── */}
       <section className="relative py-24 bg-carbon overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.03] via-transparent to-transparent" />
         <Container>
@@ -202,7 +202,7 @@ export default function IntelligencePage() {
               </p>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              Know exactly who&apos;s engaged — and who isn&apos;t
+              Know exactly who&apos;s engaged - and who isn&apos;t
             </h2>
             <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
               100% AI resolution rate means zero support calls forwarded to your
@@ -231,14 +231,14 @@ export default function IntelligencePage() {
             <div className="relative">
               <ScreenshotLightbox
                 src={analyticsInsights}
-                alt="Analytics dashboard showing 250 homeowners, 33 active this month, 338 total messages, 100% AI resolution rate, engagement funnel breakdown, and PC Sum revenue impact"
+                alt="Analytics dashboard showing homeowners, active this month, total messages, 100% AI resolution rate, engagement funnel breakdown, and PC Sum revenue impact"
               />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* ── AI Insights — Full Width ── */}
+      {/* ── AI Insights - Full Width ── */}
       <section className="relative py-24 bg-carbon overflow-hidden">
         <Container>
           <div className="max-w-3xl mb-10">
@@ -251,7 +251,7 @@ export default function IntelligencePage() {
               </p>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              AI tells you what to fix — and why
+              AI tells you what to fix - and why
             </h2>
             <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
               Prioritised recommendations with impact scores. If 58 people asked
@@ -382,7 +382,7 @@ export default function IntelligencePage() {
               See the Intelligence module live
             </h2>
             <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;ll show you real analytics from 250 homeowners across
+              We&apos;ll show you real analytics from homeowners across
               multiple developments.
             </p>
             <Link

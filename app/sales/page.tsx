@@ -24,7 +24,7 @@ import {
 import Link from "next/link";
 
 export const metadata = {
-  title: "Sales Module — Pipeline to Contract | OpenHouse Ai",
+  title: "Sales Module - Pipeline to Contract | OpenHouse Ai",
   description:
     "Track every lead, viewing, and deposit in one place. Replace scattered spreadsheets with a single sales pipeline built for property developers.",
 };
@@ -40,7 +40,7 @@ const features = [
     icon: Users,
     title: "Lead Management",
     description:
-      "Capture leads from Savills, Sherry Fitz, your website — all in one feed with source tracking.",
+      "Capture leads from estate agents, your website, and walk-ins - all in one feed with source tracking.",
   },
   {
     icon: CreditCard,
@@ -58,13 +58,13 @@ const features = [
     icon: FileText,
     title: "Agent Reporting",
     description:
-      "See which agents convert and which developments move fastest — data you never had before.",
+      "See which agents convert and which developments move fastest - data you never had before.",
   },
   {
     icon: BarChart3,
     title: "Sales Analytics",
     description:
-      "Weekly velocity, conversion rates, average time-to-sale — all calculated, never estimated.",
+      "Weekly velocity, conversion rates, average time-to-sale - all calculated, never estimated.",
   },
 ];
 
@@ -172,7 +172,7 @@ export default function SalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════
-          SCREENSHOT SHOWCASES — full-width, click to zoom
+          SCREENSHOT SHOWCASES - full-width, click to zoom
           ══════════════════════════════════════════════ */}
 
       {/* ── 1. Sales Pipeline ── */}
@@ -188,7 +188,7 @@ export default function SalesPage() {
               Every unit, every stage, one screen
             </h2>
             <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-              Track 15 data points per unit — price, release date, deposits,
+              Track 15 data points per unit - price, release date, deposits,
               contracts, queries, snag lists, drawdown dates, and more. No more
               ringing agents for updates on a Tuesday morning.
             </p>
@@ -236,7 +236,7 @@ export default function SalesPage() {
             <p className="text-lg text-porcelain/60 leading-relaxed">
               Total revenue, pipeline funnel, and performance benchmarks across
               every development. Kitchen selections and PC sum impact tracked in
-              real-time — see exactly how upgrades affect your bottom line.
+              real-time - see exactly how upgrades affect your bottom line.
             </p>
           </div>
           <div className="relative">
@@ -244,7 +244,7 @@ export default function SalesPage() {
             <div className="relative">
               <ScreenshotLightbox
                 src={portfolioOverview}
-                alt="Portfolio Analytics overview — 5 developments, 242 total units, €76.1M revenue with pipeline funnel and revenue breakdown by development"
+                alt="Portfolio Analytics overview - multiple developments, total units, revenue with pipeline funnel and revenue breakdown by development"
               />
             </div>
           </div>
@@ -277,7 +277,7 @@ export default function SalesPage() {
                 <div className="relative">
                   <ScreenshotLightbox
                     src={portfolioComparison}
-                    alt="Development comparison table showing units, revenue, average price, PC sums, and performance benchmarks across 5 developments"
+                    alt="Development comparison table showing units, revenue, average price, PC sums, and performance benchmarks across developments"
                   />
                 </div>
               </div>
@@ -357,7 +357,7 @@ export default function SalesPage() {
             </h2>
             <p className="text-lg text-porcelain/70 mb-8">
               We&apos;ll walk you through the pipeline running on a live
-              250-home development across 5 estates.
+              a live development.
             </p>
             <Link
               href="/contact"

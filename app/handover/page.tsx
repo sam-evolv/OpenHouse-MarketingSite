@@ -26,7 +26,7 @@ import {
 import Link from "next/link";
 
 export const metadata = {
-  title: "Handover Module — AI Resident Portal | OpenHouse Ai",
+  title: "Handover Module - AI Resident Portal | OpenHouse Ai",
   description:
     "Every home gets an AI assistant trained on its handover documentation. 24/7 answers, safety-first design, zero support calls.",
 };
@@ -37,17 +37,17 @@ const aiCapabilities = [
   {
     icon: Brain,
     title: "Trained on Your Docs",
-    desc: "Every answer comes from your handover pack — not the internet.",
+    desc: "Every answer comes from your handover pack - not the internet.",
   },
   {
     icon: MapPin,
     title: "Google Places",
-    desc: "\"Where's the nearest pharmacy?\" — answered with live directions.",
+    desc: "\"Where's the nearest pharmacy?\" - answered with live directions.",
   },
   {
     icon: Ruler,
     title: "Room Dimensions",
-    desc: "\"How big is my living room?\" — instant floor plan lookup.",
+    desc: "\"How big is my living room?\" - instant floor plan lookup.",
   },
   {
     icon: Clock,
@@ -128,7 +128,7 @@ export default function HandoverPage() {
         secondaryCta={{ href: "#how-it-works", label: "See How It Works" }}
       />
 
-      {/* ── What You're Replacing — compact pills ── */}
+      {/* ── What You're Replacing - compact pills ── */}
       <section className="relative py-16 bg-carbon">
         <Container>
           <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
@@ -147,7 +147,7 @@ export default function HandoverPage() {
         </Container>
       </section>
 
-      {/* ── How It Works — 3-step flow ── */}
+      {/* ── How It Works - 3-step flow ── */}
       <section id="how-it-works" className="relative py-24 bg-carbon">
         <Container>
           <div className="text-center mb-14">
@@ -163,12 +163,12 @@ export default function HandoverPage() {
               {
                 step: "1",
                 title: "Upload your docs",
-                desc: "Drag in your handover pack — specs, manuals, certs, plans. AI reads and indexes everything.",
+                desc: "Drag in your handover pack - specs, manuals, certs, plans. AI reads and indexes everything.",
               },
               {
                 step: "2",
                 title: "Residents scan & chat",
-                desc: "NFC tag, QR code, or direct link. No app download needed — works in any browser.",
+                desc: "NFC tag, QR code, or direct link. No app download needed - works in any browser.",
               },
               {
                 step: "3",
@@ -195,7 +195,7 @@ export default function HandoverPage() {
         </Container>
       </section>
 
-      {/* ── AI In Action — existing ChatReplayGrid ── */}
+      {/* ── AI In Action - existing ChatReplayGrid ── */}
       <section className="relative bg-carbon">
         <Container>
           <div className="text-center mb-2">
@@ -210,7 +210,7 @@ export default function HandoverPage() {
         <ChatReplayGrid />
       </section>
 
-      {/* ── AI Capabilities — icon grid, minimal text ── */}
+      {/* ── AI Capabilities - icon grid, minimal text ── */}
       <section className="relative py-24 bg-carbon">
         <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.02] via-transparent to-transparent" />
         <Container>
@@ -243,7 +243,7 @@ export default function HandoverPage() {
         </Container>
       </section>
 
-      {/* ── Safety-First — the trust section ── */}
+      {/* ── Safety-First - the trust section ── */}
       <section className="relative py-24 bg-carbon">
         <Container>
           <div className="text-center mb-14">
@@ -305,7 +305,7 @@ export default function HandoverPage() {
         </Container>
       </section>
 
-      {/* ── Access Methods — NFC, QR, Link ── */}
+      {/* ── Access Methods - NFC, QR, Link ── */}
       <section className="relative py-24 bg-carbon">
         <Container>
           <div className="text-center mb-14">
@@ -349,7 +349,7 @@ export default function HandoverPage() {
         </Container>
       </section>
 
-      {/* ── Resident Experience — what homeowners see ── */}
+      {/* ── Resident Experience - what homeowners see ── */}
       <section className="relative py-24 bg-carbon">
         <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.02] via-transparent to-transparent" />
         <Container>
@@ -386,7 +386,7 @@ export default function HandoverPage() {
         </Container>
       </section>
 
-      {/* ── Trust Vault — existing animated security component ── */}
+      {/* ── Trust Vault - existing animated security component ── */}
       <TrustVault />
 
       {/* ── CTA ── */}
@@ -398,7 +398,7 @@ export default function HandoverPage() {
               See the AI answer real questions
             </h2>
             <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;ll demo the resident portal live — ask it anything about a
+              We&apos;ll demo the resident portal live - ask it anything about a
               real home and watch it respond in seconds.
             </p>
             <Link
