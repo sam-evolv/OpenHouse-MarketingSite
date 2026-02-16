@@ -61,7 +61,7 @@ const journeySteps = [
   {
     icon: Smartphone,
     title: "Residents Activate",
-    description: "One tap via NFC or QR. No apps to download. No passwords."
+    description: "One tap via NFC, QR, or direct link. No passwords. No friction."
   },
   {
     icon: BarChart3,

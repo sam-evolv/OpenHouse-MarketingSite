@@ -317,7 +317,7 @@ export default function PlatformPage() {
               { value: "Live", label: "On Real Homes", suffix: "" },
               { value: "24/7", label: "AI Support", suffix: "" },
               { value: "1–2s", label: "Response Time", suffix: "" },
-              { value: "0", label: "App Downloads", suffix: "" },
+              { value: "100%", label: "AI Resolution", suffix: "" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl sm:text-4xl font-bold text-gold font-heading">

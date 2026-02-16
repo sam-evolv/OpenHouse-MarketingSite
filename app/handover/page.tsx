@@ -168,7 +168,7 @@ export default function HandoverPage() {
               {
                 step: "2",
                 title: "Residents scan & chat",
-                desc: "NFC tag, QR code, or direct link. No app download needed - works in any browser.",
+                desc: "NFC tag, QR code, direct link, or download the app. Multiple ways in - zero friction.",
               },
               {
                 step: "3",
@@ -292,7 +292,7 @@ export default function HandoverPage() {
               { value: "24/7", label: "AI Availability" },
               { value: "1–2s", label: "Response Time" },
               { value: "100%", label: "AI Resolution" },
-              { value: "0", label: "App Downloads Required" },
+              { value: "100%", label: "AI Resolution" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl sm:text-4xl font-bold text-gold font-heading">
