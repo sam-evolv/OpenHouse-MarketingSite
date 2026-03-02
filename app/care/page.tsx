@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { CareFloatingCards } from "@/components/hero/cards/CareCards";
-import heroBackground from "@/attached_assets/stock_images/modern_apartment_liv_925e2b1c.jpg";
+import heroBackground from "@/attached_assets/stock_images/carebackground.png";
 import {
   Wrench,
   MessageSquare,
@@ -129,8 +129,9 @@ export default function CarePage() {
       {/* ── Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
-        accentColor="emerald"
-        backgroundAlt="Modern home interior with premium kitchen finishes"
+        accentColor="gold"
+        imagePosition="object-top"
+        backgroundAlt="Heat pump unit with golden diagnostic glow and OpenHouse AI phone interface"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
             <Wrench className="w-4 h-4 text-emerald-400" />
