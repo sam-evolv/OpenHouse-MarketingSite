@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/#capabilities", label: "Capabilities" },
   { href: "/#proof", label: "Case Studies" },
   { href: "/#engagement-model", label: "Engagement Model" },
+  { href: "/care", label: "Care" },
   { href: "/docs", label: "Docs" },
 ];
 
