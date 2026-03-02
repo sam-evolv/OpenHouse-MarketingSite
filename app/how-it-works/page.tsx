@@ -51,7 +51,7 @@ const journeySteps = [
   {
     icon: Upload,
     title: "Upload Documents",
-    description: "Drawings, manuals, warranties, video tutorials — drop them in once"
+    description: "Drawings, manuals, warranties, video tutorials - drop them in once"
   },
   {
     icon: Cpu,
@@ -61,12 +61,12 @@ const journeySteps = [
   {
     icon: Smartphone,
     title: "Residents Activate",
-    description: "One tap via NFC or QR. No apps to download. No passwords."
+    description: "One tap via NFC, QR, or direct link. No passwords. No friction."
   },
   {
     icon: BarChart3,
     title: "You See Everything",
-    description: "Questions, trends, acknowledgments — all in one dashboard"
+    description: "Questions, trends, acknowledgments - all in one dashboard"
   }
 ];
 
@@ -75,7 +75,7 @@ const toolCards = [
     icon: MessageSquareX,
     title: "Slash After-Sales Burden",
     features: [
-      "AI answers purchaser queries 24/7 — trained on your documents",
+      "AI answers purchaser queries 24/7 - trained on your documents",
       "Embed video tutorials for heat pumps, thermostats, appliances",
       "Trigger seasonal notifications automatically"
     ],
@@ -99,17 +99,17 @@ const toolCards = [
       "Purchasers prompted to acknowledge before continuing",
       "Every agreement logged with timestamp"
     ],
-    result: 'When they say "nobody told me" — you have the receipt.'
+    result: 'When they say "nobody told me" - you have the receipt.'
   },
   {
     icon: LayoutDashboard,
     title: "Sales & Build Pipeline",
     features: [
-      "Sales Pipeline — live status shared with agents and solicitors",
-      "Kitchen Selection — auto-emails at contract signing",
-      "Build Progress — BCMS, Homebond, snag dates updated live",
-      "Smart Alerts — issues flagged, right person notified",
-      "Weekly Briefings — Monday updates + analytics email"
+      "Sales Pipeline - live status shared with agents and solicitors",
+      "Kitchen Selection - auto-emails at contract signing",
+      "Build Progress - BCMS, Homebond, snag dates updated live",
+      "Smart Alerts - issues flagged, right person notified",
+      "Weekly Briefings - Monday updates + analytics email"
     ],
     result: "Everyone sees the same truth. No chasing."
   }
@@ -269,7 +269,7 @@ export default function HowItWorksPage() {
             </div>
           </div>
           <p className="mt-6 text-center text-sm text-neutral-500">
-            The Developer Dashboard — your single source of truth
+            The Developer Dashboard - your single source of truth
           </p>
         </motion.div>
       </section>
@@ -338,7 +338,7 @@ export default function HowItWorksPage() {
             A Premium Experience That Reflects Your Brand
           </h2>
           <p className="mt-4 text-lg text-neutral-400 max-w-2xl">
-            From the day they sign to the day they move in — and every day after.
+            From the day they sign to the day they move in - and every day after.
           </p>
         </motion.div>
 
@@ -368,7 +368,7 @@ export default function HowItWorksPage() {
                 <ul className="mt-6 space-y-3">
                   <li className="flex items-start gap-3 text-sm text-neutral-300">
                     <Check className="w-5 h-5 text-gold/70 mt-0.5 flex-shrink-0" />
-                    Watch their home being built — live progress updates
+                    Watch their home being built - live progress updates
                   </li>
                   <li className="flex items-start gap-3 text-sm text-neutral-300">
                     <Check className="w-5 h-5 text-gold/70 mt-0.5 flex-shrink-0" />
@@ -418,7 +418,7 @@ export default function HowItWorksPage() {
             className="relative pl-16 md:pl-24 py-8"
           >
             <div className="absolute left-1 md:left-5 w-6 h-6 rotate-45 bg-gold shadow-[0_0_20px_rgba(212,175,55,0.3)]" />
-            <p className="text-gold font-semibold">KEYS DAY — The portal transforms</p>
+            <p className="text-gold font-semibold">KEYS DAY - The portal transforms</p>
           </motion.div>
 
           {/* Phase 2 */}
@@ -435,10 +435,10 @@ export default function HowItWorksPage() {
               <div>
                 <span className="text-xs text-gold tracking-widest font-medium uppercase">Phase 2</span>
                 <h3 className="mt-2 text-2xl font-semibold text-white">Property Assistant</h3>
-                <p className="mt-1 text-sm text-neutral-500">Keys Onwards — Forever</p>
+                <p className="mt-1 text-sm text-neutral-500">Keys Onwards - Forever</p>
                 
                 <p className="mt-4 text-neutral-300 max-w-lg">
-                  At handover, the AI assistant activates — trained on their specific home.
+                  At handover, the AI assistant activates - trained on their specific home.
                 </p>
                 
                 <p className="mt-6 text-sm text-neutral-400 font-medium">What they can ask:</p>
