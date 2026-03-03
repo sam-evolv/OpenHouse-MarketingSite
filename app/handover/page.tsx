@@ -99,7 +99,7 @@ const replacements = [
 
 export default function HandoverPage() {
   return (
-    <main>
+    <div>
       <HandoverBadge />
 
       {/* ── Hero ── */}
@@ -292,7 +292,7 @@ export default function HandoverPage() {
               { value: "24/7", label: "AI Availability" },
               { value: "1–2s", label: "Response Time" },
               { value: "100%", label: "AI Resolution" },
-              { value: "100%", label: "AI Resolution" },
+              { value: "0", label: "App Downloads" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl sm:text-4xl font-bold text-gold font-heading">
@@ -414,6 +414,6 @@ export default function HandoverPage() {
           </div>
         </Container>
       </section>
-    </main>
+    </div>
   );
 }

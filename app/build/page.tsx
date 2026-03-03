@@ -67,7 +67,7 @@ const features = [
 
 export default function BuildPage() {
   return (
-    <main>
+    <div>
       {/* ── Module Badge ── */}
       <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
         <Link
@@ -326,6 +326,6 @@ export default function BuildPage() {
           </div>
         </Container>
       </section>
-    </main>
+    </div>
   );
 }

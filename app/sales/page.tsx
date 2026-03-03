@@ -70,7 +70,7 @@ const features = [
 
 export default function SalesPage() {
   return (
-    <main>
+    <div>
       {/* ── Module Badge ── */}
       <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
         <Link
@@ -356,7 +356,7 @@ export default function SalesPage() {
               See the Sales module live
             </h2>
             <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;ll walk you through the pipeline running on a live
+              We&apos;ll walk you through the pipeline running on
               a live development.
             </p>
             <Link
@@ -372,6 +372,6 @@ export default function SalesPage() {
           </div>
         </Container>
       </section>
-    </main>
+    </div>
   );
 }

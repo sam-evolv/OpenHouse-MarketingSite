@@ -110,20 +110,21 @@ export default function SolutionsPage() {
           })}
         </div>
 
-        {/* VISUAL PLACEHOLDER */}
+        {/* CTA */}
         <Reveal>
-          <div className="mt-20 rounded-xl border border-white/10 bg-white/5 p-12 flex items-center justify-center min-h-[400px]">
-            <div className="text-center">
-              <div className="w-20 h-20 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-6">
-                <Building2 className="w-10 h-10 text-gold" />
-              </div>
-              <h3 className="text-heading-lg font-bold text-porcelain mb-3">
-                Dashboard Preview Coming Soon
-              </h3>
-              <p className="text-hint text-body-md max-w-md mx-auto">
-                Unified developer dashboard for managing multiple schemes, uploading documents, and tracking analytics across all developments.
-              </p>
-            </div>
+          <div className="mt-20 text-center">
+            <h3 className="text-heading-lg font-bold text-porcelain mb-3">
+              Ready to see it in action?
+            </h3>
+            <p className="text-hint text-body-md max-w-md mx-auto mb-8">
+              Book a demo and we&apos;ll show you the platform running on a live development.
+            </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full bg-gold text-carbon hover:bg-gold/90 transition-all duration-300"
+            >
+              Book a Demo
+            </a>
           </div>
         </Reveal>
       </Container>

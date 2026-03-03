@@ -27,16 +27,17 @@ export default function DemoPage() {
       <Container className="py-8">
         <div className="bg-slate/50 border border-hint/20 rounded-lg p-6">
           <h3 className="text-heading-md font-bold text-porcelain mb-4">
-            About this demo
+            Interactive 3D Floor Plans
           </h3>
           <p className="text-body-md text-hint mb-4">
-            This is a placeholder demonstration. To see your own floorplans:
+            Every OpenHouse portal includes interactive floor plans that residents can explore in 3D. Orbit, zoom, and inspect room dimensions directly from the browser.
           </p>
-          <ol className="list-decimal list-inside space-y-2 text-body-md text-hint">
-            <li>Export your 3D models as .glb files (see /public/models/README.md)</li>
-            <li>Place them in the /public/models/ directory</li>
-            <li>Refresh this page to load your models</li>
-          </ol>
+          <a
+            href="/contact"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-full bg-gold text-carbon hover:bg-gold/90 transition-all duration-300"
+          >
+            See a Live Demo
+          </a>
         </div>
       </Container>
     </div>
