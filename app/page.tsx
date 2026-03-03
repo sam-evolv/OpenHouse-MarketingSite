@@ -194,11 +194,11 @@ export default function PlatformPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {modules.map((mod) => (
+            {modules.map((mod, i) => (
               <Link
                 key={mod.title}
                 href={mod.href}
-                className={`group relative p-8 rounded-2xl border ${mod.border} ${mod.bg} backdrop-blur-sm transition-all duration-500 ${mod.hoverGlow} hover:-translate-y-1`}
+                className={`group relative p-8 rounded-2xl border ${mod.border} ${mod.bg} backdrop-blur-sm transition-all duration-500 ${mod.hoverGlow} hover:-translate-y-1${modules.length % 2 === 1 && i === modules.length - 1 ? " md:col-span-2 md:max-w-[calc(50%-0.75rem)] md:mx-auto" : ""}`}
               >
                 <div className="flex items-start gap-4">
                   <div
