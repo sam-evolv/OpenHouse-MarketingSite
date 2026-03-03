@@ -1,11 +1,8 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { IntelligenceFloatingCards } from "@/components/hero/cards/IntelligenceCards";
-import { ScreenshotLightbox } from "@/components/ui/ScreenshotLightbox";
+import { LandingMockup, SalesQueryMockup, HomeownerMockup } from "@/components/intelligence/IntelligenceMockups";
 import heroBackground from "@/attached_assets/stock_images/intelligence_data_network.png";
-import intelligenceLanding from "@/attached_assets/stock_images/intelligence_landing.png";
-import salesQuery from "@/attached_assets/stock_images/intelligence_sales_query.png";
-import homeownerAnalysis from "@/attached_assets/stock_images/intelligence_homeowner_analysis.png";
 import {
   BarChart3,
   FileText,
@@ -108,7 +105,7 @@ export default function IntelligencePage() {
       {/* ── Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
-        accentColor="gold"
+        accentColor="violet"
         backgroundAlt="Abstract data network representing AI intelligence"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
@@ -186,13 +183,10 @@ export default function IntelligencePage() {
               daily briefing button — all in one clean interface.
             </p>
           </div>
-          <div className="relative max-w-5xl mx-auto">
+          <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-gold/20 via-amber-500/5 to-gold/20 rounded-3xl blur-2xl" />
             <div className="relative">
-              <ScreenshotLightbox
-                src={intelligenceLanding}
-                alt="OpenHouse Intelligence landing screen with suggested prompt cards for Live Data, Documents, Homeowners, and Regulatory queries, conversation sidebar, and alert banner"
-              />
+              <LandingMockup />
             </div>
           </div>
         </Container>
@@ -201,50 +195,45 @@ export default function IntelligencePage() {
       {/* ── Live Data Section ── */}
       <section className="relative py-24 bg-carbon overflow-hidden">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
-                  <BarChart3 className="w-4 h-4 text-gold" />
-                </div>
-                <p className="text-sm uppercase tracking-[0.3em] text-gold font-semibold">
-                  Live Data
-                </p>
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
+                <BarChart3 className="w-4 h-4 text-gold" />
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-                Ask about sales, payments, and pipeline — get answers with
-                charts
-              </h2>
-              <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-                No more digging through Excel. Ask Intelligence how many units
-                are sale agreed, which deposits are overdue, or where your
-                pipeline stands this week. Answers come with visual breakdowns
-                and links back to the source data.
+              <p className="text-sm uppercase tracking-[0.3em] text-gold font-semibold">
+                Live Data
               </p>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  "Live charts",
-                  "Source citations",
-                  "Follow-up suggestions",
-                  "Cross-links to Sales Pipeline",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-xs font-medium text-gold"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
+              Ask about sales, payments, and pipeline — get answers with
+              charts
+            </h2>
+            <p className="text-lg text-porcelain/60 leading-relaxed mb-6 max-w-2xl mx-auto">
+              No more digging through Excel. Ask Intelligence how many units
+              are sale agreed, which deposits are overdue, or where your
+              pipeline stands this week. Answers come with visual breakdowns
+              and links back to the source data.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
+              {[
+                "Live charts",
+                "Source citations",
+                "Follow-up suggestions",
+                "Cross-links to Sales Pipeline",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-xs font-medium text-gold"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-gold/15 via-transparent to-gold/15 rounded-3xl blur-2xl" />
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-gold/15 via-transparent to-gold/15 rounded-3xl blur-2xl" />
-              <div className="relative">
-                <ScreenshotLightbox
-                  src={salesQuery}
-                  alt="Developer asking 'How many units are sale agreed?' with Intelligence responding '158 units' plus a gold bar chart showing units by sales stage and follow-up suggestions"
-                />
-              </div>
+              <SalesQueryMockup />
             </div>
           </div>
         </Container>
@@ -254,48 +243,43 @@ export default function IntelligencePage() {
       <section className="relative py-24 bg-carbon overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.02] to-transparent" />
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="relative order-2 lg:order-1">
-              <div className="absolute -inset-4 bg-gradient-to-r from-gold/15 via-transparent to-gold/15 rounded-3xl blur-2xl" />
-              <div className="relative">
-                <ScreenshotLightbox
-                  src={homeownerAnalysis}
-                  alt="Intelligence showing 'What are homeowners asking about most this week?' with categorised breakdown — pharmacies 29%, walking distance 14%, utility setup 14% — plus a gold bar chart"
-                />
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
+                <Users className="w-4 h-4 text-gold" />
               </div>
-            </div>
-            <div className="order-1 lg:order-2">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
-                  <Users className="w-4 h-4 text-gold" />
-                </div>
-                <p className="text-sm uppercase tracking-[0.3em] text-gold font-semibold">
-                  Homeowner Insights
-                </p>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-                See what residents are asking — before they call you
-              </h2>
-              <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-                Intelligence analyses every question homeowners ask across all
-                your developments. See the patterns, spot the gaps in your
-                handover packs, and fix them before they become phone calls.
+              <p className="text-sm uppercase tracking-[0.3em] text-gold font-semibold">
+                Homeowner Insights
               </p>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  "Question categorisation",
-                  "Trend analysis",
-                  "Handover pack recommendations",
-                  "Cross-development comparison",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-xs font-medium text-gold"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
+              See what residents are asking — before they call you
+            </h2>
+            <p className="text-lg text-porcelain/60 leading-relaxed mb-6 max-w-2xl mx-auto">
+              Intelligence analyses every question homeowners ask across all
+              your developments. See the patterns, spot the gaps in your
+              handover packs, and fix them before they become phone calls.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
+              {[
+                "Question categorisation",
+                "Trend analysis",
+                "Handover pack recommendations",
+                "Cross-development comparison",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-xs font-medium text-gold"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-gold/15 via-transparent to-gold/15 rounded-3xl blur-2xl" />
+            <div className="relative">
+              <HomeownerMockup />
             </div>
           </div>
         </Container>
