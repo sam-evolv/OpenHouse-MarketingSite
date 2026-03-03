@@ -94,7 +94,7 @@ const replacements = [
 
 export default function PlatformPage() {
   return (
-    <main>
+    <div>
       {/* ── Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
@@ -391,6 +391,6 @@ export default function PlatformPage() {
           </div>
         </Container>
       </section>
-    </main>
+    </div>
   );
 }
