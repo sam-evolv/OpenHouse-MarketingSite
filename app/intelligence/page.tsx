@@ -1,8 +1,11 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { IntelligenceFloatingCards } from "@/components/hero/cards/IntelligenceCards";
-import { LandingMockup, SalesQueryMockup, HomeownerMockup } from "@/components/intelligence/IntelligenceMockups";
+import Image from "next/image";
 import heroBackground from "@/attached_assets/stock_images/intelligence_data_network.png";
+import intelligenceLanding from "@/attached_assets/stock_images/Intelligence.png";
+import intelligenceSales from "@/attached_assets/stock_images/Intelligence2.png";
+import intelligenceHomeowner from "@/attached_assets/stock_images/Intelligence3.png";
 import {
   BarChart3,
   FileText,
@@ -185,8 +188,13 @@ export default function IntelligencePage() {
           </div>
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-gold/20 via-amber-500/5 to-gold/20 rounded-3xl blur-2xl" />
-            <div className="relative">
-              <LandingMockup />
+            <div className="relative rounded-2xl overflow-hidden border border-white/10">
+              <Image
+                src={intelligenceLanding}
+                alt="OpenHouse Intelligence landing — sidebar navigation, prompt cards, and conversation interface"
+                className="w-full h-auto"
+                placeholder="blur"
+              />
             </div>
           </div>
         </Container>
@@ -232,8 +240,13 @@ export default function IntelligencePage() {
           </div>
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-gold/15 via-transparent to-gold/15 rounded-3xl blur-2xl" />
-            <div className="relative">
-              <SalesQueryMockup />
+            <div className="relative rounded-2xl overflow-hidden border border-white/10">
+              <Image
+                src={intelligenceSales}
+                alt="OpenHouse Intelligence sales query — 158 units sale agreed with bar chart breakdown"
+                className="w-full h-auto"
+                placeholder="blur"
+              />
             </div>
           </div>
         </Container>
@@ -278,8 +291,13 @@ export default function IntelligencePage() {
           </div>
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-gold/15 via-transparent to-gold/15 rounded-3xl blur-2xl" />
-            <div className="relative">
-              <HomeownerMockup />
+            <div className="relative rounded-2xl overflow-hidden border border-white/10">
+              <Image
+                src={intelligenceHomeowner}
+                alt="OpenHouse Intelligence homeowner analysis — question categories and trend chart"
+                className="w-full h-auto"
+                placeholder="blur"
+              />
             </div>
           </div>
         </Container>
