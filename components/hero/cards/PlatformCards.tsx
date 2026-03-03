@@ -93,24 +93,30 @@ export function PlatformFloatingCards() {
 
       {/* Card 4: Intelligence mini */}
       <FloatingCard depth={3} className="translate-x-28 translate-y-24" delay={1.1}>
-        <div className="w-48 bg-gradient-to-br from-violet-500/20 to-violet-500/5 backdrop-blur-md rounded-2xl border border-violet-500/30 shadow-2xl overflow-hidden">
-          <div className="p-4 text-center">
-            <div className="w-8 h-8 mx-auto mb-2 rounded-lg bg-violet-500/20 flex items-center justify-center">
-              <BarChart3 className="w-4 h-4 text-violet-400" />
+        <div className="w-52 bg-gradient-to-br from-gold/20 to-gold/5 backdrop-blur-md rounded-2xl border border-gold/30 shadow-2xl overflow-hidden">
+          <div className="p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-7 h-7 rounded-lg bg-gold/20 flex items-center justify-center">
+                <BarChart3 className="w-3.5 h-3.5 text-gold" />
+              </div>
+              <span className="text-[10px] font-medium text-gold uppercase tracking-wider">
+                Intelligence
+              </span>
             </div>
-            <span className="text-[10px] font-medium text-violet-400 uppercase tracking-wider">
-              Intelligence
-            </span>
-            <div className="flex items-end gap-1 h-10 mt-2 justify-center">
-              {[30, 50, 40, 65, 55, 80, 70].map((h, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ height: 0 }}
-                  animate={{ height: `${h}%` }}
-                  transition={{ delay: 1.3 + i * 0.05, duration: 0.3 }}
-                  className="w-2.5 rounded-sm bg-violet-500/40"
-                />
-              ))}
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-hint">Sale agreed</span>
+                <span className="text-[10px] font-bold text-gold">158 units</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-hint">Missing fire certs</span>
+                <span className="text-[10px] font-bold text-amber-400">3 flagged</span>
+              </div>
+            </div>
+            <div className="mt-3 px-2 py-1 rounded-md bg-white/5 border border-white/5">
+              <p className="text-[9px] text-porcelain/50 italic truncate">
+                &quot;Which units are missing fire certs?&quot;
+              </p>
             </div>
           </div>
         </div>
