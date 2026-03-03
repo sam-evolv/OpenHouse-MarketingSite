@@ -64,12 +64,12 @@ const modules = [
     title: "Intelligence",
     href: "/intelligence",
     icon: BarChart3,
-    color: "violet",
-    description: "Patterns, gaps, engagement - learn what residents actually need.",
-    bg: "bg-violet-500/10",
-    border: "border-violet-500/20",
-    iconColor: "text-violet-400",
-    hoverGlow: "hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]",
+    color: "gold",
+    description: "Ask anything about your schemes. Sales data, documents, compliance - answered instantly.",
+    bg: "bg-gold/10",
+    border: "border-gold/20",
+    iconColor: "text-gold",
+    hoverGlow: "hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]",
   },
   {
     title: "Care",
@@ -194,11 +194,11 @@ export default function PlatformPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {modules.map((mod) => (
+            {modules.map((mod, i) => (
               <Link
                 key={mod.title}
                 href={mod.href}
-                className={`group relative p-8 rounded-2xl border ${mod.border} ${mod.bg} backdrop-blur-sm transition-all duration-500 ${mod.hoverGlow} hover:-translate-y-1`}
+                className={`group relative p-8 rounded-2xl border ${mod.border} ${mod.bg} backdrop-blur-sm transition-all duration-500 ${mod.hoverGlow} hover:-translate-y-1${modules.length % 2 === 1 && i === modules.length - 1 ? " md:col-span-2 md:max-w-[calc(50%-0.75rem)] md:mx-auto" : ""}`}
               >
                 <div className="flex items-start gap-4">
                   <div
