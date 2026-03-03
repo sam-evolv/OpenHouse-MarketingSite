@@ -130,7 +130,7 @@ export default function CarePage() {
       <ModuleHero
         backgroundImage={heroBackground}
         accentColor="gold"
-        imagePosition="object-top"
+        imagePosition="object-center"
         backgroundAlt="Heat pump unit with golden diagnostic glow and OpenHouse AI phone interface"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
