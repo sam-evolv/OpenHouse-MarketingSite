@@ -8,7 +8,10 @@ import { TransitionOverlay } from "@/components/TransitionOverlay";
 import { RouteWipe } from "@/components/transitions/RouteWipe";
 import { ProgressBar } from "@/components/transitions/ProgressBar";
 import { RouteTransitionHandler } from "@/components/transitions/RouteTransitionHandler";
+import Script from "next/script";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-1P9FQGGQ7C";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -75,6 +78,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      </head>
       <body className="font-sans">
         <PrefetchProvider>
           <ScrollProvider>
