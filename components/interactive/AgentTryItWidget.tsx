@@ -31,7 +31,7 @@ const prompts: Prompt[] = [
   },
   {
     id: "pipeline",
-    label: "Pull this week's pipeline for Cairn Homes",
+    label: "Pull this week's pipeline for Ardenhall Homes",
     kind: "report",
     icon: BarChart3,
   },
@@ -61,7 +61,7 @@ const drafts: Record<DraftKind, DraftBlock> = {
     ],
   },
   report: {
-    heading: "Weekly pipeline, Cairn Homes",
+    heading: "Weekly pipeline, Ardenhall Homes",
     meta: "Period: Mon 11 to Sun 17 May, 2026",
     body: [
       "Across the three live schemes, 14 new enquiries, 9 viewings booked, 4 reservations.",

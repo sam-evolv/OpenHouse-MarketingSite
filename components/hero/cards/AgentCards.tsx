@@ -18,7 +18,7 @@ export function AgentFloatingCards() {
         className="-translate-x-20 -translate-y-24"
         delay={0.6}
       >
-        <div className="w-72 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden rotate-[-3deg]">
+        <div className="w-72 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
               <Mic className="w-4 h-4 text-gold" />
