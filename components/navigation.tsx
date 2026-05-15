@@ -18,6 +18,7 @@ const moduleLinks = [
   { href: "/build", label: "Build" },
   { href: "/handover", label: "Handover" },
   { href: "/intelligence", label: "Intelligence" },
+  { href: "/agent", label: "Agent" },
   { href: "/care", label: "Care" },
 ];
 

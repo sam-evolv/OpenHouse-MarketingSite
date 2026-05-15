@@ -7,6 +7,7 @@ const productLinks = [
   { label: "Build", href: "/build" },
   { label: "Handover", href: "/handover" },
   { label: "Intelligence", href: "/intelligence" },
+  { label: "Agent", href: "/agent" },
   { label: "Care", href: "/care" },
   { label: "Contact", href: "/contact" },
 ];
