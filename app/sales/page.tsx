@@ -129,7 +129,7 @@ export default function SalesPage() {
       <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
-          className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-medium backdrop-blur-md hover:bg-gold/20 transition-all duration-300"
+          className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium backdrop-blur-md hover:bg-blue-500/20 transition-all duration-300"
         >
           <ChevronLeft className="w-3 h-3" aria-hidden="true" />
           <Home className="w-3 h-3" aria-hidden="true" />
@@ -140,18 +140,18 @@ export default function SalesPage() {
       {/* ── 1. Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
-        accentColor="gold"
+        accentColor="blue"
         backgroundAlt="Premium show home at twilight with for sale signage"
         badge={
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
-            <TrendingUp className="w-4 h-4 text-gold" aria-hidden="true" />
-            <span className="text-sm font-medium text-gold">Sales Module</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30">
+            <TrendingUp className="w-4 h-4 text-blue-400" aria-hidden="true" />
+            <span className="text-sm font-medium text-blue-400">Sales Module</span>
           </div>
         }
         title={
           <>
             The deals you&rsquo;re losing are the ones you can&rsquo;t{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400">
               see
             </span>
             .
@@ -167,12 +167,12 @@ export default function SalesPage() {
       {/* ── 2. Cost of Invisible Deals ── */}
       <section className="relative py-20 sm:py-24 bg-carbon">
         <div
-          className="absolute inset-0 bg-gradient-to-b from-amber-900/[0.05] via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-b from-blue-900/[0.08] via-transparent to-transparent"
           aria-hidden="true"
         />
         <Container>
           <div className="max-w-3xl mb-12 sm:mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
               The hidden cost
             </p>
             <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight">
@@ -184,9 +184,9 @@ export default function SalesPage() {
             {costStats.map((stat) => (
               <div
                 key={stat.value}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8"
+                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 hover:border-blue-500/30 hover:bg-blue-500/[0.03] transition-all duration-500"
               >
-                <p className="text-[44px] sm:text-5xl lg:text-[56px] font-bold text-gold font-heading leading-none mb-4">
+                <p className="text-[44px] sm:text-5xl lg:text-[56px] font-bold text-blue-400 font-heading leading-none mb-4">
                   {stat.value}
                 </p>
                 <p className="text-[17px] text-porcelain/75 leading-relaxed">
@@ -208,16 +208,16 @@ export default function SalesPage() {
         className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32"
       >
         <div
-          className="absolute inset-0 bg-gradient-to-b from-gold/[0.06] via-transparent to-gold/[0.04]"
+          className="absolute inset-0 bg-gradient-to-b from-blue-900/[0.10] via-transparent to-blue-900/[0.06]"
           aria-hidden="true"
         />
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] max-w-[1200px] rounded-full bg-gold/[0.04] blur-[140px]"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] max-w-[1200px] rounded-full bg-blue-500/[0.05] blur-[140px]"
           aria-hidden="true"
         />
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
               The Pipeline
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[64px] font-bold text-white font-heading leading-[1.05] mb-6">
@@ -230,10 +230,10 @@ export default function SalesPage() {
 
           <div className="relative max-w-6xl mx-auto">
             <div
-              className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-gold/25 via-amber-500/10 to-gold/25 rounded-3xl blur-2xl"
+              className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-blue-500/25 via-blue-400/10 to-blue-500/25 rounded-3xl blur-2xl"
               aria-hidden="true"
             />
-            <div className="relative rounded-2xl overflow-hidden border border-gold/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+            <div className="relative rounded-2xl overflow-hidden border border-blue-500/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
               <Image
                 src={salesPipeline}
                 alt="OpenHouse Sales pipeline showing 75 units across stages with deposit, contract and handover status per unit"
@@ -279,7 +279,7 @@ export default function SalesPage() {
       <section className="relative py-24 bg-porcelain">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-amber-700 mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-700 mb-4 font-semibold">
               How Sales Works
             </p>
             <h2 className="text-[28px] sm:text-4xl font-bold text-carbon font-heading leading-tight">
@@ -291,11 +291,11 @@ export default function SalesPage() {
             {steps.map((step, i) => (
               <div
                 key={step.title}
-                className="relative p-6 sm:p-8 rounded-2xl border border-carbon/10 bg-white hover:border-amber-600/40 hover:shadow-[0_15px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-500"
+                className="relative p-6 sm:p-8 rounded-2xl border border-carbon/10 bg-white hover:border-blue-500/40 hover:shadow-[0_15px_40px_-15px_rgba(59,130,246,0.25)] transition-all duration-500"
               >
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-11 h-11 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center">
-                    <step.icon className="w-5 h-5 text-amber-700" aria-hidden="true" />
+                  <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
+                    <step.icon className="w-5 h-5 text-blue-700" aria-hidden="true" />
                   </div>
                   <span className="text-xs font-mono text-carbon/40">
                     Step {i + 1}
@@ -316,12 +316,12 @@ export default function SalesPage() {
       {/* ── 5. What Sales Does (4 cards) ── */}
       <section className="relative py-24 bg-carbon">
         <div
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.02] to-transparent"
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.03] to-transparent"
           aria-hidden="true"
         />
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
               What Sales Does
             </p>
             <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
@@ -333,10 +333,10 @@ export default function SalesPage() {
             {features.map((f) => (
               <div
                 key={f.title}
-                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-gold/30 hover:bg-gold/[0.03] transition-all duration-500"
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-blue-500/30 hover:bg-blue-500/[0.04] transition-all duration-500"
               >
-                <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center mb-5">
-                  <f.icon className="w-6 h-6 text-gold" aria-hidden="true" />
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-5">
+                  <f.icon className="w-6 h-6 text-blue-400" aria-hidden="true" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
                   {f.title}
@@ -354,7 +354,7 @@ export default function SalesPage() {
       <section className="relative py-24 bg-carbon">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
               Built For You
             </p>
             <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
@@ -366,10 +366,10 @@ export default function SalesPage() {
             {personas.map((p) => (
               <div
                 key={p.title}
-                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-gold/30 hover:bg-gold/[0.03] transition-all duration-500"
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-blue-500/30 hover:bg-blue-500/[0.04] transition-all duration-500"
               >
-                <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center mb-5">
-                  <p.icon className="w-6 h-6 text-gold" aria-hidden="true" />
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-5">
+                  <p.icon className="w-6 h-6 text-blue-400" aria-hidden="true" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
                   {p.title}
@@ -400,11 +400,11 @@ export default function SalesPage() {
       {/* ── 8. Peak-end CTA ── */}
       <section className="relative py-28 sm:py-36 bg-carbon overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-b from-gold/[0.04] via-transparent to-gold/[0.06]"
+          className="absolute inset-0 bg-gradient-to-b from-blue-900/[0.10] via-transparent to-blue-900/[0.12]"
           aria-hidden="true"
         />
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] rounded-full bg-gold/[0.05] blur-[140px]"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] rounded-full bg-blue-500/[0.06] blur-[140px]"
           aria-hidden="true"
         />
         <Container>
@@ -419,13 +419,13 @@ export default function SalesPage() {
             <div className="flex flex-col items-center gap-5">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(212,175,55,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
+                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(59,130,246,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
               >
                 <span
-                  className="absolute inset-0 bg-gradient-to-r from-gold via-amber-400 to-gold"
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600"
                   aria-hidden="true"
                 />
-                <span className="relative z-10 text-carbon flex items-center gap-3">
+                <span className="relative z-10 text-white flex items-center gap-3">
                   Book a Demo
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
@@ -437,7 +437,7 @@ export default function SalesPage() {
                 Or email{" "}
                 <a
                   href="mailto:sam@openhouseai.ie"
-                  className="text-gold hover:text-amber-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
+                  className="text-blue-400 hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded"
                 >
                   sam@openhouseai.ie
                 </a>{" "}
@@ -464,7 +464,7 @@ export default function SalesPage() {
               <Link
                 key={mod.title}
                 href={mod.href}
-                className="group flex items-center gap-3 min-h-[64px] px-4 py-3 rounded-2xl border border-carbon/10 bg-white hover:bg-amber-50 hover:border-amber-600/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                className="group flex items-center gap-3 min-h-[64px] px-4 py-3 rounded-2xl border border-carbon/10 bg-white hover:bg-blue-50 hover:border-blue-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 <span className="w-9 h-9 rounded-xl bg-carbon/[0.04] flex items-center justify-center flex-shrink-0">
                   <mod.icon className={`w-4 h-4 ${mod.accent}`} aria-hidden="true" />

@@ -28,8 +28,8 @@ export function SalesFloatingCards() {
       >
         <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
-              <TrendingUp className="w-4 h-4 text-gold" />
+            <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <TrendingUp className="w-4 h-4 text-blue-400" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-porcelain">
@@ -40,7 +40,7 @@ export function SalesFloatingCards() {
               </p>
             </div>
             <motion.span
-              className="w-1.5 h-1.5 bg-gold rounded-full"
+              className="w-1.5 h-1.5 bg-blue-400 rounded-full"
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ duration: 1.8, repeat: Infinity }}
             />
@@ -56,7 +56,7 @@ export function SalesFloatingCards() {
                     initial={{ width: 0 }}
                     animate={{ width: stage.width }}
                     transition={{ delay: 0.8 + i * 0.08, duration: 0.6 }}
-                    className="h-full bg-gradient-to-r from-gold/60 to-gold rounded"
+                    className="h-full bg-gradient-to-r from-blue-500/60 to-blue-400 rounded"
                   />
                 </div>
                 <span className="text-[10px] font-semibold text-porcelain w-6 text-right">
@@ -68,7 +68,7 @@ export function SalesFloatingCards() {
         </div>
       </FloatingCard>
 
-      {/* Card 2: At-risk alert */}
+      {/* Card 2: At-risk alert (amber, the warning colour) */}
       <FloatingCard
         depth={2}
         className="translate-x-20 -translate-y-4"
@@ -94,7 +94,7 @@ export function SalesFloatingCards() {
               Contracts issued 18 days ago. No response from solicitor.
             </p>
             <div className="pt-2">
-              <span className="inline-block px-2.5 py-1 rounded-full text-[10px] font-semibold bg-gold/15 text-gold border border-gold/30">
+              <span className="inline-block px-2.5 py-1 rounded-full text-[10px] font-semibold bg-blue-500/15 text-blue-300 border border-blue-500/30">
                 Draft chase ready
               </span>
             </div>
@@ -102,17 +102,17 @@ export function SalesFloatingCards() {
         </div>
       </FloatingCard>
 
-      {/* Card 3: Buyer card */}
+      {/* Card 3: Buyer profile */}
       <FloatingCard
         depth={3}
         className="-translate-x-28 translate-y-28"
         delay={1.0}
       >
-        <div className="w-64 bg-gradient-to-br from-gold/20 to-gold/5 backdrop-blur-md rounded-2xl border border-gold/30 shadow-2xl overflow-hidden">
+        <div className="w-64 bg-gradient-to-br from-blue-500/20 to-blue-500/5 backdrop-blur-md rounded-2xl border border-blue-500/30 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-full bg-gold/20 border border-gold/30 flex items-center justify-center">
-                <UserCheck className="w-5 h-5 text-gold" />
+              <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+                <UserCheck className="w-5 h-5 text-blue-400" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-porcelain">
@@ -153,8 +153,8 @@ export function SalesFloatingCards() {
       >
         <div className="w-60 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
-              <FileText className="w-4 h-4 text-gold" />
+            <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <FileText className="w-4 h-4 text-blue-400" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-porcelain">
@@ -166,19 +166,19 @@ export function SalesFloatingCards() {
           <div className="p-4 space-y-1.5">
             <div className="flex justify-between">
               <span className="text-[11px] text-porcelain/70">Sale agreed</span>
-              <span className="text-[11px] font-semibold text-gold">3</span>
+              <span className="text-[11px] font-semibold text-blue-400">3</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[11px] text-porcelain/70">
                 Contracts signed
               </span>
-              <span className="text-[11px] font-semibold text-gold">2</span>
+              <span className="text-[11px] font-semibold text-blue-400">2</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[11px] text-porcelain/70">
                 Viewings booked
               </span>
-              <span className="text-[11px] font-semibold text-gold">4</span>
+              <span className="text-[11px] font-semibold text-blue-400">4</span>
             </div>
           </div>
         </div>
