@@ -23,8 +23,6 @@ import {
   MessageSquare,
   Sparkles,
   Wrench,
-  Apple,
-  Smartphone,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -111,7 +109,7 @@ const beforeDay = [
 ];
 
 const afterDay = [
-  { time: "07:30", line: "In the car. “What's waiting on me today?” Briefing read aloud, twenty seconds." },
+  { time: "07:30", line: "In the car. “What's waiting on me today?” Briefing on screen, twenty seconds." },
   { time: "09:00", line: "At a viewing. “Send John the warranty cert for unit 3.” Drafted by the time you're back in the car." },
   { time: "10:30", line: "Driving. “Status on contracts for Conor and Mark.” Both ready to approve." },
   { time: "13:00", line: "Sandwich at the desk. Six drafts in the queue. Approve all in ninety seconds." },
@@ -587,33 +585,15 @@ export default function AgentPage() {
                 <div className="flex flex-wrap items-center justify-center gap-3">
                   <a
                     href="/contact"
-                    aria-label="Download Agent on the App Store"
-                    className="inline-flex items-center gap-3 min-h-[56px] px-5 py-3 rounded-2xl border border-white/15 bg-black/40 hover:border-gold/40 hover:bg-black/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                    className="inline-flex items-center justify-center min-h-[48px] px-6 rounded-full border border-white/15 bg-black/40 text-sm font-semibold text-porcelain hover:border-gold/40 hover:bg-black/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
                   >
-                    <Apple className="w-7 h-7 text-porcelain" aria-hidden="true" />
-                    <span className="text-left leading-tight">
-                      <span className="block text-[11px] text-porcelain/60">
-                        Download on the
-                      </span>
-                      <span className="block text-sm font-semibold text-porcelain">
-                        App Store
-                      </span>
-                    </span>
+                    iOS
                   </a>
                   <a
                     href="/contact"
-                    aria-label="Get Agent on Google Play"
-                    className="inline-flex items-center gap-3 min-h-[56px] px-5 py-3 rounded-2xl border border-white/15 bg-black/40 hover:border-gold/40 hover:bg-black/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                    className="inline-flex items-center justify-center min-h-[48px] px-6 rounded-full border border-white/15 bg-black/40 text-sm font-semibold text-porcelain hover:border-gold/40 hover:bg-black/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
                   >
-                    <Smartphone className="w-7 h-7 text-porcelain" aria-hidden="true" />
-                    <span className="text-left leading-tight">
-                      <span className="block text-[11px] text-porcelain/60">
-                        Get it on
-                      </span>
-                      <span className="block text-sm font-semibold text-porcelain">
-                        Google Play
-                      </span>
-                    </span>
+                    Android
                   </a>
                 </div>
               </div>
