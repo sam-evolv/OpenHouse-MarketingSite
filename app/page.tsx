@@ -17,6 +17,7 @@ import {
   Send,
   Users,
   Wrench,
+  Headphones,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -66,6 +67,17 @@ const modules = [
     icon: BarChart3,
     color: "gold",
     description: "Ask anything about your schemes. Sales data, documents, compliance - answered instantly.",
+    bg: "bg-gold/10",
+    border: "border-gold/20",
+    iconColor: "text-gold",
+    hoverGlow: "hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]",
+  },
+  {
+    title: "Agent",
+    href: "/agent",
+    icon: Headphones,
+    color: "gold",
+    description: "Voice-first AI colleague for estate and letting agents. Drafts, schedules, and reports while you're on the road.",
     bg: "bg-gold/10",
     border: "border-gold/20",
     iconColor: "text-gold",
@@ -187,7 +199,7 @@ export default function PlatformPage() {
         <Container>
           <div className="text-center mb-16">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              Five Modules
+              Six Modules
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
               Everything a developer needs
