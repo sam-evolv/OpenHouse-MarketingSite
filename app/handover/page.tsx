@@ -1,115 +1,158 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
-import { ChatReplayGrid } from "@/components/social-proof/ChatReplayGrid";
-import { TrustVault } from "@/components/sections/TrustVault";
-import { HandoverBadge } from "./HandoverBadge";
+import { HandoverFloatingCards } from "@/components/hero/cards/HandoverCards";
 import heroBackground from "@/attached_assets/stock_images/modern_luxury_apartm_7dec65c9.jpg";
 import {
-  MessageSquare,
-  ArrowRight,
-  Shield,
-  Brain,
-  MapPin,
-  Ruler,
-  AlertTriangle,
-  PhoneForwarded,
-  QrCode,
-  Languages,
-  Clock,
-  FileWarning,
-  Sparkles,
-  Heart,
-  Search,
   Home,
-  X,
+  ChevronLeft,
+  MessageCircle,
+  QrCode,
+  Bot,
+  Eye,
+  Package,
+  BarChart3,
+  Bell,
+  HeartHandshake,
+  Building2,
+  User,
+  Play,
+  Send,
+  ArrowRight,
+  TrendingUp,
+  FolderOpen,
+  Sparkles,
+  Headphones,
+  Wrench,
 } from "lucide-react";
-import Link from "next/link";
 
 export const metadata = {
-  title: "Handover Module - AI Resident Portal | OpenHouse Ai",
+  title:
+    "Handover Module, AI Assistant for Every Home | OpenHouse Ai",
   description:
-    "Every home gets an AI assistant trained on its handover documentation. 24/7 answers, safety-first design, zero support calls.",
+    "Every home OpenHouse hands over comes with its own AI assistant, trained on the manuals, warranties, certs, and walk-throughs for that specific property. Residents ask. The assistant answers.",
 };
 
-/* ── Compact data for visual sections ── */
-
-const aiCapabilities = [
+const costStats = [
   {
-    icon: Brain,
-    title: "Trained on Your Docs",
-    desc: "Every answer comes from your handover pack - not the internet.",
+    value: "40+",
+    label:
+      "Buyer questions per scheme in the first six months after handover",
   },
   {
-    icon: MapPin,
-    title: "Google Places",
-    desc: "\"Where's the nearest pharmacy?\" - answered with live directions.",
+    value: "6 in 10",
+    label:
+      "Of those questions can be answered by documents you already hand over",
   },
   {
-    icon: Ruler,
-    title: "Room Dimensions",
-    desc: "\"How big is my living room?\" - instant floor plan lookup.",
-  },
-  {
-    icon: Clock,
-    title: "Warranty Detection",
-    desc: "AI checks if appliance issues are still under warranty.",
-  },
-  {
-    icon: Languages,
-    title: "Multi-Language",
-    desc: "Residents chat in their own language. AI responds in kind.",
-  },
-  {
-    icon: Search,
-    title: "Session Memory",
-    desc: "Remembers context within a conversation. No repeating yourself.",
+    value: "9pm",
+    label: "The time those questions usually arrive",
   },
 ];
 
-const safetyFeatures = [
+const steps = [
   {
-    icon: AlertTriangle,
-    title: "Emergency Interception",
-    desc: "Gas leak? Carbon monoxide? AI stops everything and shows emergency contacts immediately.",
+    icon: QrCode,
+    title: "Hand over with a QR code.",
+    desc: "The buyer scans the QR code at handover. Their phone is now linked to their home's portal. Every document, every video, every manual is one tap away.",
   },
   {
-    icon: Shield,
-    title: "Hallucination Firewall",
-    desc: "If the AI doesn't know, it says so. No made-up answers about your homes.",
+    icon: Bot,
+    title: "The assistant answers.",
+    desc: "Trained on the documents for that specific home. Where's my BER cert. How do I top up the heat pump. What's the warranty on the kitchen tiles. Answered with the right detail for the right home.",
   },
   {
-    icon: PhoneForwarded,
-    title: "Escalation Routing",
-    desc: "Complex issues get routed to your team with full conversation context attached.",
-  },
-  {
-    icon: FileWarning,
-    title: "GDPR-First",
-    desc: "EU data storage, no LLM training on resident data, full audit logs.",
+    icon: Eye,
+    title: "You see what they're asking.",
+    desc: "On the developer side, you see every question across every scheme. The patterns become obvious. The next development gets better documentation because the last one told you what was missing.",
   },
 ];
 
-const replacements = [
-  "Paper folders",
-  "Support phone calls",
-  "WhatsApp questions",
-  "Lost manuals",
-  "Repeated queries",
+const features = [
+  {
+    icon: Bot,
+    title: "An AI assistant per home.",
+    description:
+      "Trained on the documents, manuals, certs, and videos for that specific unit. Available 24/7 to the resident.",
+  },
+  {
+    icon: Package,
+    title: "A complete digital handover pack.",
+    description:
+      "Every document the buyer needs, organised, searchable, never lost. Replaces the binder that ends up in a drawer.",
+  },
+  {
+    icon: BarChart3,
+    title: "You see what residents ask.",
+    description:
+      "Every question across every scheme, aggregated. Patterns surface. Documentation gaps surface. Your next scheme handovers better than your last.",
+  },
+  {
+    icon: Bell,
+    title: "Reminders from the home itself.",
+    description:
+      "Boiler service due. BER renewal coming up. Heat pump filter check. The platform reminds the resident at the right time.",
+  },
+];
+
+const personas = [
+  {
+    icon: HeartHandshake,
+    title: "Customer care and aftersales leads.",
+    description:
+      "You're the person residents come back to. Handover puts the answers between you and the phone, so calls happen only when something really matters.",
+  },
+  {
+    icon: Building2,
+    title: "Developer principals.",
+    description:
+      "You see what residents across every scheme are asking. Documentation gaps surface. The next development handovers better than the last.",
+  },
+  {
+    icon: User,
+    title: "Residents themselves.",
+    description:
+      "Every home gets its own AI assistant. Documents, manuals, certs, walk-throughs, reminders. All in one place, on their phone.",
+  },
+];
+
+const platformModules = [
+  { title: "Sales", href: "/sales", icon: TrendingUp, accent: "text-blue-400" },
+  { title: "Build", href: "/build", icon: FolderOpen, accent: "text-emerald-400" },
+  {
+    title: "Intelligence",
+    href: "/intelligence",
+    icon: Sparkles,
+    accent: "text-gold",
+  },
+  { title: "Agent", href: "/agent", icon: Headphones, accent: "text-gold" },
+  { title: "Care", href: "/care", icon: Wrench, accent: "text-emerald-400" },
 ];
 
 export default function HandoverPage() {
   return (
     <div>
-      <HandoverBadge />
+      {/* ── Module Badge ── */}
+      <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
+        <Link
+          href="/"
+          className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-medium backdrop-blur-md hover:bg-gold/20 transition-all duration-300"
+        >
+          <ChevronLeft className="w-3 h-3" aria-hidden="true" />
+          <Home className="w-3 h-3" aria-hidden="true" />
+          <span className="hidden sm:inline">Platform</span>
+        </Link>
+      </div>
 
-      {/* ── Hero ── */}
+      {/* ── 1. Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
         accentColor="gold"
-        backgroundAlt="Modern luxury apartment interior with warm lighting"
+        imagePosition="object-center"
+        backgroundAlt="Modern luxury apartment interior at golden hour"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
-            <MessageSquare className="w-4 h-4 text-gold" />
+            <Home className="w-4 h-4 text-gold" aria-hidden="true" />
             <span className="text-sm font-medium text-gold">
               Handover Module
             </span>
@@ -117,300 +160,446 @@ export default function HandoverPage() {
         }
         title={
           <>
-            Every home gets its own{" "}
+            The phone calls that{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              AI assistant
-            </span>
+              don&rsquo;t
+            </span>{" "}
+            need to happen.
           </>
         }
-        subtitle="Trained on your handover docs, floor plans, and development info. Residents get 24/7 answers. You get zero support calls."
-        primaryCta={{ href: "/contact", label: "Book a Demo" }}
-        secondaryCta={{ href: "#how-it-works", label: "See How It Works" }}
-      />
+        subtitle="Every home OpenHouse hands over comes with its own AI assistant, trained on the manuals, warranties, certs, and walk-throughs for that specific property. Residents ask. The assistant answers. The phone rings only when it really needs to."
+        primaryCta={{ href: "#money-shot", label: "See the assistant in action" }}
+        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+      >
+        <HandoverFloatingCards />
+      </ModuleHero>
 
-      {/* ── What You're Replacing - compact pills ── */}
-      <section className="relative py-16 bg-carbon">
+      {/* ── 2. Cost of the Same Calls ── */}
+      <section className="relative py-20 sm:py-24 bg-carbon">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-gold/[0.05] via-transparent to-transparent"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-            {replacements.map((item) => (
-              <div
-                key={item}
-                className="group flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] hover:border-red-500/30 transition-all duration-300"
-              >
-                <X className="w-3.5 h-3.5 text-red-400/60 group-hover:text-red-400 transition-colors" />
-                <span className="text-sm text-porcelain/60 group-hover:text-porcelain/40 line-through decoration-red-400/40 transition-colors">
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── How It Works - 3-step flow ── */}
-      <section id="how-it-works" className="relative py-24 bg-carbon">
-        <Container>
-          <div className="text-center mb-14">
+          <div className="max-w-3xl mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              How It Works
+              The same calls
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Live in under 5 minutes
+            <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight">
+              The questions you answer for every buyer.
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {[
-              {
-                step: "1",
-                title: "Upload your docs",
-                desc: "Drag in your handover pack - specs, manuals, certs, plans. AI reads and indexes everything.",
-              },
-              {
-                step: "2",
-                title: "Residents scan & chat",
-                desc: "NFC tag, QR code, direct link, or download the app. Multiple ways in - zero friction.",
-              },
-              {
-                step: "3",
-                title: "AI answers, you relax",
-                desc: "Residents get instant answers 24/7. You see analytics on what they're asking.",
-              },
-            ].map((s) => (
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl">
+            {costStats.map((stat) => (
               <div
-                key={s.step}
-                className="relative p-6 rounded-2xl border border-white/5 bg-white/[0.02]"
+                key={stat.value}
+                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 hover:border-gold/30 hover:bg-gold/[0.03] transition-all duration-500"
               >
-                <div className="w-10 h-10 rounded-full bg-gold/20 border border-gold/30 flex items-center justify-center mb-4">
-                  <span className="text-sm font-bold text-gold">{s.step}</span>
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-sm text-porcelain/60 leading-relaxed">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── AI In Action - existing ChatReplayGrid ── */}
-      <section className="relative bg-carbon">
-        <Container>
-          <div className="text-center mb-2">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              See It In Action
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Real conversations, real answers
-            </h2>
-          </div>
-        </Container>
-        <ChatReplayGrid />
-      </section>
-
-      {/* ── AI Capabilities - icon grid, minimal text ── */}
-      <section className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.02] via-transparent to-transparent" />
-        <Container>
-          <div className="text-center mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              What The AI Can Do
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Way more than a chatbot
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-            {aiCapabilities.map((c) => (
-              <div
-                key={c.title}
-                className="flex items-start gap-4 p-5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-gold/20 transition-all duration-500"
-              >
-                <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0">
-                  <c.icon className="w-5 h-5 text-gold" />
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold mb-1">{c.title}</h3>
-                  <p className="text-sm text-porcelain/60 leading-relaxed">
-                    {c.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── Safety-First - the trust section ── */}
-      <section className="relative py-24 bg-carbon">
-        <Container>
-          <div className="text-center mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              Safety First
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              AI you can trust with your homeowners
-            </h2>
-            <p className="text-lg text-porcelain/60 max-w-2xl mx-auto">
-              This isn&apos;t ChatGPT with a skin. Every response is grounded
-              in your documentation with safety rails built in.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
-            {safetyFeatures.map((f) => (
-              <div
-                key={f.title}
-                className="p-6 rounded-2xl border border-gold/10 bg-gold/[0.02] hover:border-gold/25 transition-all duration-500"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0">
-                    <f.icon className="w-5 h-5 text-gold" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-1">
-                      {f.title}
-                    </h3>
-                    <p className="text-sm text-porcelain/60 leading-relaxed">
-                      {f.desc}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── Stats Strip ── */}
-      <section className="relative py-16 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.02] to-transparent" />
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-            {[
-              { value: "24/7", label: "AI Availability" },
-              { value: "1–2s", label: "Response Time" },
-              { value: "100%", label: "AI Resolution" },
-              { value: "0", label: "App Downloads" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p className="text-3xl sm:text-4xl font-bold text-gold font-heading">
+                <p className="text-[44px] sm:text-5xl lg:text-[56px] font-bold text-gold font-heading leading-none mb-4">
                   {stat.value}
                 </p>
-                <p className="text-sm text-porcelain/60 mt-1">{stat.label}</p>
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
+                  {stat.label}
+                </p>
               </div>
             ))}
           </div>
+
+          <p className="text-center text-[18px] sm:text-xl text-porcelain/85 mt-12 sm:mt-14 max-w-2xl mx-auto leading-relaxed">
+            The documents existed. The buyer never found them.
+          </p>
+          <p className="text-center text-[12px] text-porcelain/40 mt-3 max-w-xl mx-auto">
+            Figures shown are illustrative, drawn from the schemes we&rsquo;ve seen.
+          </p>
         </Container>
       </section>
 
-      {/* ── Access Methods - NFC, QR, Link ── */}
-      <section className="relative py-24 bg-carbon">
+      {/* ── 3. Money Shot, Resident Assistant ── */}
+      <section
+        id="money-shot"
+        className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32"
+      >
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-gold/[0.06] via-transparent to-gold/[0.04]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1100px] max-h-[1100px] rounded-full bg-gold/[0.04] blur-[120px]"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="text-center mb-14">
+          <div className="text-center max-w-3xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              Access
+              The Assistant
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Three ways in, zero friction
+            <h2 className="text-[32px] sm:text-5xl lg:text-[64px] font-bold text-white font-heading leading-[1.05] mb-6">
+              Every home gets its own assistant.
             </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              Not a chatbot trained on the internet. An assistant trained on the documents for this specific home. Your boiler model. Your kitchen warranty. Your BER cert. Your developer&rsquo;s actual walk-through videos. Buyers get the right answer the first time.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {[
-              {
-                icon: QrCode,
-                title: "QR Code",
-                desc: "Printed in the handover pack or stuck to the fuse board. Scan and go.",
-              },
-              {
-                icon: Sparkles,
-                title: "NFC Tag",
-                desc: "Tap your phone to a tag in the property. Instant portal access.",
-              },
-              {
-                icon: Home,
-                title: "Direct Link",
-                desc: "Unique URL per development. Bookmark it, share it, works anywhere.",
-              },
-            ].map((a) => (
-              <div
-                key={a.title}
-                className="text-center p-6 rounded-2xl border border-white/5 bg-white/[0.02]"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center mx-auto mb-4">
-                  <a.icon className="w-6 h-6 text-gold" />
+
+          {/* Split: iPhone mock + assistant response */}
+          <div className="relative max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-10 lg:gap-14 items-center">
+              {/* iPhone mock with chat */}
+              <div className="relative flex justify-center lg:justify-end">
+                <div
+                  className="absolute -inset-8 bg-gradient-to-br from-gold/25 via-amber-500/10 to-gold/25 rounded-[60px] blur-3xl"
+                  aria-hidden="true"
+                />
+                <div className="relative w-[280px] sm:w-[320px] h-[580px] sm:h-[640px] rounded-[48px] bg-neutral-900 border-[10px] border-black shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
+                  <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-black rounded-b-3xl z-10"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black p-5 pt-12 flex flex-col">
+                    <div className="flex items-center justify-between text-[11px] text-porcelain/40 mb-4">
+                      <span>9:41</span>
+                      <span className="font-semibold">Your Home</span>
+                      <span>100%</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-1 mb-4 pb-3 border-b border-white/5">
+                      <div className="w-8 h-8 rounded-full bg-gold/20 border border-gold/30 flex items-center justify-center">
+                        <MessageCircle className="w-4 h-4 text-gold" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <p className="text-[12px] font-semibold text-porcelain">
+                          Home assistant
+                        </p>
+                        <p className="text-[9px] text-gold">AI online</p>
+                      </div>
+                    </div>
+
+                    <div className="flex-1 space-y-3 overflow-hidden">
+                      <div className="flex justify-end">
+                        <div className="bg-gold/20 rounded-2xl rounded-br-md px-3 py-2 max-w-[85%]">
+                          <p className="text-[12px] text-porcelain leading-relaxed">
+                            How do I top up my heat pump? The pressure dropped this morning.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex justify-start">
+                        <div className="bg-white/10 rounded-2xl rounded-bl-md px-3 py-2 max-w-[88%]">
+                          <p className="text-[12px] text-porcelain leading-relaxed mb-1.5">
+                            Got it. Your unit&rsquo;s heat pump is the Daikin Altherma 3 R in the utility room.
+                          </p>
+                          <p className="text-[11px] text-porcelain/70 leading-relaxed">
+                            The pressure should sit between 1.5 and 2.0 bar. Tap below for the 90-second walkthrough recorded for your unit, or the manual page.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Input bar */}
+                    <div className="mt-3 pt-3 border-t border-white/5">
+                      <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                        <span className="text-[11px] text-porcelain/40 flex-1">
+                          Ask about your home
+                        </span>
+                        <span className="w-6 h-6 rounded-full bg-gold flex items-center justify-center">
+                          <Send className="w-3 h-3 text-carbon" aria-hidden="true" />
+                        </span>
+                      </div>
+                    </div>
+
+                    <div
+                      className="mx-auto w-32 h-1 bg-porcelain/30 rounded-full mt-3"
+                      aria-hidden="true"
+                    />
+                  </div>
                 </div>
-                <h3 className="text-white font-semibold mb-2">{a.title}</h3>
-                <p className="text-sm text-porcelain/60">{a.desc}</p>
               </div>
-            ))}
+
+              {/* Assistant response drawer */}
+              <div className="relative">
+                <div
+                  className="absolute -inset-4 bg-gradient-to-r from-gold/20 via-transparent to-gold/20 rounded-3xl blur-2xl"
+                  aria-hidden="true"
+                />
+                <div className="relative rounded-2xl border border-gold/30 bg-neutral-900/95 backdrop-blur-xl p-6 sm:p-8 shadow-2xl">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-gold/15 border border-gold/30 flex items-center justify-center">
+                      <Bot className="w-5 h-5 text-gold" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-wider text-gold font-semibold">
+                        Trained on your home
+                      </p>
+                      <p className="text-sm text-porcelain/60">
+                        Daikin Altherma 3 R, utility room
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 mb-5">
+                    <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
+                      Your heat pump pressure should sit between 1.5 and 2.0 bar when cold. If it has dropped below 1.0, you can top it up in about ninety seconds using the filling loop.
+                    </p>
+                    <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
+                      You don&rsquo;t need to call anyone. Here&rsquo;s the walkthrough your developer recorded for your unit, plus the manual page with the step-by-step.
+                    </p>
+                  </div>
+
+                  {/* Embedded video thumbnail */}
+                  <div className="rounded-xl border border-white/10 bg-black/60 p-3 sm:p-4 mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-14 h-14 rounded-lg bg-gradient-to-br from-gold/30 to-gold/5 border border-gold/30 flex items-center justify-center flex-shrink-0">
+                        <Play
+                          className="w-5 h-5 text-gold fill-gold ml-0.5"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-porcelain truncate">
+                          Heat pump pressure top-up
+                        </p>
+                        <p className="text-[12px] text-porcelain/50">
+                          Walk-through for your unit, 1m 32s
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-gold text-carbon text-sm font-semibold hover:scale-[1.02] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+                    >
+                      <Play className="w-4 h-4 fill-carbon" aria-hidden="true" />
+                      Watch walkthrough
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full border border-white/15 text-sm text-porcelain hover:border-gold/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                    >
+                      Open the manual
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full border border-white/10 text-sm text-porcelain/60 hover:text-porcelain hover:border-white/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                    >
+                      Still need help, message developer
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* ── Resident Experience - what homeowners see ── */}
-      <section className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.02] via-transparent to-transparent" />
+      {/* ── 4. How Handover Works ── */}
+      <section className="relative py-24 bg-porcelain">
         <Container>
-          <div className="text-center mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              The Resident Experience
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-amber-700 mb-4 font-semibold">
+              How Handover Works
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              What your homeowners actually get
+            <h2 className="text-[28px] sm:text-4xl font-bold text-carbon font-heading leading-tight">
+              Three steps, no curve.
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {[
-              { icon: MessageSquare, label: "AI Chat Assistant" },
-              { icon: Ruler, label: "Floor Plans & Dimensions" },
-              { icon: MapPin, label: "Local Area Guide" },
-              { icon: Heart, label: "Home Care Tips" },
-              { icon: Clock, label: "Warranty Tracker" },
-              { icon: FileWarning, label: "Emergency Contacts" },
-              { icon: Languages, label: "Any Language" },
-              { icon: Brain, label: "Noticeboard & Updates" },
-            ].map((item) => (
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {steps.map((step, i) => (
               <div
-                key={item.label}
-                className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:border-gold/20 transition-all duration-300"
+                key={step.title}
+                className="relative p-6 sm:p-8 rounded-2xl border border-carbon/10 bg-white hover:border-amber-600/40 hover:shadow-[0_15px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-500"
               >
-                <item.icon className="w-6 h-6 text-gold/70" />
-                <span className="text-xs text-porcelain/70 text-center font-medium">
-                  {item.label}
-                </span>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center">
+                    <step.icon
+                      className="w-5 h-5 text-amber-700"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <span className="text-xs font-mono text-carbon/40">
+                    Step {i + 1}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-carbon mb-3 font-heading">
+                  {step.title}
+                </h3>
+                <p className="text-[17px] text-carbon/70 leading-relaxed">
+                  {step.desc}
+                </p>
               </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* ── Trust Vault - existing animated security component ── */}
-      <TrustVault />
-
-      {/* ── CTA ── */}
+      {/* ── 5. What Handover Does ── */}
       <section className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-t from-gold/[0.04] to-transparent" />
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.03] to-transparent"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="relative text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-heading">
-              See the AI answer real questions
-            </h2>
-            <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;ll demo the resident portal live - ask it anything about a
-              real home and watch it respond in seconds.
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+              What Handover Does
             </p>
-            <Link
-              href="/contact"
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-500 to-gold" />
-              <span className="relative z-10 text-carbon flex items-center gap-2">
-                Book a Demo
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
+            <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
+              Four jobs, off your phone.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {features.map((f) => (
+              <div
+                key={f.title}
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-gold/30 hover:bg-gold/[0.04] transition-all duration-500"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center mb-5">
+                  <f.icon className="w-6 h-6 text-gold" aria-hidden="true" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
+                  {f.title}
+                </h3>
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
+                  {f.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 6. Built For You ── */}
+      <section className="relative py-24 bg-carbon">
+        <Container>
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+              Built For You
+            </p>
+            <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
+              You probably recognise one of these.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {personas.map((p) => (
+              <div
+                key={p.title}
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-gold/30 hover:bg-gold/[0.04] transition-all duration-500"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center mb-5">
+                  <p.icon className="w-6 h-6 text-gold" aria-hidden="true" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
+                  {p.title}
+                </h3>
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
+                  {p.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 7. Trust Line ── */}
+      <section className="relative py-24 bg-porcelain">
+        <Container>
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
+              The assistant doesn&rsquo;t make things up.
+            </h2>
+            <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed">
+              Every answer comes from the documents you uploaded for that specific home. If the assistant doesn&rsquo;t know, it says so and offers to message you directly. No hallucinations, no fake confidence, no answers pulled from the wider internet.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 8. Peak-end CTA ── */}
+      <section className="relative py-28 sm:py-36 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-gold/[0.05] via-transparent to-gold/[0.07]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] rounded-full bg-gold/[0.06] blur-[140px]"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="relative max-w-3xl mx-auto text-center">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
+              See it on one of your own homes.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">
+              A demo takes thirty minutes. Bring the documents for one of your recent handovers and we&rsquo;ll show you what the resident&rsquo;s experience would look like in OpenHouse.
+            </p>
+
+            <div className="flex flex-col items-center gap-5">
+              <Link
+                href="/contact"
+                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(212,175,55,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
+              >
+                <span
+                  className="absolute inset-0 bg-gradient-to-r from-gold via-amber-400 to-gold"
+                  aria-hidden="true"
+                />
+                <span className="relative z-10 text-carbon flex items-center gap-3">
+                  Book a Demo
+                  <ArrowRight
+                    className="w-6 h-6 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+              <p className="text-sm text-porcelain/60">
+                Or email{" "}
+                <a
+                  href="mailto:sam@openhouseai.ie"
+                  className="text-gold hover:text-amber-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
+                >
+                  sam@openhouseai.ie
+                </a>{" "}
+                with questions first.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 9. Platform Strip ── */}
+      <section className="relative py-20 bg-porcelain">
+        <Container>
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-[24px] sm:text-3xl font-bold text-carbon font-heading mb-4">
+              Part of the OpenHouse platform.
+            </h2>
+            <p className="text-[17px] sm:text-lg text-carbon/70 leading-relaxed">
+              Handover is one module of six. Same data, different surfaces, one platform that runs every stage of a development.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto">
+            {platformModules.map((mod) => (
+              <Link
+                key={mod.title}
+                href={mod.href}
+                className="group flex items-center gap-3 min-h-[64px] px-4 py-3 rounded-2xl border border-carbon/10 bg-white hover:bg-amber-50 hover:border-amber-600/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              >
+                <span className="w-9 h-9 rounded-xl bg-carbon/[0.04] flex items-center justify-center flex-shrink-0">
+                  <mod.icon
+                    className={`w-4 h-4 ${mod.accent}`}
+                    aria-hidden="true"
+                  />
+                </span>
+                <span className="text-sm font-semibold text-carbon">
+                  {mod.title}
+                </span>
+                <ArrowRight
+                  className="w-4 h-4 text-carbon/40 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-hidden="true"
+                />
+              </Link>
+            ))}
           </div>
         </Container>
       </section>
