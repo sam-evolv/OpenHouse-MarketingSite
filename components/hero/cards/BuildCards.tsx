@@ -1,88 +1,73 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FileText, CheckCircle, Shield, CircleDollarSign } from "lucide-react";
+import {
+  ClipboardCheck,
+  FolderOpen,
+  AlertCircle,
+  FileCheck,
+} from "lucide-react";
 import { FloatingCard } from "../ModuleHero";
+
+const certs = [
+  { label: "BCAR", done: true },
+  { label: "HomeBond", done: true },
+  { label: "BER", done: false },
+  { label: "Fire safety", done: true },
+];
+
+const docs = [
+  "Floor plans",
+  "Kitchen spec",
+  "Electrical cert",
+  "Plumbing cert",
+  "Heat pump manual",
+  "Solar warranty",
+];
 
 export function BuildFloatingCards() {
   return (
     <>
-      {/* Card 1: Compliance checklist */}
-      <FloatingCard depth={1} className="-translate-x-16 translate-y-12" delay={0.6}>
-        <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+      {/* Card 1: Compliance progress */}
+      <FloatingCard
+        depth={1}
+        className="-translate-x-20 -translate-y-24"
+        delay={0.6}
+      >
+        <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-              <Shield className="w-4 h-4 text-emerald-400" />
-            </div>
-            <div>
-              <p className="text-sm font-medium text-porcelain">Compliance</p>
-              <p className="text-[10px] text-hint">Phase 2 — 42 units</p>
-            </div>
-          </div>
-          <div className="p-4 space-y-2">
-            {[
-              { label: "Planning Cert", done: true },
-              { label: "Fire Safety Cert", done: true },
-              { label: "BER Certificates", done: true },
-              { label: "BCAR Compliance", done: false },
-              { label: "Snag Lists", done: false },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center gap-2.5">
-                <div className={`w-4 h-4 rounded flex items-center justify-center flex-shrink-0 ${
-                  item.done ? "bg-emerald-500/20" : "border border-white/20"
-                }`}>
-                  {item.done && <CheckCircle className="w-3 h-3 text-emerald-400" />}
-                </div>
-                <span className={`text-xs ${item.done ? "text-porcelain/60 line-through" : "text-porcelain"}`}>
-                  {item.label}
-                </span>
-              </div>
-            ))}
-            <div className="mt-2 pt-2 border-t border-white/5">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] text-hint">Progress</span>
-                <span className="text-[10px] font-semibold text-emerald-400">60%</span>
-              </div>
-              <div className="mt-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: "60%" }}
-                  transition={{ delay: 0.8, duration: 0.6 }}
-                  className="h-full bg-emerald-400 rounded-full"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </FloatingCard>
-
-      {/* Card 2: Document card */}
-      <FloatingCard depth={2} className="translate-x-8 -translate-y-16" delay={0.8}>
-        <div className="w-72 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
-          <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-              <FileText className="w-4 h-4 text-emerald-400" />
+              <ClipboardCheck className="w-4 h-4 text-emerald-400" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-porcelain">Smart Archive</p>
-              <p className="text-[10px] text-hint">128 documents uploaded</p>
+              <p className="text-sm font-medium text-porcelain">Compliance</p>
+              <p className="text-[10px] text-porcelain/50">
+                Riverside Gardens, Unit A12
+              </p>
             </div>
+            <span className="text-[11px] font-semibold text-emerald-400">
+              87%
+            </span>
           </div>
-          <div className="p-4">
-            <div className="space-y-2">
-              {[
-                { name: "Architectural_Plans_v3.pdf", size: "4.2 MB", type: "PDF" },
-                { name: "BER_Cert_Unit14.pdf", size: "1.1 MB", type: "PDF" },
-                { name: "Kitchen_Specs_Phase2.xlsx", size: "890 KB", type: "XLS" },
-              ].map((doc) => (
-                <div key={doc.name} className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-white/5">
-                  <div className="w-6 h-6 rounded bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-[8px] font-bold text-emerald-400">{doc.type}</span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[11px] text-porcelain truncate">{doc.name}</p>
-                    <p className="text-[9px] text-hint">{doc.size}</p>
-                  </div>
+          <div className="p-4 space-y-2.5">
+            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: "87%" }}
+                transition={{ delay: 0.8, duration: 0.7 }}
+                className="h-full bg-gradient-to-r from-emerald-500/60 to-emerald-400 rounded-full"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-2 pt-1">
+              {certs.map((c) => (
+                <div key={c.label} className="flex items-center gap-2">
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${c.done ? "bg-emerald-400" : "bg-amber-400"}`}
+                  />
+                  <span className="text-[11px] text-porcelain/80">{c.label}</span>
+                  <span className="text-[10px] text-porcelain/45 ml-auto">
+                    {c.done ? "Filed" : "Pending"}
+                  </span>
                 </div>
               ))}
             </div>
@@ -90,27 +75,94 @@ export function BuildFloatingCards() {
         </div>
       </FloatingCard>
 
-      {/* Card 3: PC Sum tracker */}
-      <FloatingCard depth={3} className="translate-x-24 translate-y-20" delay={1.0}>
-        <div className="w-56 bg-gradient-to-br from-gold/20 to-gold/5 backdrop-blur-md rounded-2xl border border-gold/30 shadow-2xl overflow-hidden">
-          <div className="p-5 text-center">
-            <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gold/20 flex items-center justify-center">
-              <CircleDollarSign className="w-6 h-6 text-gold" />
+      {/* Card 2: Document tree */}
+      <FloatingCard
+        depth={2}
+        className="translate-x-20 -translate-y-4"
+        delay={0.8}
+      >
+        <div className="w-72 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+          <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+              <FolderOpen className="w-4 h-4 text-emerald-400" />
             </div>
-            <span className="text-xs font-medium text-gold uppercase tracking-wider">
-              PC Sum Update
-            </span>
-            <p className="text-xl font-bold text-porcelain mt-1">&euro;12,400</p>
-            <p className="text-xs text-hint">Kitchen upgrade &bull; Unit 14</p>
-            <div className="mt-3 flex items-center justify-center gap-2">
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-gold/10 text-gold border border-gold/20">
-                Approved
+            <div className="flex-1">
+              <p className="text-sm font-medium text-porcelain">
+                Unit A12, Documents
+              </p>
+              <p className="text-[10px] text-porcelain/50">6 of 9 filed</p>
+            </div>
+          </div>
+          <div className="p-4 space-y-1.5">
+            {docs.map((d, i) => (
+              <div key={d} className="flex items-center gap-2">
+                <div className="w-1 h-1 bg-emerald-400 rounded-full flex-shrink-0" />
+                <span className="text-[12px] text-porcelain/80 truncate">
+                  {d}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </FloatingCard>
+
+      {/* Card 3: Alert, missing before handover */}
+      <FloatingCard
+        depth={3}
+        className="-translate-x-28 translate-y-28"
+        delay={1.0}
+      >
+        <div className="w-64 bg-slate/95 backdrop-blur-md rounded-2xl border border-amber-500/40 shadow-2xl overflow-hidden">
+          <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center">
+              <AlertCircle className="w-4 h-4 text-amber-400" />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-medium text-porcelain">
+                Missing for handover
+              </p>
+              <p className="text-[10px] text-amber-400/80">Unit A12</p>
+            </div>
+          </div>
+          <div className="p-4">
+            <p className="text-sm font-semibold text-porcelain mb-1">
+              BER cert outstanding
+            </p>
+            <p className="text-[12px] text-porcelain/70 leading-relaxed">
+              From BER assessor. Expected 14 March.
+            </p>
+          </div>
+        </div>
+      </FloatingCard>
+
+      {/* Card 4: Sub-contractor cert filed (peeking) */}
+      <FloatingCard
+        depth={2}
+        className="translate-x-28 translate-y-32"
+        delay={1.2}
+      >
+        <div className="w-60 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 backdrop-blur-md rounded-2xl border border-emerald-500/30 shadow-2xl overflow-hidden">
+          <div className="p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                <FileCheck className="w-4 h-4 text-emerald-400" />
+              </div>
+              <span className="text-[10px] font-medium text-emerald-400 uppercase tracking-wider">
+                Cert filed
               </span>
             </div>
+            <p className="text-sm font-semibold text-porcelain">
+              Electrical cert
+            </p>
+            <p className="text-[11px] text-porcelain/70 mt-1">
+              Murphy Electrical, Unit A12
+            </p>
+            <p className="text-[10px] text-porcelain/45 mt-1">
+              Issued 12 March
+            </p>
           </div>
         </div>
       </FloatingCard>
     </>
   );
 }
-
