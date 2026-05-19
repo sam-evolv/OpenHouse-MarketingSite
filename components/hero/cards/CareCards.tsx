@@ -1,113 +1,159 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, CheckCircle, TrendingUp, QrCode, ArrowUpRight } from "lucide-react";
+import {
+  MessageCircle,
+  BarChart3,
+  Paintbrush,
+  Plug,
+  Play,
+} from "lucide-react";
 import { FloatingCard } from "../ModuleHero";
+
+const integrations = [
+  { label: "Huawei FusionSolar" },
+  { label: "Daikin ONECTA" },
+  { label: "SolarEdge" },
+];
 
 export function CareFloatingCards() {
   return (
     <>
-      {/* Card 1: AI Chat */}
-      <FloatingCard depth={1} className="-translate-x-16 translate-y-12" delay={0.6}>
-        <div className="w-72 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+      {/* Card 1: Customer chat with installer branding */}
+      <FloatingCard
+        depth={1}
+        className="-translate-x-20 -translate-y-24"
+        delay={0.6}
+      >
+        <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-porcelain">OpenHouse Care</p>
-              <p className="text-[10px] text-green-400 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-green-400 rounded-full" />
-                AI Online
+              <p className="text-sm font-medium text-porcelain">
+                Acme Renewables, support
+              </p>
+              <p className="text-[10px] text-emerald-400 flex items-center gap-1">
+                <motion.span
+                  className="w-1.5 h-1.5 bg-emerald-400 rounded-full"
+                  animate={{ opacity: [0.4, 1, 0.4] }}
+                  transition={{ duration: 1.8, repeat: Infinity }}
+                />
+                AI online
               </p>
             </div>
           </div>
-          <div className="p-4 space-y-3">
+          <div className="p-4 space-y-2.5">
             <div className="flex justify-end">
-              <div className="bg-emerald-500/20 rounded-2xl rounded-br-md px-4 py-2.5 max-w-[85%]">
-                <p className="text-sm text-porcelain">
-                  My heat pump is showing an E3 fault code
+              <div className="bg-emerald-500/20 rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%]">
+                <p className="text-[12px] text-porcelain">
+                  My heat pump is showing E4. Is that serious?
                 </p>
-                <p className="text-[9px] text-hint mt-1">Just now</p>
               </div>
             </div>
             <div className="flex justify-start">
-              <div className="bg-white/10 rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[85%]">
-                <p className="text-sm text-porcelain">
-                  This is a low pressure fault. Let me walk you through the fix...
+              <div className="bg-white/10 rounded-2xl rounded-bl-sm px-3 py-2 max-w-[88%]">
+                <p className="text-[12px] text-porcelain leading-relaxed">
+                  E4 on your Mitsubishi Ecodan means low water flow. Here&rsquo;s the 60-second check, filmed by your installer.
                 </p>
+                <div className="mt-2 flex items-center gap-1.5 px-2 py-1 rounded-md bg-emerald-500/15 border border-emerald-500/30 w-fit">
+                  <Play className="w-2.5 h-2.5 text-emerald-400 fill-emerald-400" />
+                  <span className="text-[10px] font-medium text-emerald-300">
+                    Watch the check
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </FloatingCard>
 
-      {/* Card 2: Diagnostics resolved */}
-      <FloatingCard depth={2} className="translate-x-8 -translate-y-16" delay={0.8}>
-        <div className="w-56 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+      {/* Card 2: Installer dashboard */}
+      <FloatingCard
+        depth={2}
+        className="translate-x-20 -translate-y-4"
+        delay={0.85}
+      >
+        <div className="w-72 bg-slate/95 backdrop-blur-md rounded-2xl border border-emerald-500/30 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-              <CheckCircle className="w-4 h-4 text-emerald-400" />
+              <BarChart3 className="w-4 h-4 text-emerald-400" />
             </div>
-            <p className="text-sm font-medium text-porcelain">Diagnostics</p>
+            <div className="flex-1">
+              <p className="text-sm font-medium text-porcelain">This week</p>
+              <p className="text-[10px] text-porcelain/50">Your fleet</p>
+            </div>
           </div>
           <div className="p-4 space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span className="text-sm font-medium text-emerald-400">Fault Resolved</span>
+            <div className="flex items-baseline justify-between">
+              <span className="text-[11px] text-porcelain/70">
+                Queries answered without a callout
+              </span>
+              <span className="text-2xl font-bold text-emerald-400">47</span>
             </div>
-            <p className="text-xs text-neutral-400">
-              E3 Low Pressure — Filter clean required
-            </p>
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs text-neutral-500">Resolution time</span>
-              <span className="text-xs font-medium text-emerald-400">2 mins — No callout</span>
+            <div className="flex items-baseline justify-between pt-2 border-t border-white/5">
+              <span className="text-[11px] text-porcelain/70">
+                Engineer hours saved
+              </span>
+              <span className="text-lg font-semibold text-emerald-300">12</span>
             </div>
           </div>
         </div>
       </FloatingCard>
 
-      {/* Card 3: Callout savings */}
-      <FloatingCard depth={3} className="translate-x-24 translate-y-20" delay={1.0}>
-        <div className="w-56 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 backdrop-blur-md rounded-2xl border border-emerald-500/30 shadow-2xl overflow-hidden">
-          <div className="p-5 text-center">
-            <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-emerald-500/20 flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 text-emerald-400" />
-            </div>
-            <div className="flex items-center justify-center gap-1 mb-1">
-              <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-xs font-medium text-emerald-400 uppercase tracking-wider">
-                Callout Savings
+      {/* Card 3: Your branding (lower left) */}
+      <FloatingCard
+        depth={3}
+        className="-translate-x-28 translate-y-28"
+        delay={1.0}
+      >
+        <div className="w-64 bg-gradient-to-br from-emerald-500/20 to-emerald-700/5 backdrop-blur-md rounded-2xl border border-emerald-500/30 shadow-2xl overflow-hidden">
+          <div className="p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/25 flex items-center justify-center">
+                <Paintbrush className="w-4 h-4 text-emerald-300" />
+              </div>
+              <span className="text-[10px] font-medium text-emerald-300 uppercase tracking-wider">
+                Your branding
               </span>
             </div>
-            <p className="text-2xl font-bold text-porcelain mb-0.5">&euro;27,400</p>
-            <p className="text-xs text-hint">saved this year</p>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-              className="mt-3 h-1 bg-emerald-500/30 rounded-full overflow-hidden"
-            >
-              <motion.div
-                initial={{ x: "-100%" }}
-                animate={{ x: "100%" }}
-                transition={{ delay: 1.2, duration: 0.8 }}
-                className="h-full w-1/2 bg-emerald-400 rounded-full"
-              />
-            </motion.div>
+            <p className="text-sm text-porcelain leading-relaxed">
+              Customers see your name, your colours, your team. Care is the front line. You&rsquo;re the trusted brand.
+            </p>
           </div>
         </div>
       </FloatingCard>
 
-      {/* Card 4: QR Activation */}
-      <FloatingCard depth={2} className="-translate-x-32 -translate-y-4" delay={1.2}>
-        <div className="w-44 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
-          <div className="p-4 text-center">
-            <div className="w-12 h-12 mx-auto rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-3">
-              <QrCode className="w-6 h-6 text-emerald-400" />
+      {/* Card 4: Telemetry integrations (peeking) */}
+      <FloatingCard
+        depth={2}
+        className="translate-x-28 translate-y-32"
+        delay={1.15}
+      >
+        <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+          <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+              <Plug className="w-4 h-4 text-emerald-400" />
             </div>
-            <p className="text-sm font-medium text-porcelain">Scan to activate</p>
-            <p className="text-[10px] text-neutral-500 mt-1">No app download required</p>
+            <div className="flex-1">
+              <p className="text-sm font-medium text-porcelain">Connected</p>
+              <p className="text-[10px] text-porcelain/50">Live telemetry</p>
+            </div>
+          </div>
+          <div className="p-4 space-y-1.5">
+            {integrations.map((i) => (
+              <div key={i.label} className="flex items-center gap-2">
+                <motion.span
+                  className="w-1.5 h-1.5 rounded-full bg-emerald-400"
+                  animate={{ opacity: [0.4, 1, 0.4] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <span className="text-[12px] text-porcelain/85">
+                  {i.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </FloatingCard>
