@@ -211,13 +211,41 @@ export default function PlatformPage() {
         <PlatformFloatingCards />
       </ModuleHero>
 
-      {/* ── 2. Live today strip ── */}
-      <section className="relative py-10 sm:py-12 bg-porcelain">
+      {/* ── 2. Market-context strip ── */}
+      <section className="relative py-14 sm:py-16 bg-porcelain">
         <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="inline-flex items-center gap-2 text-[13px] sm:text-base text-carbon/70">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" />
-              Live on active developments across Ireland today, and growing.
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-center">
+              <div>
+                <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2">
+                  36,284
+                </p>
+                <p className="text-[14px] sm:text-[15px] text-carbon/75 leading-relaxed">
+                  New homes completed in Ireland in 2025, the highest since 2008.
+                </p>
+              </div>
+              <div>
+                <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2">
+                  240,964
+                </p>
+                <p className="text-[14px] sm:text-[15px] text-carbon/75 leading-relaxed">
+                  Private tenancies registered with the Residential Tenancies Board.
+                </p>
+              </div>
+              <div>
+                <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2">
+                  3,609
+                </p>
+                <p className="text-[14px] sm:text-[15px] text-carbon/75 leading-relaxed">
+                  New heat pumps installed under SEAI schemes in 2024 alone.
+                </p>
+              </div>
+            </div>
+            <p className="text-center text-[15px] sm:text-[16px] text-carbon/70 leading-relaxed mt-10 max-w-2xl mx-auto">
+              A market this scale runs on spreadsheets, WhatsApp groups, and paper folders. OpenHouse is the system replacing them. Live today on developments in Cork, and expanding.
+            </p>
+            <p className="text-center text-[12px] text-carbon/45 mt-4 max-w-3xl mx-auto leading-relaxed">
+              Sources: CSO New Dwelling Completions, Q4 2025 full year; Residential Tenancies Board, Q4 2024 Profile of the Register; SEAI Record Year of Progress 2024.
             </p>
           </div>
         </Container>

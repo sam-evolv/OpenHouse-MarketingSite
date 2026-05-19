@@ -33,18 +33,18 @@ export const metadata = {
 
 const costStats = [
   {
-    value: "22 days",
+    value: "10.4 weeks",
     label:
-      "Average time a contract sits with the solicitor before someone notices",
+      "Average time to complete a residential conveyance in Ireland",
   },
   {
-    value: "4 in 10",
-    label: "Buyers who never get a follow-up after their first viewing",
+    value: "17 weeks",
+    label: "Average time in the UK in 2024, for comparison",
   },
   {
-    value: "€18k",
+    value: "1 in 7",
     label:
-      "Average gross margin on a unit, i.e. what one lost deal actually costs",
+      "Property deals fall through, mostly due to issues found too late",
   },
 ];
 
@@ -173,10 +173,10 @@ export default function SalesPage() {
         <Container>
           <div className="max-w-3xl mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
-              The hidden cost
+              The conveyancing reality
             </p>
             <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight">
-              What invisible deals actually cost.
+              The slow deals are the ones nobody can see.
             </h2>
           </div>
 
@@ -197,7 +197,10 @@ export default function SalesPage() {
           </div>
 
           <p className="text-center text-[18px] sm:text-xl text-porcelain/85 mt-12 sm:mt-14 max-w-2xl mx-auto leading-relaxed">
-            None of these are problems with your team. They&rsquo;re problems with the systems your team has been given to work with.
+            The slow deals are the ones nobody can see. Contracts sit with solicitors. Buyers go quiet. Selections never get signed off. By the time someone notices on Friday, the deal has been dying for three weeks.
+          </p>
+          <p className="text-center text-[12px] text-porcelain/40 mt-5 max-w-3xl mx-auto leading-relaxed">
+            Sources: Institute of Professional Auctioneers and Valuers (IPAV) via Augustus Cullen Law; Legal Ombudsman 2024 via Law Society of Ireland Gazette, April 2026; Irish Times analysis of Irish conveyancing, September 2025.
           </p>
         </Container>
       </section>

@@ -25,8 +25,6 @@ import {
   Headphones,
   Play,
   Phone,
-  X,
-  Check,
   MessageCircle,
 } from "lucide-react";
 
@@ -37,38 +35,26 @@ export const metadata = {
     "OpenHouse Care gives every installation its own AI assistant, branded for your business, trained on the systems you actually installed. Drop the avoidable callouts. Keep the ones that need a technician.",
 };
 
-interface CostRow {
-  label: string;
+interface MarketStat {
   value: string;
+  label: string;
 }
 
-const withoutCare: CostRow[] = [
+const marketStats: MarketStat[] = [
   {
-    label: "Average cost of a callout (technician time, travel, admin)",
-    value: "€150",
+    value: "3,609",
+    label:
+      "Heat pumps installed under SEAI schemes in 2024. A record year, up 13% on 2023.",
   },
   {
-    label: "Avoidable callouts per 100 installations per year",
-    value: "40",
+    value: "400,000",
+    label:
+      "The Irish government's heat pump installation target by 2030. The current run rate gets to roughly 51,400.",
   },
   {
-    label: "Cost per 100 installations per year",
-    value: "€6,000",
-  },
-];
-
-const withCare: CostRow[] = [
-  {
-    label: "OpenHouse Care subscription per 100 installations per year",
-    value: "€1,200",
-  },
-  {
-    label: "Avoidable callouts caught by the assistant",
-    value: "28 of 40",
-  },
-  {
-    label: "Cost per 100 installations per year",
-    value: "€3,000",
+    value: "€616m",
+    label:
+      "SEAI investment in 2024 in home energy upgrades. The installer market is scaling fast.",
   },
 ];
 
@@ -194,7 +180,7 @@ export default function CarePage() {
         <CareFloatingCards />
       </ModuleHero>
 
-      {/* ── 2. The ROI Math ── */}
+      {/* ── 2. The Market ── */}
       <section
         id="roi"
         className="relative py-20 sm:py-24 bg-carbon scroll-mt-32"
@@ -206,95 +192,41 @@ export default function CarePage() {
         <Container>
           <div className="max-w-3xl mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              The Math
+              The Market
             </p>
             <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight mb-4">
-              What avoidable callouts cost. And what catching them saves.
+              The Irish installer market just changed shape.
             </h2>
-            <p className="text-[17px] sm:text-lg text-porcelain/70 leading-relaxed max-w-2xl">
-              No vibes. No "boost your ROI". Just the numbers in your own vocabulary.
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl">
+            {marketStats.map((stat) => (
+              <div
+                key={stat.value}
+                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 hover:border-emerald-500/30 hover:bg-emerald-500/[0.03] transition-all duration-500"
+              >
+                <p className="text-[44px] sm:text-5xl lg:text-[56px] font-bold text-emerald-400 font-heading leading-none mb-4">
+                  {stat.value}
+                </p>
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* The math, when we do it together */}
+          <div className="max-w-3xl mx-auto mt-14 sm:mt-16 rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.04] p-6 sm:p-8">
+            <p className="text-xs uppercase tracking-[0.25em] text-emerald-400 font-semibold mb-4">
+              The math, when we do it together
+            </p>
+            <p className="text-[17px] sm:text-lg text-porcelain/85 leading-relaxed">
+              Different installers run very different ratios of avoidable to genuine callouts depending on the systems installed and the quality of handover documentation. We&rsquo;d rather not invent the numbers for your operation. On a demo call, bring your callout log for the last three months and we&rsquo;ll do the math against what OpenHouse Care would catch. If the saving doesn&rsquo;t pay for the platform several times over, we&rsquo;ll tell you straight.
             </p>
           </div>
 
-          {/* Photographable cost comparison */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl">
-            {/* Without Care */}
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-              <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/5">
-                <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center">
-                  <X className="w-5 h-5 text-red-400" aria-hidden="true" />
-                </div>
-                <p className="text-xs uppercase tracking-[0.25em] text-red-400 font-semibold">
-                  Without Care
-                </p>
-              </div>
-              <ul className="space-y-5">
-                {withoutCare.map((row, i) => (
-                  <li
-                    key={row.label}
-                    className={`flex items-start justify-between gap-4 ${i === withoutCare.length - 1 ? "pt-5 mt-2 border-t border-white/10" : ""}`}
-                  >
-                    <span
-                      className={`text-[15px] leading-relaxed ${i === withoutCare.length - 1 ? "text-porcelain font-semibold" : "text-porcelain/75"}`}
-                    >
-                      {row.label}
-                    </span>
-                    <span
-                      className={`text-right font-bold font-heading flex-shrink-0 ${i === withoutCare.length - 1 ? "text-3xl text-red-400" : "text-xl text-porcelain"}`}
-                    >
-                      {row.value}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* With Care */}
-            <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.04] p-6 sm:p-8">
-              <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/5">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
-                  <Check className="w-5 h-5 text-emerald-400" aria-hidden="true" />
-                </div>
-                <p className="text-xs uppercase tracking-[0.25em] text-emerald-400 font-semibold">
-                  With Care
-                </p>
-              </div>
-              <ul className="space-y-5">
-                {withCare.map((row, i) => (
-                  <li
-                    key={row.label}
-                    className={`flex items-start justify-between gap-4 ${i === withCare.length - 1 ? "pt-5 mt-2 border-t border-white/10" : ""}`}
-                  >
-                    <span
-                      className={`text-[15px] leading-relaxed ${i === withCare.length - 1 ? "text-porcelain font-semibold" : "text-porcelain/75"}`}
-                    >
-                      {row.label}
-                    </span>
-                    <span
-                      className={`text-right font-bold font-heading flex-shrink-0 ${i === withCare.length - 1 ? "text-3xl text-emerald-400" : "text-xl text-porcelain"}`}
-                    >
-                      {row.value}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              {/* Net saving callout */}
-              <div className="mt-6 pt-6 border-t border-emerald-500/30 flex items-center justify-between">
-                <span className="text-[15px] font-semibold text-emerald-300">
-                  Net saving, per 100 installations per year
-                </span>
-                <span className="text-3xl sm:text-4xl font-bold text-emerald-400 font-heading">
-                  €3,000
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <p className="text-center text-[18px] sm:text-xl text-porcelain/85 mt-12 sm:mt-14 max-w-3xl mx-auto leading-relaxed">
-            The math gets better the more installations you have, because the fixed costs of training the assistant don&rsquo;t scale linearly. We&rsquo;re happy to run these numbers against your actual installation base on a call.
-          </p>
-          <p className="text-center text-[12px] text-porcelain/40 mt-3 max-w-xl mx-auto">
-            Figures are illustrative. Subscription pricing varies by fleet size. Your real numbers go in before launch.
+          <p className="text-center text-[12px] text-porcelain/40 mt-8 max-w-3xl mx-auto leading-relaxed">
+            Sources: SEAI Record Year of Progress 2024 (3,609 heat pumps installed, €616m invested); SEAI National Retrofit Plan (400,000 heat pump target by 2030); ESRI report, March 2026 (current run-rate analysis).
           </p>
         </Container>
       </section>
