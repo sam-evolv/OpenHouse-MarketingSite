@@ -1,68 +1,138 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { BuildFloatingCards } from "@/components/hero/cards/BuildCards";
-import { ScreenshotLightbox } from "@/components/ui/ScreenshotLightbox";
 import heroBackground from "@/attached_assets/stock_images/build_construction_aerial.png";
-import smartArchive from "@/attached_assets/stock_images/smart_archive.png";
 import complianceTracker from "@/attached_assets/stock_images/compliance_tracker.png";
 import {
-  FolderOpen,
-  Shield,
-  FileText,
-  CircleDollarSign,
-  Search,
+  Hammer,
+  Layers,
   Upload,
+  KeyRound,
+  ClipboardCheck,
+  Users,
+  Package,
+  Archive,
+  HardHat,
+  HeartHandshake,
+  Wrench,
+  AlertCircle,
   ArrowRight,
   Home,
   ChevronLeft,
-  Archive,
-  ClipboardCheck,
+  TrendingUp,
+  MessageSquare,
+  Sparkles,
+  Headphones,
 } from "lucide-react";
-import Link from "next/link";
 
 export const metadata = {
-  title: "Build Module - Compliance & Document Hub | OpenHouse Ai",
+  title:
+    "Build Module, BCAR / HomeBond / BER Document Hub | OpenHouse Ai",
   description:
-    "Organise every certificate, specification, and document before handover. Compliance tracking that works across all your developments.",
+    "OpenHouse Build holds every BCAR submission, HomeBond cert, BER, fire safety document, sub-contractor cert, and homeowner manual against the unit it belongs to. Audit-ready from day one.",
 };
 
-const features = [
+const costStats = [
   {
-    icon: Shield,
-    title: "Compliance Tracker",
-    description:
-      "Planning certs, fire safety, BER, BCAR - track every requirement per unit with deadline alerts.",
+    value: "2 days",
+    label:
+      "Average notice before handover that a missing document is spotted",
   },
   {
-    icon: FileText,
-    title: "Smart Archive",
-    description:
-      "Upload once, access forever. Every document tagged by development, phase, unit, and category.",
+    value: "12",
+    label:
+      "Separate parties (sub-contractors, certifiers, suppliers) per unit's paperwork",
   },
   {
-    icon: CircleDollarSign,
-    title: "PC Sum Management",
-    description:
-      "Track provisional cost sums, customer selections, and approved upgrades in one place.",
+    value: "€4,500",
+    label: "Average cost of a delayed handover, per unit, per week",
   },
+];
+
+const steps = [
   {
-    icon: Search,
-    title: "AI-Powered Search",
-    description:
-      "Find any document instantly. Search across all developments by keyword, unit, or spec type.",
+    icon: Layers,
+    title: "Set up the scheme.",
+    desc: "Add your development, units, and sub-contractors. Build pulls in the compliance checklist for the unit type automatically (BCAR, BER, fire safety, HomeBond, and the rest).",
   },
   {
     icon: Upload,
-    title: "Bulk Upload",
-    description:
-      "Drop entire folders of specs and certificates. Auto-categorised by AI, ready for handover.",
+    title: "Documents land where they belong.",
+    desc: "Email, upload, or scan a document and the platform files it against the right unit. Sub-contractors get scoped access to upload their own certs directly.",
   },
   {
-    icon: FolderOpen,
-    title: "Pre-Handover Portal",
-    description:
-      "Give buyers access before key handover. They see specs, selections, and progress - reducing questions on closing day.",
+    icon: KeyRound,
+    title: "Hand over without scrambling.",
+    desc: "A week before handover, the platform shows you exactly what's outstanding. The homeowner pack assembles itself. The audit trail is already there.",
   },
+];
+
+const features = [
+  {
+    icon: ClipboardCheck,
+    title: "Compliance tracking by unit.",
+    description:
+      "BCAR, BER, HomeBond, fire safety, Part L, Part F. The full Irish residential checklist, per unit, with status visible at a glance.",
+  },
+  {
+    icon: Users,
+    title: "Sub-contractor portal.",
+    description:
+      "Your electrical contractor uploads their own certs against the unit. No more chasing them for paperwork.",
+  },
+  {
+    icon: Package,
+    title: "Homeowner pack assembly.",
+    description:
+      "Manuals, warranties, walk-throughs, certs, all bundled into the handover pack automatically. The pack the buyer gets is the pack the platform built.",
+  },
+  {
+    icon: Archive,
+    title: "Audit-ready forever.",
+    description:
+      "Every document is dated, version-controlled, and traceable. If an inspector or a buyer's solicitor asks for a document in five years, you find it in five seconds.",
+  },
+];
+
+const personas = [
+  {
+    icon: HardHat,
+    title: "Construction directors.",
+    description:
+      "You're responsible for the project from foundation through to keys. Build is the document spine you've been wishing for.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Customer care and aftersales leads.",
+    description:
+      "You're the person buyers come back to. Build hands you a complete document set per home so you have answers when residents ask.",
+  },
+  {
+    icon: Wrench,
+    title: "Sub-contractors and certifiers.",
+    description:
+      "Working on a development that uses OpenHouse. You get scoped access to upload your certs and confirm completion, without learning new software.",
+  },
+];
+
+const platformModules = [
+  { title: "Sales", href: "/sales", icon: TrendingUp, accent: "text-blue-400" },
+  {
+    title: "Handover",
+    href: "/handover",
+    icon: MessageSquare,
+    accent: "text-gold",
+  },
+  {
+    title: "Intelligence",
+    href: "/intelligence",
+    icon: Sparkles,
+    accent: "text-gold",
+  },
+  { title: "Agent", href: "/agent", icon: Headphones, accent: "text-gold" },
+  { title: "Care", href: "/care", icon: Wrench, accent: "text-emerald-400" },
 ];
 
 export default function BuildPage() {
@@ -74,20 +144,23 @@ export default function BuildPage() {
           href="/"
           className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium backdrop-blur-md hover:bg-emerald-500/20 transition-all duration-300"
         >
-          <ChevronLeft className="w-3 h-3" />
-          <Home className="w-3 h-3" />
+          <ChevronLeft className="w-3 h-3" aria-hidden="true" />
+          <Home className="w-3 h-3" aria-hidden="true" />
           <span className="hidden sm:inline">Platform</span>
         </Link>
       </div>
 
-      {/* ── Hero ── */}
+      {/* ── 1. Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
         accentColor="emerald"
-        backgroundAlt="Aerial view of residential development under construction at sunset"
+        backgroundAlt="Aerial view of a residential development under construction at sunset"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-            <FolderOpen className="w-4 h-4 text-emerald-400" />
+            <Hammer
+              className="w-4 h-4 text-emerald-400"
+              aria-hidden="true"
+            />
             <span className="text-sm font-medium text-emerald-400">
               Build Module
             </span>
@@ -95,204 +168,207 @@ export default function BuildPage() {
         }
         title={
           <>
-            Every cert, spec, and document{" "}
+            Every cert, every doc,{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-400">
-              organised before handover
-            </span>
+              organised
+            </span>{" "}
+            before the keys go in.
           </>
         }
-        subtitle="Stop chasing compliance documents across email threads and shared drives. One hub for every certificate, specification, and PC sum across all your developments."
-        primaryCta={{ href: "/contact", label: "Book a Demo" }}
-        secondaryCta={{ href: "#features", label: "See Features" }}
+        subtitle="OpenHouse Build holds every BCAR submission, HomeBond cert, BER, fire safety document, sub-contractor cert, and homeowner manual against the unit it belongs to. Audit-ready from day one. No more two-day scrambles before handover."
+        primaryCta={{ href: "#money-shot", label: "See a handover pack" }}
+        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >
         <BuildFloatingCards />
       </ModuleHero>
 
-      {/* ── Before / After ── */}
-      <section className="relative py-24 bg-carbon">
+      {/* ── 2. Cost of the scramble ── */}
+      <section className="relative py-20 sm:py-24 bg-carbon">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.08] via-transparent to-transparent"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="text-center mb-16">
+          <div className="max-w-3xl mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              Before &amp; After
+              The scramble
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              What changes when you switch
+            <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight">
+              What two days before handover actually costs.
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.03]">
-              <p className="text-sm font-semibold text-red-400 mb-4 uppercase tracking-wider">
-                Without OpenHouse
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Certs scattered across emails and drives",
-                  "Compliance tracked in spreadsheets per phase",
-                  "PC sums managed in separate files",
-                  "Handover packs assembled manually",
-                  "Missing documents discovered at completion",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-porcelain/60"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-400/40 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="p-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.03]">
-              <p className="text-sm font-semibold text-emerald-400 mb-4 uppercase tracking-wider">
-                With OpenHouse Build
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Every document in one searchable archive",
-                  "Compliance dashboard with deadline tracking",
-                  "PC sums linked to units with approval flow",
-                  "Handover packs auto-generated per unit",
-                  "Nothing missing - AI flags gaps before you do",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-porcelain"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl">
+            {costStats.map((stat) => (
+              <div
+                key={stat.value}
+                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 hover:border-emerald-500/30 hover:bg-emerald-500/[0.03] transition-all duration-500"
+              >
+                <p className="text-[44px] sm:text-5xl lg:text-[56px] font-bold text-emerald-400 font-heading leading-none mb-4">
+                  {stat.value}
+                </p>
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
+
+          <p className="text-center text-[18px] sm:text-xl text-porcelain/85 mt-12 sm:mt-14 max-w-2xl mx-auto leading-relaxed">
+            The paperwork was never the problem. The system for holding it was.
+          </p>
         </Container>
       </section>
 
-      {/* ── Smart Archive - Full Width ── */}
-      <section className="relative py-24 bg-carbon overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.03] via-transparent to-transparent" />
+      {/* ── 3. Money Shot, Unit Document View ── */}
+      <section
+        id="money-shot"
+        className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32"
+      >
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.10] via-transparent to-emerald-900/[0.06]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] max-w-[1200px] rounded-full bg-emerald-500/[0.05] blur-[140px]"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="max-w-3xl mb-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                <Archive className="w-4 h-4 text-emerald-400" />
-              </div>
-              <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 font-semibold">
-                Smart Archive
-              </p>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              950 documents, zero chaos
-            </h2>
-            <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-              Every file automatically sorted by discipline - Architectural,
-              Mechanical, Electrical, Civil, Plumbing, Structural. Must-Read
-              docs are flagged. Videos get their own tab. Search finds anything
-              in seconds.
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+              The Handover Pack
             </p>
-            <div className="flex flex-wrap gap-3">
-              {[
-                "9 disciplines",
-                "Must-Read tab",
-                "Video walkthroughs",
-                "AI search",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <h2 className="text-[32px] sm:text-5xl lg:text-[64px] font-bold text-white font-heading leading-[1.05] mb-6">
+              One unit. Every document. One view.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              This is the view a developer has wanted for thirty years. Every cert, every spec, every manual, against the unit it belongs to. Filterable across the whole scheme. Audit-ready, instantly.
+            </p>
           </div>
-          {/* Full-width screenshot */}
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-emerald-400/5 to-emerald-500/20 rounded-3xl blur-2xl" />
-            <div className="relative">
-              <ScreenshotLightbox
-                src={smartArchive}
-                alt="Smart Archive showing 98 documents organised by discipline - Architectural (40), Mechanical (11), Electrical (7), Handover Documentation (14), with tabs for Documents, Must-Read, Insights, and Videos"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
 
-      {/* ── Compliance Tracker - Full Width ── */}
-      <section className="relative py-24 bg-carbon overflow-hidden">
-        <Container>
-          <div className="max-w-3xl mb-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                <ClipboardCheck className="w-4 h-4 text-emerald-400" />
-              </div>
-              <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 font-semibold">
-                Compliance Tracker
-              </p>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              Every cert, every unit, nothing missing
-            </h2>
-            <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-              Electrical, BCMS, BER, HomeBond, Gas Safety, Fire Safety,
-              Structural Warranty - tracked per unit with upload buttons and
-              progress bars. You see exactly what&apos;s missing before your
-              solicitor does.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {[
-                "7 cert types",
-                "Per-unit tracking",
-                "Progress %",
-                "Bulk upload",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-emerald-400/5 to-emerald-500/20 rounded-3xl blur-2xl" />
-            <div className="relative">
-              <ScreenshotLightbox
+          <div className="relative max-w-6xl mx-auto">
+            <div
+              className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-emerald-500/25 via-emerald-400/10 to-emerald-500/25 rounded-3xl blur-2xl"
+              aria-hidden="true"
+            />
+            <div className="relative rounded-2xl overflow-hidden border border-emerald-500/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+              <Image
                 src={complianceTracker}
-                alt="Compliance Documents tracker showing 75 units with Electrical, BCMS, BER, HomeBond, Gas Safety, Fire Safety, and Structural Warranty certificates per unit with upload buttons"
+                alt="OpenHouse Build compliance view for a single unit, with Electrical, BCMS, BER, HomeBond, Gas Safety, Fire Safety, and Structural Warranty certificates per unit and an upload action for any outstanding cert"
+                className="w-full h-auto"
+                placeholder="blur"
               />
+
+              {/* Gold-bordered highlight on the BER cert row */}
+              <div
+                className="hidden md:block absolute top-[55%] left-[35%] right-[28%] pointer-events-none"
+                aria-hidden="true"
+              >
+                <div className="rounded-xl border-2 border-gold bg-gold/[0.08] shadow-[0_0_30px_rgba(212,175,55,0.45)] h-[44px]" />
+              </div>
+            </div>
+
+            {/* "The doc to look at" callout */}
+            <div className="relative -mt-6 sm:-mt-8 mx-auto max-w-md sm:max-w-lg z-10">
+              <div className="rounded-2xl border border-gold/40 bg-neutral-900/95 backdrop-blur-xl p-5 sm:p-6 shadow-2xl">
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-gold/15 border border-gold/40 flex items-center justify-center flex-shrink-0">
+                    <AlertCircle
+                      className="w-5 h-5 text-gold"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[11px] uppercase tracking-wider text-gold font-semibold mb-1">
+                      The doc to look at
+                    </p>
+                    <p className="text-[16px] sm:text-base font-semibold text-white leading-snug">
+                      BER cert, Unit A12. Outstanding from the assessor.
+                    </p>
+                    <p className="text-[14px] text-porcelain/65 mt-1">
+                      The platform flagged it on day nineteen, with eleven working days to go.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* ── Features ── */}
-      <section id="features" className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.02] to-transparent" />
+      {/* ── 4. How Build Works ── */}
+      <section className="relative py-24 bg-porcelain">
         <Container>
-          <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              Capabilities
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-emerald-700 mb-4 font-semibold">
+              How Build Works
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Construction-grade document control
+            <h2 className="text-[28px] sm:text-4xl font-bold text-carbon font-heading leading-tight">
+              Three steps, no curve.
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {steps.map((step, i) => (
+              <div
+                key={step.title}
+                className="relative p-6 sm:p-8 rounded-2xl border border-carbon/10 bg-white hover:border-emerald-500/40 hover:shadow-[0_15px_40px_-15px_rgba(16,185,129,0.25)] transition-all duration-500"
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center">
+                    <step.icon
+                      className="w-5 h-5 text-emerald-700"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <span className="text-xs font-mono text-carbon/40">
+                    Step {i + 1}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-carbon mb-3 font-heading">
+                  {step.title}
+                </h3>
+                <p className="text-[17px] text-carbon/70 leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 5. What Build Does (4 cards) ── */}
+      <section className="relative py-24 bg-carbon">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+              What Build Does
+            </p>
+            <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
+              Four jobs, off your plate.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {features.map((f) => (
               <div
                 key={f.title}
-                className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/20 hover:bg-emerald-500/[0.03] transition-all duration-500"
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-emerald-500/30 hover:bg-emerald-500/[0.04] transition-all duration-500"
               >
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
-                  <f.icon className="w-5 h-5 text-emerald-400" />
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-5">
+                  <f.icon
+                    className="w-6 h-6 text-emerald-400"
+                    aria-hidden="true"
+                  />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
                   {f.title}
                 </h3>
-                <p className="text-sm text-porcelain/60 leading-relaxed">
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
                   {f.description}
                 </p>
               </div>
@@ -301,28 +377,143 @@ export default function BuildPage() {
         </Container>
       </section>
 
-      {/* ── CTA ── */}
+      {/* ── 6. Built For You ── */}
       <section className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/[0.04] to-transparent" />
         <Container>
-          <div className="relative text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-heading">
-              See the Build module live
-            </h2>
-            <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;ll show you compliance tracking and document management
-              running on a live development.
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+              Built For You
             </p>
-            <Link
-              href="/contact"
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-500" />
-              <span className="relative z-10 text-white flex items-center gap-2">
-                Book a Demo
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
+            <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
+              You probably recognise one of these.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {personas.map((p) => (
+              <div
+                key={p.title}
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-emerald-500/30 hover:bg-emerald-500/[0.04] transition-all duration-500"
+              >
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-5">
+                  <p.icon
+                    className="w-6 h-6 text-emerald-400"
+                    aria-hidden="true"
+                  />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
+                  {p.title}
+                </h3>
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
+                  {p.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 7. Trust Line ── */}
+      <section className="relative py-24 bg-porcelain">
+        <Container>
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
+              Audit-ready. Always.
+            </h2>
+            <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed mb-6">
+              Every document is timestamped, versioned, and stored in Europe. Inspectors and solicitors can be given read-only access to the documents that concern them, without seeing the rest of your operation.
+            </p>
+            <p className="text-[15px] text-carbon/55 leading-relaxed italic">
+              Built by a working property developer in Cork who has run his own handovers and remembers every two-day scramble in that list above.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 8. Peak-end CTA ── */}
+      <section className="relative py-28 sm:py-36 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.10] via-transparent to-emerald-900/[0.12]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] rounded-full bg-emerald-500/[0.06] blur-[140px]"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="relative max-w-3xl mx-auto text-center">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
+              See it on the documents you&rsquo;re already managing.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">
+              Bring a sample handover pack to the demo. We&rsquo;ll show you exactly how it would look in OpenHouse Build, organised, complete, and ready for keys.
+            </p>
+
+            <div className="flex flex-col items-center gap-5">
+              <Link
+                href="/contact"
+                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(16,185,129,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
+              >
+                <span
+                  className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600"
+                  aria-hidden="true"
+                />
+                <span className="relative z-10 text-white flex items-center gap-3">
+                  Book a Demo
+                  <ArrowRight
+                    className="w-6 h-6 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+              <p className="text-sm text-porcelain/60">
+                Or email{" "}
+                <a
+                  href="mailto:sam@openhouseai.ie"
+                  className="text-emerald-400 hover:text-emerald-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded"
+                >
+                  sam@openhouseai.ie
+                </a>{" "}
+                if you&rsquo;d rather start with a few questions.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 9. Platform Strip ── */}
+      <section className="relative py-20 bg-porcelain">
+        <Container>
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-[24px] sm:text-3xl font-bold text-carbon font-heading mb-4">
+              Part of the OpenHouse platform.
+            </h2>
+            <p className="text-[17px] sm:text-lg text-carbon/70 leading-relaxed">
+              Build is one module of six. Same data, different surfaces, one platform that runs every stage of a development.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto">
+            {platformModules.map((mod) => (
+              <Link
+                key={mod.title}
+                href={mod.href}
+                className="group flex items-center gap-3 min-h-[64px] px-4 py-3 rounded-2xl border border-carbon/10 bg-white hover:bg-emerald-50 hover:border-emerald-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              >
+                <span className="w-9 h-9 rounded-xl bg-carbon/[0.04] flex items-center justify-center flex-shrink-0">
+                  <mod.icon
+                    className={`w-4 h-4 ${mod.accent}`}
+                    aria-hidden="true"
+                  />
+                </span>
+                <span className="text-sm font-semibold text-carbon">
+                  {mod.title}
+                </span>
+                <ArrowRight
+                  className="w-4 h-4 text-carbon/40 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-hidden="true"
+                />
+              </Link>
+            ))}
           </div>
         </Container>
       </section>
