@@ -152,14 +152,14 @@ export function IntelligenceTryItWidget() {
   return (
     <div className="relative">
       <div
-        className="absolute -inset-4 bg-gradient-to-r from-gold/20 via-amber-500/5 to-gold/20 rounded-3xl blur-2xl"
+        className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 via-purple-500/5 to-violet-500/20 rounded-3xl blur-2xl"
         aria-hidden="true"
       />
       <div className="relative rounded-3xl border border-white/10 bg-neutral-900/90 backdrop-blur-xl overflow-hidden">
         {/* Top bar mimicking a real product */}
         <div className="flex items-center gap-3 px-5 sm:px-7 py-4 border-b border-white/5">
-          <div className="w-8 h-8 rounded-lg bg-gold/15 border border-gold/30 flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-gold" aria-hidden="true" />
+          <div className="w-8 h-8 rounded-lg bg-violet-500/15 border border-violet-400/30 flex items-center justify-center">
+            <Sparkles className="w-4 h-4 text-violet-300" aria-hidden="true" />
           </div>
           <div className="flex-1">
             <p className="text-sm font-semibold text-porcelain">
@@ -188,11 +188,11 @@ export function IntelligenceTryItWidget() {
                     key={p.id}
                     type="button"
                     onClick={() => handlePillClick(p)}
-                    className="group flex items-start gap-2.5 min-h-[48px] px-3.5 py-3 rounded-xl border border-white/10 bg-white/[0.03] hover:border-gold/40 hover:bg-gold/[0.06] text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                    className="group flex items-start gap-2.5 min-h-[48px] px-3.5 py-3 rounded-xl border border-white/10 bg-white/[0.03] hover:border-violet-400/40 hover:bg-violet-500/[0.06] text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
                   >
-                    <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-gold/15 flex items-center justify-center flex-shrink-0 transition-colors">
+                    <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-violet-500/15 flex items-center justify-center flex-shrink-0 transition-colors">
                       <p.icon
-                        className="w-3.5 h-3.5 text-porcelain/70 group-hover:text-gold transition-colors"
+                        className="w-3.5 h-3.5 text-porcelain/70 group-hover:text-violet-300 transition-colors"
                         aria-hidden="true"
                       />
                     </span>
@@ -216,7 +216,7 @@ export function IntelligenceTryItWidget() {
             >
               {/* Echoed question */}
               <div className="flex justify-end">
-                <div className="bg-gold/15 rounded-2xl rounded-br-sm px-4 py-2.5 max-w-[85%]">
+                <div className="bg-violet-500/15 rounded-2xl rounded-br-sm px-4 py-2.5 max-w-[85%]">
                   <p className="text-[14px] text-porcelain leading-relaxed">
                     {active.question}
                   </p>
@@ -232,14 +232,14 @@ export function IntelligenceTryItWidget() {
                     exit={{ opacity: 0 }}
                     className="flex items-center gap-3 px-4"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-gold/15 border border-gold/30 flex items-center justify-center flex-shrink-0">
-                      <Sparkles className="w-3.5 h-3.5 text-gold" aria-hidden="true" />
+                    <div className="w-7 h-7 rounded-lg bg-violet-500/15 border border-violet-400/30 flex items-center justify-center flex-shrink-0">
+                      <Sparkles className="w-3.5 h-3.5 text-violet-300" aria-hidden="true" />
                     </div>
                     <div className="flex items-center gap-1">
                       {[0, 1, 2].map((i) => (
                         <motion.span
                           key={i}
-                          className="w-1.5 h-1.5 bg-gold/70 rounded-full"
+                          className="w-1.5 h-1.5 bg-violet-500/70 rounded-full"
                           animate={{ y: [0, -3, 0], opacity: [0.5, 1, 0.5] }}
                           transition={{
                             duration: 0.9,
@@ -258,12 +258,12 @@ export function IntelligenceTryItWidget() {
 
               {/* Answer */}
               {state === "answering" && (
-                <div className="rounded-2xl border border-gold/30 bg-black/40 p-5">
+                <div className="rounded-2xl border border-violet-400/30 bg-black/40 p-5">
                   <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-7 h-7 rounded-lg bg-gold/15 border border-gold/30 flex items-center justify-center">
-                      <Sparkles className="w-3.5 h-3.5 text-gold" aria-hidden="true" />
+                    <div className="w-7 h-7 rounded-lg bg-violet-500/15 border border-violet-400/30 flex items-center justify-center">
+                      <Sparkles className="w-3.5 h-3.5 text-violet-300" aria-hidden="true" />
                     </div>
-                    <p className="text-[11px] uppercase tracking-wider text-gold font-semibold">
+                    <p className="text-[11px] uppercase tracking-wider text-violet-300 font-semibold">
                       Intelligence
                     </p>
                   </div>
@@ -301,7 +301,7 @@ export function IntelligenceTryItWidget() {
                           {active.sources.map((s) => (
                             <span
                               key={s}
-                              className="text-[11px] px-2.5 py-1 rounded-full bg-gold/10 text-gold border border-gold/30"
+                              className="text-[11px] px-2.5 py-1 rounded-full bg-violet-500/10 text-violet-300 border border-violet-400/30"
                             >
                               {s}
                             </span>
@@ -329,10 +329,10 @@ export function IntelligenceTryItWidget() {
                           setShowFollowUp(false);
                           setTimeout(() => inputRef.current?.focus(), 100);
                         }}
-                        className="mt-4 group inline-flex items-center gap-2 text-[13px] text-porcelain/65 hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
+                        className="mt-4 group inline-flex items-center gap-2 text-[13px] text-porcelain/65 hover:text-violet-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded"
                       >
                         <span>Ask a follow-up,</span>
-                        <span className="text-porcelain group-hover:text-gold transition-colors">
+                        <span className="text-porcelain group-hover:text-violet-300 transition-colors">
                           &ldquo;{active.followUp}&rdquo;
                         </span>
                         <ChevronRight
@@ -349,7 +349,7 @@ export function IntelligenceTryItWidget() {
 
           {/* Input row */}
           <div className="pt-2">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-black/40 border border-white/10 focus-within:border-gold/40 transition-colors">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-black/40 border border-white/10 focus-within:border-violet-400/40 transition-colors">
               <Sparkles className="w-4 h-4 text-porcelain/40 flex-shrink-0" aria-hidden="true" />
               <input
                 ref={inputRef}
@@ -370,7 +370,7 @@ export function IntelligenceTryItWidget() {
                 type="button"
                 onClick={handleTypedSubmit}
                 aria-label="Send question"
-                className="w-9 h-9 rounded-xl bg-gold flex items-center justify-center hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+                className="w-9 h-9 rounded-xl bg-violet-500 flex items-center justify-center hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
               >
                 <Send className="w-4 h-4 text-carbon" aria-hidden="true" />
               </button>

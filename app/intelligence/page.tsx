@@ -116,7 +116,7 @@ export default function IntelligencePage() {
       <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
-          className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-medium backdrop-blur-md hover:bg-gold/20 transition-all duration-300"
+          className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/15 border border-violet-400/30 text-violet-300 text-xs font-medium backdrop-blur-md hover:bg-violet-500/25 transition-all duration-300"
         >
           <ChevronLeft className="w-3 h-3" aria-hidden="true" />
           <Home className="w-3 h-3" aria-hidden="true" />
@@ -127,12 +127,12 @@ export default function IntelligencePage() {
       {/* ── 1. Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
-        accentColor="gold"
+        accentColor="violet"
         backgroundAlt="Abstract data network representing OpenHouse Intelligence"
         badge={
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
-            <Sparkles className="w-4 h-4 text-gold" aria-hidden="true" />
-            <span className="text-sm font-medium text-gold">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/15 border border-violet-400/30">
+            <Sparkles className="w-4 h-4 text-violet-300" aria-hidden="true" />
+            <span className="text-sm font-medium text-violet-300">
               Intelligence Module
             </span>
           </div>
@@ -140,7 +140,7 @@ export default function IntelligencePage() {
         title={
           <>
             Ask anything about any scheme. Get the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-purple-300 to-violet-300">
               actual
             </span>{" "}
             answer.
@@ -159,12 +159,12 @@ export default function IntelligencePage() {
         className="relative py-20 sm:py-24 bg-carbon scroll-mt-32"
       >
         <div
-          className="absolute inset-0 bg-gradient-to-b from-gold/[0.04] via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.06] via-transparent to-transparent"
           aria-hidden="true"
         />
         <Container>
           <div className="max-w-3xl mb-10">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-300 mb-4 font-semibold">
               Try It
             </p>
             <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight mb-4">
@@ -182,16 +182,16 @@ export default function IntelligencePage() {
       {/* ── 3. Money Shot, full Intelligence view ── */}
       <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-b from-gold/[0.06] via-transparent to-gold/[0.04]"
+          className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.08] via-transparent to-violet-500/[0.05]"
           aria-hidden="true"
         />
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] max-w-[1200px] rounded-full bg-gold/[0.04] blur-[140px]"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] max-w-[1200px] rounded-full bg-violet-500/[0.06] blur-[140px]"
           aria-hidden="true"
         />
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-300 mb-4 font-semibold">
               The Interface
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
@@ -204,10 +204,10 @@ export default function IntelligencePage() {
 
           <div className="relative max-w-6xl mx-auto">
             <div
-              className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-gold/25 via-amber-500/10 to-gold/25 rounded-3xl blur-2xl"
+              className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-violet-500/30 via-purple-500/10 to-violet-500/30 rounded-3xl blur-2xl"
               aria-hidden="true"
             />
-            <div className="relative rounded-2xl overflow-hidden border border-gold/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+            <div className="relative rounded-2xl overflow-hidden border border-violet-400/30 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
               <Image
                 src={intelligenceConversation}
                 alt="OpenHouse Intelligence interface mid-conversation, with a sourced answer about 158 units sale agreed and a chart breakdown, plus a Today's Briefing button and a scheme selector"
@@ -223,7 +223,7 @@ export default function IntelligencePage() {
       <section className="relative py-24 bg-porcelain">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-amber-700 mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-700 mb-4 font-semibold">
               How Intelligence Works
             </p>
             <h2 className="text-[28px] sm:text-4xl font-bold text-carbon font-heading leading-tight">
@@ -235,12 +235,12 @@ export default function IntelligencePage() {
             {steps.map((step, i) => (
               <div
                 key={step.title}
-                className="relative p-6 sm:p-8 rounded-2xl border border-carbon/10 bg-white hover:border-amber-600/40 hover:shadow-[0_15px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-500"
+                className="relative p-6 sm:p-8 rounded-2xl border border-carbon/10 bg-white hover:border-violet-500/40 hover:shadow-[0_15px_40px_-15px_rgba(139,92,246,0.25)] transition-all duration-500"
               >
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-11 h-11 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center">
+                  <div className="w-11 h-11 rounded-xl bg-violet-100 border border-violet-200 flex items-center justify-center">
                     <step.icon
-                      className="w-5 h-5 text-amber-700"
+                      className="w-5 h-5 text-violet-700"
                       aria-hidden="true"
                     />
                   </div>
@@ -263,12 +263,12 @@ export default function IntelligencePage() {
       {/* ── 5. What Intelligence Does ── */}
       <section className="relative py-24 bg-carbon">
         <div
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.03] to-transparent"
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-500/[0.04] to-transparent"
           aria-hidden="true"
         />
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-300 mb-4 font-semibold">
               What Intelligence Does
             </p>
             <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
@@ -280,10 +280,10 @@ export default function IntelligencePage() {
             {features.map((f) => (
               <div
                 key={f.title}
-                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-gold/30 hover:bg-gold/[0.04] transition-all duration-500"
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-violet-400/40 hover:bg-violet-500/[0.05] transition-all duration-500"
               >
-                <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center mb-5">
-                  <f.icon className="w-6 h-6 text-gold" aria-hidden="true" />
+                <div className="w-12 h-12 rounded-xl bg-violet-500/15 border border-violet-400/30 flex items-center justify-center mb-5">
+                  <f.icon className="w-6 h-6 text-violet-300" aria-hidden="true" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
                   {f.title}
@@ -301,7 +301,7 @@ export default function IntelligencePage() {
       <section className="relative py-24 bg-carbon">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-300 mb-4 font-semibold">
               Built For You
             </p>
             <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
@@ -313,10 +313,10 @@ export default function IntelligencePage() {
             {personas.map((p) => (
               <div
                 key={p.title}
-                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-gold/30 hover:bg-gold/[0.04] transition-all duration-500"
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-violet-400/40 hover:bg-violet-500/[0.05] transition-all duration-500"
               >
-                <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center mb-5">
-                  <p.icon className="w-6 h-6 text-gold" aria-hidden="true" />
+                <div className="w-12 h-12 rounded-xl bg-violet-500/15 border border-violet-400/30 flex items-center justify-center mb-5">
+                  <p.icon className="w-6 h-6 text-violet-300" aria-hidden="true" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
                   {p.title}
@@ -347,11 +347,11 @@ export default function IntelligencePage() {
       {/* ── 8. Peak-end CTA ── */}
       <section className="relative py-28 sm:py-36 bg-carbon overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-b from-gold/[0.05] via-transparent to-gold/[0.07]"
+          className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.08] via-transparent to-violet-500/[0.10]"
           aria-hidden="true"
         />
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] rounded-full bg-gold/[0.06] blur-[140px]"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] rounded-full bg-violet-500/[0.08] blur-[140px]"
           aria-hidden="true"
         />
         <Container>
@@ -366,10 +366,10 @@ export default function IntelligencePage() {
             <div className="flex flex-col items-center gap-5">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(212,175,55,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
+                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(139,92,246,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
               >
                 <span
-                  className="absolute inset-0 bg-gradient-to-r from-gold via-amber-400 to-gold"
+                  className="absolute inset-0 bg-gradient-to-r from-violet-600 via-violet-500 to-violet-600"
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-carbon flex items-center gap-3">
@@ -384,7 +384,7 @@ export default function IntelligencePage() {
                 Or email{" "}
                 <a
                   href="mailto:sam@openhouseai.ie"
-                  className="text-gold hover:text-amber-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
+                  className="text-violet-300 hover:text-violet-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded"
                 >
                   sam@openhouseai.ie
                 </a>{" "}
@@ -411,7 +411,7 @@ export default function IntelligencePage() {
               <Link
                 key={mod.title}
                 href={mod.href}
-                className="group flex items-center gap-3 min-h-[64px] px-4 py-3 rounded-2xl border border-carbon/10 bg-white hover:bg-amber-50 hover:border-amber-600/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                className="group flex items-center gap-3 min-h-[64px] px-4 py-3 rounded-2xl border border-carbon/10 bg-white hover:bg-violet-50 hover:border-violet-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
               >
                 <span className="w-9 h-9 rounded-xl bg-carbon/[0.04] flex items-center justify-center flex-shrink-0">
                   <mod.icon

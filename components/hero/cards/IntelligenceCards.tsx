@@ -20,8 +20,8 @@ export function IntelligenceFloatingCards() {
       >
         <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
-              <MessageCircle className="w-4 h-4 text-gold" />
+            <div className="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center">
+              <MessageCircle className="w-4 h-4 text-violet-300" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-porcelain">You ask</p>
@@ -34,7 +34,7 @@ export function IntelligenceFloatingCards() {
             <p className="text-[13px] text-porcelain leading-relaxed">
               What&rsquo;s our projected revenue this month?
               <motion.span
-                className="inline-block w-0.5 h-3.5 bg-gold ml-1 align-middle"
+                className="inline-block w-0.5 h-3.5 bg-violet-300 ml-1 align-middle"
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.9, repeat: Infinity }}
               />
@@ -49,18 +49,18 @@ export function IntelligenceFloatingCards() {
         className="translate-x-16 -translate-y-2"
         delay={0.85}
       >
-        <div className="w-[340px] bg-slate/95 backdrop-blur-md rounded-2xl border border-gold/30 shadow-2xl overflow-hidden">
+        <div className="w-[340px] bg-slate/95 backdrop-blur-md rounded-2xl border border-violet-400/40 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-gold" />
+            <div className="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-violet-300" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-porcelain">
                 Intelligence
               </p>
-              <p className="text-[10px] text-gold flex items-center gap-1">
+              <p className="text-[10px] text-violet-300 flex items-center gap-1">
                 <motion.span
-                  className="w-1.5 h-1.5 bg-gold rounded-full"
+                  className="w-1.5 h-1.5 bg-violet-300 rounded-full"
                   animate={{ opacity: [0.4, 1, 0.4] }}
                   transition={{ duration: 1.8, repeat: Infinity }}
                 />
@@ -71,9 +71,8 @@ export function IntelligenceFloatingCards() {
           <div className="p-4">
             <p className="text-[13px] text-porcelain/85 leading-relaxed mb-3">
               Your three active developments are projected to close{" "}
-              <span className="font-semibold text-gold">€1.84m</span> this
-              month, based on nine sale-agreed contracts ready to sign.
-              Riverside Gardens is the biggest contributor at €910k.
+              <span className="font-semibold text-violet-300">€1.84m</span>{" "}
+              this month, based on nine sale-agreed contracts ready to sign. Riverside Gardens is the biggest contributor at €910k.
             </p>
             <div className="pt-3 border-t border-white/5">
               <p className="text-[9px] uppercase tracking-wider text-porcelain/40 mb-2">
@@ -87,7 +86,7 @@ export function IntelligenceFloatingCards() {
                 ].map((s) => (
                   <span
                     key={s}
-                    className="text-[10px] px-2 py-0.5 rounded-full bg-gold/10 text-gold border border-gold/25"
+                    className="text-[10px] px-2 py-0.5 rounded-full bg-violet-500/15 text-violet-200 border border-violet-400/30"
                   >
                     {s}
                   </span>
@@ -106,8 +105,8 @@ export function IntelligenceFloatingCards() {
       >
         <div className="w-[300px] bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
-              <ShieldCheck className="w-4 h-4 text-gold" />
+            <div className="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center">
+              <ShieldCheck className="w-4 h-4 text-violet-300" />
             </div>
             <div className="flex-1">
               <p className="text-[11px] text-porcelain/60">You ask</p>
@@ -130,13 +129,13 @@ export function IntelligenceFloatingCards() {
         className="translate-x-28 translate-y-32"
         delay={1.2}
       >
-        <div className="w-64 bg-gradient-to-br from-gold/20 to-gold/5 backdrop-blur-md rounded-2xl border border-gold/30 shadow-2xl overflow-hidden">
+        <div className="w-64 bg-gradient-to-br from-violet-500/25 to-purple-900/10 backdrop-blur-md rounded-2xl border border-violet-400/30 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
-                <BarChart3 className="w-4 h-4 text-gold" />
+              <div className="w-8 h-8 rounded-lg bg-violet-500/25 flex items-center justify-center">
+                <BarChart3 className="w-4 h-4 text-violet-300" />
               </div>
-              <span className="text-[10px] font-medium text-gold uppercase tracking-wider">
+              <span className="text-[10px] font-medium text-violet-300 uppercase tracking-wider">
                 Across your portfolio
               </span>
             </div>
@@ -145,7 +144,7 @@ export function IntelligenceFloatingCards() {
                 <span className="text-[11px] text-porcelain/70">
                   Sale agreed
                 </span>
-                <span className="text-lg font-bold text-gold">158</span>
+                <span className="text-lg font-bold text-violet-200">158</span>
               </div>
               <div className="flex justify-between items-baseline">
                 <span className="text-[11px] text-porcelain/70">
