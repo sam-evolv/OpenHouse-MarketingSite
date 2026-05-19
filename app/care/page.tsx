@@ -1,114 +1,149 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { CareFloatingCards } from "@/components/hero/cards/CareCards";
 import heroBackground from "@/attached_assets/stock_images/carebackground.png";
 import {
-  Wrench,
-  MessageSquare,
-  FileText,
-  Monitor,
-  QrCode,
-  Clock,
-  Shield,
-  ArrowRight,
+  LifeBuoy,
   Home,
   ChevronLeft,
-  Flame,
-  Zap,
-  Wind,
-  Battery,
-  ThermometerSun,
-  Lock,
+  Upload,
+  Smartphone,
+  BarChart3,
+  Headset,
+  Plug,
+  PhoneCall,
+  Activity,
+  Thermometer,
+  Sun,
+  Layers,
+  ArrowRight,
+  TrendingUp,
+  FolderOpen,
+  MessageSquare,
+  Sparkles,
+  Headphones,
+  Play,
+  Phone,
+  X,
+  Check,
+  MessageCircle,
 } from "lucide-react";
-import Link from "next/link";
 
 export const metadata = {
-  title: "Care Module - AI Aftercare for Installers | OpenHouse Ai",
+  title:
+    "Care Module, Stop the Callouts That Don't Need an Engineer | OpenHouse Ai",
   description:
-    "30-40% of heat pump callouts are for issues the homeowner could resolve themselves. OpenHouse Care gives your customers instant AI support, branded for your business.",
+    "OpenHouse Care gives every installation its own AI assistant, branded for your business, trained on the systems you actually installed. Drop the avoidable callouts. Keep the ones that need a technician.",
 };
 
-const stats = [
+interface CostRow {
+  label: string;
+  value: string;
+}
+
+const withoutCare: CostRow[] = [
   {
-    value: "30-40%",
-    label: "of heat pump callouts are for issues the homeowner could resolve themselves",
+    label: "Average cost of a callout (technician time, travel, admin)",
+    value: "€150",
   },
   {
-    value: "\u20AC150-220",
-    label: "average cost per callout including engineer time, travel, and diagnostic fees",
+    label: "Avoidable callouts per 100 installations per year",
+    value: "40",
   },
   {
-    value: "500,000",
-    label: "heat pumps targeted for installation in Ireland by 2030",
+    label: "Cost per 100 installations per year",
+    value: "€6,000",
+  },
+];
+
+const withCare: CostRow[] = [
+  {
+    label: "OpenHouse Care subscription per 100 installations per year",
+    value: "€1,200",
+  },
+  {
+    label: "Avoidable callouts caught by the assistant",
+    value: "28 of 40",
+  },
+  {
+    label: "Cost per 100 installations per year",
+    value: "€3,000",
   },
 ];
 
 const steps = [
   {
-    step: "1",
-    title: "We learn your systems",
-    desc: "Share your product manuals, install guides, and common troubleshooting steps. We build a knowledge base specific to the exact equipment you fit.",
+    icon: Upload,
+    title: "Onboard your installations.",
+    desc: "Add your installation base. Heat pumps, solar arrays, HVAC, EV chargers. Each installation is registered against the customer's home, with the system specs the assistant needs.",
   },
   {
-    step: "2",
-    title: "Your portal goes live",
-    desc: "A branded aftercare assistant, in your name, accessible via QR code. No app downloads. Works on any device, instantly.",
+    icon: Smartphone,
+    title: "Customers get a branded portal.",
+    desc: "QR code at handover. Customer scans, links their installation to the portal. The assistant is now available 24/7 in your branding.",
   },
   {
-    step: "3",
-    title: "Customers self-serve",
-    desc: "Homeowners describe their issue. The AI diagnoses it, explains what caused it, and walks them through the fix. Step by step, in plain English.",
+    icon: BarChart3,
+    title: "You see what's happening.",
+    desc: "On the installer side, you see every question, every resolved issue, every callout that did need an engineer. Patterns surface. Training improves. Your operation gets leaner.",
   },
 ];
 
 const features = [
   {
-    icon: MessageSquare,
-    title: "AI Diagnostics",
+    icon: Headset,
+    title: "A branded customer assistant.",
     description:
-      "Trained on your exact equipment. Diagnoses faults, explains causes, and provides step-by-step resolution in plain language.",
+      "24/7 support in your branding. Trained on the specific systems you installed. Customers get the right answer the first time.",
   },
   {
-    icon: FileText,
-    title: "Guides & Explainer Videos",
+    icon: Plug,
+    title: "Telemetry integrations.",
     description:
-      "Step-by-step maintenance guides and video walkthroughs so homeowners can learn how their systems actually work.",
+      "Huawei FusionSolar, Daikin ONECTA, SolarEdge, and growing. The assistant reads live system data where the integration exists.",
   },
   {
-    icon: Monitor,
-    title: "Your Brand, Your Portal",
+    icon: PhoneCall,
+    title: "Callouts that do need you, routed to you.",
     description:
-      "Fully branded in your company name and colours. Your customers see you, not us. It's your aftercare experience, elevated.",
+      "When the issue is real, the customer is taken straight to your booking flow. You don't lose the work, you just lose the avoidable trips.",
   },
   {
-    icon: QrCode,
-    title: "QR Code Activation",
+    icon: Activity,
+    title: "Patterns across your installation base.",
     description:
-      "No app downloads, no logins, no friction. Homeowners scan a QR code and they're in. Stick it on the unit, include it in the handover pack.",
-  },
-  {
-    icon: Clock,
-    title: "24/7 Availability",
-    description:
-      "Your aftercare doesn't clock off at 5pm. Homeowners get answers at midnight on a Sunday, without your phone ringing.",
-  },
-  {
-    icon: Shield,
-    title: "Reduce Callbacks, Not Quality",
-    description:
-      "Your customers get better support, faster. Your team gets freed up for the work that actually needs an engineer on site.",
+      "Every question and every callout gives you data on what's failing, where, and how often. Your next install is informed by your last hundred.",
   },
 ];
 
-const industries = [
-  { label: "Heat Pumps", icon: Flame },
-  { label: "Solar PV", icon: Zap },
-  { label: "Battery Storage", icon: Battery },
-  { label: "HVAC", icon: Wind },
-  { label: "EV Chargers", icon: Zap },
-  { label: "Alarm Systems", icon: Lock },
-  { label: "Ventilation", icon: Wind },
-  { label: "Underfloor Heating", icon: ThermometerSun },
+const personas = [
+  {
+    icon: Thermometer,
+    title: "Heat pump and HVAC installers.",
+    description:
+      "Managing 500 to 5,000 active installs. Care drops your avoidable callouts and gives you data on what your fleet is actually doing.",
+  },
+  {
+    icon: Sun,
+    title: "Solar PV and battery installers.",
+    description:
+      "Customers want to understand their system. Care gives them the answers without your phone ringing every week about a normal nighttime drop.",
+  },
+  {
+    icon: Layers,
+    title: "Multi-system installers.",
+    description:
+      "Heat pump plus solar plus battery plus EV charger in the same home. Care holds the whole system in one place for the customer and one dashboard for you.",
+  },
+];
+
+const platformModules = [
+  { title: "Sales", href: "/sales", icon: TrendingUp, accent: "text-blue-400" },
+  { title: "Build", href: "/build", icon: FolderOpen, accent: "text-emerald-400" },
+  { title: "Handover", href: "/handover", icon: MessageSquare, accent: "text-gold" },
+  { title: "Intelligence", href: "/intelligence", icon: Sparkles, accent: "text-violet-300" },
+  { title: "Agent", href: "/agent", icon: Headphones, accent: "text-gold" },
 ];
 
 export default function CarePage() {
@@ -120,21 +155,24 @@ export default function CarePage() {
           href="/"
           className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium backdrop-blur-md hover:bg-emerald-500/20 transition-all duration-300"
         >
-          <ChevronLeft className="w-3 h-3" />
-          <Home className="w-3 h-3" />
+          <ChevronLeft className="w-3 h-3" aria-hidden="true" />
+          <Home className="w-3 h-3" aria-hidden="true" />
           <span className="hidden sm:inline">Platform</span>
         </Link>
       </div>
 
-      {/* ── Hero ── */}
+      {/* ── 1. Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
-        accentColor="gold"
+        accentColor="emerald"
         imagePosition="object-center"
-        backgroundAlt="Heat pump unit with golden diagnostic glow and OpenHouse AI phone interface"
+        backgroundAlt="Heat pump unit installed against an exterior wall at golden hour"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-            <Wrench className="w-4 h-4 text-emerald-400" />
+            <LifeBuoy
+              className="w-4 h-4 text-emerald-400"
+              aria-hidden="true"
+            />
             <span className="text-sm font-medium text-emerald-400">
               Care Module
             </span>
@@ -143,86 +181,331 @@ export default function CarePage() {
         title={
           <>
             Stop the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
               callouts
             </span>{" "}
-            that don&apos;t need an engineer
+            that don&rsquo;t need an engineer.
           </>
         }
-        subtitle="30-40% of heat pump callouts are for issues the homeowner could resolve themselves. OpenHouse Care gives your customers instant AI support, branded for your business, trained on your exact systems."
-        primaryCta={{ href: "/contact", label: "Get in Touch" }}
-        secondaryCta={{ href: "#how-it-works", label: "See How It Works" }}
+        subtitle="Roughly four in ten heat pump and solar callouts are for things the customer could resolve themselves. OpenHouse Care gives every installation its own AI assistant, branded for your business, trained on the systems you actually installed."
+        primaryCta={{ href: "#roi", label: "See the math" }}
+        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >
         <CareFloatingCards />
       </ModuleHero>
 
-      {/* ── The Problem ── */}
-      <section className="relative py-24 bg-carbon">
+      {/* ── 2. The ROI Math ── */}
+      <section
+        id="roi"
+        className="relative py-20 sm:py-24 bg-carbon scroll-mt-32"
+      >
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.08] via-transparent to-transparent"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="text-center mb-16">
+          <div className="max-w-3xl mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              The Problem
+              The Math
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Your engineers are solving problems that take 5 minutes to fix
+            <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight mb-4">
+              What avoidable callouts cost. And what catching them saves.
             </h2>
-            <p className="mt-6 text-lg text-porcelain/60 max-w-2xl mx-auto leading-relaxed">
-              Wrong thermostat settings. Dirty filters. Defrost mode confusion.
-              Hot water scheduling errors. Your customers don&apos;t know how to
-              troubleshoot their systems, so they call you. Every time.
+            <p className="text-[17px] sm:text-lg text-porcelain/70 leading-relaxed max-w-2xl">
+              No vibes. No "boost your ROI". Just the numbers in your own vocabulary.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {stats.map((stat) => (
-              <div
-                key={stat.value}
-                className="p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/20 hover:bg-emerald-500/[0.03] transition-all duration-500"
-              >
-                <p className="text-4xl sm:text-5xl font-bold text-emerald-400 mb-4 font-heading">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-porcelain/60 leading-relaxed">
-                  {stat.label}
+
+          {/* Photographable cost comparison */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl">
+            {/* Without Care */}
+            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/5">
+                <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center">
+                  <X className="w-5 h-5 text-red-400" aria-hidden="true" />
+                </div>
+                <p className="text-xs uppercase tracking-[0.25em] text-red-400 font-semibold">
+                  Without Care
                 </p>
               </div>
-            ))}
+              <ul className="space-y-5">
+                {withoutCare.map((row, i) => (
+                  <li
+                    key={row.label}
+                    className={`flex items-start justify-between gap-4 ${i === withoutCare.length - 1 ? "pt-5 mt-2 border-t border-white/10" : ""}`}
+                  >
+                    <span
+                      className={`text-[15px] leading-relaxed ${i === withoutCare.length - 1 ? "text-porcelain font-semibold" : "text-porcelain/75"}`}
+                    >
+                      {row.label}
+                    </span>
+                    <span
+                      className={`text-right font-bold font-heading flex-shrink-0 ${i === withoutCare.length - 1 ? "text-3xl text-red-400" : "text-xl text-porcelain"}`}
+                    >
+                      {row.value}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* With Care */}
+            <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.04] p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/5">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+                  <Check className="w-5 h-5 text-emerald-400" aria-hidden="true" />
+                </div>
+                <p className="text-xs uppercase tracking-[0.25em] text-emerald-400 font-semibold">
+                  With Care
+                </p>
+              </div>
+              <ul className="space-y-5">
+                {withCare.map((row, i) => (
+                  <li
+                    key={row.label}
+                    className={`flex items-start justify-between gap-4 ${i === withCare.length - 1 ? "pt-5 mt-2 border-t border-white/10" : ""}`}
+                  >
+                    <span
+                      className={`text-[15px] leading-relaxed ${i === withCare.length - 1 ? "text-porcelain font-semibold" : "text-porcelain/75"}`}
+                    >
+                      {row.label}
+                    </span>
+                    <span
+                      className={`text-right font-bold font-heading flex-shrink-0 ${i === withCare.length - 1 ? "text-3xl text-emerald-400" : "text-xl text-porcelain"}`}
+                    >
+                      {row.value}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              {/* Net saving callout */}
+              <div className="mt-6 pt-6 border-t border-emerald-500/30 flex items-center justify-between">
+                <span className="text-[15px] font-semibold text-emerald-300">
+                  Net saving, per 100 installations per year
+                </span>
+                <span className="text-3xl sm:text-4xl font-bold text-emerald-400 font-heading">
+                  €3,000
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-center text-[18px] sm:text-xl text-porcelain/85 mt-12 sm:mt-14 max-w-3xl mx-auto leading-relaxed">
+            The math gets better the more installations you have, because the fixed costs of training the assistant don&rsquo;t scale linearly. We&rsquo;re happy to run these numbers against your actual installation base on a call.
+          </p>
+          <p className="text-center text-[12px] text-porcelain/40 mt-3 max-w-xl mx-auto">
+            Figures are illustrative. Subscription pricing varies by fleet size. Your real numbers go in before launch.
+          </p>
+        </Container>
+      </section>
+
+      {/* ── 3. Money Shot, Branded Customer Assistant ── */}
+      <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.10] via-transparent to-emerald-900/[0.06]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1100px] max-h-[1100px] rounded-full bg-emerald-500/[0.05] blur-[120px]"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+              Your Brand, In Front
+            </p>
+            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
+              Branded for you. Trained on your installations.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              Customers see your name, not ours. The assistant knows what you installed, when you installed it, and what to do when something goes wrong. The trust stays with your brand. The callouts that actually need you, still come to you.
+            </p>
+          </div>
+
+          <div className="relative max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-10 lg:gap-14 items-center">
+              {/* iPhone mock with branded chat */}
+              <div className="relative flex justify-center lg:justify-end">
+                <div
+                  className="absolute -inset-8 bg-gradient-to-br from-emerald-500/25 via-emerald-400/10 to-emerald-500/25 rounded-[60px] blur-3xl"
+                  aria-hidden="true"
+                />
+                <div className="relative w-[280px] sm:w-[320px] h-[580px] sm:h-[640px] rounded-[48px] bg-neutral-900 border-[10px] border-black shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
+                  <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-black rounded-b-3xl z-10"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black p-5 pt-12 flex flex-col">
+                    <div className="flex items-center justify-between text-[11px] text-porcelain/40 mb-4">
+                      <span>9:41</span>
+                      <span className="font-semibold">Acme Renewables</span>
+                      <span>100%</span>
+                    </div>
+
+                    {/* Branded header */}
+                    <div className="flex items-center gap-2 px-1 mb-4 pb-3 border-b border-white/5">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-300 text-xs">
+                        AR
+                      </div>
+                      <div>
+                        <p className="text-[12px] font-semibold text-porcelain">
+                          Acme Renewables
+                        </p>
+                        <p className="text-[9px] text-emerald-400">
+                          Your installer&rsquo;s support
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex-1 space-y-3 overflow-hidden">
+                      <div className="flex justify-end">
+                        <div className="bg-emerald-500/20 rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%]">
+                          <p className="text-[12px] text-porcelain leading-relaxed">
+                            My Daikin Altherma is showing E5. What does that mean?
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex justify-start">
+                        <div className="bg-white/10 rounded-2xl rounded-bl-sm px-3 py-2 max-w-[90%]">
+                          <p className="text-[12px] text-porcelain leading-relaxed mb-1.5">
+                            E5 is a flow temperature sensor issue on your Daikin Altherma 3 R.
+                          </p>
+                          <p className="text-[11px] text-porcelain/70 leading-relaxed">
+                            Let&rsquo;s try a 90-second check first. If that doesn&rsquo;t fix it, we&rsquo;ll book a technician for you.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Branded callout button inside the phone */}
+                    <div className="mt-3 pt-3 border-t border-white/5">
+                      <div className="inline-flex items-center gap-2 w-full justify-center px-3 py-2.5 rounded-xl bg-emerald-500 text-carbon text-[11px] font-semibold">
+                        <Phone className="w-3 h-3" aria-hidden="true" />
+                        Book a callout with Acme Renewables
+                      </div>
+                    </div>
+
+                    <div
+                      className="mx-auto w-32 h-1 bg-porcelain/30 rounded-full mt-3"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Response drawer */}
+              <div className="relative">
+                <div
+                  className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-transparent to-emerald-500/20 rounded-3xl blur-2xl"
+                  aria-hidden="true"
+                />
+                <div className="relative rounded-2xl border border-emerald-500/30 bg-neutral-900/95 backdrop-blur-xl p-6 sm:p-8 shadow-2xl">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-300">
+                      AR
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-wider text-emerald-400 font-semibold">
+                        Acme Renewables support
+                      </p>
+                      <p className="text-sm text-porcelain/60">
+                        Daikin Altherma 3 R, installed March 2024
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 mb-5">
+                    <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
+                      E5 means your heat pump has detected a flow temperature sensor issue. Nine times out of ten this is a connection on the sensor wiring that has worked loose during a cold snap.
+                    </p>
+                    <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
+                      Here&rsquo;s the 90-second check, recorded by our team for this exact unit. If the check doesn&rsquo;t resolve it, this is a real one. Book a technician below and we&rsquo;ll be out.
+                    </p>
+                  </div>
+
+                  {/* Embedded video thumbnail */}
+                  <div className="rounded-xl border border-white/10 bg-black/60 p-3 sm:p-4 mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-14 h-14 rounded-lg bg-gradient-to-br from-emerald-500/30 to-emerald-500/5 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                        <Play
+                          className="w-5 h-5 text-emerald-400 fill-emerald-400 ml-0.5"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-porcelain truncate">
+                          E5 sensor wiring check
+                        </p>
+                        <p className="text-[12px] text-porcelain/50">
+                          Recorded by Acme Renewables, 1m 28s
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-emerald-500 text-carbon text-sm font-semibold hover:scale-[1.02] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+                    >
+                      <Play
+                        className="w-4 h-4 fill-carbon"
+                        aria-hidden="true"
+                      />
+                      Watch the 90-second check
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-white text-carbon text-sm font-semibold border border-white hover:scale-[1.02] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                    >
+                      <Phone className="w-4 h-4" aria-hidden="true" />
+                      Book a callout with Acme Renewables
+                    </button>
+                  </div>
+                  <p className="text-[11px] text-porcelain/40 mt-4">
+                    Acme Renewables shown as a placeholder. In production, the assistant carries your name, your colours, your logo.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* ── How It Works ── */}
-      <section id="how-it-works" className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.02] via-transparent to-transparent" />
+      {/* ── 4. How Care Works ── */}
+      <section className="relative py-24 bg-porcelain">
         <Container>
-          <div className="text-center mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              How It Works
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-emerald-700 mb-4 font-semibold">
+              How Care Works
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Live in minutes. Saving you money from day one.
+            <h2 className="text-[28px] sm:text-4xl font-bold text-carbon font-heading leading-tight">
+              Three steps, no curve.
             </h2>
-            <p className="mt-6 text-lg text-porcelain/60 max-w-2xl mx-auto leading-relaxed">
-              We build your branded aftercare portal, trained on the exact systems
-              you install. Your customers access it via QR code from the moment of
-              handover.
-            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {steps.map((s) => (
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {steps.map((step, i) => (
               <div
-                key={s.step}
-                className="relative p-6 rounded-2xl border border-white/5 bg-white/[0.02]"
+                key={step.title}
+                className="relative p-6 sm:p-8 rounded-2xl border border-carbon/10 bg-white hover:border-emerald-500/40 hover:shadow-[0_15px_40px_-15px_rgba(16,185,129,0.25)] transition-all duration-500"
               >
-                <div className="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mb-4">
-                  <span className="text-sm font-bold text-emerald-400">
-                    {s.step}
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center">
+                    <step.icon
+                      className="w-5 h-5 text-emerald-700"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <span className="text-xs font-mono text-carbon/40">
+                    Step {i + 1}
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {s.title}
+                <h3 className="text-xl font-semibold text-carbon mb-3 font-heading">
+                  {step.title}
                 </h3>
-                <p className="text-sm text-porcelain/60 leading-relaxed">
-                  {s.desc}
+                <p className="text-[17px] text-carbon/70 leading-relaxed">
+                  {step.desc}
                 </p>
               </div>
             ))}
@@ -230,91 +513,38 @@ export default function CarePage() {
         </Container>
       </section>
 
-      {/* ── Before / After ── */}
+      {/* ── 5. What Care Does ── */}
       <section className="relative py-24 bg-carbon">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              Before &amp; After
+              What Care Does
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              What changes when you switch
+            <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
+              Four jobs, off your van.
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.03]">
-              <p className="text-sm font-semibold text-red-400 mb-4 uppercase tracking-wider">
-                Without OpenHouse Care
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Engineers dispatched for simple user errors",
-                  "Customers call you at nights and weekends",
-                  "No way to triage before sending a van",
-                  "Repeat callouts for the same fault types",
-                  "Support costs eating into your margins",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-porcelain/60"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-400/40 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="p-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.03]">
-              <p className="text-sm font-semibold text-emerald-400 mb-4 uppercase tracking-wider">
-                With OpenHouse Care
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "AI resolves simple issues before they become callouts",
-                  "24/7 support without your phone ringing",
-                  "Customers guided through fixes step by step",
-                  "Knowledge base trained on your exact equipment",
-                  "Your brand, your portal - customers see you, not us",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-porcelain"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Container>
-      </section>
 
-      {/* ── Features ── */}
-      <section id="features" className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.02] to-transparent" />
-        <Container>
-          <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              What&apos;s Included
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Everything your customers need. Nothing your engineers have to manage.
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {features.map((f) => (
               <div
                 key={f.title}
-                className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/20 hover:bg-emerald-500/[0.03] transition-all duration-500"
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-emerald-500/30 hover:bg-emerald-500/[0.04] transition-all duration-500"
               >
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
-                  <f.icon className="w-5 h-5 text-emerald-400" />
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-5">
+                  <f.icon
+                    className="w-6 h-6 text-emerald-400"
+                    aria-hidden="true"
+                  />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
                   {f.title}
                 </h3>
-                <p className="text-sm text-porcelain/60 leading-relaxed">
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
                   {f.description}
                 </p>
               </div>
@@ -323,86 +553,140 @@ export default function CarePage() {
         </Container>
       </section>
 
-      {/* ── Works For Any Trade ── */}
+      {/* ── 6. Built For You ── */}
       <section className="relative py-24 bg-carbon">
         <Container>
-          <div className="text-center mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              Works For Any Trade
+              Built For You
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              If you install it and your customers have questions,
-              OpenHouse Care can support it.
+            <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
+              You probably recognise one of these.
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {industries.map((item) => (
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {personas.map((p) => (
               <div
-                key={item.label}
-                className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/20 transition-all duration-300"
+                key={p.title}
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-emerald-500/30 hover:bg-emerald-500/[0.04] transition-all duration-500"
               >
-                <item.icon className="w-6 h-6 text-emerald-400/70" />
-                <span className="text-xs text-porcelain/70 text-center font-medium">
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── Stats Strip ── */}
-      <section className="relative py-16 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.02] to-transparent" />
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-            {[
-              { value: "24/7", label: "AI Availability" },
-              { value: "1-2s", label: "Response Time" },
-              { value: "30-40%", label: "Callouts Preventable" },
-              { value: "\u20AC0", label: "Per Resolution" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p className="text-3xl sm:text-4xl font-bold text-emerald-400 font-heading">
-                  {stat.value}
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-5">
+                  <p.icon
+                    className="w-6 h-6 text-emerald-400"
+                    aria-hidden="true"
+                  />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
+                  {p.title}
+                </h3>
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
+                  {p.description}
                 </p>
-                <p className="text-sm text-porcelain/60 mt-1">{stat.label}</p>
               </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/[0.04] to-transparent" />
+      {/* ── 7. Trust Line, addressing the "who built this for installers?" question ── */}
+      <section className="relative py-24 bg-porcelain">
         <Container>
-          <div className="relative text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-heading">
-              Tired of unnecessary callouts?
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
+              Built by people who already work with developers.
             </h2>
-            <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;d love to show you how OpenHouse Care works for your
-              business. Reach out and we&apos;ll walk you through it.
+            <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed">
+              OpenHouse is a property platform used by developers across Ireland. Care exists because the same homes that come out of those developments have heat pumps and solar arrays that need ongoing care. We already sit between developers and homeowners. Care extends that to installers.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 8. Peak-end CTA ── */}
+      <section className="relative py-28 sm:py-36 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.10] via-transparent to-emerald-900/[0.12]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] rounded-full bg-emerald-500/[0.06] blur-[140px]"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="relative max-w-3xl mx-auto text-center">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
+              See it on your actual installation base.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">
+              A demo takes thirty minutes. Bring the spec of one of your typical installations and we&rsquo;ll show you exactly what your customer&rsquo;s experience would look like in Care, branded for you.
+            </p>
+
+            <div className="flex flex-col items-center gap-5">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
+                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(16,185,129,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-500" />
-                <span className="relative z-10 text-white flex items-center gap-2">
-                  Get in Touch
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <span
+                  className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600"
+                  aria-hidden="true"
+                />
+                <span className="relative z-10 text-white flex items-center gap-3">
+                  Book a Demo
+                  <ArrowRight
+                    className="w-6 h-6 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </span>
               </Link>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-porcelain border border-white/20 hover:border-emerald-500/50 rounded-full transition-all duration-300 hover:bg-white/5"
-              >
-                Back to Platform
-              </Link>
+              <p className="text-sm text-porcelain/60">
+                Or email{" "}
+                <a
+                  href="mailto:sam@openhouseai.ie"
+                  className="text-emerald-400 hover:text-emerald-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded"
+                >
+                  sam@openhouseai.ie
+                </a>{" "}
+                with questions first.
+              </p>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 9. Platform Strip ── */}
+      <section className="relative py-20 bg-porcelain">
+        <Container>
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-[24px] sm:text-3xl font-bold text-carbon font-heading mb-4">
+              Part of the OpenHouse platform.
+            </h2>
+            <p className="text-[17px] sm:text-lg text-carbon/70 leading-relaxed">
+              Care is one module of six. Same data, different surfaces, one platform that runs every stage of a home.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto">
+            {platformModules.map((mod) => (
+              <Link
+                key={mod.title}
+                href={mod.href}
+                className="group flex items-center gap-3 min-h-[64px] px-4 py-3 rounded-2xl border border-carbon/10 bg-white hover:bg-emerald-50 hover:border-emerald-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              >
+                <span className="w-9 h-9 rounded-xl bg-carbon/[0.04] flex items-center justify-center flex-shrink-0">
+                  <mod.icon
+                    className={`w-4 h-4 ${mod.accent}`}
+                    aria-hidden="true"
+                  />
+                </span>
+                <span className="text-sm font-semibold text-carbon">
+                  {mod.title}
+                </span>
+                <ArrowRight
+                  className="w-4 h-4 text-carbon/40 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-hidden="true"
+                />
+              </Link>
+            ))}
           </div>
         </Container>
       </section>
