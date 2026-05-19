@@ -1,71 +1,125 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { SalesFloatingCards } from "@/components/hero/cards/SalesCards";
-import { ScreenshotLightbox } from "@/components/ui/ScreenshotLightbox";
 import heroBackground from "@/attached_assets/stock_images/sales_show_home.png";
 import salesPipeline from "@/attached_assets/stock_images/sales_pipeline.png";
-import portfolioOverview from "@/attached_assets/stock_images/portfolio_overview.png";
-import portfolioComparison from "@/attached_assets/stock_images/portfolio_comparison.png";
-import salesVelocity from "@/attached_assets/stock_images/sales_velocity.png";
 import {
   TrendingUp,
-  Users,
-  CreditCard,
-  BarChart3,
-  Bell,
+  LayoutDashboard,
+  AlertCircle,
+  Mail,
+  UserCheck,
   FileText,
+  Users,
+  Briefcase,
+  Building2,
   ArrowRight,
   Home,
   ChevronLeft,
-  PieChart,
-  GitCompareArrows,
-  Activity,
+  FolderOpen,
+  MessageSquare,
+  Sparkles,
+  Headphones,
+  Wrench,
 } from "lucide-react";
-import Link from "next/link";
 
 export const metadata = {
-  title: "Sales Module - Pipeline to Contract | OpenHouse Ai",
+  title: "Sales Module, Live Pipeline for Property Developers | OpenHouse Ai",
   description:
-    "Track every lead, viewing, and deposit in one place. Replace scattered spreadsheets with a single sales pipeline built for property developers.",
+    "OpenHouse Sales gives you a live pipeline across every unit and every buyer, with the deals quietly going cold flagged before they die. No more Friday spreadsheets.",
 };
+
+const costStats = [
+  {
+    value: "22 days",
+    label:
+      "Average time a contract sits with the solicitor before someone notices",
+  },
+  {
+    value: "4 in 10",
+    label: "Buyers who never get a follow-up after their first viewing",
+  },
+  {
+    value: "€18k",
+    label:
+      "Average gross margin on a unit, i.e. what one lost deal actually costs",
+  },
+];
+
+const steps = [
+  {
+    icon: LayoutDashboard,
+    title: "Your live pipeline.",
+    desc: "Every unit, every buyer, every stage, in one view. Filter by scheme, by stage, by agent. No more “where are we on Unit 12?”",
+  },
+  {
+    icon: AlertCircle,
+    title: "Slow deals flagged.",
+    desc: "The platform watches for the silent killers, contracts not returned, AIPs about to expire, buyers who haven't been contacted in fourteen days. You see them before they become a problem.",
+  },
+  {
+    icon: Mail,
+    title: "Drafts ready to send.",
+    desc: "Chase the solicitor, nudge the buyer, update the developer. Drafted in your tone, waiting for your approval.",
+  },
+];
 
 const features = [
   {
-    icon: TrendingUp,
-    title: "Visual Pipeline",
+    icon: LayoutDashboard,
+    title: "Live pipeline across every scheme.",
     description:
-      "See every unit from enquiry to contract signed. Drag-and-drop stages, no training needed.",
+      "One view for one development, or a portfolio view across all of them. Filter, sort, export.",
   },
   {
-    icon: Users,
-    title: "Lead Management",
+    icon: UserCheck,
+    title: "Buyer-by-buyer view.",
     description:
-      "Capture leads from estate agents, your website, and walk-ins - all in one feed with source tracking.",
+      "Every buyer's stage, history, communications, AIP status, deposits, selections, contract progress. All in one profile.",
   },
   {
-    icon: CreditCard,
-    title: "Deposit Tracking",
+    icon: AlertCircle,
+    title: "Auto-flags the deals that need you.",
     description:
-      "Record booking deposits, track payment status, and flag outstanding balances automatically.",
-  },
-  {
-    icon: Bell,
-    title: "Real-Time Alerts",
-    description:
-      "Get notified when new enquiries land, viewings are booked, or contracts are signed.",
+      "Aged contracts. Expiring mortgage approvals. Buyers gone quiet. Surfaced before they become a problem.",
   },
   {
     icon: FileText,
-    title: "Agent Reporting",
+    title: "Reports your developer asks for, drafted.",
     description:
-      "See which agents convert and which developments move fastest - data you never had before.",
+      "Weekly pipeline reports. Monthly forecasts. End-of-quarter summaries. Drafted in your format, ready for your approval.",
+  },
+];
+
+const personas = [
+  {
+    icon: Building2,
+    title: "Sales directors at developers.",
+    description:
+      "You're running 2 to 8 schemes with a small team. Sales is the live version of what you wish your spreadsheet did.",
   },
   {
-    icon: BarChart3,
-    title: "Sales Analytics",
+    icon: Users,
+    title: "In-house sales teams.",
     description:
-      "Weekly velocity, conversion rates, average time-to-sale - all calculated, never estimated.",
+      "Three to ten people moving deals through the same pipeline. Sales keeps everyone on the same page without the morning standup.",
   },
+  {
+    icon: Briefcase,
+    title: "External agents working on a development.",
+    description:
+      "Selling someone else's homes. Sales gives you scoped access to the units you're handling, so you and the developer see the same picture.",
+  },
+];
+
+const platformModules = [
+  { title: "Build", href: "/build", icon: FolderOpen, accent: "text-emerald-400" },
+  { title: "Handover", href: "/handover", icon: MessageSquare, accent: "text-gold" },
+  { title: "Intelligence", href: "/intelligence", icon: Sparkles, accent: "text-gold" },
+  { title: "Agent", href: "/agent", icon: Headphones, accent: "text-gold" },
+  { title: "Care", href: "/care", icon: Wrench, accent: "text-emerald-400" },
 ];
 
 export default function SalesPage() {
@@ -77,268 +131,217 @@ export default function SalesPage() {
           href="/"
           className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium backdrop-blur-md hover:bg-blue-500/20 transition-all duration-300"
         >
-          <ChevronLeft className="w-3 h-3" />
-          <Home className="w-3 h-3" />
+          <ChevronLeft className="w-3 h-3" aria-hidden="true" />
+          <Home className="w-3 h-3" aria-hidden="true" />
           <span className="hidden sm:inline">Platform</span>
         </Link>
       </div>
 
-      {/* ── Hero ── */}
+      {/* ── 1. Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
         accentColor="blue"
         backgroundAlt="Premium show home at twilight with for sale signage"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30">
-            <TrendingUp className="w-4 h-4 text-blue-400" />
-            <span className="text-sm font-medium text-blue-400">
-              Sales Module
-            </span>
+            <TrendingUp className="w-4 h-4 text-blue-400" aria-hidden="true" />
+            <span className="text-sm font-medium text-blue-400">Sales Module</span>
           </div>
         }
         title={
           <>
-            From first enquiry to{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400">
-              contract signed
+            The deals you&rsquo;re losing are the ones you can&rsquo;t{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400">
+              see
             </span>
+            .
           </>
         }
-        subtitle="Track every lead, viewing, and deposit across your developments. One pipeline replaces the spreadsheets, agent emails, and guesswork."
-        primaryCta={{ href: "/contact", label: "Book a Demo" }}
-        secondaryCta={{ href: "#features", label: "See Features" }}
+        subtitle="OpenHouse Sales gives you a live pipeline across every unit and every buyer, with the deals quietly going cold flagged before they die. No more Friday spreadsheets. No more &ldquo;I thought you were chasing that one.&rdquo;"
+        primaryCta={{ href: "#money-shot", label: "See the pipeline" }}
+        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >
         <SalesFloatingCards />
       </ModuleHero>
 
-      {/* ── Before / After ── */}
-      <section className="relative py-24 bg-carbon">
+      {/* ── 2. Cost of Invisible Deals ── */}
+      <section className="relative py-20 sm:py-24 bg-carbon">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-blue-900/[0.08] via-transparent to-transparent"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="text-center mb-16">
+          <div className="max-w-3xl mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
-              Before &amp; After
+              The hidden cost
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              What changes when you switch
+            <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight">
+              What invisible deals actually cost.
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.03]">
-              <p className="text-sm font-semibold text-red-400 mb-4 uppercase tracking-wider">
-                Without OpenHouse
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Sales tracked across 3+ spreadsheets",
-                  "Agent updates via WhatsApp and email",
-                  "No visibility on conversion rates",
-                  "Deposits tracked manually with errors",
-                  "Weekly sales meetings just to get updates",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-porcelain/60"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-400/40 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="p-8 rounded-2xl border border-blue-500/20 bg-blue-500/[0.03]">
-              <p className="text-sm font-semibold text-blue-400 mb-4 uppercase tracking-wider">
-                With OpenHouse Sales
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "One visual pipeline for all developments",
-                  "Real-time lead feed with source tracking",
-                  "Conversion rates calculated automatically",
-                  "Deposit status updated in real-time",
-                  "Dashboard replaces status meetings",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-porcelain"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl">
+            {costStats.map((stat) => (
+              <div
+                key={stat.value}
+                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 hover:border-blue-500/30 hover:bg-blue-500/[0.03] transition-all duration-500"
+              >
+                <p className="text-[44px] sm:text-5xl lg:text-[56px] font-bold text-blue-400 font-heading leading-none mb-4">
+                  {stat.value}
+                </p>
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
+
+          <p className="text-center text-[18px] sm:text-xl text-porcelain/85 mt-12 sm:mt-14 max-w-2xl mx-auto leading-relaxed">
+            None of these are problems with your team. They&rsquo;re problems with the systems your team has been given to work with.
+          </p>
         </Container>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          SCREENSHOT SHOWCASES - full-width, click to zoom
-          ══════════════════════════════════════════════ */}
-
-      {/* ── 1. Sales Pipeline ── */}
-      <section className="relative py-24 bg-carbon overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] via-transparent to-transparent" />
+      {/* ── 3. Money Shot, Live Pipeline ── */}
+      <section
+        id="money-shot"
+        className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32"
+      >
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-blue-900/[0.10] via-transparent to-blue-900/[0.06]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] max-w-[1200px] rounded-full bg-blue-500/[0.05] blur-[140px]"
+          aria-hidden="true"
+        />
         <Container>
-          {/* Text header */}
-          <div className="max-w-3xl mb-10">
-            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-3 font-semibold">
-              Sales Pipeline
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
+              The Pipeline
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              Every unit, every stage, one screen
+            <h2 className="text-[32px] sm:text-5xl lg:text-[64px] font-bold text-white font-heading leading-[1.05] mb-6">
+              Every unit. Every buyer. Every stage. Live.
             </h2>
-            <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-              Track 15 data points per unit - price, release date, deposits,
-              contracts, queries, snag lists, drawdown dates, and more. No more
-              ringing agents for updates on a Tuesday morning.
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              This is what a Friday spreadsheet should have always been. Real-time across every development. The deals that need you, surfaced. The deals that don&rsquo;t, out of your way.
             </p>
-            <div className="flex flex-wrap gap-3">
-              {["75 units", "15 columns", "€27.8M revenue", "Real-time"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-medium text-blue-300"
-                  >
-                    {tag}
-                  </span>
-                ),
-              )}
-            </div>
           </div>
-          {/* Full-width screenshot */}
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-blue-400/5 to-blue-500/20 rounded-3xl blur-2xl" />
-            <div className="relative">
-              <ScreenshotLightbox
+
+          <div className="relative max-w-6xl mx-auto">
+            <div
+              className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-blue-500/25 via-blue-400/10 to-blue-500/25 rounded-3xl blur-2xl"
+              aria-hidden="true"
+            />
+            <div className="relative rounded-2xl overflow-hidden border border-blue-500/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+              <Image
                 src={salesPipeline}
-                alt="OpenHouse Sales Pipeline tracking 75 units with real-time deposit, contract, and handover status across 15 columns"
+                alt="OpenHouse Sales pipeline showing 75 units across stages with deposit, contract and handover status per unit"
+                className="w-full h-auto"
+                placeholder="blur"
               />
+
+              {/* At-risk callout overlaying the screenshot */}
+              <div
+                className="hidden md:block absolute top-[58%] left-[6%] right-[60%] pointer-events-none"
+                aria-hidden="true"
+              >
+                <div className="rounded-xl border-2 border-gold bg-gold/[0.08] shadow-[0_0_30px_rgba(212,175,55,0.45)] h-[44px]" />
+              </div>
+            </div>
+
+            {/* At-risk explainer card */}
+            <div className="relative -mt-6 sm:-mt-8 mx-auto max-w-md sm:max-w-lg z-10">
+              <div className="rounded-2xl border border-gold/40 bg-neutral-900/95 backdrop-blur-xl p-5 sm:p-6 shadow-2xl">
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-gold/15 border border-gold/40 flex items-center justify-center flex-shrink-0">
+                    <AlertCircle className="w-5 h-5 text-gold" aria-hidden="true" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[11px] uppercase tracking-wider text-gold font-semibold mb-1">
+                      The row to look at
+                    </p>
+                    <p className="text-[16px] sm:text-base font-semibold text-white leading-snug">
+                      Unit 12. Contracts out 18 days. No response.
+                    </p>
+                    <p className="text-[14px] text-porcelain/65 mt-1">
+                      This is the deal you didn&rsquo;t know was dying. The platform spotted it on day fifteen.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* ── 2. Portfolio Overview ── */}
-      <section className="relative py-24 bg-carbon overflow-hidden">
+      {/* ── 4. How Sales Works ── */}
+      <section className="relative py-24 bg-porcelain">
         <Container>
-          <div className="max-w-3xl mb-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-                <PieChart className="w-4 h-4 text-blue-400" />
-              </div>
-              <p className="text-sm uppercase tracking-[0.3em] text-blue-400 font-semibold">
-                Portfolio Overview
-              </p>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              All your developments, one dashboard
-            </h2>
-            <p className="text-lg text-porcelain/60 leading-relaxed">
-              Total revenue, pipeline funnel, and performance benchmarks across
-              every development. Kitchen selections and PC sum impact tracked in
-              real-time - see exactly how upgrades affect your bottom line.
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-700 mb-4 font-semibold">
+              How Sales Works
             </p>
+            <h2 className="text-[28px] sm:text-4xl font-bold text-carbon font-heading leading-tight">
+              Three steps, no curve.
+            </h2>
           </div>
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/15 via-transparent to-blue-500/15 rounded-3xl blur-2xl" />
-            <div className="relative">
-              <ScreenshotLightbox
-                src={portfolioOverview}
-                alt="Portfolio Analytics overview - multiple developments, total units, revenue with pipeline funnel and revenue breakdown by development"
-              />
-            </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {steps.map((step, i) => (
+              <div
+                key={step.title}
+                className="relative p-6 sm:p-8 rounded-2xl border border-carbon/10 bg-white hover:border-blue-500/40 hover:shadow-[0_15px_40px_-15px_rgba(59,130,246,0.25)] transition-all duration-500"
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
+                    <step.icon className="w-5 h-5 text-blue-700" aria-hidden="true" />
+                  </div>
+                  <span className="text-xs font-mono text-carbon/40">
+                    Step {i + 1}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-carbon mb-3 font-heading">
+                  {step.title}
+                </h3>
+                <p className="text-[17px] text-carbon/70 leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
 
-      {/* ── 3. Comparison + Velocity side by side ── */}
-      <section className="relative py-24 bg-carbon overflow-hidden">
+      {/* ── 5. What Sales Does (4 cards) ── */}
+      <section className="relative py-24 bg-carbon">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.03] to-transparent"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {/* Comparison */}
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-                  <GitCompareArrows className="w-4 h-4 text-blue-400" />
-                </div>
-                <p className="text-sm uppercase tracking-[0.3em] text-blue-400 font-semibold">
-                  Comparison
-                </p>
-              </div>
-              <h3 className="text-2xl font-bold text-white font-heading mb-3">
-                Benchmark every estate
-              </h3>
-              <p className="text-sm text-porcelain/60 leading-relaxed mb-6">
-                Compare avg days to sale, query response times, and completion
-                rates side by side across all your developments.
-              </p>
-              <div className="relative">
-                <div className="absolute -inset-3 bg-blue-500/10 rounded-2xl blur-xl" />
-                <div className="relative">
-                  <ScreenshotLightbox
-                    src={portfolioComparison}
-                    alt="Development comparison table showing units, revenue, average price, PC sums, and performance benchmarks across developments"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Velocity */}
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-                  <Activity className="w-4 h-4 text-blue-400" />
-                </div>
-                <p className="text-sm uppercase tracking-[0.3em] text-blue-400 font-semibold">
-                  Velocity
-                </p>
-              </div>
-              <h3 className="text-2xl font-bold text-white font-heading mb-3">
-                Track sales momentum
-              </h3>
-              <p className="text-sm text-porcelain/60 leading-relaxed mb-6">
-                Monthly sales volume per development. Instantly see which
-                estates are moving and which need attention.
-              </p>
-              <div className="relative">
-                <div className="absolute -inset-3 bg-blue-500/10 rounded-2xl blur-xl" />
-                <div className="relative">
-                  <ScreenshotLightbox
-                    src={salesVelocity}
-                    alt="Sales velocity chart showing units sold per month across all developments from October 2024 to February 2026"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* ── Features ── */}
-      <section id="features" className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
-        <Container>
-          <div className="text-center mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
-              Capabilities
+              What Sales Does
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Everything you need to sell smarter
+            <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
+              Four jobs, off your plate.
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {features.map((f) => (
               <div
                 key={f.title}
-                className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-blue-500/20 hover:bg-blue-500/[0.03] transition-all duration-500"
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-blue-500/30 hover:bg-blue-500/[0.04] transition-all duration-500"
               >
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4">
-                  <f.icon className="w-5 h-5 text-blue-400" />
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-5">
+                  <f.icon className="w-6 h-6 text-blue-400" aria-hidden="true" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
                   {f.title}
                 </h3>
-                <p className="text-sm text-porcelain/60 leading-relaxed">
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
                   {f.description}
                 </p>
               </div>
@@ -347,28 +350,134 @@ export default function SalesPage() {
         </Container>
       </section>
 
-      {/* ── CTA ── */}
+      {/* ── 6. Built For You ── */}
       <section className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-500/[0.04] to-transparent" />
         <Container>
-          <div className="relative text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-heading">
-              See the Sales module live
-            </h2>
-            <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;ll walk you through the pipeline running on
-              a live development.
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-blue-400 mb-4 font-semibold">
+              Built For You
             </p>
-            <Link
-              href="/contact"
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500" />
-              <span className="relative z-10 text-white flex items-center gap-2">
-                Book a Demo
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
+            <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
+              You probably recognise one of these.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {personas.map((p) => (
+              <div
+                key={p.title}
+                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-blue-500/30 hover:bg-blue-500/[0.04] transition-all duration-500"
+              >
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-5">
+                  <p.icon className="w-6 h-6 text-blue-400" aria-hidden="true" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 font-heading">
+                  {p.title}
+                </h3>
+                <p className="text-[17px] text-porcelain/75 leading-relaxed">
+                  {p.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 7. Quiet Trust Line ── */}
+      <section className="relative py-24 bg-porcelain">
+        <Container>
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
+              Your buyer data stays yours.
+            </h2>
+            <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed">
+              Buyer information sits in your platform, not ours. Hosted in Europe. You can export everything at any time. You&rsquo;re never locked in.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 8. Peak-end CTA ── */}
+      <section className="relative py-28 sm:py-36 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-blue-900/[0.10] via-transparent to-blue-900/[0.12]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] rounded-full bg-blue-500/[0.06] blur-[140px]"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="relative max-w-3xl mx-auto text-center">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
+              See it running on a scheme like yours.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">
+              A demo takes thirty minutes. We&rsquo;ll load up a development that looks like one of yours and walk you through how your team would actually use it.
+            </p>
+
+            <div className="flex flex-col items-center gap-5">
+              <Link
+                href="/contact"
+                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(59,130,246,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
+              >
+                <span
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600"
+                  aria-hidden="true"
+                />
+                <span className="relative z-10 text-white flex items-center gap-3">
+                  Book a Demo
+                  <ArrowRight
+                    className="w-6 h-6 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+              <p className="text-sm text-porcelain/60">
+                Or email{" "}
+                <a
+                  href="mailto:sam@openhouseai.ie"
+                  className="text-blue-400 hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded"
+                >
+                  sam@openhouseai.ie
+                </a>{" "}
+                with questions first.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 9. Platform Strip ── */}
+      <section className="relative py-20 bg-porcelain">
+        <Container>
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-[24px] sm:text-3xl font-bold text-carbon font-heading mb-4">
+              Part of the OpenHouse platform.
+            </h2>
+            <p className="text-[17px] sm:text-lg text-carbon/70 leading-relaxed">
+              Sales is one module of six. Same data, different surfaces, one platform that runs every stage of a development.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto">
+            {platformModules.map((mod) => (
+              <Link
+                key={mod.title}
+                href={mod.href}
+                className="group flex items-center gap-3 min-h-[64px] px-4 py-3 rounded-2xl border border-carbon/10 bg-white hover:bg-blue-50 hover:border-blue-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              >
+                <span className="w-9 h-9 rounded-xl bg-carbon/[0.04] flex items-center justify-center flex-shrink-0">
+                  <mod.icon className={`w-4 h-4 ${mod.accent}`} aria-hidden="true" />
+                </span>
+                <span className="text-sm font-semibold text-carbon">
+                  {mod.title}
+                </span>
+                <ArrowRight
+                  className="w-4 h-4 text-carbon/40 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-hidden="true"
+                />
+              </Link>
+            ))}
           </div>
         </Container>
       </section>
