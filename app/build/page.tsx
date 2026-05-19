@@ -36,18 +36,19 @@ export const metadata = {
 
 const costStats = [
   {
-    value: "2 days",
+    value: "Required",
     label:
-      "Average notice before handover that a missing document is spotted",
+      "A Certificate of Compliance on Completion, registered, or the building cannot be occupied, sold, or used.",
   },
   {
-    value: "12",
+    value: "21 days",
     label:
-      "Separate parties (sub-contractors, certifiers, suppliers) per unit's paperwork",
+      "The window the Building Control Authority has to register, reject, or query a CCC submission.",
   },
   {
-    value: "€4,500",
-    label: "Average cost of a delayed handover, per unit, per week",
+    value: "Every party",
+    label:
+      "The CCC Annex must reference ancillary certs from every designer and sub-contractor on the project.",
   },
 ];
 
@@ -191,10 +192,10 @@ export default function BuildPage() {
         <Container>
           <div className="max-w-3xl mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              The scramble
+              The regulation
             </p>
             <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight">
-              What two days before handover actually costs.
+              The paperwork is not optional. It&rsquo;s the law.
             </h2>
           </div>
 
@@ -204,7 +205,7 @@ export default function BuildPage() {
                 key={stat.value}
                 className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 hover:border-emerald-500/30 hover:bg-emerald-500/[0.03] transition-all duration-500"
               >
-                <p className="text-[44px] sm:text-5xl lg:text-[56px] font-bold text-emerald-400 font-heading leading-none mb-4">
+                <p className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-emerald-400 font-heading leading-none mb-4">
                   {stat.value}
                 </p>
                 <p className="text-[17px] text-porcelain/75 leading-relaxed">
@@ -215,7 +216,10 @@ export default function BuildPage() {
           </div>
 
           <p className="text-center text-[18px] sm:text-xl text-porcelain/85 mt-12 sm:mt-14 max-w-2xl mx-auto leading-relaxed">
-            The paperwork was never the problem. The system for holding it was.
+            The Annex builds itself when the system is set up to hold every document against the unit it belongs to.
+          </p>
+          <p className="text-center text-[12px] text-porcelain/40 mt-5 max-w-3xl mx-auto leading-relaxed">
+            Sources: Construction Industry Federation guidance on SI 9 of 2014 (Building Control (Amendment) Regulations 2014); National Building Control Office, BCMS Annex requirements.
           </p>
         </Container>
       </section>

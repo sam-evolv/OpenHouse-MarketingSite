@@ -35,18 +35,19 @@ export const metadata = {
 
 const costStats = [
   {
-    value: "40+",
+    value: "~100%",
     label:
-      "Buyer questions per scheme in the first six months after handover",
+      "Of new Irish homes use a heat pump as the primary heating system. Oil and gas boilers are banned in new builds.",
   },
   {
-    value: "6 in 10",
+    value: "12,047",
     label:
-      "Of those questions can be answered by documents you already hand over",
+      "Apartments completed in Ireland in 2025, mostly in multi-unit schemes that need handover documentation per unit.",
   },
   {
-    value: "9pm",
-    label: "The time those questions usually arrive",
+    value: "24,237",
+    label:
+      "Houses completed in Ireland in 2025, each with its own warranty, manuals, and certs.",
   },
 ];
 
@@ -183,10 +184,10 @@ export default function HandoverPage() {
         <Container>
           <div className="max-w-3xl mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              The same calls
+              The handover scale
             </p>
             <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight">
-              The questions you answer for every buyer.
+              Every new home in Ireland comes with a binder no one opens.
             </h2>
           </div>
 
@@ -207,10 +208,10 @@ export default function HandoverPage() {
           </div>
 
           <p className="text-center text-[18px] sm:text-xl text-porcelain/85 mt-12 sm:mt-14 max-w-2xl mx-auto leading-relaxed">
-            The documents existed. The buyer never found them.
+            The questions start arriving in week two. The phone rings, and the answers were always there.
           </p>
-          <p className="text-center text-[12px] text-porcelain/40 mt-3 max-w-xl mx-auto">
-            Figures shown are illustrative, drawn from the schemes we&rsquo;ve seen.
+          <p className="text-center text-[12px] text-porcelain/40 mt-5 max-w-3xl mx-auto leading-relaxed">
+            Sources: CSO New Dwelling Completions, Q4 2025 full year (36,284 total: 12,047 apartments, 24,237 houses); Irish Heat Pumps on the ban on oil and gas boilers in new builds.
           </p>
         </Container>
       </section>

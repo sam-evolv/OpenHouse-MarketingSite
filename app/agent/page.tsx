@@ -526,6 +526,49 @@ export default function AgentPage() {
         </Container>
       </section>
 
+      {/* ── 7b. RTB market context (lettings authority) ── */}
+      <section className="relative py-16 sm:py-20 bg-carbon">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-gold/[0.03] via-transparent to-transparent"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
+              {[
+                {
+                  value: "240,964",
+                  label: "Private tenancies registered with the RTB",
+                },
+                {
+                  value: "105,594",
+                  label: "Private landlords in Ireland",
+                },
+                {
+                  value: "50,507",
+                  label: "Tenancies managed by Approved Housing Bodies",
+                },
+              ].map((s) => (
+                <div key={s.value}>
+                  <p className="text-3xl sm:text-4xl font-bold text-gold font-heading leading-none mb-2">
+                    {s.value}
+                  </p>
+                  <p className="text-[14px] sm:text-[15px] text-porcelain/70 leading-relaxed">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-[15px] sm:text-base text-porcelain/75 leading-relaxed mt-8 max-w-2xl mx-auto">
+              All under annual registration, RPZ rent caps, and RTB compliance obligations. Agent handles each one in the way the law expects.
+            </p>
+            <p className="text-center text-[12px] text-porcelain/40 mt-4 max-w-3xl mx-auto leading-relaxed">
+              Source: Residential Tenancies Board, Q4 2024 Profile of the Register.
+            </p>
+          </div>
+        </Container>
+      </section>
+
       {/* ── 8. Quiet Trust Callout ── */}
       <section className="relative py-24 bg-porcelain">
         <Container>
