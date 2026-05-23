@@ -14,7 +14,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
         <p className="text-hint mb-10">
-          Last updated: January 16, 2026
+          Last updated: May 23, 2026
         </p>
 
         <div className="space-y-10">
@@ -45,6 +45,42 @@ export default function PrivacyPage() {
             </ul>
             <p className="text-hint leading-relaxed mt-4 p-4 rounded-lg border border-gold/20 bg-gold/5">
               <strong className="text-porcelain">We do not collect your email address, phone number, or other personal contact information through the Property Portal app.</strong>
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-heading-md font-bold text-porcelain mb-4">
+              OpenHouse Assistant Conversations
+            </h2>
+            <p className="text-hint leading-relaxed mb-4">
+              When you interact with the OpenHouse Assistant, our AI-powered helper for questions about your home, we collect anonymised records of those interactions to improve the service. This includes:
+            </p>
+            <ul className="space-y-3 text-hint mb-4">
+              <li className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0" />
+                <span>The text of your messages, with any personal details (such as names, email addresses, phone numbers, or postcodes) automatically removed before storage</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0" />
+                <span>A general classification of any photos you send (for example, &ldquo;kitchen counter&rdquo; or &ldquo;ceiling fixture&rdquo;). We do not retain the photos themselves in our analytics</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0" />
+                <span>Transcripts of any voice notes, with the same personal-detail redaction applied</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0" />
+                <span>The Assistant&apos;s response and the model performance details (processing time, type of answer given)</span>
+              </li>
+            </ul>
+            <p className="text-hint leading-relaxed mb-4">
+              These records are stored without any link to you, your home, your unit number, or your development. They cannot be used to identify you and are processed under our legitimate interest in improving the quality of the OpenHouse Assistant. We use this data to make the Assistant more helpful and to understand, at an aggregate level, what homeowners commonly ask about, for example, &ldquo;the most common questions new homeowners ask in their first month.&rdquo;
+            </p>
+            <p className="text-hint leading-relaxed mb-4">
+              We may share aggregate insights from this data (for example, &ldquo;70% of homeowners ask about heating in their first week&rdquo;) with property developers and in our marketing materials. We do not share data that could identify you or your specific conversations.
+            </p>
+            <p className="text-hint leading-relaxed">
+              If you raise an issue with your site team through the Assistant, that issue is processed separately. It is identifiable, linked to your home, and shared with your developer so they can act on it. This is necessary to provide you with the service.
             </p>
           </section>
 
