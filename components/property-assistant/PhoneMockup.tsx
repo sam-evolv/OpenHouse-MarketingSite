@@ -1,39 +1,57 @@
 "use client";
 
 import { ReactNode } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import {
-  ChevronLeft,
-  Wifi,
-  FileText,
-  Play,
-  CheckCircle2,
-  ImageIcon,
-  ArrowDownToLine,
-  Snowflake,
-} from "lucide-react";
+import ohMark from "@/attached_assets/property-assistant/openhouse-mark.png";
 
 /* ────────────────────────────────────────────────────────────
-   PhoneMockup
-   A premium, marketing-grade iPhone frame. Titanium-style bezel,
-   dynamic island, status bar, and an app-coloured screen. Children
-   render inside the screen. Optional motion-safe idle drift.
+   Property Assistant phone mockups.
+
+   These reproduce the real OpenHouse Property Assistant homeowner app
+   (see docs/marketing-refurb/property-assistant-assets/source-references).
+   The screen is warm white/cream with gold accents, on purpose: the
+   contrast between the marketing page's dark canvas and the warm phone
+   makes the phone feel like a real object on the page.
+
+   Tokens are taken verbatim from the app's tokens.css and used inline,
+   so the phone internals stay faithful to the product and never inherit
+   the marketing site's dark palette.
    ──────────────────────────────────────────────────────────── */
 
-interface PhoneMockupProps {
+const C = {
+  gold: "#D4AF37",
+  goldDark: "#B88A18",
+  text1: "#111827",
+  text2: "#6b7280",
+  text3: "#9ca3af",
+  border: "#e5e7eb",
+  white: "#FFFFFF",
+  cream: "#FAFAF6",
+  creamPlan: "#FBFAF5",
+  inputBg: "#F1F1EF",
+  greenBg: "rgba(46,184,108,0.14)",
+  greenFg: "#0E8E63",
+  goldBadgeBg: "rgba(212,175,55,0.16)",
+  goldBadgeFg: "#A8821F",
+};
+
+const SANS =
+  "var(--font-inter), Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
+/* ─── Phone frame ─── */
+
+interface PhoneFrameProps {
   children: ReactNode;
-  /** Tailwind width class for the frame, e.g. "w-[300px]". */
   widthClass?: string;
-  /** Idle vertical drift on a slow loop, disabled under prefers-reduced-motion. */
   float?: boolean;
   floatDelay?: number;
   floatDistance?: number;
   className?: string;
-  /** Status-bar clock label. */
   time?: string;
 }
 
-export function PhoneMockup({
+export function PhoneFrame({
   children,
   widthClass = "w-[300px]",
   float = false,
@@ -41,7 +59,7 @@ export function PhoneMockup({
   floatDistance = 12,
   className = "",
   time = "9:41",
-}: PhoneMockupProps) {
+}: PhoneFrameProps) {
   const reduce = useReducedMotion();
   const drift = float && !reduce;
 
@@ -51,47 +69,55 @@ export function PhoneMockup({
       animate={drift ? { y: [0, -floatDistance, 0] } : undefined}
       transition={
         drift
-          ? {
-              duration: 7,
-              repeat: Infinity,
-              ease: [0.16, 1, 0.3, 1],
-              delay: floatDelay,
-            }
+          ? { duration: 7, repeat: Infinity, ease: [0.16, 1, 0.3, 1], delay: floatDelay }
           : undefined
       }
     >
       {/* Titanium bezel */}
       <div className="relative rounded-[2.6rem] bg-gradient-to-b from-zinc-700 via-zinc-900 to-black p-[3px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
-        {/* Bezel inner highlight */}
         <div className="absolute inset-0 rounded-[2.6rem] ring-1 ring-white/10" />
-        {/* Side buttons */}
         <div className="absolute -left-[2px] top-24 h-7 w-[2px] rounded-l bg-zinc-700" />
         <div className="absolute -left-[2px] top-36 h-12 w-[2px] rounded-l bg-zinc-700" />
         <div className="absolute -right-[2px] top-32 h-16 w-[2px] rounded-r bg-zinc-700" />
 
-        {/* Screen */}
-        <div className="relative overflow-hidden rounded-[2.35rem] bg-[#0B0B0D]">
+        {/* Screen (warm white) */}
+        <div
+          className="relative flex flex-col overflow-hidden rounded-[2.35rem]"
+          style={{ background: C.white, fontFamily: SANS }}
+        >
           {/* Dynamic island */}
           <div className="pointer-events-none absolute left-1/2 top-2 z-30 h-[26px] w-[88px] -translate-x-1/2 rounded-full bg-black" />
 
-          {/* Status bar */}
-          <div className="relative z-20 flex items-center justify-between px-6 pb-1 pt-3 text-[11px] font-semibold text-white">
+          {/* iOS status bar (dark on white) */}
+          <div
+            className="relative z-20 flex items-center justify-between px-6 pb-1 pt-3 text-[11px] font-semibold"
+            style={{ color: C.text1 }}
+          >
             <span className="tracking-tight">{time}</span>
             <span className="flex items-center gap-1.5">
-              {/* signal */}
               <span className="flex items-end gap-[2px]" aria-hidden="true">
-                <span className="h-1.5 w-[3px] rounded-sm bg-white/90" />
-                <span className="h-2 w-[3px] rounded-sm bg-white/90" />
-                <span className="h-2.5 w-[3px] rounded-sm bg-white/90" />
-                <span className="h-3 w-[3px] rounded-sm bg-white/40" />
+                <span className="h-1.5 w-[3px] rounded-sm" style={{ background: C.text1 }} />
+                <span className="h-2 w-[3px] rounded-sm" style={{ background: C.text1 }} />
+                <span className="h-2.5 w-[3px] rounded-sm" style={{ background: C.text1 }} />
+                <span className="h-3 w-[3px] rounded-sm" style={{ background: C.text3 }} />
               </span>
-              <Wifi className="h-3 w-3" aria-hidden="true" />
-              {/* battery */}
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  d="M8 3.5c2.2 0 4.2.8 5.7 2.2l-1 1A6.6 6.6 0 008 4.9 6.6 6.6 0 003.3 6.7l-1-1A8.1 8.1 0 018 3.5zm0 3c1.4 0 2.7.5 3.7 1.4l-1 1A4.3 4.3 0 008 7.9c-1 0-2 .4-2.7 1l-1-1A5.8 5.8 0 018 6.5zm0 3c.7 0 1.3.2 1.8.7L8 11.9 6.2 10.2c.5-.5 1.1-.7 1.8-.7z"
+                  fill={C.text1}
+                />
+              </svg>
               <span className="ml-0.5 flex items-center" aria-hidden="true">
-                <span className="relative h-3 w-6 rounded-[3px] border border-white/60">
-                  <span className="absolute inset-[1.5px] right-1.5 rounded-[1px] bg-white/90" />
+                <span
+                  className="relative h-3 w-6 rounded-[3px]"
+                  style={{ border: `1px solid ${C.text3}` }}
+                >
+                  <span
+                    className="absolute inset-[1.5px] right-1.5 rounded-[1px]"
+                    style={{ background: C.text1 }}
+                  />
                 </span>
-                <span className="ml-[1px] h-1.5 w-[2px] rounded-r bg-white/60" />
+                <span className="ml-[1px] h-1.5 w-[2px] rounded-r" style={{ background: C.text3 }} />
               </span>
             </span>
           </div>
@@ -103,234 +129,377 @@ export function PhoneMockup({
   );
 }
 
-/* ─── App chrome ─── */
+/* ─── App header ─── */
 
-export function AssistantHeader({
-  address = "12 Castle Walk, Douglas",
-}: {
-  address?: string;
-}) {
+export function HomeownerHeader() {
   return (
-    <div className="relative z-10 flex items-center gap-3 border-b border-white/[0.06] bg-[#141416]/80 px-4 py-3 backdrop-blur">
-      <ChevronLeft className="h-5 w-5 text-gold" aria-hidden="true" />
-      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-gold to-amber-500">
-        <span className="font-heading text-[13px] font-bold text-carbon">OH</span>
-      </div>
-      <div className="min-w-0 flex-1">
-        <p className="truncate text-[13px] font-semibold text-white">
-          Property Assistant
-        </p>
-        <p className="flex items-center gap-1.5 truncate text-[10px] text-porcelain/50">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          {address}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-export function DayDivider({ label }: { label: string }) {
-  return (
-    <div className="my-1 flex justify-center">
-      <span className="text-[10px] font-medium uppercase tracking-wider text-porcelain/35">
-        {label}
-      </span>
-    </div>
-  );
-}
-
-/* ─── Bubbles ─── */
-
-export function ResidentBubble({
-  children,
-  time,
-}: {
-  children: ReactNode;
-  time?: string;
-}) {
-  return (
-    <div className="flex flex-col items-end">
-      <div className="max-w-[82%] rounded-2xl rounded-br-md bg-gradient-to-br from-gold to-amber-500 px-3.5 py-2.5 text-[13px] font-medium leading-snug text-carbon shadow-sm">
-        {children}
-      </div>
-      {time && <span className="mr-1 mt-1 text-[9px] text-porcelain/35">{time}</span>}
-    </div>
-  );
-}
-
-export function AssistantBubble({
-  children,
-  time,
-}: {
-  children: ReactNode;
-  time?: string;
-}) {
-  return (
-    <div className="flex flex-col items-start">
-      <div className="max-w-[88%] rounded-2xl rounded-bl-md border border-white/10 bg-white/[0.06] px-3.5 py-2.5 text-[13px] leading-relaxed text-porcelain">
-        {children}
-      </div>
-      {time && <span className="ml-1 mt-1 text-[9px] text-porcelain/35">{time}</span>}
-    </div>
-  );
-}
-
-/* ─── Rich content inside bubbles ─── */
-
-/** A stylised photo of an appliance display, framed like a phone snapshot. */
-export function HeatPumpPhoto({ error = "E4" }: { error?: string }) {
-  return (
-    <div className="overflow-hidden rounded-xl border border-white/10">
-      {/* "wall" backdrop */}
-      <div className="relative bg-gradient-to-br from-zinc-300 via-zinc-200 to-zinc-400 p-3">
-        {/* the unit */}
-        <div className="rounded-lg bg-gradient-to-b from-zinc-50 to-zinc-200 p-3 shadow-md ring-1 ring-black/5">
-          <div className="mb-2 flex items-center justify-between">
-            <span className="text-[8px] font-semibold uppercase tracking-widest text-zinc-500">
-              Daikin Altherma
-            </span>
-            <Snowflake className="h-3 w-3 text-sky-500" aria-hidden="true" />
-          </div>
-          {/* digital readout */}
-          <div className="rounded-md bg-[#0c1418] px-3 py-2 shadow-inner">
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-[22px] font-bold leading-none tracking-widest text-red-500 [text-shadow:0_0_8px_rgba(239,68,68,0.7)]">
-                {error}
-              </span>
-              <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
-            </div>
-            <div className="mt-1.5 flex gap-1">
-              <span className="h-1 w-6 rounded-full bg-white/20" />
-              <span className="h-1 w-4 rounded-full bg-white/10" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** A stylised photo of a thermostat showing a warning light. */
-export function ThermostatPhoto() {
-  return (
-    <div className="overflow-hidden rounded-xl border border-white/10">
-      <div className="relative bg-gradient-to-br from-stone-200 via-stone-100 to-stone-300 p-3">
-        <div className="mx-auto w-24 rounded-xl bg-gradient-to-b from-white to-zinc-100 p-3 shadow-md ring-1 ring-black/5">
-          <div className="rounded-lg bg-[#0c1418] px-2 py-2.5 text-center shadow-inner">
-            <p className="font-mono text-[10px] font-bold tracking-wider text-white/80">
-              20.5&deg;
-            </p>
-            <div className="mt-1 flex items-center justify-center gap-1">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-400 [box-shadow:0_0_6px_rgba(251,191,36,0.8)]" />
-              <span className="text-[7px] font-medium uppercase tracking-wide text-amber-400">
-                No signal
-              </span>
-            </div>
-          </div>
-          <div className="mt-2 flex justify-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />
-            <span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** Small thumbnail of the photo, used inside the assistant's reply. */
-export function PhotoThumb({ children, label }: { children: ReactNode; label?: string }) {
-  return (
-    <div className="mb-2 flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] p-1.5">
-      <div className="h-9 w-9 flex-shrink-0 overflow-hidden rounded-md">{children}</div>
-      <span className="flex items-center gap-1 text-[10px] text-porcelain/50">
-        <ImageIcon className="h-3 w-3" aria-hidden="true" />
-        {label ?? "Photo you sent"}
-      </span>
-    </div>
-  );
-}
-
-export function UploadingIndicator() {
-  return (
-    <div className="flex flex-col items-end">
-      <div className="w-[60%] rounded-2xl rounded-br-md bg-white/[0.06] px-3.5 py-2.5">
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] font-medium text-porcelain/60">Uploading</span>
-          <span className="relative h-1 flex-1 overflow-hidden rounded-full bg-white/10">
-            <span className="animate-shimmer absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(212,175,55,0.8),transparent)] bg-[length:200%_100%]" />
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function DocumentPill({ label = "Kitchen tile warranty.pdf" }: { label?: string }) {
-  return (
-    <button
-      type="button"
-      className="mt-2.5 flex w-full items-center gap-2.5 rounded-xl border border-gold/30 bg-gold/[0.08] px-3 py-2 text-left transition-colors hover:bg-gold/[0.14] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
+    <div
+      className="flex items-center gap-2 px-3.5 py-3"
+      style={{ background: C.white, borderBottom: `1px solid ${C.border}` }}
     >
-      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gold/15">
-        <FileText className="h-3.5 w-3.5 text-gold" aria-hidden="true" />
-      </span>
-      <span className="min-w-0 flex-1 truncate text-[11px] font-medium text-porcelain">
-        {label}
-      </span>
-      <ArrowDownToLine className="h-3.5 w-3.5 flex-shrink-0 text-gold" aria-hidden="true" />
-    </button>
-  );
-}
-
-export function VideoThumb({ label = "60-second pressure check" }: { label?: string }) {
-  return (
-    <div className="mt-2.5 overflow-hidden rounded-xl border border-white/10">
-      <div className="relative aspect-video bg-gradient-to-br from-zinc-700 via-zinc-800 to-carbon">
-        {/* faux scene */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(212,175,55,0.18),transparent_60%)]" />
-        <div className="absolute bottom-2 left-2 right-2 flex items-end justify-between">
-          <span className="rounded bg-black/50 px-1.5 py-0.5 text-[8px] font-medium text-white/80 backdrop-blur">
-            Recorded for your home
-          </span>
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow-lg">
-            <Play className="ml-0.5 h-4 w-4 fill-carbon text-carbon" aria-hidden="true" />
-          </span>
-        </div>
+      <div className="flex flex-1 items-center gap-1.5">
+        <Image src={ohMark} alt="OpenHouse Ai" width={22} height={22} className="block h-[22px] w-[22px]" />
+        <span
+          className="font-bold"
+          style={{ fontSize: 12.5, color: C.gold, letterSpacing: "-0.005em" }}
+        >
+          OpenHouse Ai
+        </span>
       </div>
-      <div className="flex items-center gap-1.5 bg-white/[0.04] px-2.5 py-1.5">
-        <Play className="h-3 w-3 text-gold" aria-hidden="true" />
-        <span className="text-[10px] font-medium text-porcelain/80">{label}</span>
+      {/* EN selector */}
+      <div
+        className="flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold"
+        style={{ border: `1px solid ${C.border}`, fontSize: 11, color: C.text1 }}
+      >
+        EN
+        <svg width="9" height="9" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+          <path d="M2 4l3 3 3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+      {/* Mode toggle (moon) */}
+      <div
+        className="flex h-7 w-7 items-center justify-center rounded-full"
+        style={{ border: `1px solid ${C.border}`, color: C.text1, background: C.white }}
+      >
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M17 12.5A7.5 7.5 0 017.5 3a.8.8 0 00-1-1A8.5 8.5 0 1018 13.5a.8.8 0 00-1-1z" fill="currentColor" />
+        </svg>
+      </div>
+      {/* Avatar */}
+      <div
+        className="flex h-[26px] w-[26px] items-center justify-center rounded-full"
+        style={{ background: C.gold, color: C.white }}
+      >
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <circle cx="7" cy="5" r="2.4" stroke="currentColor" strokeWidth="1.4" fill="none" />
+          <path d="M2.5 12c0-2.4 2-3.5 4.5-3.5s4.5 1.1 4.5 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+        </svg>
       </div>
     </div>
   );
 }
 
-export function ResolvedPill({ label = "Resolved? Let me know" }: { label?: string }) {
+/* ─── Bottom bar (input + 4-tab nav) ─── */
+
+function ChatIcon() {
   return (
-    <div className="mt-2 flex items-center gap-2">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M3.5 9.5C3.5 5.9 6.5 3 10 3s6.5 2.9 6.5 6.5S13.5 16 10 16c-.9 0-1.8-.2-2.6-.5L4 17l1-3.2c-.9-1.2-1.5-2.6-1.5-4.3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+function MapIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M3 5l5-2 4 2 5-2v12l-5 2-4-2-5 2V5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" fill="none" />
+      <path d="M8 3v12M12 5v12" stroke="currentColor" strokeWidth="1.4" />
+    </svg>
+  );
+}
+function BellIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M10 3a4.5 4.5 0 014.5 4.5v3l1.5 3h-12l1.5-3v-3A4.5 4.5 0 0110 3z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" fill="none" />
+      <path d="M8 16a2 2 0 004 0" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  );
+}
+function DocsIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M5 2.5h7l3 3v12a1 1 0 01-1 1H5a1 1 0 01-1-1v-14a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" fill="none" />
+      <path d="M12 2.5v3h3M6.5 9.5h7M6.5 12.5h7M6.5 15.5h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function BottomBar({
+  inputText = "",
+  active = "Chat",
+  showInput = true,
+}: {
+  inputText?: string;
+  active?: "Chat" | "Map" | "News" | "Docs";
+  showInput?: boolean;
+}) {
+  const tabs = [
+    { key: "Chat", icon: <ChatIcon /> },
+    { key: "Map", icon: <MapIcon /> },
+    { key: "News", icon: <BellIcon /> },
+    { key: "Docs", icon: <DocsIcon /> },
+  ] as const;
+
+  return (
+    <div style={{ background: C.white }}>
+      {showInput && (
+        <div className="px-3.5 pb-1 pt-1.5">
+          <div
+            className="flex h-10 items-center gap-2 rounded-full pl-3.5 pr-3"
+            style={{ background: C.inputBg }}
+          >
+            <span
+              className="flex-1 truncate"
+              style={{ fontSize: 12.5, color: inputText ? C.text1 : C.text3 }}
+            >
+              {inputText || "Ask about your home or community..."}
+            </span>
+            <span style={{ color: C.text3 }} aria-hidden="true">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
+                <rect x="4" y="2" width="4" height="6" rx="2" fill="currentColor" />
+                <path d="M2.5 6.5a3.5 3.5 0 007 0M6 10v1.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" fill="none" />
+              </svg>
+            </span>
+          </div>
+          <div className="mt-1 text-center" style={{ fontSize: 9.5, color: C.text3 }}>
+            Powered by AI • Information provided for reference only
+          </div>
+        </div>
+      )}
+      <div
+        className="grid grid-cols-4 px-1 pb-1.5 pt-1.5"
+        style={{ background: C.white, borderTop: `1px solid ${C.border}` }}
+      >
+        {tabs.map((t) => {
+          const isActive = t.key === active;
+          const color = isActive ? C.gold : C.text2;
+          return (
+            <div key={t.key} className="flex flex-col items-center gap-0.5 pb-0.5 pt-1">
+              <span style={{ color }}>{t.icon}</span>
+              <span className="font-semibold" style={{ fontSize: 10, color }}>
+                {t.key}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Chat primitives ─── */
+
+/** A scrollable-feeling message area inside the screen. */
+export function Thread({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex flex-1 flex-col gap-2.5 px-3.5 pb-1 pt-3" style={{ background: C.white }}>
+      {children}
+    </div>
+  );
+}
+
+/** Right-aligned resident message, in the app's gold-highlight language. */
+export function UserBubble({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex justify-end">
+      <div
+        className="max-w-[82%] rounded-[14px] rounded-br-[5px] px-3.5 py-2.5"
+        style={{
+          background: "rgba(212,175,55,0.14)",
+          border: `1px solid ${C.gold}AA`,
+          color: C.text1,
+          fontSize: 12.5,
+          fontWeight: 500,
+          lineHeight: 1.4,
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/** The assistant's white answer card (IntelligenceCard). */
+export function AssistantCard({ children }: { children: ReactNode }) {
+  return (
+    <div
+      className="flex flex-col gap-1.5 rounded-[14px] px-3.5 py-3"
+      style={{
+        background: C.white,
+        border: `1px solid ${C.border}`,
+        boxShadow: "0 2px 12px rgba(12,12,12,0.04)",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function CardText({ children, size = 12.5 }: { children: ReactNode; size?: number }) {
+  return (
+    <div style={{ fontSize: size, lineHeight: 1.55, color: C.text1 }}>{children}</div>
+  );
+}
+
+/** Bold accent used inside card text (E3, blocked air filter, etc). */
+export function B({ children }: { children: ReactNode }) {
+  return <b style={{ fontWeight: 700, color: C.text1 }}>{children}</b>;
+}
+
+export function ChecklistRow({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex items-start gap-2">
+      <span
+        className="mt-[1px] flex h-[15px] w-[15px] flex-shrink-0 items-center justify-center rounded-full"
+        style={{ background: "rgba(212,175,55,0.16)", color: C.goldDark }}
+        aria-hidden="true"
+      >
+        <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
+          <path d="M2 5.2l2 2 4-4.4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </span>
+      <span style={{ fontSize: 12, lineHeight: 1.45, color: C.text1 }}>{children}</span>
+    </div>
+  );
+}
+
+/** The sourced-citation line: the proof point for the trust mechanism. */
+export function SourceLine({ children }: { children: ReactNode }) {
+  return (
+    <div
+      className="mt-1 flex items-center gap-1.5 pt-1.5"
+      style={{ fontSize: 10.5, color: C.text2, borderTop: "1px dashed rgba(0,0,0,0.08)" }}
+    >
+      <span
+        className="inline-flex h-3 w-3 flex-shrink-0 items-center justify-center rounded-full font-bold"
+        style={{ background: `${C.gold}33`, color: C.gold, fontSize: 9 }}
+        aria-hidden="true"
+      >
+        i
+      </span>
+      <span>{children}</span>
+    </div>
+  );
+}
+
+export function GoldCTA({ children, icon }: { children: ReactNode; icon?: ReactNode }) {
+  return (
+    <>
+      <div className="my-0.5 h-px" style={{ background: "rgba(0,0,0,0.06)" }} />
       <button
         type="button"
-        className="flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-[11px] font-medium text-emerald-300 transition-colors hover:bg-emerald-400/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60"
+        className="flex items-center justify-center gap-1.5 rounded-[10px] py-2 font-semibold transition-transform hover:scale-[1.02] focus:outline-none focus-visible:ring-2"
+        style={{
+          background: "linear-gradient(135deg, #e8c547 0%, #b88a18 100%)",
+          color: "#1A1408",
+          fontSize: 11.5,
+        }}
       >
-        <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
-        {label}
+        {icon}
+        {children}
       </button>
+    </>
+  );
+}
+
+/** A "your home" data row, as used in the breadth frames (docs, appliances). */
+export function DataRow({
+  icon,
+  name,
+  meta,
+  badge,
+  badgeColor = "green",
+}: {
+  icon: ReactNode;
+  name: string;
+  meta: string;
+  badge: string;
+  badgeColor?: "green" | "gold";
+}) {
+  const bg = badgeColor === "green" ? C.greenBg : C.goldBadgeBg;
+  const fg = badgeColor === "green" ? C.greenFg : C.goldBadgeFg;
+  return (
+    <div
+      className="flex items-center gap-2.5 rounded-[10px] px-3 py-2.5"
+      style={{ background: C.white, border: `1px solid ${C.border}` }}
+    >
+      <span
+        className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full"
+        style={{ background: "rgba(212,175,55,0.16)", color: C.goldDark }}
+      >
+        {icon}
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block truncate font-bold" style={{ fontSize: 12.5, color: C.text1 }}>
+          {name}
+        </span>
+        <span className="block truncate" style={{ fontSize: 11, color: C.text2 }}>
+          {meta}
+        </span>
+      </span>
+      <span
+        className="flex-shrink-0 rounded-full px-1.5 py-0.5 font-extrabold"
+        style={{ background: bg, color: fg, fontSize: 8.5, letterSpacing: "0.08em" }}
+      >
+        {badge}
+      </span>
     </div>
   );
 }
 
-/** The faux text-input bar pinned to the bottom of a screen. */
-export function InputBar({ placeholder = "Message" }: { placeholder?: string }) {
+/* ─── Floor plan diagram (ported verbatim from the real app) ─── */
+
+export function FloorPlanDiagram({ width = 240 }: { width?: number }) {
+  const t1 = C.text1;
+  const t2 = C.text2;
+  const t3 = C.text3;
+  const gold = C.gold;
+  const goldDark = C.goldDark;
   return (
-    <div className="flex items-center gap-2 border-t border-white/[0.06] bg-[#141416]/80 px-3 py-3 backdrop-blur">
-      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/[0.06]">
-        <ImageIcon className="h-3.5 w-3.5 text-porcelain/50" aria-hidden="true" />
-      </span>
-      <span className="flex-1 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] text-porcelain/40">
-        {placeholder}
-      </span>
-    </div>
+    <svg width={width} viewBox="0 0 240 168" fill="none" style={{ display: "block" }} aria-hidden="true">
+      <rect x="4" y="4" width="232" height="160" stroke={t1} strokeWidth="3" fill={C.creamPlan} rx="2" />
+      {/* Living room (highlighted) */}
+      <rect x="6" y="6" width="128" height="92" fill="rgba(212,175,55,0.18)" stroke={gold} strokeWidth="2.2" />
+      <rect x="20" y="78" width="50" height="12" rx="2" fill={`${gold}55`} />
+      <rect x="18" y="74" width="6" height="18" rx="1.5" fill={`${gold}55`} />
+      <rect x="66" y="74" width="6" height="18" rx="1.5" fill={`${gold}55`} />
+      <rect x="86" y="70" width="36" height="22" rx="2" fill="none" stroke={`${gold}70`} strokeWidth="1" strokeDasharray="2 2" />
+      <rect x="18" y="14" width="40" height="6" rx="1" fill={`${gold}40`} />
+      <text x="70" y="40" textAnchor="middle" fontSize="9" fontWeight="800" fill={goldDark} fontFamily={SANS} letterSpacing="0.05em">LIVING ROOM</text>
+      <text x="70" y="54" textAnchor="middle" fontSize="14" fontWeight="800" fill={t1} fontFamily={SANS}>28.5 m²</text>
+      <text x="70" y="66" textAnchor="middle" fontSize="7.5" fill={t2} fontFamily={SANS}>5.7m × 5.0m</text>
+      {/* Kitchen */}
+      <rect x="136" y="6" width="98" height="58" fill={C.white} stroke={t2} strokeWidth="1.2" />
+      <rect x="160" y="40" width="42" height="14" rx="1.5" fill={`${t3}33`} stroke={t3} strokeWidth="0.6" />
+      <rect x="138" y="8" width="94" height="6" fill={`${t3}20`} />
+      <text x="185" y="26" textAnchor="middle" fontSize="8.5" fontWeight="700" fill={t2} fontFamily={SANS} letterSpacing="0.04em">KITCHEN</text>
+      <text x="185" y="38" textAnchor="middle" fontSize="9.5" fontWeight="700" fill={t2} fontFamily={SANS}>14.2 m²</text>
+      {/* Dining */}
+      <rect x="136" y="66" width="98" height="32" fill={C.white} stroke={t2} strokeWidth="1.2" />
+      <ellipse cx="185" cy="84" rx="18" ry="9" fill="none" stroke={t3} strokeWidth="0.8" />
+      <text x="155" y="82" fontSize="8" fontWeight="700" fill={t2} fontFamily={SANS}>DINING</text>
+      {/* Hall */}
+      <rect x="6" y="100" width="84" height="58" fill={C.white} stroke={t2} strokeWidth="1.2" />
+      <g stroke={t3} strokeWidth="0.6">
+        <line x1="14" y1="118" x2="44" y2="118" />
+        <line x1="14" y1="124" x2="44" y2="124" />
+        <line x1="14" y1="130" x2="44" y2="130" />
+        <line x1="14" y1="136" x2="44" y2="136" />
+        <line x1="14" y1="142" x2="44" y2="142" />
+      </g>
+      <text x="65" y="128" textAnchor="middle" fontSize="8" fontWeight="700" fill={t2} fontFamily={SANS}>HALL</text>
+      {/* WC */}
+      <rect x="92" y="100" width="44" height="28" fill={C.white} stroke={t2} strokeWidth="1.2" />
+      <circle cx="116" cy="116" r="3.5" fill="none" stroke={t3} strokeWidth="0.6" />
+      <text x="114" y="120" textAnchor="middle" fontSize="7" fontWeight="700" fill={t2} fontFamily={SANS}>WC</text>
+      {/* Utility */}
+      <rect x="92" y="130" width="44" height="28" fill={C.white} stroke={t2} strokeWidth="1.2" />
+      <rect x="98" y="138" width="10" height="14" rx="1" fill="none" stroke={t3} strokeWidth="0.6" />
+      <text x="120" y="148" textAnchor="middle" fontSize="7" fontWeight="700" fill={t2} fontFamily={SANS}>UTILITY</text>
+      {/* Garage */}
+      <rect x="138" y="100" width="96" height="58" fill={C.white} stroke={t2} strokeWidth="1.2" />
+      <line x1="143" y1="156" x2="229" y2="156" stroke={t3} strokeWidth="2" />
+      <text x="186" y="130" textAnchor="middle" fontSize="8.5" fontWeight="700" fill={t2} fontFamily={SANS}>GARAGE</text>
+      {/* North arrow */}
+      <g transform="translate(220, 14)">
+        <circle r="6" fill={C.white} stroke={t2} strokeWidth="0.6" />
+        <path d="M0 -4 L2 2 L0 1 L-2 2 Z" fill={t1} />
+        <text y="-7" textAnchor="middle" fontSize="5.5" fontWeight="700" fill={t2} fontFamily={SANS}>N</text>
+      </g>
+      {/* Stamp */}
+      <text x="8" y="167" fontSize="6" fill={t3} fontFamily="var(--font-mono, monospace)" letterSpacing="0.05em">UNIT 9 • 3-BED SEMI • GROUND FLOOR</text>
+    </svg>
   );
 }
+
+/* Re-export tokens for scene-level use. */
+export const tokens = C;
