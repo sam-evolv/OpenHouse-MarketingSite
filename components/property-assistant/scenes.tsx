@@ -13,10 +13,8 @@ import {
   B,
   ChecklistRow,
   SourceLine,
-  GoldCTA,
   DataRow,
-  FloorPlanDiagram,
-  tokens as C,
+  ChatHomeScreen,
 } from "./PhoneMockup";
 
 /* Small inline icons for data rows, matching the real app's stroke style. */
@@ -42,49 +40,24 @@ function SunGlyph() {
   );
 }
 
-const planCtaIcon = (
-  <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-    <path d="M3 2h6l2 2v8a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" fill="none" />
-    <path d="M7 7v3M5 8.5l2 1.5 2-1.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-  </svg>
-);
-
 /* ────────────────────────────────────────────────────────────
    [1] HERO PHONE
-   The floor plan query: "What size is my living room?", answered with
-   the room dimensions and the floor plan diagram, rendered in the real
-   app chrome.
+   The Property Assistant welcome screen, the genuine first-impression a
+   resident sees: the gold mark and halo, the welcome headline, the four
+   quick-prompt pills, and the input pill. Rendered as a still product shot
+   in the real app chrome.
    ──────────────────────────────────────────────────────────── */
 export function HeroPhone() {
   return (
     <div className="relative flex items-center justify-center">
-      <div className="absolute inset-0 -z-10 scale-90 rounded-full bg-gold/20 blur-3xl" />
       <span
         aria-hidden="true"
         className="pointer-events-none absolute -z-10 select-none font-heading text-[12rem] font-bold leading-none text-white/[0.03]"
       >
         OH
       </span>
-      <PhoneFrame widthClass="w-[330px]" float floatDistance={14}>
-        <HomeownerHeader />
-        <Thread>
-          <UserBubble>What size is my living room?</UserBubble>
-          <AssistantCard>
-            <CardText>
-              Your <B>living room</B> is <B>28.5 m²</B> (307 sq ft), one of the
-              largest in your spec.
-            </CardText>
-            <div
-              className="mt-0.5 flex justify-center rounded-[10px] p-2"
-              style={{ background: C.creamPlan, border: `1px solid ${C.border}` }}
-            >
-              <FloorPlanDiagram width={266} />
-            </div>
-            <SourceLine>Source · your Ground Floor plan, A3.</SourceLine>
-            <GoldCTA icon={planCtaIcon}>Open full floor plan</GoldCTA>
-          </AssistantCard>
-        </Thread>
-        <BottomBar active="Chat" />
+      <PhoneFrame widthClass="w-[340px]">
+        <ChatHomeScreen />
       </PhoneFrame>
     </div>
   );

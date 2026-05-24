@@ -276,6 +276,108 @@ export function BottomBar({
   );
 }
 
+/* ─── Chat home (welcome) screen ─── */
+
+/** A single quick-prompt pill, matching the real app's HoChip. */
+function HomeChip({ children }: { children: ReactNode }) {
+  return (
+    <div
+      className="text-center"
+      style={{
+        background: C.white,
+        border: `1px solid ${C.border}`,
+        color: C.text1,
+        borderRadius: 14,
+        padding: "12px 14px",
+        fontSize: 12.5,
+        fontWeight: 500,
+        lineHeight: 1.3,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/**
+ * The Property Assistant welcome screen: the first thing a resident sees.
+ * A centred gold mark with a radial halo, the welcome headline and sub-line,
+ * the four quick-prompt pills, then the input pill + four-tab nav. Faithful
+ * to the real app's HomeownerChatHome (source-references), rendered as a still.
+ */
+export function ChatHomeScreen() {
+  const chips = ["Storage Ideas", "Long-Term Maintenance", "Planning Rules", "EV Charging"];
+  return (
+    <>
+      <HomeownerHeader />
+      <div
+        className="flex flex-1 flex-col items-center px-4"
+        style={{ background: C.white, paddingTop: 44, paddingBottom: 18 }}
+      >
+        {/* Centred gold mark with a soft radial halo */}
+        <div
+          className="flex flex-col items-center gap-1 rounded-full"
+          style={{
+            padding: "16px 24px",
+            background:
+              "radial-gradient(ellipse at center, rgba(212,175,55,0.12) 0%, transparent 70%)",
+          }}
+        >
+          <Image
+            src={ohMark}
+            alt="OpenHouse Ai"
+            width={56}
+            height={56}
+            className="block h-14 w-14"
+          />
+          <span
+            className="font-bold"
+            style={{ fontSize: 18, color: C.gold, letterSpacing: "-0.005em" }}
+          >
+            OpenHouse Ai
+          </span>
+        </div>
+
+        <h3
+          className="text-center font-bold"
+          style={{
+            fontSize: 19,
+            lineHeight: 1.22,
+            letterSpacing: "-0.018em",
+            color: C.text1,
+            maxWidth: 290,
+            marginTop: 24,
+          }}
+        >
+          Ask anything about your home or community
+        </h3>
+        <p
+          className="text-center"
+          style={{
+            fontSize: 12.5,
+            lineHeight: 1.45,
+            color: C.text2,
+            maxWidth: 280,
+            marginTop: 10,
+          }}
+        >
+          Quick answers for daily life: floor plans, manuals, certs, warranties, the lot.
+        </p>
+
+        <div
+          className="grid w-full grid-cols-2 gap-3"
+          style={{ maxWidth: 320, marginTop: 22 }}
+        >
+          {chips.map((label) => (
+            <HomeChip key={label}>{label}</HomeChip>
+          ))}
+        </div>
+      </div>
+      <BottomBar active="Chat" />
+    </>
+  );
+}
+
 /* ─── Chat primitives ─── */
 
 /** A scrollable-feeling message area inside the screen. */
