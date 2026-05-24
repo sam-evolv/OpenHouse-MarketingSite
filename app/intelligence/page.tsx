@@ -1,87 +1,120 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { IntelligenceFloatingCards } from "@/components/hero/cards/IntelligenceCards";
-import { ScreenshotLightbox } from "@/components/ui/ScreenshotLightbox";
+import { TryItWidget } from "@/components/intelligence/TryItWidget";
+import { IntelligenceConsole } from "@/components/intelligence/IntelligenceConsole";
 import heroBackground from "@/attached_assets/stock_images/intelligence_data_network.png";
-import analyticsInsights from "@/attached_assets/stock_images/analytics_insights.png";
-import aiInsights from "@/attached_assets/stock_images/ai_insights.png";
 import {
-  BarChart3,
-  AlertTriangle,
-  Users,
-  Lightbulb,
-  Target,
-  TrendingUp,
-  ArrowRight,
-  Home,
-  ChevronLeft,
   Sparkles,
+  ChevronLeft,
+  Home,
+  Database,
+  MessageSquare,
+  Link as LinkIcon,
+  LayoutDashboard,
+  LineChart,
+  BookOpen,
+  Sunrise,
+  Building2,
+  Briefcase,
+  Calculator,
+  ShieldCheck,
+  ArrowRight,
+  Smartphone,
+  Headphones,
+  LifeBuoy,
 } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Intelligence Module - Patterns & Insights | OpenHouse Ai",
+  title: "Intelligence - Ask Anything About Any Scheme | OpenHouse Ai",
   description:
-    "Turn resident interactions into actionable insights. See what homeowners actually need, spot knowledge gaps, and improve every future development.",
+    "Intelligence is the question-asking layer of the Developer Dashboard. Ask about any scheme, any unit, any cert, any resident, any number, and get the answer in plain language with the data it came from.",
 };
 
-const insights = [
+const steps = [
   {
-    icon: AlertTriangle,
-    color: "amber",
-    title: "14 residents asked about heating timers this week",
-    action: "Consider adding timer instructions to handover pack",
+    icon: Database,
+    title: "Your data, in one place.",
+    body: "Sales pipeline, compliance certs, document library, resident questions, financial projections, all already on your Developer Dashboard.",
   },
   {
-    icon: Target,
-    color: "violet",
-    title: "Unit 23 has logged 0 interactions since handover",
-    action: "Check if resident has activated their portal",
+    icon: MessageSquare,
+    title: "Ask a question.",
+    body: "Plain English. Voice or text. About one scheme or your whole portfolio. No syntax, no dashboards to learn.",
   },
   {
-    icon: TrendingUp,
-    color: "emerald",
-    title: "Boiler queries dropped 60% after adding manual",
-    action: "Apply same approach to ventilation system docs",
+    icon: LinkIcon,
+    title: "The answer cites the data.",
+    body: "Every answer comes with the source data it drew from. If Intelligence does not know, it says so. No hallucinations, no guesses.",
   },
 ];
 
-const features = [
+const capabilities = [
   {
-    icon: BarChart3,
-    title: "Query Analytics",
-    description:
-      "See every question residents ask - by category, frequency, and development. Spot trends before they become complaints.",
+    icon: LayoutDashboard,
+    title: "Cross-scheme questions answered",
+    body: "Ask about one development or your full portfolio. Pipeline, compliance, revenue, residents, anything.",
   },
   {
-    icon: AlertTriangle,
-    title: "Knowledge Gap Detection",
-    description:
-      "AI identifies questions your handover docs don't cover. Fill gaps proactively instead of reacting to calls.",
+    icon: LineChart,
+    title: "Live financial projections",
+    body: "This month's projected close. End-of-quarter forecast. Revenue per scheme. Pulled from live pipeline data, not a stale spreadsheet.",
   },
   {
-    icon: Users,
-    title: "Engagement Tracking",
-    description:
-      "Monthly active residents, portal adoption rates, and interaction frequency - all tracked per development.",
+    icon: BookOpen,
+    title: "Regulatory expertise built in",
+    body: "Irish building regulations are in the assistant's knowledge. Ask whether your ventilation meets Part F or your insulation meets Part L and you get a real answer.",
   },
   {
-    icon: Lightbulb,
-    title: "Proactive Recommendations",
-    description:
-      "Receive AI-generated suggestions to improve handover packs, reduce support queries, and boost satisfaction.",
+    icon: Sunrise,
+    title: "Today's briefing every morning",
+    body: "What needs your attention today. What is progressing. What is stuck. Delivered as a short briefing, customised to what you actually run.",
+  },
+];
+
+const personas = [
+  {
+    icon: Building2,
+    title: "Developer principals",
+    body: "You run the business. Intelligence holds the whole picture so you do not have to. Every scheme, every cost, every resident, askable.",
   },
   {
-    icon: Target,
-    title: "Development Comparison",
-    description:
-      "Compare engagement and query patterns across developments. See which approaches work best.",
+    icon: Briefcase,
+    title: "Construction and sales directors",
+    body: "You run the operation. Intelligence answers the questions you would otherwise ask your team five times a week.",
   },
   {
-    icon: TrendingUp,
-    title: "Impact Measurement",
-    description:
-      "Track query reduction over time. Prove the ROI of better handover materials with hard data.",
+    icon: Calculator,
+    title: "Finance and compliance leads",
+    body: "You run the numbers and the audit trail. Intelligence pulls projections from live data and compliance status from real documents.",
+  },
+];
+
+const products = [
+  {
+    icon: LayoutDashboard,
+    title: "Developer Dashboard",
+    blurb: "Where Intelligence lives.",
+    href: "/developer-dashboard",
+  },
+  {
+    icon: Smartphone,
+    title: "Property Assistant",
+    blurb: "For residents.",
+    href: "/property-assistant",
+  },
+  {
+    icon: Headphones,
+    title: "Agent",
+    blurb: "For estate and letting agents.",
+    href: "/agent",
+  },
+  {
+    icon: LifeBuoy,
+    title: "Care",
+    blurb: "For installers.",
+    href: "/care",
   },
 ];
 
@@ -92,280 +125,111 @@ export default function IntelligencePage() {
       <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
-          className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-medium backdrop-blur-md hover:bg-violet-500/20 transition-all duration-300"
+          className="group flex min-h-[48px] items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5 text-xs font-medium text-gold backdrop-blur-md transition-all duration-300 hover:bg-gold/20 sm:min-h-0"
         >
-          <ChevronLeft className="w-3 h-3" />
-          <Home className="w-3 h-3" />
+          <ChevronLeft className="h-3 w-3" />
+          <Home className="h-3 w-3" />
           <span className="hidden sm:inline">Platform</span>
         </Link>
       </div>
 
-      {/* ── Hero ── */}
+      {/* ── [1] Hero ── */}
       <ModuleHero
         backgroundImage={heroBackground}
-        accentColor="violet"
-        backgroundAlt="Abstract data network representing AI intelligence and analytics"
+        accentColor="gold"
+        backgroundAlt="An abstract network of connected data points at dusk"
         badge={
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/30">
-            <BarChart3 className="w-4 h-4 text-violet-400" />
-            <span className="text-sm font-medium text-violet-400">
-              Intelligence Module
-            </span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-2">
+            <Sparkles className="h-4 w-4 text-gold" />
+            <span className="text-sm font-medium text-gold">Intelligence</span>
           </div>
         }
         title={
           <>
-            Turn resident questions into{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-violet-300 to-violet-400">
-              development insights
-            </span>
+            Ask anything about any scheme. Get the{" "}
+            <span className="bg-gradient-to-r from-gold via-amber-400 to-gold bg-clip-text text-transparent">
+              actual
+            </span>{" "}
+            answer.
           </>
         }
-        subtitle="Every question a homeowner asks teaches you something. See what residents need, where your docs fall short, and how to build better next time."
-        primaryCta={{ href: "/contact", label: "Book a Demo" }}
-        secondaryCta={{ href: "#features", label: "See Features" }}
+        subtitle="Intelligence is the question-asking layer of the Developer Dashboard. Type or ask a question about any scheme, any unit, any cert, any resident, any number. Get the answer in plain language, with the data it came from."
+        primaryCta={{ href: "#try-it", label: "Ask it something" }}
+        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >
         <IntelligenceFloatingCards />
       </ModuleHero>
 
-      {/* ── Before / After ── */}
-      <section className="relative py-24 bg-carbon">
+      {/* ── [2] Try it (the spine) ── */}
+      <section id="try-it" className="relative overflow-hidden bg-carbon py-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.06] via-transparent to-transparent" />
         <Container>
-          <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400 mb-4 font-semibold">
-              Before &amp; After
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              What changes when you switch
+          <div className="relative">
+            <h2 className="mb-3 font-heading text-2xl font-bold text-white sm:text-3xl">
+              Try it. No sign-up.
             </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.03]">
-              <p className="text-sm font-semibold text-red-400 mb-4 uppercase tracking-wider">
-                Without OpenHouse
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Support calls logged in notebooks or not at all",
-                  "No idea what questions residents actually ask",
-                  "Handover packs unchanged development to development",
-                  "Defect patterns spotted only after complaints pile up",
-                  "No data on resident satisfaction or engagement",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-porcelain/60"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-400/40 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="p-8 rounded-2xl border border-violet-500/20 bg-violet-500/[0.03]">
-              <p className="text-sm font-semibold text-violet-400 mb-4 uppercase tracking-wider">
-                With OpenHouse Intelligence
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Every question logged and categorised automatically",
-                  "Knowledge gaps identified with impact scores",
-                  "AI recommends content to reduce repeat queries",
-                  "Engagement funnel shows adoption at every stage",
-                  "Data-driven improvements, development after development",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-porcelain"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-400 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p className="mb-8 max-w-2xl text-base leading-relaxed text-porcelain/70">
+              This is the actual Intelligence interface. Every answer cites the
+              data it came from. If it does not know, it says so.
+            </p>
+            <TryItWidget />
           </div>
         </Container>
       </section>
 
-      {/* ── Analytics Dashboard - Full Width ── */}
-      <section className="relative py-24 bg-carbon overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.03] via-transparent to-transparent" />
+      {/* ── [3] Money shot, full Intelligence view ── */}
+      <section className="relative overflow-hidden bg-carbon py-24 sm:py-28">
+        <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.05] via-transparent to-gold/[0.04]" />
         <Container>
-          <div className="max-w-3xl mb-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
-                <BarChart3 className="w-4 h-4 text-violet-400" />
-              </div>
-              <p className="text-sm uppercase tracking-[0.3em] text-violet-400 font-semibold">
-                Analytics Dashboard
-              </p>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              Know exactly who&apos;s engaged - and who isn&apos;t
-            </h2>
-            <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-              100% AI resolution rate means zero support calls forwarded to your
-              team. See how many homeowners have onboarded, how many are active
-              this month, and who your high engagers are. Filter by 7 days, 30
-              days, 90 days, or custom ranges. Export everything.
+          <div className="mx-auto mb-14 max-w-3xl text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-gold">
+              One assistant
             </p>
-            <div className="flex flex-wrap gap-3">
-              {[
-                "100% AI resolution",
-                "Engagement funnel",
-                "Time filters",
-                "CSV export",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-medium text-violet-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <h2 className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+              Every scheme. Every system. Every question.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-porcelain/70">
+              Live sales data, compliance documents, financial projections,
+              resident queries, Irish building regulations. Intelligence sits
+              across all of it. Ask about one development or the whole portfolio.
+              The answer is the same speed.
+            </p>
           </div>
           <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 via-violet-400/5 to-violet-500/20 rounded-3xl blur-2xl" />
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-gold/15 via-transparent to-gold/15 blur-2xl" />
             <div className="relative">
-              <ScreenshotLightbox
-                src={analyticsInsights}
-                alt="Analytics dashboard showing homeowners, active this month, total messages, 100% AI resolution rate, engagement funnel breakdown, and PC Sum revenue impact"
-              />
+              <IntelligenceConsole />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* ── AI Insights - Full Width ── */}
-      <section className="relative py-24 bg-carbon overflow-hidden">
+      {/* ── [4] How it works (three steps) ── */}
+      <section className="relative overflow-hidden bg-carbon py-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.07] via-transparent to-gold/[0.05]" />
         <Container>
-          <div className="max-w-3xl mb-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-violet-400" />
-              </div>
-              <p className="text-sm uppercase tracking-[0.3em] text-violet-400 font-semibold">
-                AI Insights
-              </p>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading mb-4">
-              AI tells you what to fix - and why
+          <div className="mx-auto mb-16 max-w-2xl text-center">
+            <h2 className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl">
+              How Intelligence actually works.
             </h2>
-            <p className="text-lg text-porcelain/60 leading-relaxed mb-6">
-              Prioritised recommendations with impact scores. If 58 people asked
-              general questions your docs don&apos;t cover, the AI flags it and
-              suggests creating a guide. Less repeat queries, happier
-              homeowners, fewer phone calls.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {[
-                "Priority badges",
-                "Impact scores",
-                "Content suggestions",
-                "Topic breakdown",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-medium text-violet-300"
-                >
-                  {tag}
+          </div>
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
+            {steps.map((step, i) => (
+              <div
+                key={step.title}
+                className="relative rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:border-gold/20 hover:bg-gold/[0.03]"
+              >
+                <span className="absolute right-6 top-6 font-heading text-4xl font-bold text-white/[0.06]">
+                  {i + 1}
                 </span>
-              ))}
-            </div>
-          </div>
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 via-violet-400/5 to-violet-500/20 rounded-3xl blur-2xl" />
-            <div className="relative">
-              <ScreenshotLightbox
-                src={aiInsights}
-                alt="AI Insights showing prioritised recommendations with impact scores, 100% resolution rate, suggested content to create per category, and question topic breakdown"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* ── Example Insights ── */}
-      <section className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-500/[0.02] to-transparent" />
-        <Container>
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400 mb-4 font-semibold">
-              Real Examples
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Insights that actually change how you build
-            </h2>
-          </div>
-          <div className="space-y-4 max-w-3xl mx-auto">
-            {insights.map((insight) => (
-              <div
-                key={insight.title}
-                className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-violet-500/20 transition-all duration-500"
-              >
-                <div className="flex items-start gap-4">
-                  <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                      insight.color === "amber"
-                        ? "bg-amber-500/10 border border-amber-500/20"
-                        : insight.color === "violet"
-                          ? "bg-violet-500/10 border border-violet-500/20"
-                          : "bg-emerald-500/10 border border-emerald-500/20"
-                    }`}
-                  >
-                    <insight.icon
-                      className={`w-5 h-5 ${
-                        insight.color === "amber"
-                          ? "text-amber-400"
-                          : insight.color === "violet"
-                            ? "text-violet-400"
-                            : "text-emerald-400"
-                      }`}
-                    />
-                  </div>
-                  <div>
-                    <p className="text-white font-medium mb-1">
-                      {insight.title}
-                    </p>
-                    <p className="text-sm text-porcelain/50">
-                      {insight.action}
-                    </p>
-                  </div>
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-gold/20 bg-gold/10">
+                  <step.icon className="h-6 w-6 text-gold" />
                 </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── Features ── */}
-      <section id="features" className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-500/[0.02] to-transparent" />
-        <Container>
-          <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400 mb-4 font-semibold">
-              Capabilities
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Intelligence that compounds
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-violet-500/20 hover:bg-violet-500/[0.03] transition-all duration-500"
-              >
-                <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-4">
-                  <f.icon className="w-5 h-5 text-violet-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {f.title}
+                <h3 className="mb-3 font-heading text-lg font-bold text-white">
+                  {step.title}
                 </h3>
-                <p className="text-sm text-porcelain/60 leading-relaxed">
-                  {f.description}
+                <p className="text-sm leading-relaxed text-porcelain/70">
+                  {step.body}
                 </p>
               </div>
             ))}
@@ -373,28 +237,179 @@ export default function IntelligencePage() {
         </Container>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="relative py-24 bg-carbon">
-        <div className="absolute inset-0 bg-gradient-to-t from-violet-500/[0.04] to-transparent" />
+      {/* ── [5] What Intelligence does (four-card grid) ── */}
+      <section className="relative overflow-hidden bg-carbon py-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.02] to-transparent" />
         <Container>
-          <div className="relative text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-heading">
-              See the Intelligence module live
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <h2 className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl">
+              What Intelligence does.
             </h2>
-            <p className="text-lg text-porcelain/70 mb-8">
-              We&apos;ll show you real analytics from homeowners across
-              multiple developments.
+          </div>
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2">
+            {capabilities.map((card) => (
+              <div
+                key={card.title}
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:border-gold/20 hover:bg-gold/[0.03]"
+              >
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-gold/20 bg-gold/10">
+                  <card.icon className="h-6 w-6 text-gold" />
+                </div>
+                <h3 className="mb-3 font-heading text-xl font-bold text-white">
+                  {card.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-porcelain/70">
+                  {card.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── [6] Built for you (persona block) ── */}
+      <section className="relative overflow-hidden bg-carbon py-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.06] via-transparent to-gold/[0.04]" />
+        <Container>
+          <div className="mx-auto mb-16 max-w-2xl text-center">
+            <h2 className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl">
+              Built for the people who run the business.
+            </h2>
+          </div>
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
+            {personas.map((p) => (
+              <div
+                key={p.title}
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:border-gold/20 hover:bg-gold/[0.03]"
+              >
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-gold/20 bg-gold/10">
+                  <p.icon className="h-6 w-6 text-gold" />
+                </div>
+                <h3 className="mb-3 font-heading text-lg font-bold text-white">
+                  {p.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-porcelain/70">
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── [7] Quiet trust line ── */}
+      <section className="relative overflow-hidden bg-carbon py-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.07] via-transparent to-gold/[0.05]" />
+        <Container>
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-gold/20 bg-gold/10">
+              <ShieldCheck className="h-6 w-6 text-gold" />
+            </div>
+            <h2 className="mb-5 font-heading text-2xl font-bold text-white sm:text-3xl">
+              Every answer is sourced. Every source is yours.
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-porcelain/70">
+              Intelligence draws its answers from the data already in your
+              Developer Dashboard. Your pipeline, your compliance documents, your
+              residents' questions. Nothing leaves your platform. Nothing is
+              trained on your data to improve a generic model. Your data is yours.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── [7.5] Already part of the platform (addendum) ── */}
+      <section className="relative overflow-hidden bg-carbon py-20">
+        <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.05] via-transparent to-transparent" />
+        <Container>
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="mb-5 font-heading text-2xl font-bold text-white sm:text-3xl">
+              Already part of the platform.
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-porcelain/70">
+              Intelligence ships as part of the Developer Dashboard. If you
+              already use OpenHouse, Intelligence is in your account today. If you
+              are evaluating OpenHouse, the demo will show you both the Dashboard
+              and Intelligence in the same session.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── [8] Peak-end CTA ── */}
+      <section className="relative overflow-hidden bg-carbon py-28">
+        <div className="absolute inset-0 bg-gradient-to-t from-gold/[0.08] to-transparent" />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/2 -z-0 -translate-x-1/2 -translate-y-1/2 select-none font-heading text-[18rem] font-bold leading-none text-white/[0.02]"
+        >
+          OH
+        </span>
+        <Container>
+          <div className="relative mx-auto max-w-2xl text-center">
+            <h2 className="mb-6 font-heading text-3xl font-bold text-white sm:text-5xl">
+              See it on your actual data.
+            </h2>
+            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-porcelain/70">
+              A demo takes thirty minutes. We will load the Developer Dashboard
+              with Intelligence active against a development that looks like yours.
+              Ask whatever questions are on your mind today and you will see
+              Intelligence answer in your own data context.
             </p>
             <Link
               href="/contact"
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
+              className="group relative inline-flex min-h-[48px] items-center justify-center gap-2 overflow-hidden rounded-full px-10 py-5 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-violet-500 via-violet-400 to-violet-500" />
-              <span className="relative z-10 text-white flex items-center gap-2">
+              <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-500 to-gold" />
+              <span className="relative z-10 flex items-center gap-2 text-carbon">
                 Book a Demo
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
+            <p className="mt-6 text-sm text-porcelain/50">
+              Or email{" "}
+              <a href="mailto:sam@openhouseai.ie" className="text-gold hover:underline">
+                sam@openhouseai.ie
+              </a>{" "}
+              if you have a specific question first.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── [9] Platform strip ── */}
+      <section className="relative overflow-hidden bg-carbon py-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.02] to-transparent" />
+        <Container>
+          <div className="mx-auto mb-16 max-w-2xl text-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-gold">
+              The rest of the platform.
+            </p>
+            <p className="text-lg leading-relaxed text-porcelain/70">
+              Intelligence is the question-asking layer of the Developer
+              Dashboard. The Dashboard is your control room, the Property
+              Assistant is what your residents get, and Agent and Care are
+              specialist tools for the partners working alongside you.
+            </p>
+          </div>
+          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 lg:grid-cols-4">
+            {products.map((product) => (
+              <Link
+                key={product.title}
+                href={product.href}
+                className="group relative rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-gold/20 hover:bg-gold/[0.03]"
+              >
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-gold/20 bg-gold/10">
+                  <product.icon className="h-5 w-5 text-gold" />
+                </div>
+                <h3 className="mb-1.5 font-heading text-base font-semibold text-white">
+                  {product.title}
+                </h3>
+                <p className="text-xs leading-relaxed text-porcelain/60">
+                  {product.blurb}
+                </p>
+              </Link>
+            ))}
           </div>
         </Container>
       </section>

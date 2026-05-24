@@ -1,102 +1,92 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { BarChart3, AlertTriangle, Users } from "lucide-react";
+import { Sparkles, FileCheck, LayoutGrid } from "lucide-react";
 import { FloatingCard } from "../ModuleHero";
+
+/* Gold Q&A hero cards for the Intelligence page (brief Section 1):
+   a question, the sourced answer, a Part F compliance answer, and a
+   cross-scheme summary. Matches the gold-on-dark platform language. */
+
+function SourcePill({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full border border-gold/25 bg-gold/[0.08] px-2 py-0.5 text-[9px] font-medium text-gold/90">
+      {children}
+    </span>
+  );
+}
 
 export function IntelligenceFloatingCards() {
   return (
     <>
-      {/* Card 1: Analytics chart */}
-      <FloatingCard depth={1} className="-translate-x-16 translate-y-12" delay={0.6}>
-        <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
-          <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center">
-              <BarChart3 className="w-4 h-4 text-violet-400" />
-            </div>
-            <div>
-              <p className="text-sm font-medium text-porcelain">Query Analytics</p>
-              <p className="text-[10px] text-hint">Last 30 days</p>
-            </div>
-          </div>
-          <div className="p-4">
-            {/* Mini bar chart */}
-            <div className="flex items-end gap-1.5 h-20 mb-3">
-              {[35, 52, 45, 68, 42, 78, 60, 85, 72, 90, 65, 95].map((h, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ height: 0 }}
-                  animate={{ height: `${h}%` }}
-                  transition={{ delay: 0.8 + i * 0.05, duration: 0.3 }}
-                  className="flex-1 rounded-sm bg-violet-500/40"
-                />
-              ))}
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] text-hint">847 queries resolved</span>
-              <span className="text-[10px] font-semibold text-violet-400">+23%</span>
-            </div>
-          </div>
-        </div>
-      </FloatingCard>
-
-      {/* Card 2: Pattern alert */}
-      <FloatingCard depth={2} className="translate-x-8 -translate-y-16" delay={0.8}>
-        <div className="w-72 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
-          <div className="p-4">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
-                <AlertTriangle className="w-5 h-5 text-amber-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <p className="text-sm font-medium text-porcelain">Pattern Detected</p>
-                  <span className="flex-shrink-0 w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-                </div>
-                <p className="text-xs text-hint mb-2">
-                  14 residents asked about heating timer instructions this week — consider adding to handover pack
-                </p>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    Knowledge Gap
-                  </span>
-                  <span className="text-[10px] text-hint">High priority</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </FloatingCard>
-
-      {/* Card 3: Engagement metric */}
-      <FloatingCard depth={3} className="translate-x-24 translate-y-20" delay={1.0}>
-        <div className="w-56 bg-gradient-to-br from-violet-500/20 to-violet-500/5 backdrop-blur-md rounded-2xl border border-violet-500/30 shadow-2xl overflow-hidden">
-          <div className="p-5 text-center">
-            <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-violet-500/20 flex items-center justify-center">
-              <Users className="w-6 h-6 text-violet-400" />
-            </div>
-            <span className="text-xs font-medium text-violet-400 uppercase tracking-wider">
-              Resident Engagement
+      {/* Card 1: the question */}
+      <FloatingCard depth={1} className="-translate-x-24 -translate-y-32" delay={0.6}>
+        <div className="w-60 rounded-2xl border border-white/10 bg-slate/90 px-4 py-3 shadow-2xl backdrop-blur-md">
+          <div className="mb-2 flex items-center gap-2">
+            <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-gold/15">
+              <Sparkles className="h-3.5 w-3.5 text-gold" />
             </span>
-            <p className="text-3xl font-bold text-porcelain mt-1">94%</p>
-            <p className="text-xs text-hint">Monthly active residents</p>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-              className="mt-3 h-1 bg-violet-500/30 rounded-full overflow-hidden"
-            >
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "94%" }}
-                transition={{ delay: 1.2, duration: 0.8 }}
-                className="h-full bg-violet-400 rounded-full"
-              />
-            </motion.div>
+            <span className="text-[10px] font-medium uppercase tracking-wider text-hint">
+              You ask
+            </span>
           </div>
+          <p className="text-sm font-medium text-porcelain">
+            What&apos;s our projected revenue this month?
+            <span className="ml-0.5 inline-block h-3.5 w-[2px] translate-y-0.5 animate-pulse bg-gold" />
+          </p>
+        </div>
+      </FloatingCard>
+
+      {/* Card 2: the sourced answer */}
+      <FloatingCard depth={2} className="translate-x-16 -translate-y-4" delay={0.8}>
+        <div className="w-72 rounded-2xl border border-gold/20 bg-slate/95 p-4 shadow-2xl backdrop-blur-md">
+          <p className="text-xs leading-relaxed text-porcelain">
+            Your three active developments are projected to close{" "}
+            <span className="font-semibold text-gold">&euro;1.84m</span> this
+            month, based on 9 sale agreed contracts ready to sign. Riverside
+            Gardens is the biggest contributor at &euro;910k.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            <SourcePill>Riverside Gardens pipeline</SourcePill>
+            <SourcePill>Sale agreed contracts</SourcePill>
+          </div>
+        </div>
+      </FloatingCard>
+
+      {/* Card 3: Part F compliance */}
+      <FloatingCard depth={3} className="-translate-x-20 translate-y-36" delay={1.0}>
+        <div className="w-72 rounded-2xl border border-white/10 bg-slate/90 p-4 shadow-2xl backdrop-blur-md">
+          <div className="mb-2 flex items-center gap-2">
+            <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-gold/15">
+              <FileCheck className="h-3.5 w-3.5 text-gold" />
+            </span>
+            <span className="text-[10px] font-medium uppercase tracking-wider text-hint">
+              Does our ventilation comply with Part F?
+            </span>
+          </div>
+          <p className="text-xs leading-relaxed text-porcelain">
+            Yes, for Riverside Gardens and Meadow View. For Orchard Close, the
+            assessment is outstanding from your M&amp;E engineer, last contacted
+            14 days ago.
+          </p>
+        </div>
+      </FloatingCard>
+
+      {/* Card 4: cross-scheme summary, peeking */}
+      <FloatingCard depth={2} className="translate-x-28 translate-y-44" delay={1.2}>
+        <div className="w-60 rounded-2xl border border-gold/25 bg-gradient-to-br from-gold/[0.14] to-gold/[0.03] p-4 shadow-2xl backdrop-blur-md">
+          <div className="mb-2 flex items-center gap-2">
+            <LayoutGrid className="h-4 w-4 text-gold" />
+            <span className="text-[10px] font-medium uppercase tracking-wider text-gold">
+              Across your portfolio
+            </span>
+          </div>
+          <p className="text-xs leading-relaxed text-porcelain">
+            <span className="font-semibold text-porcelain">158 units</span> sale
+            agreed, and 3 units with missing fire safety certs, all in Orchard
+            Close.
+          </p>
         </div>
       </FloatingCard>
     </>
   );
 }
-
