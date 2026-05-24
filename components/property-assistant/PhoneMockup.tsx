@@ -49,6 +49,10 @@ interface PhoneFrameProps {
   floatDistance?: number;
   className?: string;
   time?: string;
+  /** Degrees of subtle Y-axis rotation for a product-shot 3D tilt. */
+  tilt?: number;
+  /** Gold halo + grounding reflection beneath the phone. On by default. */
+  glow?: boolean;
 }
 
 export function PhoneFrame({
@@ -59,13 +63,17 @@ export function PhoneFrame({
   floatDistance = 12,
   className = "",
   time = "9:41",
+  tilt = 0,
+  glow = true,
 }: PhoneFrameProps) {
   const reduce = useReducedMotion();
   const drift = float && !reduce;
+  const tilted = tilt !== 0 && !reduce;
 
   return (
     <motion.div
       className={`${widthClass} ${className}`}
+      style={tilted ? { perspective: 1800 } : undefined}
       animate={drift ? { y: [0, -floatDistance, 0] } : undefined}
       transition={
         drift
@@ -73,18 +81,58 @@ export function PhoneFrame({
           : undefined
       }
     >
-      {/* Titanium bezel */}
-      <div className="relative rounded-[2.6rem] bg-gradient-to-b from-zinc-700 via-zinc-900 to-black p-[3px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
-        <div className="absolute inset-0 rounded-[2.6rem] ring-1 ring-white/10" />
-        <div className="absolute -left-[2px] top-24 h-7 w-[2px] rounded-l bg-zinc-700" />
-        <div className="absolute -left-[2px] top-36 h-12 w-[2px] rounded-l bg-zinc-700" />
-        <div className="absolute -right-[2px] top-32 h-16 w-[2px] rounded-r bg-zinc-700" />
+      <div
+        className="relative"
+        style={
+          tilted
+            ? { transform: `rotateY(${tilt}deg)`, transformStyle: "preserve-3d" }
+            : undefined
+        }
+      >
+        {/* Gold halo: lifts the warm phone off the dark canvas */}
+        {glow && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-8 -z-10 rounded-[3.2rem]"
+            style={{
+              background: "rgba(212,175,55,0.15)",
+              filter: "blur(72px)",
+              transform: "translateY(20px)",
+            }}
+          />
+        )}
+        {/* Grounding reflection: makes the phone read as a real object */}
+        {glow && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-8 -bottom-7 -z-10 h-10 rounded-[50%]"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, transparent 70%)",
+              filter: "blur(16px)",
+            }}
+          />
+        )}
 
-        {/* Screen (warm white) */}
+        {/* Titanium bezel */}
         <div
-          className="relative flex flex-col overflow-hidden rounded-[2.35rem]"
-          style={{ background: C.white, fontFamily: SANS }}
+          className="relative rounded-[2.6rem] bg-gradient-to-b from-zinc-700 via-zinc-900 to-black p-[3px]"
+          style={{
+            boxShadow:
+              "0 0 0 1px rgba(212,175,55,0.28), 0 20px 70px -8px rgba(212,175,55,0.16), 0 30px 80px -20px rgba(0,0,0,0.75)",
+          }}
         >
+          <div className="absolute inset-0 rounded-[2.6rem] ring-1 ring-white/10" />
+          <div className="absolute inset-[1px] rounded-[2.55rem] ring-1 ring-gold/20" />
+          <div className="absolute -left-[2px] top-24 h-7 w-[2px] rounded-l bg-zinc-700" />
+          <div className="absolute -left-[2px] top-36 h-12 w-[2px] rounded-l bg-zinc-700" />
+          <div className="absolute -right-[2px] top-32 h-16 w-[2px] rounded-r bg-zinc-700" />
+
+          {/* Screen (warm white) */}
+          <div
+            className="relative flex flex-col overflow-hidden rounded-[2.35rem]"
+            style={{ background: C.white, fontFamily: SANS }}
+          >
           {/* Dynamic island */}
           <div className="pointer-events-none absolute left-1/2 top-2 z-30 h-[26px] w-[88px] -translate-x-1/2 rounded-full bg-black" />
 
@@ -122,7 +170,8 @@ export function PhoneFrame({
             </span>
           </div>
 
-          {children}
+            {children}
+          </div>
         </div>
       </div>
     </motion.div>

@@ -56,7 +56,7 @@ export function HeroPhone() {
       >
         OH
       </span>
-      <PhoneFrame widthClass="w-[340px]">
+      <PhoneFrame widthClass="w-[340px]" tilt={-6}>
         <ChatHomeScreen />
       </PhoneFrame>
     </div>
@@ -94,7 +94,7 @@ export function MoneyShot() {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <PhoneFrame widthClass="w-[300px] sm:w-[380px] xl:w-[420px]" time="14:06">
+        <PhoneFrame widthClass="w-[300px] sm:w-[380px] xl:w-[420px]" time="14:06" tilt={7}>
           <HomeownerHeader />
           <Thread>
             <UserBubble>
@@ -126,7 +126,7 @@ export function MoneyShot() {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
       >
-        <PhoneFrame widthClass="w-[300px] sm:w-[380px] xl:w-[420px]" time="14:06">
+        <PhoneFrame widthClass="w-[300px] sm:w-[380px] xl:w-[420px]" time="14:06" tilt={-7}>
           <HomeownerHeader />
           <Thread>
             <AssistantCard>
