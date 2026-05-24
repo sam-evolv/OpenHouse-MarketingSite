@@ -13,10 +13,10 @@ import {
 import { appRoutes } from "@/lib/env";
 
 const moduleLinks = [
-  { href: "/sales", label: "Sales" },
-  { href: "/build", label: "Build" },
-  { href: "/handover", label: "Handover" },
+  { href: "/property-assistant", label: "Property Assistant" },
+  { href: "/developer-dashboard", label: "Developer Dashboard" },
   { href: "/intelligence", label: "Intelligence" },
+  { href: "/care", label: "Care" },
 ];
 
 export function Navigation() {

@@ -21,7 +21,6 @@ import {
   ShieldCheck,
   ArrowRight,
   Smartphone,
-  Headphones,
   LifeBuoy,
 } from "lucide-react";
 import Link from "next/link";
@@ -103,12 +102,6 @@ const products = [
     title: "Property Assistant",
     blurb: "For residents.",
     href: "/property-assistant",
-  },
-  {
-    icon: Headphones,
-    title: "Agent",
-    blurb: "For estate and letting agents.",
-    href: "/agent",
   },
   {
     icon: LifeBuoy,
@@ -388,11 +381,11 @@ export default function IntelligencePage() {
             <p className="text-lg leading-relaxed text-porcelain/70">
               Intelligence is the question-asking layer of the Developer
               Dashboard. The Dashboard is your control room, the Property
-              Assistant is what your residents get, and Agent and Care are
-              specialist tools for the partners working alongside you.
+              Assistant is what your residents get, and Care is a
+              specialist tool for the partners working alongside you.
             </p>
           </div>
-          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
             {products.map((product) => (
               <Link
                 key={product.title}

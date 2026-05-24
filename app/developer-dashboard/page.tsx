@@ -20,7 +20,6 @@ import {
   GraduationCap,
   ShieldCheck,
   Smartphone,
-  PhoneCall,
   BarChart3,
   HeartHandshake,
 } from "lucide-react";
@@ -64,7 +63,7 @@ const models = [
   {
     icon: Building,
     title: "Build-to-rent",
-    body: "Pipeline runs from completion to occupancy. Tenancies registered, RPZ compliance tracked, Property Assistant configured per apartment. Lease renewals handled through Agent if you use it.",
+    body: "Pipeline runs from completion to occupancy. Tenancies registered, RPZ compliance tracked, Property Assistant configured per apartment. Lease renewals tracked and managed in the same dashboard.",
   },
   {
     icon: GraduationCap,
@@ -79,19 +78,6 @@ const products = [
     title: "Property Assistant",
     blurb: "What every resident gets, on their phone.",
     href: "/property-assistant",
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Developer Dashboard",
-    blurb: "Your control room for every scheme.",
-    href: "/developer-dashboard",
-    current: true,
-  },
-  {
-    icon: PhoneCall,
-    title: "Agent",
-    blurb: "Voice-first AI for estate and letting agents.",
-    href: "/agent",
   },
   {
     icon: BarChart3,
@@ -559,21 +545,16 @@ export default function DeveloperDashboardPage() {
             </p>
             <p className="text-lg text-porcelain/70 leading-relaxed">
               The Developer Dashboard is your control room. The Property
-              Assistant is what your residents get. Agent, Intelligence, and
-              Care are specialist tools for the partners working alongside you.
+              Assistant is what your residents get. Intelligence and Care are
+              specialist tools for the partners working alongside you.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {products.map((product) => (
               <Link
                 key={product.title}
                 href={product.href}
-                aria-current={product.current ? "page" : undefined}
-                className={`group relative p-6 rounded-2xl border transition-all duration-500 hover:-translate-y-1 ${
-                  product.current
-                    ? "border-gold/40 bg-gold/[0.06]"
-                    : "border-white/5 bg-white/[0.02] hover:border-gold/20 hover:bg-gold/[0.03]"
-                }`}
+                className="group relative p-6 rounded-2xl border border-white/5 bg-white/[0.02] transition-all duration-500 hover:-translate-y-1 hover:border-gold/20 hover:bg-gold/[0.03]"
               >
                 <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center mb-4">
                   <product.icon className="w-5 h-5 text-gold" />
@@ -584,11 +565,6 @@ export default function DeveloperDashboardPage() {
                 <p className="text-xs text-porcelain/60 leading-relaxed">
                   {product.blurb}
                 </p>
-                {product.current && (
-                  <span className="absolute top-4 right-4 text-[10px] font-medium text-gold uppercase tracking-wider">
-                    You are here
-                  </span>
-                )}
               </Link>
             ))}
           </div>
