@@ -117,8 +117,8 @@ export function MoneyShot() {
               </CardText>
               <DataRow
                 icon={<HeatPumpGlyph />}
-                name="Mitsubishi Ecodan heat pump"
-                meta="E3 · high pressure fault"
+                name="Mitsubishi Ecodan"
+                meta="Heat pump · E3 high pressure"
                 badge="IDENTIFIED"
                 badgeColor="gold"
               />

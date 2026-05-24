@@ -73,15 +73,15 @@ function StatusPill({ status }: { status: Status }) {
   if (status === "resolved") {
     return (
       <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[11px] font-semibold text-emerald-600 whitespace-nowrap">
-        <CheckCircle2 className="h-3 w-3" />
-        Resolved by Assistant
+        <CheckCircle2 className="h-3 w-3 flex-shrink-0" />
+        Resolved<span className="hidden sm:inline">&nbsp;by Assistant</span>
       </span>
     );
   }
   return (
     <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-1 text-[11px] font-semibold text-amber-600 whitespace-nowrap">
-      <CornerUpRight className="h-3 w-3" />
-      Escalated to you
+      <CornerUpRight className="h-3 w-3 flex-shrink-0" />
+      Escalated<span className="hidden sm:inline">&nbsp;to you</span>
     </span>
   );
 }
@@ -179,26 +179,26 @@ export function DashboardGlimpse() {
 
           {/* Questions table */}
           <div className="px-5 py-4 sm:px-6">
-            {/* Column headers */}
-            <div className="grid grid-cols-[1.4fr_2.6fr_1.4fr] items-center gap-3 border-b border-neutral-100 px-2 pb-2 text-[10px] font-semibold uppercase tracking-wider text-neutral-400 sm:grid-cols-[1.2fr_0.6fr_1fr_2fr_1.4fr]">
+            {/* Column headers (hidden on mobile, where the feed reads on its own) */}
+            <div className="hidden items-center gap-3 border-b border-neutral-100 px-2 pb-2 text-[10px] font-semibold uppercase tracking-wider text-neutral-400 sm:grid sm:grid-cols-[1.2fr_0.6fr_1fr_2fr_1.4fr]">
               <span>Resident</span>
-              <span className="hidden sm:block">Unit</span>
-              <span className="hidden sm:block">Scheme</span>
+              <span>Unit</span>
+              <span>Scheme</span>
               <span>Question</span>
-              <span className="text-right sm:text-left">Status</span>
+              <span>Status</span>
             </div>
 
             {QUESTIONS.map((q) => (
               <div
                 key={q.name}
-                className="grid grid-cols-[1.4fr_2.6fr_1.4fr] items-center gap-3 border-b border-neutral-100 px-2 py-3 sm:grid-cols-[1.2fr_0.6fr_1fr_2fr_1.4fr]"
+                className="grid grid-cols-[28px_1fr_auto] items-center gap-3 border-b border-neutral-100 px-2 py-3 sm:grid-cols-[1.2fr_0.6fr_1fr_2fr_1.4fr]"
               >
                 {/* Resident */}
                 <div className="flex min-w-0 items-center gap-2">
                   <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-gold/15 text-[10px] font-bold text-amber-700">
                     {q.initials}
                   </span>
-                  <span className="truncate text-[13px] font-semibold text-neutral-800">
+                  <span className="hidden truncate text-[13px] font-semibold text-neutral-800 sm:inline">
                     {q.name}
                   </span>
                 </div>
