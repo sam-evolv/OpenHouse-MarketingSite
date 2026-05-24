@@ -56,7 +56,7 @@ export function HeroPhone() {
       >
         OH
       </span>
-      <PhoneFrame widthClass="w-[340px]" tilt={-6}>
+      <PhoneFrame widthClass="w-[420px] xl:w-[440px]" tilt={-6}>
         <ChatHomeScreen />
       </PhoneFrame>
     </div>
@@ -82,9 +82,9 @@ export function MoneyShot() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="relative flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-10 xl:gap-16">
+    <div className="relative mx-auto flex max-w-[1140px] flex-col items-center justify-center gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-        <div className="h-[460px] w-[520px] rounded-full bg-gold/15 blur-[120px]" />
+        <div className="h-[520px] w-[760px] rounded-full bg-gold/15 blur-[130px]" />
       </div>
 
       {/* Left phone: the question + the diagnosis */}
@@ -175,10 +175,10 @@ function ScenarioCard({
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
     >
-      <PhoneFrame widthClass="w-[300px]" time="11:30">
+      <PhoneFrame widthClass="w-[300px] sm:w-[330px] xl:w-[340px]" time="11:30">
         {children}
       </PhoneFrame>
-      <p className="mt-6 max-w-[300px] text-center text-sm leading-relaxed text-porcelain/60">
+      <p className="mt-7 max-w-[330px] text-center text-sm leading-relaxed text-porcelain/60">
         {caption}
       </p>
     </motion.div>
@@ -187,7 +187,7 @@ function ScenarioCard({
 
 export function ScenarioPhones() {
   return (
-    <div className="grid w-full grid-cols-1 justify-items-center gap-12 lg:grid-cols-3 lg:gap-6 xl:gap-10">
+    <div className="grid w-full grid-cols-1 justify-items-center gap-12 lg:grid-cols-3 lg:gap-8 xl:gap-12">
       {/* Scenario 1: solar generation, live data */}
       <ScenarioCard
         delay={0}
