@@ -156,7 +156,7 @@ export function MoneyShot() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <FloatingScreen
-          sizeClass="w-[270px] sm:w-[300px] lg:w-[315px]"
+          sizeClass="h-[683px]"
           time="14:06"
         >
           <HomeownerHeader />
@@ -188,7 +188,7 @@ export function MoneyShot() {
         transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
       >
         <FloatingScreen
-          sizeClass="w-[270px] sm:w-[300px] lg:w-[315px]"
+          sizeClass="h-[683px]"
           time="14:06"
         >
           <HomeownerHeader />
