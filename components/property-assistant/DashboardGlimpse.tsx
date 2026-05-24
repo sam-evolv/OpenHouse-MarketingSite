@@ -8,21 +8,29 @@ import {
   Users,
   Archive,
   Ruler,
-  Search,
   ChevronDown,
-  CheckCircle2,
-  CornerUpRight,
+  Lock,
+  Lightbulb,
+  Paperclip,
 } from "lucide-react";
 import ohMark from "@/attached_assets/property-assistant/openhouse-mark.png";
 
 /* ────────────────────────────────────────────────────────────
-   Developer Dashboard glimpse: the Homeowners tab.
+   Developer Dashboard glimpse: the two resident data streams.
 
-   The feedback loop the section describes is "we see every resident
-   question, across every home". This renders that exact view, in the
-   Developer Dashboard chrome (dark sidebar with Homeowners highlighted,
-   light content), built as a designed-for-marketing still rather than a
-   raw screenshot. Data is illustrative.
+   The product keeps two strictly separate streams, and this mockup
+   shows them separately so the distinction is unmistakable:
+
+   - LEFT, "Escalated snags": when a resident raises a snag in the app
+     it reaches the developer's care team with full identification
+     (name, unit, scheme, issue, photos, history). Legitimate because
+     the resident explicitly raised it for resolution.
+   - RIGHT, "Question patterns": day-to-day questions to the Property
+     Assistant are aggregated and ANONYMISED. The developer sees topic
+     frequency for R&D, never an individual resident's questions tied
+     to a person.
+
+   Data is illustrative.
    ──────────────────────────────────────────────────────────── */
 
 const NAV_GROUPS = [
@@ -44,47 +52,74 @@ const NAV_GROUPS = [
   {
     label: "Management",
     items: [
-      { icon: Users, name: "Homeowners", active: true },
+      { icon: Users, name: "Residents", active: true },
       { icon: Archive, name: "Smart Archive" },
       { icon: Ruler, name: "Room Dimensions" },
     ],
   },
 ];
 
-type Status = "resolved" | "escalated";
+/* ── Stream A: escalated snags (fully identified, with the resident's consent) ── */
+type SnagStatus = "new" | "progress" | "resolved";
 
-const QUESTIONS: {
+const SNAGS: {
   name: string;
   initials: string;
   unit: string;
   scheme: string;
-  question: string;
-  status: Status;
+  issue: string;
+  photo?: boolean;
+  status: SnagStatus;
+  statusLabel: string;
+  meta: string;
 }[] = [
-  { name: "Emma Byrne", initials: "EB", unit: "Unit 12", scheme: "Oak Hill Estate", question: "How do I bleed a radiator?", status: "resolved" },
-  { name: "Liam Walsh", initials: "LW", unit: "Unit 7", scheme: "Oak Hill Estate", question: "Heat pump showing E3, what now?", status: "resolved" },
-  { name: "Aoife Kelly", initials: "AK", unit: "Unit 21", scheme: "Marina Quarter", question: "When is my BER cert valid until?", status: "resolved" },
-  { name: "Saoirse Nolan", initials: "SN", unit: "Unit 18", scheme: "Oak Hill Estate", question: "Heat pump pressure keeps dropping", status: "escalated" },
-  { name: "Cian Murphy", initials: "CM", unit: "Unit 4", scheme: "Marina Quarter", question: "Warranty claim, kitchen tap is leaking", status: "escalated" },
-  { name: "Niamh Doyle", initials: "ND", unit: "Unit 9", scheme: "Riverside Gardens", question: "Where is the water stopcock?", status: "resolved" },
+  {
+    name: "Emma Byrne",
+    initials: "EB",
+    unit: "Unit 12",
+    scheme: "Oak Hill Estate",
+    issue: "Water pooling under sink, photo attached",
+    photo: true,
+    status: "new",
+    statusLabel: "New",
+    meta: "SR-2026-0341",
+  },
+  {
+    name: "Liam Walsh",
+    initials: "LW",
+    unit: "Unit 7",
+    scheme: "Oak Hill Estate",
+    issue: "Heat pump E3 unresolved after 2 fix attempts",
+    status: "progress",
+    statusLabel: "Care team assigned",
+    meta: "2h ago",
+  },
+  {
+    name: "Cathal Brady",
+    initials: "CB",
+    unit: "Unit 22",
+    scheme: "Riverside Gardens",
+    issue: "Window seal leaking",
+    status: "resolved",
+    statusLabel: "Resolved",
+    meta: "Yesterday",
+  },
 ];
 
-function StatusPill({ status }: { status: Status }) {
-  if (status === "resolved") {
-    return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[11px] font-semibold text-emerald-600 whitespace-nowrap">
-        <CheckCircle2 className="h-3 w-3" />
-        Resolved by Assistant
-      </span>
-    );
-  }
-  return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-1 text-[11px] font-semibold text-amber-600 whitespace-nowrap">
-      <CornerUpRight className="h-3 w-3" />
-      Escalated to you
-    </span>
-  );
-}
+const SNAG_PILL: Record<SnagStatus, string> = {
+  new: "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
+  progress: "bg-blue-50 text-blue-700 ring-1 ring-blue-200",
+  resolved: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+};
+
+/* ── Stream B: anonymised question patterns (R&D only, never tied to a person) ── */
+const TOPICS: { topic: string; meta: string; count: number }[] = [
+  { topic: "Heat pump pressure", meta: "23 questions across 3 schemes", count: 23 },
+  { topic: "BER cert location", meta: "18 questions", count: 18 },
+  { topic: "Kitchen warranty terms", meta: "14 questions", count: 14 },
+  { topic: "Boiler service schedule", meta: "11 questions", count: 11 },
+];
+const TOPIC_MAX = 23;
 
 export function DashboardGlimpse() {
   return (
@@ -106,7 +141,7 @@ export function DashboardGlimpse() {
                 Current scheme
               </span>
               <span className="block truncate text-[12px] font-semibold text-porcelain">
-                Oak Hill Estate
+                All schemes
               </span>
             </span>
             <ChevronDown className="h-3.5 w-3.5 text-porcelain/40" />
@@ -125,9 +160,7 @@ export function DashboardGlimpse() {
                       <span
                         key={item.name}
                         className={`flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[12px] font-medium ${
-                          active
-                            ? "bg-gold/[0.12] text-gold"
-                            : "text-porcelain/55"
+                          active ? "bg-gold/[0.12] text-gold" : "text-porcelain/55"
                         }`}
                       >
                         <item.icon className={`h-3.5 w-3.5 ${active ? "text-gold" : "text-porcelain/40"}`} />
@@ -141,84 +174,114 @@ export function DashboardGlimpse() {
           </nav>
         </aside>
 
-        {/* ── Main content (light) ── */}
-        <div className="min-w-0 flex-1 bg-white">
-          {/* Header */}
-          <div className="flex flex-wrap items-end justify-between gap-3 border-b border-neutral-200 px-5 py-4 sm:px-6">
-            <div>
-              <h3 className="text-lg font-bold text-neutral-900 sm:text-xl">Homeowners</h3>
-              <p className="mt-0.5 text-[13px] text-neutral-500">
-                Every resident question, across every scheme.
+        {/* ── Main content: the two streams, side by side ── */}
+        <div className="grid min-w-0 flex-1 grid-cols-1 lg:grid-cols-2">
+          {/* ── Stream A: Escalated snags (white panel) ── */}
+          <section className="min-w-0 bg-white p-5 sm:p-6">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h3 className="text-[15px] font-bold text-neutral-900">Escalated snags</h3>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                </span>
+                Live
+              </span>
+            </div>
+
+            <p className="mb-3 text-[11px] leading-relaxed text-neutral-500">
+              Raised by the resident, with full context for your care team.
+            </p>
+
+            <div className="flex flex-col gap-2.5">
+              {SNAGS.map((s) => (
+                <div
+                  key={s.meta}
+                  className="rounded-xl border border-neutral-200 bg-white p-3.5 shadow-[0_1px_3px_rgba(12,12,12,0.04)]"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex min-w-0 items-center gap-2.5">
+                      <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gold/15 text-[11px] font-bold text-amber-700">
+                        {s.initials}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block truncate text-[13px] font-semibold text-neutral-900">
+                          {s.name}
+                        </span>
+                        <span className="block truncate text-[11.5px] text-neutral-500">
+                          {s.unit} · {s.scheme}
+                        </span>
+                      </span>
+                    </div>
+                    <span
+                      className={`flex-shrink-0 whitespace-nowrap rounded-full px-2 py-0.5 text-[10.5px] font-semibold ${SNAG_PILL[s.status]}`}
+                    >
+                      {s.statusLabel}
+                    </span>
+                  </div>
+
+                  <p className="mt-2.5 flex items-start gap-1.5 text-[12.5px] leading-snug text-neutral-700">
+                    {s.photo && (
+                      <Paperclip className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-neutral-400" />
+                    )}
+                    <span>{s.issue}</span>
+                  </p>
+
+                  <p className="mt-2 text-[10.5px] font-medium uppercase tracking-wide text-neutral-400">
+                    {s.meta}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ── Stream B: Anonymised question patterns (tinted panel) ── */}
+          <section className="min-w-0 border-t border-neutral-200 bg-neutral-50 p-5 sm:p-6 lg:border-l lg:border-t-0">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h3 className="text-[15px] font-bold text-neutral-900">Question patterns</h3>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-200 px-2.5 py-1 text-[11px] font-semibold text-neutral-600">
+                <Lock className="h-3 w-3" />
+                Anonymised · R&amp;D only
+              </span>
+            </div>
+
+            <p className="mb-3 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-neutral-400">
+              Top topics this month
+            </p>
+
+            <div className="flex flex-col gap-3.5">
+              {TOPICS.map((t) => (
+                <div key={t.topic}>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="truncate text-[13px] font-semibold text-neutral-800">
+                      {t.topic}
+                    </span>
+                    <span className="flex-shrink-0 text-[11px] text-neutral-500">{t.meta}</span>
+                  </div>
+                  <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-neutral-200">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${Math.round((t.count / TOPIC_MAX) * 100)}%`,
+                        background: "linear-gradient(90deg, #e8c547, #b88a18)",
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-gold/30 bg-gold/[0.08] p-3.5">
+              <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gold/20 text-amber-700">
+                <Lightbulb className="h-[15px] w-[15px]" />
+              </span>
+              <p className="text-[12px] leading-relaxed text-neutral-700">
+                <span className="font-bold text-neutral-900">Insight:</span> BER queries spike in
+                the first three months after handover. Consider adding a BER explainer to your
+                handover pack.
               </p>
             </div>
-            <div className="flex h-9 w-full max-w-[220px] items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-3 text-neutral-400 sm:w-auto">
-              <Search className="h-3.5 w-3.5" />
-              <span className="text-[12px]">Search residents or questions</span>
-            </div>
-          </div>
-
-          {/* Pattern callout */}
-          <div className="px-5 pt-4 sm:px-6">
-            <div className="flex items-center gap-3 rounded-xl border border-gold/30 bg-gold/[0.06] px-4 py-3">
-              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-gold/15 text-gold">
-                <TrendingUp className="h-[18px] w-[18px]" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-amber-700/80">
-                  Top topic this month
-                </p>
-                <p className="text-[14px] font-bold text-neutral-900">
-                  Heat pump pressure
-                  <span className="ml-2 text-[12px] font-medium text-neutral-500">
-                    23 questions across 3 schemes
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Questions table */}
-          <div className="px-5 py-4 sm:px-6">
-            {/* Column headers */}
-            <div className="grid grid-cols-[1.4fr_2.6fr_1.4fr] items-center gap-3 border-b border-neutral-100 px-2 pb-2 text-[10px] font-semibold uppercase tracking-wider text-neutral-400 sm:grid-cols-[1.2fr_0.6fr_1fr_2fr_1.4fr]">
-              <span>Resident</span>
-              <span className="hidden sm:block">Unit</span>
-              <span className="hidden sm:block">Scheme</span>
-              <span>Question</span>
-              <span className="text-right sm:text-left">Status</span>
-            </div>
-
-            {QUESTIONS.map((q) => (
-              <div
-                key={q.name}
-                className="grid grid-cols-[1.4fr_2.6fr_1.4fr] items-center gap-3 border-b border-neutral-100 px-2 py-3 sm:grid-cols-[1.2fr_0.6fr_1fr_2fr_1.4fr]"
-              >
-                {/* Resident */}
-                <div className="flex min-w-0 items-center gap-2">
-                  <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-gold/15 text-[10px] font-bold text-amber-700">
-                    {q.initials}
-                  </span>
-                  <span className="truncate text-[13px] font-semibold text-neutral-800">
-                    {q.name}
-                  </span>
-                </div>
-                {/* Unit */}
-                <span className="hidden text-[12px] text-neutral-500 sm:block">{q.unit}</span>
-                {/* Scheme */}
-                <span className="hidden truncate text-[12px] text-neutral-500 sm:block">
-                  {q.scheme}
-                </span>
-                {/* Question */}
-                <span className="truncate text-[12.5px] text-neutral-700">
-                  &ldquo;{q.question}&rdquo;
-                </span>
-                {/* Status */}
-                <div className="flex justify-end sm:justify-start">
-                  <StatusPill status={q.status} />
-                </div>
-              </div>
-            ))}
-          </div>
+          </section>
         </div>
       </div>
     </div>
