@@ -164,11 +164,11 @@ export default function PropertyAssistantPage() {
               what your residents see.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-porcelain/70">
-              A resident describes what they see, a red light, an E3 code. The
-              Property Assistant identifies the specific equipment, checks the
-              manuals you uploaded, and walks them through the fix with the page
-              reference attached. Not a generic chatbot. The actual answer, for the
-              actual home, from the actual manual.
+              A resident takes a photo of the boiler, the heat pump display, a
+              damaged tile, anything visual. The Property Assistant looks at the
+              image, identifies the specific equipment, checks against the manuals
+              you uploaded for this home, and walks them through the fix. Or raises
+              a snag to your customer care team if it cannot.
             </p>
           </div>
 
