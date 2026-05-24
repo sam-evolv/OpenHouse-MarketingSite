@@ -1,0 +1,152 @@
+/* ============================================================
+   OpenHouse & OpenBook — Colors & Type
+   Shared tokens across both products.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---- Brand ---- */
+  --brand-gold: #D4AF37;        /* PRIMARY — never #f5b800, never amber */
+  --brand-gold-light: #e8c547;
+  --brand-gold-dark: #b88a18;
+  --brand-gold-gradient: linear-gradient(135deg, #e8c547 0%, #b88a18 100%);
+  --brand-black: #080808;       /* OpenBook primary */
+  --brand-black-soft: #0C0C0C;
+  --brand-text-black: #111827;  /* OpenHouse text */
+
+  /* ---- Gold scale ---- */
+  --gold-50:  #FEFCE8;
+  --gold-100: #FEF9C3;
+  --gold-200: #FEF08A;
+  --gold-300: #FDE047;
+  --gold-400: #FACC15;
+  --gold-500: #D4AF37; /* PRIMARY */
+  --gold-600: #C9A961;
+  --gold-700: #B8934C;
+  --gold-800: #A67C3A;
+  --gold-900: #8B6428;
+  --gold-950: #6B4E1C;
+
+  /* ---- Neutrals — light mode ---- */
+  --bg:               #ffffff;
+  --surface-1:        #f9fafb;
+  --surface-2:        #f3f4f6;
+  --surface-3:        #e5e7eb;
+  --text-1:           #111827;
+  --text-2:           #6b7280;
+  --text-3:           #9ca3af;
+  --border:           #e5e7eb;
+  --border-strong:    #d1d5db;
+
+  /* ---- Semantic ---- */
+  --success:       #10b981;   --success-bg: #ecfdf5;
+  --error:         #ef4444;   --error-bg:   #fef2f2;
+  --warning:       #f59e0b;   --warning-bg: #fffbeb;
+  --info:          #3b82f6;   --info-bg:    #eff6ff;
+
+  /* ---- Type families ---- */
+  --font-sans:  'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', serif;
+  --font-mono:  'JetBrains Mono', 'SF Mono', 'Fira Code', Monaco, monospace;
+
+  /* ---- Type scale (exact — do not ad-hoc sizes) ---- */
+  --fs-display-lg: 4rem;     --lh-display-lg: 1.1;
+  --fs-display:    3rem;     --lh-display:    1.15;
+  --fs-h-xl:       2.5rem;   --lh-h-xl:       1.2;
+  --fs-h-lg:       2rem;     --lh-h-lg:       1.25;
+  --fs-h-md:       1.5rem;   --lh-h-md:       1.3;
+  --fs-h-sm:       1.25rem;  --lh-h-sm:       1.4;
+  --fs-body-lg:    1.125rem; --lh-body-lg:    1.6;
+  --fs-body:       1rem;     --lh-body:       1.6;
+  --fs-body-sm:    0.875rem; --lh-body-sm:    1.5;
+  --fs-caption:    0.75rem;  --lh-caption:    1.4;
+
+  /* ---- Spacing scale (4-pt) ---- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-10: 40px;
+  --space-12: 48px; --space-16: 64px;
+
+  /* ---- Radius ---- */
+  --radius-xs:      6px;
+  --radius-sm:      10px;
+  --radius-premium: 12px;
+  --radius-md:      14px;
+  --radius-lg:      18px;
+  --radius-full:    9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-1: 0 1px 2px rgba(0,0,0,.06), 0 1px 1px rgba(0,0,0,.03);
+  --shadow-2: 0 8px 24px rgba(0,0,0,.12);
+  --shadow-3: 0 16px 48px rgba(0,0,0,.16);
+  --shadow-premium:    0 4px 20px rgba(212,175,55,.08);
+  --shadow-premium-lg: 0 8px 32px rgba(212,175,55,.12);
+  --shadow-gold-glow:  0 0 20px rgba(212,175,55,.3);
+  --shadow-card:       0 2px 12px rgba(12,12,12,.04);
+  --shadow-card-hover: 0 4px 24px rgba(12,12,12,.08);
+
+  /* ---- Motion ---- */
+  --dur-fast:    150ms;
+  --dur-base:    250ms;
+  --dur-slow:    350ms;
+  --dur-premium: 300ms;
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode — OpenBook dashboard default */
+[data-theme="dark"], .theme-dark {
+  --bg:            #0b0c0f;
+  --surface-1:     #0f1115;
+  --surface-2:     #12151b;
+  --surface-3:     #161a22;
+  --text-1:        #eef2f8;
+  --text-2:        #9ca8bc;
+  --text-3:        #778199;
+  --border:        #1e2531;
+  --border-strong: #374151;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.24), 0 1px 1px rgba(0,0,0,.12);
+  --shadow-2: 0 8px 24px rgba(0,0,0,.36);
+  --shadow-3: 0 16px 48px rgba(0,0,0,.48);
+}
+
+/* OpenBook consumer (true black) */
+.theme-openbook {
+  --bg:            #080808;
+  --surface-1:     #111111;
+  --surface-2:     #161616;
+  --surface-3:     #1e1e1e;
+  --surface-4:     #242424;
+  --text-1:        #f0f0f0;
+  --text-2:        #888888;
+  --text-3:        #444444;
+  --border:        rgba(255,255,255,0.06);
+  --border-strong: rgba(255,255,255,0.1);
+}
+
+/* ---- Semantic type classes ---- */
+html { font-family: var(--font-sans); color: var(--text-1); background: var(--bg); }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+.display-lg { font: 700 var(--fs-display-lg)/var(--lh-display-lg) var(--font-sans); letter-spacing: -0.02em; }
+.display    { font: 700 var(--fs-display)/var(--lh-display) var(--font-sans);       letter-spacing: -0.02em; }
+h1, .h-xl   { font: 600 var(--fs-h-xl)/var(--lh-h-xl) var(--font-sans);             letter-spacing: -0.01em; }
+h2, .h-lg   { font: 600 var(--fs-h-lg)/var(--lh-h-lg) var(--font-sans);             letter-spacing: -0.01em; }
+h3, .h-md   { font: 600 var(--fs-h-md)/var(--lh-h-md) var(--font-sans); }
+h4, .h-sm   { font: 600 var(--fs-h-sm)/var(--lh-h-sm) var(--font-sans); }
+.body-lg    { font: 400 var(--fs-body-lg)/var(--lh-body-lg) var(--font-sans); }
+p, .body    { font: 400 var(--fs-body)/var(--lh-body) var(--font-sans); }
+.body-sm    { font: 400 var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans); }
+.caption    { font: 500 var(--fs-caption)/var(--lh-caption) var(--font-sans); letter-spacing: 0.02em; }
+.serif      { font-family: var(--font-serif); }
+code, .mono { font: 500 0.9em/1.5 var(--font-mono); }
+
+.text-muted  { color: var(--text-2); }
+.text-subtle { color: var(--text-3); }
+.text-gold   { color: var(--brand-gold); }
+.bg-gold-gradient {
+  background: var(--brand-gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
