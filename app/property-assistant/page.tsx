@@ -118,14 +118,14 @@ export default function PropertyAssistantPage() {
         }
         title={
           <>
-            Every home gets its{" "}
+            No more handover folders. No more aftercare calls at{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              own
-            </span>{" "}
-            assistant.
+              9pm
+            </span>
+            .
           </>
         }
-        subtitle="Trained on the specific manuals, certs, warranties, and walkthroughs for one specific home. Residents ask in their own words. The Property Assistant understands, answers, and shows the source it answered from. Live the moment they pick up the keys."
+        subtitle="Every home gets the entire corpus of information about it in one place, queryable by the resident. Walkthrough videos, manuals, warranties, certs. Take a photo of an issue and the assistant helps diagnose it. Residents feel looked after. Your aftercare team gets their evenings back."
         primaryCta={{ href: "#the-moment", label: "See it in action" }}
         secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >
