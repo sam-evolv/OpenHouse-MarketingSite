@@ -2,7 +2,6 @@
 
 import { ReactNode } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
 import ohMark from "@/attached_assets/property-assistant/openhouse-mark.png";
 
 /* ────────────────────────────────────────────────────────────
@@ -39,93 +38,111 @@ const C = {
 const SANS =
   "var(--font-inter), Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
-/* ─── Phone frame ─── */
+/* ─── Floating screen ───
 
-interface PhoneFrameProps {
+   A frameless phone screen: no iPhone bezel, no device chrome. The screen
+   content floats as an object on the dark marketing canvas, grounded by a
+   three-layer drop shadow and a gold brand halo. The proportions (9 / 19.5)
+   and the 44px corner radius plus a single pill notch signal "mobile app"
+   without a literal device frame, the way Linear, Vercel, and Stripe present
+   product UI. */
+
+interface FloatingScreenProps {
   children: ReactNode;
-  widthClass?: string;
-  float?: boolean;
-  floatDelay?: number;
-  floatDistance?: number;
+  /** Sizing class for the screen. Pass a width (e.g. "w-[360px]") and the
+      height follows the 9 / 19.5 ratio, or pass a height (e.g. "lg:h-[480px]")
+      to fit a fixed slot and let the width follow instead. */
+  sizeClass?: string;
+  /** Rotation utility applied at lg+ under motion-safe, e.g. "motion-safe:lg:-rotate-[4deg]". */
+  rotateClass?: string;
   className?: string;
   time?: string;
 }
 
-export function PhoneFrame({
+export function FloatingScreen({
   children,
-  widthClass = "w-[300px]",
-  float = false,
-  floatDelay = 0,
-  floatDistance = 12,
+  sizeClass = "w-[320px]",
+  rotateClass = "",
   className = "",
   time = "9:41",
-}: PhoneFrameProps) {
-  const reduce = useReducedMotion();
-  const drift = float && !reduce;
-
+}: FloatingScreenProps) {
   return (
-    <motion.div
-      className={`${widthClass} ${className}`}
-      animate={drift ? { y: [0, -floatDistance, 0] } : undefined}
-      transition={
-        drift
-          ? { duration: 7, repeat: Infinity, ease: [0.16, 1, 0.3, 1], delay: floatDelay }
-          : undefined
-      }
-    >
-      {/* Titanium bezel */}
-      <div className="relative rounded-[2.6rem] bg-gradient-to-b from-zinc-700 via-zinc-900 to-black p-[3px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
-        <div className="absolute inset-0 rounded-[2.6rem] ring-1 ring-white/10" />
-        <div className="absolute -left-[2px] top-24 h-7 w-[2px] rounded-l bg-zinc-700" />
-        <div className="absolute -left-[2px] top-36 h-12 w-[2px] rounded-l bg-zinc-700" />
-        <div className="absolute -right-[2px] top-32 h-16 w-[2px] rounded-r bg-zinc-700" />
+    <div className={`relative inline-flex ${className}`}>
+      {/* Gold brand halo, behind the screen, offset down to read as ambient light */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10"
+        style={{
+          width: "130%",
+          height: "130%",
+          transform: "translate(-50%, -50%) translateY(40px)",
+          background:
+            "radial-gradient(ellipse at center, rgba(212,175,55,0.22) 0%, rgba(212,175,55,0.08) 40%, transparent 70%)",
+          filter: "blur(20px)",
+        }}
+      />
 
-        {/* Screen (warm white) */}
+      {/* The screen itself: frameless, floating, grounded by the composite shadow */}
+      <div
+        className={`relative flex aspect-[180/390] flex-col overflow-hidden motion-safe:hover:-translate-y-1 motion-safe:hover:rotate-0 ${sizeClass} ${rotateClass}`}
+        style={{
+          borderRadius: 44,
+          fontFamily: SANS,
+          transition: "transform 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+          background:
+            "linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 46%, #FDFCF7 100%)",
+          boxShadow: [
+            "0px 80px 120px -20px rgba(0,0,0,0.65)",
+            "0px 40px 60px -15px rgba(0,0,0,0.50)",
+            "0px 8px 20px 0px rgba(0,0,0,0.40)",
+            "inset 0 1px 0 rgba(255,255,255,0.6)",
+          ].join(", "),
+        }}
+      >
+        {/* Pill notch: the entire phone signifier */}
         <div
-          className="relative flex flex-col overflow-hidden rounded-[2.35rem]"
-          style={{ background: C.white, fontFamily: SANS }}
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-[18px] z-30 -translate-x-1/2"
+          style={{ width: 110, height: 28, borderRadius: 14, background: "#000000" }}
+        />
+
+        {/* iOS status bar (inside the screen content, beside the notch) */}
+        <div
+          className="relative z-20 flex h-11 items-center justify-between px-6 pt-1 text-[11px] font-semibold"
+          style={{ color: C.text1 }}
         >
-          {/* Dynamic island */}
-          <div className="pointer-events-none absolute left-1/2 top-2 z-30 h-[26px] w-[88px] -translate-x-1/2 rounded-full bg-black" />
-
-          {/* iOS status bar (dark on white) */}
-          <div
-            className="relative z-20 flex items-center justify-between px-6 pb-1 pt-3 text-[11px] font-semibold"
-            style={{ color: C.text1 }}
-          >
-            <span className="tracking-tight">{time}</span>
-            <span className="flex items-center gap-1.5">
-              <span className="flex items-end gap-[2px]" aria-hidden="true">
-                <span className="h-1.5 w-[3px] rounded-sm" style={{ background: C.text1 }} />
-                <span className="h-2 w-[3px] rounded-sm" style={{ background: C.text1 }} />
-                <span className="h-2.5 w-[3px] rounded-sm" style={{ background: C.text1 }} />
-                <span className="h-3 w-[3px] rounded-sm" style={{ background: C.text3 }} />
-              </span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="M8 3.5c2.2 0 4.2.8 5.7 2.2l-1 1A6.6 6.6 0 008 4.9 6.6 6.6 0 003.3 6.7l-1-1A8.1 8.1 0 018 3.5zm0 3c1.4 0 2.7.5 3.7 1.4l-1 1A4.3 4.3 0 008 7.9c-1 0-2 .4-2.7 1l-1-1A5.8 5.8 0 018 6.5zm0 3c.7 0 1.3.2 1.8.7L8 11.9 6.2 10.2c.5-.5 1.1-.7 1.8-.7z"
-                  fill={C.text1}
-                />
-              </svg>
-              <span className="ml-0.5 flex items-center" aria-hidden="true">
-                <span
-                  className="relative h-3 w-6 rounded-[3px]"
-                  style={{ border: `1px solid ${C.text3}` }}
-                >
-                  <span
-                    className="absolute inset-[1.5px] right-1.5 rounded-[1px]"
-                    style={{ background: C.text1 }}
-                  />
-                </span>
-                <span className="ml-[1px] h-1.5 w-[2px] rounded-r" style={{ background: C.text3 }} />
-              </span>
+          <span className="tracking-tight">{time}</span>
+          <span className="flex items-center gap-1.5">
+            <span className="flex items-end gap-[2px]" aria-hidden="true">
+              <span className="h-1.5 w-[3px] rounded-sm" style={{ background: C.text1 }} />
+              <span className="h-2 w-[3px] rounded-sm" style={{ background: C.text1 }} />
+              <span className="h-2.5 w-[3px] rounded-sm" style={{ background: C.text1 }} />
+              <span className="h-3 w-[3px] rounded-sm" style={{ background: C.text3 }} />
             </span>
-          </div>
-
-          {children}
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M8 3.5c2.2 0 4.2.8 5.7 2.2l-1 1A6.6 6.6 0 008 4.9 6.6 6.6 0 003.3 6.7l-1-1A8.1 8.1 0 018 3.5zm0 3c1.4 0 2.7.5 3.7 1.4l-1 1A4.3 4.3 0 008 7.9c-1 0-2 .4-2.7 1l-1-1A5.8 5.8 0 018 6.5zm0 3c.7 0 1.3.2 1.8.7L8 11.9 6.2 10.2c.5-.5 1.1-.7 1.8-.7z"
+                fill={C.text1}
+              />
+            </svg>
+            <span className="ml-0.5 flex items-center" aria-hidden="true">
+              <span
+                className="relative h-3 w-6 rounded-[3px]"
+                style={{ border: `1px solid ${C.text3}` }}
+              >
+                <span
+                  className="absolute inset-[1.5px] right-1.5 rounded-[1px]"
+                  style={{ background: C.text1 }}
+                />
+              </span>
+              <span className="ml-[1px] h-1.5 w-[2px] rounded-r" style={{ background: C.text3 }} />
+            </span>
+          </span>
         </div>
+
+        {children}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -278,10 +295,13 @@ export function BottomBar({
 
 /* ─── Chat primitives ─── */
 
-/** A scrollable-feeling message area inside the screen. */
+/** A scrollable-feeling message area inside the screen. Transparent so the
+    screen's white-to-cream gradient reads through the empty scrollback below.
+    Top-aligned, like any normal chat interface: the conversation begins at the
+    top, under the header, and the rest is empty scrollback. */
 export function Thread({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-1 flex-col gap-2.5 px-3.5 pb-1 pt-3" style={{ background: C.white }}>
+    <div className="flex flex-1 flex-col gap-2.5 px-3.5 pb-1 pt-3">
       {children}
     </div>
   );
@@ -432,6 +452,160 @@ export function DataRow({
       >
         {badge}
       </span>
+    </div>
+  );
+}
+
+/** A small status pill shown at the foot of an assistant card: the friendly
+    close ("Resolved? Let me know") or an escalation confirmation ("Snag raised"). */
+export function StatusPill({
+  children,
+  tone = "gold",
+  icon,
+}: {
+  children: ReactNode;
+  tone?: "gold" | "green";
+  icon?: ReactNode;
+}) {
+  const bg = tone === "green" ? C.greenBg : C.goldBadgeBg;
+  const fg = tone === "green" ? C.greenFg : C.goldBadgeFg;
+  return (
+    <span
+      className="mt-0.5 inline-flex items-center gap-1.5 self-start rounded-full px-2.5 py-1 font-semibold"
+      style={{ background: bg, color: fg, fontSize: 11, border: `1px solid ${fg}33` }}
+    >
+      {icon}
+      {children}
+    </span>
+  );
+}
+
+/* ─── Equipment photos (resident uploads) ───
+   Frameless screens are at their best when the resident is sharing something
+   visual. These are crisp inline illustrations, not stock photography, so the
+   "what the assistant is looking at" reads instantly at small sizes: a heat
+   pump controller showing an E3 fault, and a leaking U-bend under a sink.
+   `full` renders a 4:3 attachment; `thumb` a 52px square for the reply bubble. */
+
+function HeatPumpArt() {
+  return (
+    <>
+      <defs>
+        <linearGradient id="hp-wall" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e7e9ec" />
+          <stop offset="1" stopColor="#cdd0d5" />
+        </linearGradient>
+        <radialGradient id="hp-led" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#ff6b60" />
+          <stop offset="1" stopColor="#ff3b30" />
+        </radialGradient>
+      </defs>
+      <rect x="0" y="0" width="240" height="180" fill="url(#hp-wall)" />
+      {/* Soft contact shadow under the controller */}
+      <rect x="46" y="34" width="156" height="120" rx="16" fill="rgba(0,0,0,0.10)" />
+      {/* Controller casing */}
+      <rect x="42" y="28" width="156" height="120" rx="14" fill="#f8f8f5" stroke="#d7d7d1" strokeWidth="1.5" />
+      {/* LED indicator, glowing red */}
+      <circle cx="178" cy="44" r="8" fill="#ff3b30" opacity="0.25" />
+      <circle cx="178" cy="44" r="4" fill="url(#hp-led)" />
+      {/* LCD screen */}
+      <rect x="60" y="52" width="120" height="70" rx="8" fill="#15171c" />
+      <rect x="60" y="52" width="120" height="70" rx="8" fill="none" stroke="#000" strokeWidth="1" opacity="0.4" />
+      {/* Warning triangle */}
+      <g transform="translate(74, 66)">
+        <path d="M7 0 L14 12 L0 12 Z" fill="none" stroke="#ff3b30" strokeWidth="1.6" strokeLinejoin="round" />
+        <line x1="7" y1="4" x2="7" y2="8.5" stroke="#ff3b30" strokeWidth="1.6" strokeLinecap="round" />
+        <circle cx="7" cy="10.5" r="0.9" fill="#ff3b30" />
+      </g>
+      {/* Fault code */}
+      <text x="124" y="102" textAnchor="middle" fontSize="34" fontWeight="800" fill="#ff3b30" fontFamily={SANS} letterSpacing="0.04em">E3</text>
+      {/* Casing wordmark + vent lines */}
+      <text x="120" y="140" textAnchor="middle" fontSize="8" fontWeight="700" fill="#9a9a92" fontFamily={SANS} letterSpacing="0.22em">ECODAN</text>
+      <g stroke="#dcdcd6" strokeWidth="1.4" strokeLinecap="round">
+        <line x1="54" y1="58" x2="54" y2="74" />
+        <line x1="186" y1="100" x2="186" y2="116" />
+      </g>
+    </>
+  );
+}
+
+function LeakArt() {
+  return (
+    <>
+      <defs>
+        <linearGradient id="lk-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#2c2823" />
+          <stop offset="1" stopColor="#171410" />
+        </linearGradient>
+        <linearGradient id="lk-pipe" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#8b9097" />
+          <stop offset="0.5" stopColor="#d6dbe0" />
+          <stop offset="1" stopColor="#8b9097" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="240" height="180" fill="url(#lk-bg)" />
+      {/* Puddle on the cabinet floor */}
+      <ellipse cx="118" cy="166" rx="60" ry="10" fill="rgba(96,156,206,0.45)" />
+      <ellipse cx="118" cy="164" rx="42" ry="6" fill="rgba(150,200,235,0.40)" />
+      {/* U-bend / P-trap */}
+      <path
+        d="M86 24 V92 Q86 126 118 126 Q150 126 150 92 V60 H214"
+        fill="none"
+        stroke="url(#lk-pipe)"
+        strokeWidth="13"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Pipe highlight */}
+      <path
+        d="M86 28 V92 Q86 122 118 122 Q150 122 150 92 V60 H210"
+        fill="none"
+        stroke="rgba(255,255,255,0.35)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+      {/* Compression nut at the joint */}
+      <rect x="142" y="80" width="16" height="20" rx="2" fill="#9aa0a7" stroke="#6f747b" strokeWidth="1" />
+      {/* Forming water drop + drip */}
+      <path d="M118 132 q-4 6 0 9 q4 -3 0 -9 z" fill="rgba(150,200,235,0.95)" />
+      <circle cx="118" cy="150" r="3.2" fill="rgba(120,180,225,0.9)" />
+    </>
+  );
+}
+
+export function EquipmentPhoto({
+  kind,
+  variant = "full",
+}: {
+  kind: "heatpump" | "leak";
+  variant?: "full" | "thumb";
+}) {
+  const isThumb = variant === "thumb";
+  const label = kind === "heatpump" ? "Heat pump display, E3" : "Under the kitchen sink";
+  return (
+    <div
+      className="relative overflow-hidden"
+      style={{
+        width: isThumb ? 52 : "100%",
+        height: isThumb ? 52 : undefined,
+        aspectRatio: isThumb ? undefined : "4 / 3",
+        borderRadius: isThumb ? 8 : 12,
+        border: `1px solid ${C.border}`,
+        flex: isThumb ? "0 0 auto" : undefined,
+      }}
+      role="img"
+      aria-label={label}
+    >
+      <svg
+        viewBox="0 0 240 180"
+        width="100%"
+        height="100%"
+        preserveAspectRatio="xMidYMid slice"
+        style={{ display: "block" }}
+        aria-hidden="true"
+      >
+        {kind === "heatpump" ? <HeatPumpArt /> : <LeakArt />}
+      </svg>
     </div>
   );
 }
