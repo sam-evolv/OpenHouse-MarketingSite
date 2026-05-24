@@ -39,6 +39,15 @@ function SunGlyph() {
     </svg>
   );
 }
+function HeatPumpGlyph() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+      <rect x="1.5" y="3" width="11" height="8" rx="1.2" stroke="currentColor" strokeWidth="1.3" />
+      <circle cx="7" cy="7" r="2.2" stroke="currentColor" strokeWidth="1.3" />
+      <path d="M7 7l1.4-1.1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 /* ────────────────────────────────────────────────────────────
    [1] HERO PHONE
@@ -103,9 +112,17 @@ export function MoneyShot() {
             </UserBubble>
             <AssistantCard>
               <CardText>
-                <B>E3</B> means high pressure in your heat pump, usually a{" "}
-                <B>blocked air filter</B>. Here is how to clear it:
+                I can see the exact unit installed in your home. <B>E3</B> means
+                high pressure, usually a <B>blocked air filter</B>.
               </CardText>
+              <DataRow
+                icon={<HeatPumpGlyph />}
+                name="Mitsubishi Ecodan heat pump"
+                meta="E3 · high pressure fault"
+                badge="IDENTIFIED"
+                badgeColor="gold"
+              />
+              <CardText>Here is how to clear it, step by step.</CardText>
             </AssistantCard>
           </Thread>
           <BottomBar active="Chat" inputText="" />
