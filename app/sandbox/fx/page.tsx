@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { HeadlineMaskScroll } from "@/components/fx/HeadlineMaskScroll";
+import { HeadlineMaskScroll } from "@/components/FX/HeadlineMaskScroll";
 import { Button } from "@/components/ui/button";
 
 export default function FXSandbox() {
