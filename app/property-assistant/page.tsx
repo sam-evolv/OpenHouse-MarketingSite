@@ -17,7 +17,6 @@ import {
   ShieldCheck,
   ArrowRight,
   LayoutDashboard,
-  PhoneCall,
   BarChart3,
   HeartHandshake,
 } from "lucide-react";
@@ -72,23 +71,10 @@ const steps = [
 
 const products = [
   {
-    icon: Smartphone,
-    title: "Property Assistant",
-    blurb: "What every resident gets, on their phone.",
-    href: "/property-assistant",
-    current: true,
-  },
-  {
     icon: LayoutDashboard,
     title: "Developer Dashboard",
     blurb: "Your control room for every scheme.",
     href: "/developer-dashboard",
-  },
-  {
-    icon: PhoneCall,
-    title: "Agent",
-    blurb: "Voice-first AI for estate and letting agents.",
-    href: "/agent",
   },
   {
     icon: BarChart3,
@@ -389,21 +375,16 @@ export default function PropertyAssistantPage() {
             </p>
             <p className="text-lg leading-relaxed text-porcelain/70">
               The Property Assistant is what your residents get. The Developer
-              Dashboard is your control room. Agent, Intelligence, and Care are
+              Dashboard is your control room. Intelligence and Care are
               specialist tools for the partners working alongside you.
             </p>
           </div>
-          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
             {products.map((product) => (
               <Link
                 key={product.title}
                 href={product.href}
-                aria-current={product.current ? "page" : undefined}
-                className={`group relative rounded-2xl border p-6 transition-all duration-500 hover:-translate-y-1 ${
-                  product.current
-                    ? "border-gold/40 bg-gold/[0.06]"
-                    : "border-white/5 bg-white/[0.02] hover:border-gold/20 hover:bg-gold/[0.03]"
-                }`}
+                className="group relative rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-gold/20 hover:bg-gold/[0.03]"
               >
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-gold/20 bg-gold/10">
                   <product.icon className="h-5 w-5 text-gold" />
@@ -414,11 +395,6 @@ export default function PropertyAssistantPage() {
                 <p className="text-xs leading-relaxed text-porcelain/60">
                   {product.blurb}
                 </p>
-                {product.current && (
-                  <span className="absolute right-4 top-4 text-[10px] font-medium uppercase tracking-wider text-gold">
-                    You are here
-                  </span>
-                )}
               </Link>
             ))}
           </div>
