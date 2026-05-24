@@ -137,7 +137,7 @@ export function MoneyShot() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="relative flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-16 xl:gap-24">
+    <div className="relative mx-auto flex max-w-6xl flex-col items-center justify-center gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
       {/* Left screen: the resident's photo, mid-upload, with the question */}
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 30 }}
