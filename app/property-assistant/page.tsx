@@ -1,9 +1,8 @@
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
-import { ScreenshotLightbox } from "@/components/ui/ScreenshotLightbox";
 import { HeroPhone, MoneyShot, ScenarioPhones } from "@/components/property-assistant/scenes";
+import { DashboardGlimpse } from "@/components/property-assistant/DashboardGlimpse";
 import heroBackground from "@/attached_assets/stock_images/modern_luxury_apartm_7dec65c9.jpg";
-import residentsShot from "@/attached_assets/stock_images/communications_hub.png";
 import {
   Smartphone,
   ChevronLeft,
@@ -266,13 +265,10 @@ export default function PropertyAssistantPage() {
             </p>
           </div>
 
-          <div className="relative mx-auto max-w-4xl">
+          <div className="relative mx-auto max-w-5xl">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-gold/15 via-transparent to-gold/15 blur-2xl" />
             <div className="relative">
-              <ScreenshotLightbox
-                src={residentsShot}
-                alt="The Developer Dashboard view of resident questions across multiple schemes, with each question showing the resident, unit, and resolution, and a panel flagging the top topic this month as heat pump pressure"
-              />
+              <DashboardGlimpse />
             </div>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/[0.08] px-4 py-2 text-sm font-medium text-porcelain">
