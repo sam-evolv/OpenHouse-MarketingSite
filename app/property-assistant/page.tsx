@@ -34,22 +34,22 @@ const knows = [
   {
     icon: Cog,
     title: "Every appliance in this home",
-    body: "Boiler model, heat pump make, kitchen appliances, EV charger, solar panels. The Property Assistant knows exactly what is installed and where it lives.",
+    body: "The Mitsubishi Ecodan heat pump, the solar panels and battery, the kitchen appliances, the EV charger. The Property Assistant knows exactly what is installed, where it lives, and how to self-diagnose a fault.",
   },
   {
     icon: FileText,
     title: "Every document for this home",
-    body: "BER cert, BCAR completion, fire safety, kitchen warranty, solar manuals, HomeBond. The Property Assistant has them all and can show any of them on request.",
+    body: "HomeBond cert, BER report at A2, BCAR completion, fire safety, kitchen warranty, and 12 appliance manuals indexed. The Property Assistant has them all and can show any of them on request.",
   },
   {
     icon: Video,
     title: "Every walkthrough your team recorded",
-    body: "The 60-second video showing where the stopcock is. The heat pump pressure check. The kitchen orientation tour. Loaded into the assistant for the home they were filmed in.",
+    body: "The 60-second video showing where the stopcock is. The heat pump filter clean. The kitchen orientation tour. Loaded into the assistant for the home they were filmed in.",
   },
   {
     icon: Bell,
     title: "Every reminder this home needs",
-    body: "Boiler service due. BER renewal coming up. Heat pump filter check. The Property Assistant notifies the resident at the right time and offers to book the right contractor.",
+    body: "Annual heat pump service due in 47 days. BER valid until 2036. The Property Assistant notifies the resident at the right time and offers to book the right contractor.",
   },
 ];
 
@@ -140,7 +140,7 @@ export default function PropertyAssistantPage() {
             assistant.
           </>
         }
-        subtitle="Trained on the specific manuals, certs, warranties, and walkthroughs for one specific home. Residents type. Residents take photos. The Property Assistant looks, understands, and answers. Live the moment they pick up the keys."
+        subtitle="Trained on the specific manuals, certs, warranties, and walkthroughs for one specific home. Residents ask in their own words. The Property Assistant understands, answers, and shows the source it answered from. Live the moment they pick up the keys."
         primaryCta={{ href: "#the-moment", label: "See it in action" }}
         secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >
@@ -164,10 +164,11 @@ export default function PropertyAssistantPage() {
               what your residents see.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-porcelain/70">
-              A resident takes a photo. The Property Assistant looks at the image,
-              identifies the specific equipment, checks against the manuals you
-              uploaded, and walks them through the fix. Not a generic chatbot. The
-              actual help, for the actual home, from the actual photo.
+              A resident describes what they see, a red light, an E3 code. The
+              Property Assistant identifies the specific equipment, checks the
+              manuals you uploaded, and walks them through the fix with the page
+              reference attached. Not a generic chatbot. The actual answer, for the
+              actual home, from the actual manual.
             </p>
           </div>
 

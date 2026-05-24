@@ -1,139 +1,178 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, CalendarClock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import {
-  PhoneMockup,
-  AssistantHeader,
-  DayDivider,
-  ResidentBubble,
-  AssistantBubble,
-  HeatPumpPhoto,
-  ThermostatPhoto,
-  PhotoThumb,
-  UploadingIndicator,
-  DocumentPill,
-  VideoThumb,
-  ResolvedPill,
-  InputBar,
+  PhoneFrame,
+  HomeownerHeader,
+  BottomBar,
+  Thread,
+  UserBubble,
+  AssistantCard,
+  CardText,
+  B,
+  ChecklistRow,
+  SourceLine,
+  GoldCTA,
+  DataRow,
+  FloorPlanDiagram,
+  tokens as C,
 } from "./PhoneMockup";
 
-/* The shared message-area wrapper inside a screen. */
-function Thread({ children }: { children: React.ReactNode }) {
-  return <div className="space-y-2.5 px-3 py-3">{children}</div>;
+/* Small inline icons for data rows, matching the real app's stroke style. */
+function DocGlyph() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+      <path d="M3 2h5l3 3v7a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+      <path d="M8 2v3h3" stroke="currentColor" strokeWidth="1.4" />
+    </svg>
+  );
 }
+function SunGlyph() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+      <circle cx="7" cy="7" r="2.6" stroke="currentColor" strokeWidth="1.4" />
+      <g stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+        <line x1="7" y1="1.5" x2="7" y2="3" />
+        <line x1="7" y1="11" x2="7" y2="12.5" />
+        <line x1="1.5" y1="7" x2="3" y2="7" />
+        <line x1="11" y1="7" x2="12.5" y2="7" />
+      </g>
+    </svg>
+  );
+}
+
+const planCtaIcon = (
+  <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    <path d="M3 2h6l2 2v8a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" fill="none" />
+    <path d="M7 7v3M5 8.5l2 1.5 2-1.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+  </svg>
+);
 
 /* ────────────────────────────────────────────────────────────
    [1] HERO PHONE
-   A single oversized phone showing the kitchen-tile warranty thread.
+   The floor plan query: "What size is my living room?", answered with
+   the room dimensions and the floor plan diagram, rendered in the real
+   app chrome.
    ──────────────────────────────────────────────────────────── */
 export function HeroPhone() {
   return (
     <div className="relative flex items-center justify-center">
-      {/* gold edge-glow */}
       <div className="absolute inset-0 -z-10 scale-90 rounded-full bg-gold/20 blur-3xl" />
-      {/* OpenHouse mark watermark */}
       <span
         aria-hidden="true"
         className="pointer-events-none absolute -z-10 select-none font-heading text-[12rem] font-bold leading-none text-white/[0.03]"
       >
         OH
       </span>
-      <PhoneMockup widthClass="w-[300px]" float floatDistance={14}>
-        <AssistantHeader />
+      <PhoneFrame widthClass="w-[330px]" float floatDistance={14}>
+        <HomeownerHeader />
         <Thread>
-          <DayDivider label="Today 9:24" />
-          <ResidentBubble time="9:24">
-            What&apos;s the warranty on my kitchen tiles?
-          </ResidentBubble>
-          <AssistantBubble time="9:24">
-            Your kitchen tiles are the Porcelanosa Stark range, installed in
-            October 2024. The manufacturer warranty is 10 years against defects.
-            Here is the warranty document and the care instructions for the Stark
-            glaze.
-            <DocumentPill label="Stark tile warranty.pdf" />
-          </AssistantBubble>
+          <UserBubble>What size is my living room?</UserBubble>
+          <AssistantCard>
+            <CardText>
+              Your <B>living room</B> is <B>28.5 m²</B> (307 sq ft), one of the
+              largest in your spec.
+            </CardText>
+            <div
+              className="mt-0.5 flex justify-center rounded-[10px] p-2"
+              style={{ background: C.creamPlan, border: `1px solid ${C.border}` }}
+            >
+              <FloorPlanDiagram width={266} />
+            </div>
+            <SourceLine>Source · your Ground Floor plan, A3.</SourceLine>
+            <GoldCTA icon={planCtaIcon}>Open full floor plan</GoldCTA>
+          </AssistantCard>
         </Thread>
-        <InputBar placeholder="Ask about your home" />
-      </PhoneMockup>
+        <BottomBar active="Chat" />
+      </PhoneFrame>
     </div>
   );
 }
 
 /* ────────────────────────────────────────────────────────────
    [2] MONEY SHOT
-   Two phones telling one sequential story: photo upload, then the
-   assistant's diagnosis. Stacks on mobile.
+   The real heat pump E3 self-diagnosis, told across two phones:
+   the question and diagnosis on the left, the step-by-step fix and
+   the sourced citation on the right. No photo-upload UI: this matches
+   the real text-based app flow (asset README, Option A).
    ──────────────────────────────────────────────────────────── */
+const HP_STEPS = [
+  "Switch off at the unit and the isolator. Wait 3 minutes.",
+  "Find the indoor unit, usually in your utility or hot press.",
+  "Check the air filter behind the front panel.",
+  "Rinse, dry for 20 minutes, refit.",
+  "Switch back on. The red light clears in 2 minutes.",
+];
+
 export function MoneyShot() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="relative flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-6 xl:gap-10">
-      {/* ambient glow */}
+    <div className="relative flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-stretch lg:gap-6 xl:gap-10">
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-        <div className="h-[420px] w-[420px] rounded-full bg-gold/15 blur-[120px]" />
+        <div className="h-[440px] w-[440px] rounded-full bg-gold/15 blur-[120px]" />
       </div>
 
-      {/* Left phone: the resident sends a photo */}
+      {/* Left phone: the question + the diagnosis */}
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 30 }}
         whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <PhoneMockup widthClass="w-[290px] sm:w-[310px]" time="14:06">
-          <AssistantHeader />
+        <PhoneFrame widthClass="w-[320px] sm:w-[348px]" time="14:06">
+          <HomeownerHeader />
           <Thread>
-            <DayDivider label="Today 14:06" />
-            <ResidentBubble time="14:06">
-              This just came on. Is it serious?
-            </ResidentBubble>
-            <div className="flex justify-end">
-              <div className="w-[70%]">
-                <HeatPumpPhoto error="E4" />
-              </div>
-            </div>
-            <UploadingIndicator />
+            <UserBubble>
+              There is a red light flashing on my heat pump and it is saying E3.
+              What do I do?
+            </UserBubble>
+            <AssistantCard>
+              <CardText>
+                <B>E3</B> means high pressure in your heat pump, usually a{" "}
+                <B>blocked air filter</B>. Here is how to clear it:
+              </CardText>
+            </AssistantCard>
           </Thread>
-        </PhoneMockup>
+          <BottomBar active="Chat" inputText="" />
+        </PhoneFrame>
       </motion.div>
 
       {/* Connector */}
       <div className="flex items-center justify-center" aria-hidden="true">
-        <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-gold lg:rotate-0 rotate-90">
+        <span className="flex h-11 w-11 rotate-90 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-gold lg:rotate-0">
           <ArrowRight className="h-5 w-5" />
         </span>
       </div>
 
-      {/* Right phone: the assistant responds */}
+      {/* Right phone: the step-by-step fix + the citation */}
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 30 }}
         whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
       >
-        <PhoneMockup widthClass="w-[290px] sm:w-[310px]" time="14:06">
-          <AssistantHeader />
+        <PhoneFrame widthClass="w-[320px] sm:w-[348px]" time="14:06">
+          <HomeownerHeader />
           <Thread>
-            <AssistantBubble>
-              <PhotoThumb label="Photo you sent">
-                <HeatPumpPhoto error="E4" />
-              </PhotoThumb>
-              That is an E4 error on your Daikin Altherma 3 R, the heat pump in
-              your utility room. E4 means low water flow, usually caused by a
-              closed valve or air in the system. It is not urgent, but it should
-              be cleared today.
-            </AssistantBubble>
-            <AssistantBubble time="14:06">
-              Here is the 60-second check your developer recorded for this exact
-              unit. If it does not fix it, I will send the issue to your
-              developer&apos;s customer care team.
-              <VideoThumb label="60-second pressure check" />
-            </AssistantBubble>
-            <ResolvedPill />
+            <AssistantCard>
+              <CardText>
+                <B>E3</B> means high pressure in your heat pump, usually a{" "}
+                <B>blocked air filter</B>. Here is how to clear it:
+              </CardText>
+              <div className="mt-1 flex flex-col gap-2">
+                {HP_STEPS.map((step) => (
+                  <ChecklistRow key={step}>{step}</ChecklistRow>
+                ))}
+              </div>
+              <SourceLine>
+                Source · your Mitsubishi Ecodan installation manual, page 14.
+              </SourceLine>
+            </AssistantCard>
           </Thread>
-        </PhoneMockup>
+          <BottomBar active="Chat" />
+        </PhoneFrame>
       </motion.div>
     </div>
   );
@@ -141,7 +180,8 @@ export function MoneyShot() {
 
 /* ────────────────────────────────────────────────────────────
    [4] SCENARIO PHONES
-   Three concrete scenarios, each a small phone plus a caption.
+   Three real flows: floor plan on tap, heat pump diagnosis, and a
+   document lookup, each with a caption.
    ──────────────────────────────────────────────────────────── */
 
 function ScenarioCard({
@@ -162,10 +202,10 @@ function ScenarioCard({
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
     >
-      <PhoneMockup widthClass="w-[260px]" time="11:30">
+      <PhoneFrame widthClass="w-[300px]" time="11:30">
         {children}
-      </PhoneMockup>
-      <p className="mt-6 max-w-[260px] text-center text-sm leading-relaxed text-porcelain/60">
+      </PhoneFrame>
+      <p className="mt-6 max-w-[300px] text-center text-sm leading-relaxed text-porcelain/60">
         {caption}
       </p>
     </motion.div>
@@ -175,67 +215,77 @@ function ScenarioCard({
 export function ScenarioPhones() {
   return (
     <div className="grid grid-cols-1 justify-items-center gap-12 md:grid-cols-3 md:gap-6 lg:gap-8">
-      {/* Scenario 1: where is X */}
+      {/* Scenario 1: solar generation, live data */}
       <ScenarioCard
         delay={0}
-        caption="The question that used to go to your customer care line."
+        caption="The answer that used to be a guess."
       >
-        <AssistantHeader />
+        <HomeownerHeader />
         <Thread>
-          <ResidentBubble time="11:30">Where&apos;s my BER cert?</ResidentBubble>
-          <AssistantBubble time="11:30">
-            Right here. Your home has a B1 rating from your BER assessment in
-            February 2024. Download the cert below.
-            <DocumentPill label="BER certificate, B1.pdf" />
-          </AssistantBubble>
+          <UserBubble>How much has my solar saved this month?</UserBubble>
+          <AssistantCard>
+            <CardText>
+              You generated <B>9.5 kWh</B> today. This month you have saved{" "}
+              <B>€87.12</B> on your electricity, up 4% on last month.
+            </CardText>
+            <DataRow
+              icon={<SunGlyph />}
+              name="Solar + battery"
+              meta="9.5 kWh today · €87.12 saved"
+              badge="LIVE"
+              badgeColor="green"
+            />
+          </AssistantCard>
         </Thread>
+        <BottomBar active="Chat" showInput={false} />
       </ScenarioCard>
 
-      {/* Scenario 2: what does X mean */}
-      <ScenarioCard
-        delay={0.1}
-        caption="The question that used to mean a callout."
-      >
-        <AssistantHeader />
+      {/* Scenario 2: heat pump diagnosis */}
+      <ScenarioCard delay={0.1} caption="The question that used to mean a callout.">
+        <HomeownerHeader />
         <Thread>
-          <div className="flex justify-end">
-            <div className="w-[58%]">
-              <ThermostatPhoto />
+          <UserBubble>
+            There is a red light on my heat pump saying E3. What do I do?
+          </UserBubble>
+          <AssistantCard>
+            <CardText>
+              <B>E3</B> means high pressure, usually a <B>blocked air filter</B>.
+              Here is the 60-second fix:
+            </CardText>
+            <div className="mt-1 flex flex-col gap-2">
+              {HP_STEPS.slice(0, 3).map((step) => (
+                <ChecklistRow key={step}>{step}</ChecklistRow>
+              ))}
             </div>
-          </div>
-          <ResidentBubble time="11:30">What&apos;s this light mean?</ResidentBubble>
-          <AssistantBubble time="11:30">
-            That is the Honeywell T6R Pro showing a no-signal warning. The
-            thermostat has lost its connection to the receiver. Here is the
-            30-second re-pairing walkthrough.
-            <VideoThumb label="30-second re-pairing" />
-          </AssistantBubble>
+            <SourceLine>Source · your Mitsubishi Ecodan manual, page 14.</SourceLine>
+          </AssistantCard>
         </Thread>
+        <BottomBar active="Chat" showInput={false} />
       </ScenarioCard>
 
-      {/* Scenario 3: can you do X */}
+      {/* Scenario 3: documents and warranties */}
       <ScenarioCard
         delay={0.2}
-        caption="The job that used to live on someone's to-do list, forever."
+        caption="The document that used to live in a binder no one opened."
       >
-        <AssistantHeader />
+        <HomeownerHeader />
         <Thread>
-          <ResidentBubble time="11:30">
-            My boiler service is due. Can you help?
-          </ResidentBubble>
-          <AssistantBubble time="11:30">
-            Yes. Your boiler is the Worcester Greenstar 30CDi Compact, last
-            serviced October 2024. Next service is recommended for October 2025.
-            Want me to send a request to your usual installer?
-            <button
-              type="button"
-              className="mt-2.5 flex w-full items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-gold to-amber-500 px-3 py-2 text-[11px] font-semibold text-carbon transition-transform hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
-            >
-              <CalendarClock className="h-3.5 w-3.5" aria-hidden="true" />
-              Send service request
-            </button>
-          </AssistantBubble>
+          <UserBubble>When does my BER cert expire?</UserBubble>
+          <AssistantCard>
+            <CardText>
+              Your home holds an <B>A2</B> rating. Your BER cert is valid until{" "}
+              <B>2036</B>. Here it is.
+            </CardText>
+            <DataRow
+              icon={<DocGlyph />}
+              name="BER report"
+              meta="A2 · valid until 2036"
+              badge="ON FILE"
+              badgeColor="green"
+            />
+          </AssistantCard>
         </Thread>
+        <BottomBar active="Docs" showInput={false} />
       </ScenarioCard>
     </div>
   );
