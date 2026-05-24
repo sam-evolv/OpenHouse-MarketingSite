@@ -118,14 +118,14 @@ export default function PropertyAssistantPage() {
         }
         title={
           <>
-            Every home gets its{" "}
+            No more handover folders. No more aftercare calls at{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              own
-            </span>{" "}
-            assistant.
+              9pm
+            </span>
+            .
           </>
         }
-        subtitle="Trained on the specific manuals, certs, warranties, and walkthroughs for one specific home. Residents ask in their own words. The Property Assistant understands, answers, and shows the source it answered from. Live the moment they pick up the keys."
+        subtitle="Every home gets the entire corpus of information about it in one place, queryable by the resident. Walkthrough videos, manuals, warranties, certs. Take a photo of an issue and the assistant helps diagnose it. Residents feel looked after. Your aftercare team gets their evenings back."
         primaryCta={{ href: "#the-moment", label: "See it in action" }}
         secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >
@@ -238,29 +238,23 @@ export default function PropertyAssistantPage() {
               For the developer
             </p>
             <h2 className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl">
-              You see every question.
+              You see every snag.
               <br />
-              Across every home.
+              You learn from every question.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-porcelain/70">
-              On the Developer Dashboard side, you see every resident interaction.
-              What is being asked, what the assistant could resolve, what needed to
-              escalate to you. Patterns surface. Documentation gaps surface. Your
-              next scheme hands over better than your last, because the last one
-              told you exactly what was missing.
+              Two streams. Escalated snags come to you with full context: names,
+              units, photos, history. General questions are anonymised and
+              aggregated, so you see patterns across schemes without seeing what
+              any individual resident asks day to day. The first solves problems.
+              The second improves your next scheme.
             </p>
           </div>
 
-          <div className="relative mx-auto max-w-5xl">
+          <div className="relative mx-auto max-w-6xl">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-gold/15 via-transparent to-gold/15 blur-2xl" />
             <div className="relative">
               <DashboardGlimpse />
-            </div>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/[0.08] px-4 py-2 text-sm font-medium text-porcelain">
-                <BarChart3 className="h-4 w-4 text-gold" />
-                Top topic this month: heat pump pressure
-              </span>
             </div>
           </div>
         </Container>

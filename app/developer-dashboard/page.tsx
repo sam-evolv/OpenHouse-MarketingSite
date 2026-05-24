@@ -123,14 +123,14 @@ export default function DeveloperDashboardPage() {
         }
         title={
           <>
-            Your{" "}
+            The CRM{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              control
+              built for
             </span>{" "}
-            room for every home, every scheme, every stage.
+            property development, not adapted for it.
           </>
         }
-        subtitle="Live pipeline across every scheme. Compliance docs against every unit. Handover packs that build themselves. Residents who find their own answers. Build-to-sell, build-to-rent, and student accommodation, all on one platform."
+        subtitle="Everything you currently spread across twelve spreadsheets, an inbox, and a shared drive: sales pipeline, compliance docs, kitchen selections, snagging, handover packs, in one place. Wrapped in OpenHouse Intelligence, which tells you what's actually happening across your schemes."
         primaryCta={{ href: "#pipeline", label: "See it in action" }}
         secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >

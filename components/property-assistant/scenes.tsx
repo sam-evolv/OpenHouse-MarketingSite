@@ -134,8 +134,9 @@ const HP_STEPS = [
 ];
 
 /* The money shot shows the same fix in four tighter steps, so the full
-   answer (intro, steps, source, and close) fits the screen cleanly
-   beside the calmer left phone instead of overflowing the frame. */
+   answer (intro, steps, source, and close) fits the frameless screen
+   cleanly beside the calmer left phone instead of overflowing it. The
+   five-step list above is kept for the scenario screens. */
 const HP_CHECK = [
   "Switch off at the unit and the isolator. Wait 3 minutes.",
   "Open the indoor unit and find the air filter behind the front panel.",
