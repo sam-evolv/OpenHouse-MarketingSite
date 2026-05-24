@@ -21,8 +21,7 @@ import {
   TrendingUp,
   Target,
   Banknote,
-  Briefcase,
-  HardHat,
+  LayoutDashboard,
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
@@ -127,28 +126,22 @@ const trustCopy =
 
 const platformLinks = [
   {
-    href: "/sales",
-    label: "Sales",
-    icon: TrendingUp,
-    blurb: "A live pipeline, not a Friday spreadsheet.",
+    href: "/developer-dashboard",
+    label: "Developer Dashboard",
+    icon: LayoutDashboard,
+    blurb: "Your control room for every scheme.",
   },
   {
-    href: "/build",
-    label: "Build",
-    icon: HardHat,
-    blurb: "Certs and compliance, organised by unit.",
-  },
-  {
-    href: "/handover",
-    label: "Handover",
-    icon: Briefcase,
-    blurb: "Residents finding their own answers.",
+    href: "/property-assistant",
+    label: "Property Assistant",
+    icon: Smartphone,
+    blurb: "What every resident gets, on their phone.",
   },
   {
     href: "/intelligence",
     label: "Intelligence",
     icon: Sparkles,
-    blurb: "Every question turned into an insight.",
+    blurb: "Ask anything about any scheme, get the answer with sources.",
   },
 ];
 
@@ -440,7 +433,7 @@ export default function CarePage() {
               Care is one part of OpenHouse
             </h2>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {platformLinks.map((link) => (
               <Link
                 key={link.href}
