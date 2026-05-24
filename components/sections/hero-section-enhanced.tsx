@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { HeadlineMaskScroll } from "@/components/fx/HeadlineMaskScroll";
+import { HeadlineMaskScroll } from "@/components/FX/HeadlineMaskScroll";
 import { Magnetic } from "@/components/interactive/Magnetic";
 import { Reveal } from "@/components/effects/Reveal";
 import { ArchitecturalScene } from "@/components/FX/ArchitecturalScene";
