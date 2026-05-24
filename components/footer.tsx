@@ -2,10 +2,10 @@ import Link from "next/link";
 import { env } from "@/lib/env";
 
 const productLinks = [
-  { label: "Sales", href: "/sales" },
-  { label: "Build", href: "/build" },
-  { label: "Handover", href: "/handover" },
+  { label: "Property Assistant", href: "/property-assistant" },
+  { label: "Developer Dashboard", href: "/developer-dashboard" },
   { label: "Intelligence", href: "/intelligence" },
+  { label: "Care", href: "/care" },
   { label: "Contact", href: "/contact" },
 ];
 
