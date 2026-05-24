@@ -109,9 +109,9 @@ export function MoneyShot() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="relative flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-stretch lg:gap-6 xl:gap-10">
+    <div className="relative flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-10 xl:gap-16">
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-        <div className="h-[440px] w-[440px] rounded-full bg-gold/15 blur-[120px]" />
+        <div className="h-[460px] w-[520px] rounded-full bg-gold/15 blur-[120px]" />
       </div>
 
       {/* Left phone: the question + the diagnosis */}
@@ -121,7 +121,7 @@ export function MoneyShot() {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <PhoneFrame widthClass="w-[320px] sm:w-[348px]" time="14:06">
+        <PhoneFrame widthClass="w-[300px] sm:w-[380px] xl:w-[420px]" time="14:06">
           <HomeownerHeader />
           <Thread>
             <UserBubble>
@@ -153,7 +153,7 @@ export function MoneyShot() {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
       >
-        <PhoneFrame widthClass="w-[320px] sm:w-[348px]" time="14:06">
+        <PhoneFrame widthClass="w-[300px] sm:w-[380px] xl:w-[420px]" time="14:06">
           <HomeownerHeader />
           <Thread>
             <AssistantCard>
@@ -214,7 +214,7 @@ function ScenarioCard({
 
 export function ScenarioPhones() {
   return (
-    <div className="grid grid-cols-1 justify-items-center gap-12 md:grid-cols-3 md:gap-6 lg:gap-8">
+    <div className="grid w-full grid-cols-1 justify-items-center gap-12 lg:grid-cols-3 lg:gap-6 xl:gap-10">
       {/* Scenario 1: solar generation, live data */}
       <ScenarioCard
         delay={0}

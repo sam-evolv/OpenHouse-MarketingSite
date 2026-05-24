@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { env } from "@/lib/env";
 
 const productLinks = [
@@ -24,12 +23,13 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <Link href="/" className="inline-block mb-3">
-              <Image
+              {/* Plain img (not next/image), matching the EvolvAi logo below,
+                  so the logo serves the raw committed asset directly. */}
+              <img
                 src="/images/openhouseai-logo.png"
                 alt="OpenHouse Ai"
-                width={600}
-                height={150}
-                priority
+                loading="lazy"
+                decoding="async"
                 className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
               />
             </Link>

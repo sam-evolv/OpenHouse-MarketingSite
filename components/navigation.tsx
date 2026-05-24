@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -49,12 +48,14 @@ export function Navigation() {
         <div className="flex items-center justify-between h-32 sm:h-36">
           {/* Logo */}
           <Link href="/" prefetch={true} className="flex items-center">
-            <Image
+            {/* Plain img (not next/image) so the logo serves the raw committed
+                asset directly and never depends on the image optimiser, which
+                matches the EvolvAi logo in the footer that renders reliably. */}
+            <img
               src="/images/openhouseai-logo.png"
               alt="OpenHouse Ai"
-              width={600}
-              height={150}
-              priority
+              loading="eager"
+              decoding="async"
               className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
             />
           </Link>
