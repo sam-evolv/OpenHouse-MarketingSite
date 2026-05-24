@@ -133,6 +133,16 @@ const HP_STEPS = [
   "Switch back on. The red light clears in 2 minutes.",
 ];
 
+/* The money shot shows the same fix in four tighter steps, so the full
+   answer (intro, steps, source, and close) fits the screen cleanly
+   beside the calmer left phone instead of overflowing the frame. */
+const HP_CHECK = [
+  "Switch off at the unit and the isolator. Wait 3 minutes.",
+  "Open the indoor unit and find the air filter behind the front panel.",
+  "Rinse it, dry for 20 minutes, then refit.",
+  "Switch back on. The red light clears in 2 minutes.",
+];
+
 export function MoneyShot() {
   const reduce = useReducedMotion();
 
@@ -191,14 +201,13 @@ export function MoneyShot() {
                 </span>
               </div>
               <CardText>
-                I can see the <B>E3</B> code on your <B>Mitsubishi Ecodan</B>{" "}
-                unit. E3 means <B>high pressure</B>, usually a{" "}
-                <B>blocked air filter</B>. Not urgent, but should be cleared
-                today. Here is the 60-second check your developer recorded for
-                this exact unit.
+                I can see the <B>E3</B> code on your <B>Mitsubishi Ecodan</B>.
+                E3 means <B>high pressure</B>, usually a{" "}
+                <B>blocked air filter</B>. Here is the 60-second check your
+                developer recorded for this unit.
               </CardText>
               <div className="mt-1 flex flex-col gap-2">
-                {HP_STEPS.map((step) => (
+                {HP_CHECK.map((step) => (
                   <ChecklistRow key={step}>{step}</ChecklistRow>
                 ))}
               </div>

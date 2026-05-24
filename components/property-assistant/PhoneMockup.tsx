@@ -108,7 +108,7 @@ export function FloatingScreen({
 
         {/* iOS status bar (inside the screen content, beside the notch) */}
         <div
-          className="relative z-20 flex h-11 items-center justify-between px-6 pt-1 text-[11px] font-semibold"
+          className="relative z-20 flex h-11 shrink-0 items-center justify-between px-6 pt-1 text-[11px] font-semibold"
           style={{ color: C.text1 }}
         >
           <span className="tracking-tight">{time}</span>
@@ -151,7 +151,7 @@ export function FloatingScreen({
 export function HomeownerHeader() {
   return (
     <div
-      className="flex items-center gap-2 px-3.5 py-3"
+      className="flex shrink-0 items-center gap-2 px-3.5 py-3"
       style={{ background: C.white, borderBottom: `1px solid ${C.border}` }}
     >
       <div className="flex flex-1 items-center gap-1.5">
@@ -247,7 +247,7 @@ export function BottomBar({
   ] as const;
 
   return (
-    <div style={{ background: C.white }}>
+    <div className="shrink-0" style={{ background: C.white }}>
       {showInput && (
         <div className="px-3.5 pb-1 pt-1.5">
           <div
@@ -301,7 +301,7 @@ export function BottomBar({
     top, under the header, and the rest is empty scrollback. */
 export function Thread({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-1 flex-col gap-2.5 px-3.5 pb-1 pt-3">
+    <div className="flex min-h-0 flex-1 flex-col gap-2.5 overflow-hidden px-3.5 pb-1 pt-3">
       {children}
     </div>
   );
