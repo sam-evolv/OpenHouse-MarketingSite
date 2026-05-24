@@ -13,10 +13,11 @@ import {
 import { appRoutes } from "@/lib/env";
 
 const moduleLinks = [
-  { href: "/sales", label: "Sales" },
-  { href: "/build", label: "Build" },
-  { href: "/handover", label: "Handover" },
+  { href: "/property-assistant", label: "Property Assistant" },
+  { href: "/developer-dashboard", label: "Developer Dashboard" },
+  { href: "/agent", label: "Agent" },
   { href: "/intelligence", label: "Intelligence" },
+  { href: "/care", label: "Care" },
 ];
 
 export function Navigation() {
@@ -60,8 +61,8 @@ export function Navigation() {
             />
           </Link>
 
-          {/* Desktop Navigation — modules across the top */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation — products across the top */}
+          <div className="hidden lg:flex items-center space-x-6">
             {moduleLinks.map((link) => (
               <Link
                 key={link.href}
@@ -80,7 +81,7 @@ export function Navigation() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-3">
             {/* Developer Login with Tooltip */}
             <div
               className="relative"
@@ -136,7 +137,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-porcelain hover:text-gold"
+            className="lg:hidden text-porcelain hover:text-gold"
             aria-label={
               isMobileMenuOpen
                 ? "Close navigation menu"
@@ -157,7 +158,7 @@ export function Navigation() {
         {isMobileMenuOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden py-4 border-t border-hint/10"
+            className="lg:hidden py-4 border-t border-hint/10"
             role="menu"
           >
             <div className="flex flex-col space-y-4">
@@ -167,7 +168,7 @@ export function Navigation() {
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    "text-sm font-medium transition-colors px-1",
+                    "flex items-center min-h-[48px] text-base font-medium transition-colors px-1",
                     pathname === link.href
                       ? "text-gold"
                       : "text-porcelain hover:text-gold"
@@ -183,7 +184,7 @@ export function Navigation() {
               <a
                 href={appRoutes.login}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2 text-sm font-medium text-porcelain hover:text-gold px-1"
+                className="flex items-center gap-2 min-h-[48px] text-base font-medium text-porcelain hover:text-gold px-1"
               >
                 <LogIn className="w-4 h-4" />
                 Login
@@ -191,7 +192,7 @@ export function Navigation() {
               <a
                 href="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-sm font-medium text-gold hover:text-gold/80 px-1"
+                className="flex items-center min-h-[48px] text-base font-medium text-gold hover:text-gold/80 px-1"
               >
                 Book a Demo
               </a>
