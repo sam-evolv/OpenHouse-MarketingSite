@@ -49,6 +49,10 @@ interface PhoneFrameProps {
   floatDistance?: number;
   className?: string;
   time?: string;
+  /** Degrees of subtle Y-axis rotation for a product-shot 3D tilt. */
+  tilt?: number;
+  /** Gold halo + grounding reflection beneath the phone. On by default. */
+  glow?: boolean;
 }
 
 export function PhoneFrame({
@@ -59,13 +63,17 @@ export function PhoneFrame({
   floatDistance = 12,
   className = "",
   time = "9:41",
+  tilt = 0,
+  glow = true,
 }: PhoneFrameProps) {
   const reduce = useReducedMotion();
   const drift = float && !reduce;
+  const tilted = tilt !== 0 && !reduce;
 
   return (
     <motion.div
       className={`${widthClass} ${className}`}
+      style={tilted ? { perspective: 1800 } : undefined}
       animate={drift ? { y: [0, -floatDistance, 0] } : undefined}
       transition={
         drift
@@ -73,18 +81,58 @@ export function PhoneFrame({
           : undefined
       }
     >
-      {/* Titanium bezel */}
-      <div className="relative rounded-[2.6rem] bg-gradient-to-b from-zinc-700 via-zinc-900 to-black p-[3px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
-        <div className="absolute inset-0 rounded-[2.6rem] ring-1 ring-white/10" />
-        <div className="absolute -left-[2px] top-24 h-7 w-[2px] rounded-l bg-zinc-700" />
-        <div className="absolute -left-[2px] top-36 h-12 w-[2px] rounded-l bg-zinc-700" />
-        <div className="absolute -right-[2px] top-32 h-16 w-[2px] rounded-r bg-zinc-700" />
+      <div
+        className="relative"
+        style={
+          tilted
+            ? { transform: `rotateY(${tilt}deg)`, transformStyle: "preserve-3d" }
+            : undefined
+        }
+      >
+        {/* Gold halo: lifts the warm phone off the dark canvas */}
+        {glow && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-8 -z-10 rounded-[3.2rem]"
+            style={{
+              background: "rgba(212,175,55,0.15)",
+              filter: "blur(72px)",
+              transform: "translateY(20px)",
+            }}
+          />
+        )}
+        {/* Grounding reflection: makes the phone read as a real object */}
+        {glow && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-8 -bottom-7 -z-10 h-10 rounded-[50%]"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, transparent 70%)",
+              filter: "blur(16px)",
+            }}
+          />
+        )}
 
-        {/* Screen (warm white) */}
+        {/* Titanium bezel */}
         <div
-          className="relative flex flex-col overflow-hidden rounded-[2.35rem]"
-          style={{ background: C.white, fontFamily: SANS }}
+          className="relative rounded-[2.6rem] bg-gradient-to-b from-zinc-700 via-zinc-900 to-black p-[3px]"
+          style={{
+            boxShadow:
+              "0 0 0 1px rgba(212,175,55,0.28), 0 20px 70px -8px rgba(212,175,55,0.16), 0 30px 80px -20px rgba(0,0,0,0.75)",
+          }}
         >
+          <div className="absolute inset-0 rounded-[2.6rem] ring-1 ring-white/10" />
+          <div className="absolute inset-[1px] rounded-[2.55rem] ring-1 ring-gold/20" />
+          <div className="absolute -left-[2px] top-24 h-7 w-[2px] rounded-l bg-zinc-700" />
+          <div className="absolute -left-[2px] top-36 h-12 w-[2px] rounded-l bg-zinc-700" />
+          <div className="absolute -right-[2px] top-32 h-16 w-[2px] rounded-r bg-zinc-700" />
+
+          {/* Screen (warm white) */}
+          <div
+            className="relative flex flex-col overflow-hidden rounded-[2.35rem]"
+            style={{ background: C.white, fontFamily: SANS }}
+          >
           {/* Dynamic island */}
           <div className="pointer-events-none absolute left-1/2 top-2 z-30 h-[26px] w-[88px] -translate-x-1/2 rounded-full bg-black" />
 
@@ -122,7 +170,8 @@ export function PhoneFrame({
             </span>
           </div>
 
-          {children}
+            {children}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -273,6 +322,108 @@ export function BottomBar({
         })}
       </div>
     </div>
+  );
+}
+
+/* ─── Chat home (welcome) screen ─── */
+
+/** A single quick-prompt pill, matching the real app's HoChip. */
+function HomeChip({ children }: { children: ReactNode }) {
+  return (
+    <div
+      className="text-center"
+      style={{
+        background: C.white,
+        border: `1px solid ${C.border}`,
+        color: C.text1,
+        borderRadius: 14,
+        padding: "12px 14px",
+        fontSize: 12.5,
+        fontWeight: 500,
+        lineHeight: 1.3,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/**
+ * The Property Assistant welcome screen: the first thing a resident sees.
+ * A centred gold mark with a radial halo, the welcome headline and sub-line,
+ * the four quick-prompt pills, then the input pill + four-tab nav. Faithful
+ * to the real app's HomeownerChatHome (source-references), rendered as a still.
+ */
+export function ChatHomeScreen() {
+  const chips = ["Storage Ideas", "Long-Term Maintenance", "Planning Rules", "EV Charging"];
+  return (
+    <>
+      <HomeownerHeader />
+      <div
+        className="flex flex-1 flex-col items-center px-4"
+        style={{ background: C.white, paddingTop: 44, paddingBottom: 18 }}
+      >
+        {/* Centred gold mark with a soft radial halo */}
+        <div
+          className="flex flex-col items-center gap-1 rounded-full"
+          style={{
+            padding: "16px 24px",
+            background:
+              "radial-gradient(ellipse at center, rgba(212,175,55,0.12) 0%, transparent 70%)",
+          }}
+        >
+          <Image
+            src={ohMark}
+            alt="OpenHouse Ai"
+            width={56}
+            height={56}
+            className="block h-14 w-14"
+          />
+          <span
+            className="font-bold"
+            style={{ fontSize: 18, color: C.gold, letterSpacing: "-0.005em" }}
+          >
+            OpenHouse Ai
+          </span>
+        </div>
+
+        <h3
+          className="text-center font-bold"
+          style={{
+            fontSize: 19,
+            lineHeight: 1.22,
+            letterSpacing: "-0.018em",
+            color: C.text1,
+            maxWidth: 290,
+            marginTop: 24,
+          }}
+        >
+          Ask anything about your home or community
+        </h3>
+        <p
+          className="text-center"
+          style={{
+            fontSize: 12.5,
+            lineHeight: 1.45,
+            color: C.text2,
+            maxWidth: 280,
+            marginTop: 10,
+          }}
+        >
+          Quick answers for daily life: floor plans, manuals, certs, warranties, the lot.
+        </p>
+
+        <div
+          className="grid w-full grid-cols-2 gap-3"
+          style={{ maxWidth: 320, marginTop: 22 }}
+        >
+          {chips.map((label) => (
+            <HomeChip key={label}>{label}</HomeChip>
+          ))}
+        </div>
+      </div>
+      <BottomBar active="Chat" />
+    </>
   );
 }
 
