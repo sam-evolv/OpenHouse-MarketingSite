@@ -2,11 +2,11 @@ import Link from "next/link";
 import { env } from "@/lib/env";
 
 const productLinks = [
-  { label: "Sales", href: "/sales" },
-  { label: "Build", href: "/build" },
-  { label: "Handover", href: "/handover" },
+  { label: "Property Assistant", href: "/property-assistant" },
+  { label: "Developer Dashboard", href: "/developer-dashboard" },
+  { label: "Agent", href: "/agent" },
   { label: "Intelligence", href: "/intelligence" },
-  { label: "Contact", href: "/contact" },
+  { label: "Care", href: "/care" },
 ];
 
 const legalLinks = [
@@ -48,7 +48,7 @@ export function Footer() {
           {/* Product Links */}
           <div>
             <h4 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
-              Platform
+              Products
             </h4>
             <ul className="space-y-2">
               {productLinks.map((link) => (
