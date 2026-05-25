@@ -14,7 +14,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
         <p className="text-hint mb-10">
-          Last updated: May 23, 2026
+          Last updated: May 25, 2026
         </p>
 
         <div className="space-y-10">
@@ -78,6 +78,9 @@ export default function PrivacyPage() {
             </p>
             <p className="text-hint leading-relaxed mb-4">
               We may share aggregate insights from this data (for example, &ldquo;70% of homeowners ask about heating in their first week&rdquo;) with property developers and in our marketing materials. We do not share data that could identify you or your specific conversations.
+            </p>
+            <p className="text-hint leading-relaxed mb-4">
+              Your conversations with the OpenHouse Assistant are also stored so the assistant can refer back to what you&apos;ve said within the same conversation. This stored conversation history is separate from the anonymised analytics described above. It includes the text of your messages, references to any photos you&apos;ve sent, and the Assistant&apos;s responses. We retain this conversation history while you continue to use the Assistant. You can request deletion of all your conversation history at any time by contacting us.
             </p>
             <p className="text-hint leading-relaxed">
               If you raise an issue with your site team through the Assistant, that issue is processed separately. It is identifiable, linked to your home, and shared with your developer so they can act on it. This is necessary to provide you with the service.
