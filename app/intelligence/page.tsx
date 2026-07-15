@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { IntelligenceFloatingCards } from "@/components/hero/cards/IntelligenceCards";
 import heroBackground from "@/attached_assets/stock_images/intelligence_data_network.png";
-import { Zap, CircleEuro, ThermometerSun, ShieldCheck, Building2, GraduationCap, FileCheck2, ArrowRight, Check, LockKeyhole } from "lucide-react";
+import { Zap, CircleDollarSign, ThermometerSun, ShieldCheck, Building2, GraduationCap, FileCheck2, ArrowRight, Check, LockKeyhole } from "lucide-react";
 
 export const metadata = {
   title: "OpenHouse Energy Intelligence, Money Comfort and Risk",
@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 const lenses = [
-  { icon: CircleEuro, title: "Money", body: "Explain bills, tariffs, peak use, EV charging windows and where avoidable cost may be coming from." },
+  { icon: CircleDollarSign, title: "Money", body: "Explain bills, tariffs, peak use, EV charging windows and where avoidable cost may be coming from." },
   { icon: ThermometerSun, title: "Comfort", body: "Connect heating, ventilation and household settings to how the home actually feels." },
   { icon: ShieldCheck, title: "Risk", body: "Surface maintenance needs, warranty relevance, unusual patterns and the safest next step." },
 ];
