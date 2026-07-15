@@ -9,10 +9,10 @@ import { Menu, X, LogIn, ExternalLink } from "lucide-react";
 import { appRoutes } from "@/lib/env";
 
 const moduleLinks = [
-  { href: "/property-assistant", label: "Home assistant" },
-  { href: "/developer-dashboard", label: "For developers" },
+  { href: "/developer-dashboard", label: "For builders" },
+  { href: "/property-assistant", label: "For purchasers" },
   { href: "/intelligence", label: "Energy intelligence" },
-  { href: "/care", label: "Care" },
+  { href: "/how-it-works", label: "How it works" },
 ];
 
 export function Navigation() {
@@ -35,7 +35,7 @@ export function Navigation() {
             <Image src="/images/openhouseai-logo.png" alt="OpenHouse Ai" width={600} height={150} priority className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe" />
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-7">
             {moduleLinks.map((link) => (
               <Link key={link.href} href={link.href} prefetch={true} className={cn("text-sm font-medium transition-colors duration-200", pathname === link.href ? "text-gold" : "text-porcelain hover:text-gold")}>
                 {link.label}
@@ -72,9 +72,7 @@ export function Navigation() {
           <div id="mobile-menu" className="md:hidden py-4 border-t border-hint/10" role="menu">
             <div className="flex flex-col space-y-4">
               {moduleLinks.map((link) => (
-                <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className={cn("text-sm font-medium transition-colors px-1", pathname === link.href ? "text-gold" : "text-porcelain hover:text-gold")}>
-                  {link.label}
-                </Link>
+                <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className={cn("text-sm font-medium transition-colors px-1", pathname === link.href ? "text-gold" : "text-porcelain hover:text-gold")}>{link.label}</Link>
               ))}
               <div className="border-t border-hint/10 pt-4" />
               <a href={appRoutes.login} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2 text-sm font-medium text-porcelain hover:text-gold px-1"><LogIn className="w-4 h-4" />Login</a>
