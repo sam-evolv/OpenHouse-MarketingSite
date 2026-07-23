@@ -23,7 +23,7 @@ import { SourceChips, SourceOverlay } from "./SourcePeek";
  * EnergyIntelligenceDemo
  * The signature "Energy Intelligence" moment: an always-on assistant that has
  * full context of a home's energy systems. It monitors, diagnoses a real fault,
- * educates the homeowner toward an A rating, and shows the money saved.
+ * helps the homeowner run the home like the A-rated home it is, and shows the money saved.
  *
  * DOM + inline SVG + framer-motion only. No WebGL. Reduced-motion safe.
  * Every figure shown is illustrative and is labelled "Example".
@@ -554,9 +554,9 @@ function StageContent({
       <div className="space-y-4">
         <AssistantLabel accent={accent} />
         <p className="text-[15px] text-porcelain/85 leading-relaxed">
-          While I&rsquo;m here &mdash; three changes would move this home from a{" "}
-          <span className="font-semibold text-porcelain">B3</span> toward an{" "}
-          <span className={`font-semibold ${accent.text}`}>A rating</span>.
+          While I&rsquo;m here &mdash; this home is built to run like an{" "}
+          <span className={`font-semibold ${accent.text}`}>A</span>. A few habits keep it performing that way, rather than slipping to a{" "}
+          <span className="font-semibold text-porcelain">B3</span> in everyday use.
         </p>
         <ul className="space-y-2">
           {tips.map((t) => (
@@ -581,8 +581,8 @@ function StageContent({
     <div className="space-y-4">
       <AssistantLabel accent={accent} />
       <p className="text-[15px] text-porcelain/85 leading-relaxed">
-        Those changes are working. Consumption is trending down and the home is now running at an{" "}
-        <span className={`font-semibold ${accent.text}`}>A rating</span>.
+        Those habits are working. Consumption is trending down &mdash; you&rsquo;re running this home like the{" "}
+        <span className={`font-semibold ${accent.text}`}>A-rated</span> home it is.
       </p>
       <div className="rounded-xl border border-white/10 bg-black/50 p-4 flex flex-wrap items-end justify-between gap-4">
         <div>
@@ -633,11 +633,11 @@ function RatingLadder({ index, accent, animate }: { index: number; accent: Accen
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 p-3">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-[10px] uppercase tracking-wider text-porcelain/45 font-semibold">Energy rating</span>
+        <span className="text-[10px] uppercase tracking-wider text-porcelain/45 font-semibold">How you&rsquo;re running it</span>
         <span className={`inline-flex items-center gap-1 text-[11px] font-semibold ${accent.text}`}>
           B3
           <span aria-hidden="true">&rarr;</span>
-          A3
+          A
           <ExampleTag />
         </span>
       </div>

@@ -196,7 +196,7 @@ export default function CarePage() {
           aria-hidden="true"
         />
         <Container>
-          <div className="max-w-3xl mb-12 sm:mb-14">
+          <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
               The Market
             </p>
@@ -205,7 +205,7 @@ export default function CarePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
             {marketStats.map((stat) => (
               <div
                 key={stat.label}

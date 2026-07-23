@@ -258,7 +258,7 @@ export default function HomePage() {
                 Every home, watching its own energy.
               </h2>
               <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-                It monitors 24/7, diagnoses before the callout, teaches the home toward an A rating, and shows the saving.
+                It monitors 24/7, diagnoses before the callout, helps you run it like an A-rated home, and shows the saving.
               </p>
             </div>
           </Container>

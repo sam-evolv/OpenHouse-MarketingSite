@@ -275,7 +275,7 @@ export default function AssistantPage() {
               A home that watches its own energy.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              The assistant has full context of every energy system in the home. It monitors around the clock, diagnoses issues before they become callouts, teaches the homeowner how to reach an A rating, and shows exactly what that saves.
+              The assistant has full context of every energy system in the home. It monitors around the clock, diagnoses issues before they become callouts, helps the homeowner run it like the A-rated home it is, and shows exactly what that saves.
             </p>
           </div>
           <div className="max-w-5xl mx-auto">
