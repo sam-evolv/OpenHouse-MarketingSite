@@ -20,6 +20,7 @@ const config: Config = {
         sans: ["var(--font-inter)", "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
         heading: ["var(--font-manrope)", "Manrope", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       colors: {
         carbon: "#0A0A0A",

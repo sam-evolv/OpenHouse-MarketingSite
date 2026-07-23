@@ -38,7 +38,7 @@ export function CinematicInterlude() {
       <div className="relative h-full flex items-center justify-center px-6">
         <SplitText
           as="p"
-          className="text-center font-heading font-bold text-[26px] sm:text-4xl lg:text-[44px] text-porcelain tracking-[-0.02em] leading-tight max-w-3xl"
+          className="text-center font-serif font-semibold text-[26px] sm:text-4xl lg:text-[44px] text-porcelain tracking-[-0.01em] leading-tight max-w-3xl"
         >
           Every home keeps what its builder knew.
         </SplitText>

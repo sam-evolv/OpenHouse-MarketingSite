@@ -475,7 +475,7 @@ function StageContent({
         {/* Echoed homeowner question */}
         <div className="flex justify-end">
           <div className="bg-white/10 rounded-2xl rounded-br-sm px-3.5 py-2 max-w-[85%]">
-            <p className="text-[13px] text-porcelain leading-relaxed">
+            <p className="font-serif italic text-[14px] text-porcelain leading-relaxed">
               My heat pump flashed E5. Do I need an engineer?
             </p>
           </div>
@@ -539,7 +539,7 @@ function StageContent({
         Those changes are working. Consumption is trending down and the home is now running at an{" "}
         <span className={`font-semibold ${accent.text}`}>A rating</span>.
       </p>
-      <div className="rounded-xl border border-white/10 bg-black/50 p-4 flex items-end justify-between gap-4">
+      <div className="rounded-xl border border-white/10 bg-black/50 p-4 flex flex-wrap items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <TrendingDown className={`w-4 h-4 ${accent.text}`} aria-hidden="true" />

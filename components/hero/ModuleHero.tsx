@@ -158,9 +158,12 @@ export function ModuleHero({
             </div>
           </motion.div>
 
-          {/* Right: Floating cards */}
+          {/* Right: product cards.
+              Mobile: a normal-flow horizontal snap row so the product is
+              visible on phones too. Desktop (lg+): the absolute parallax
+              stage, unchanged. */}
           {children && (
-            <div className="relative hidden lg:flex items-center justify-center h-[500px]">
+            <div className="relative flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:px-0 lg:pb-0 lg:overflow-visible lg:snap-none lg:items-center lg:justify-center lg:h-[500px]">
               {children}
             </div>
           )}
@@ -227,7 +230,7 @@ export function FloatingCard({ children, depth, className = "", delay = 0.6 }: F
 
   return (
     <motion.div
-      className="absolute"
+      className="relative shrink-0 snap-center lg:absolute"
       style={{ x: cardX, y: cardY, zIndex: depth * 10 }}
       initial={reducedMotion ? false : { opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}

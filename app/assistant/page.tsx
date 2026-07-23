@@ -174,7 +174,7 @@ export default function AssistantPage() {
                     <div className="flex-1 space-y-3 overflow-hidden">
                       <div className="flex justify-end">
                         <div className="bg-gold/20 rounded-2xl rounded-br-md px-3 py-2 max-w-[85%]">
-                          <p className="text-[12px] text-porcelain leading-relaxed">
+                          <p className="font-serif italic text-[13px] text-porcelain leading-relaxed">
                             Why did my electricity bill jump this month?
                           </p>
                         </div>

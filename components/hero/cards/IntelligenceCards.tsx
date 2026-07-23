@@ -15,7 +15,7 @@ export function IntelligenceFloatingCards() {
       {/* Card 1: Question (top) */}
       <FloatingCard
         depth={1}
-        className="-translate-x-20 -translate-y-24"
+        className="lg:-translate-x-20 lg:-translate-y-24"
         delay={0.6}
       >
         <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
@@ -46,7 +46,7 @@ export function IntelligenceFloatingCards() {
       {/* Card 2: Answer with sources */}
       <FloatingCard
         depth={2}
-        className="translate-x-16 -translate-y-2"
+        className="lg:translate-x-16 lg:-translate-y-2"
         delay={0.85}
       >
         <div className="w-[340px] bg-slate/95 backdrop-blur-md rounded-2xl border border-violet-400/40 shadow-2xl overflow-hidden">
@@ -100,7 +100,7 @@ export function IntelligenceFloatingCards() {
       {/* Card 3: Compliance question (lower left) */}
       <FloatingCard
         depth={3}
-        className="-translate-x-28 translate-y-28"
+        className="lg:-translate-x-28 lg:translate-y-28"
         delay={1.05}
       >
         <div className="w-[300px] bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
@@ -126,7 +126,7 @@ export function IntelligenceFloatingCards() {
       {/* Card 4: Cross-scheme (peeking) */}
       <FloatingCard
         depth={2}
-        className="translate-x-28 translate-y-32"
+        className="lg:translate-x-28 lg:translate-y-32"
         delay={1.2}
       >
         <div className="w-64 bg-gradient-to-br from-violet-500/25 to-purple-900/10 backdrop-blur-md rounded-2xl border border-violet-400/30 shadow-2xl overflow-hidden">
