@@ -13,14 +13,31 @@ import {
 } from "lucide-react";
 import { appRoutes } from "@/lib/env";
 
-const moduleLinks = [
-  { href: "/sales", label: "Sales" },
-  { href: "/build", label: "Build" },
-  { href: "/handover", label: "Handover" },
-  { href: "/intelligence", label: "Intelligence" },
-  { href: "/agent", label: "Agent" },
+const pillarLinks = [
+  { href: "/platform", label: "Platform" },
+  { href: "/assistant", label: "Property Assistant" },
   { href: "/care", label: "Care" },
 ];
+
+// The Platform pillar groups the developer-facing module routes, which stay
+// live as deep-dives. Highlight "Platform" whenever the visitor is on any of them.
+const platformChildren = [
+  "/platform",
+  "/sales",
+  "/build",
+  "/handover",
+  "/intelligence",
+  "/agent",
+];
+
+function isPillarActive(href: string, pathname: string): boolean {
+  if (href === "/platform") {
+    return platformChildren.some(
+      (p) => pathname === p || pathname.startsWith(p + "/")
+    );
+  }
+  return pathname === href || pathname.startsWith(href + "/");
+}
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,16 +78,16 @@ export function Navigation() {
             />
           </Link>
 
-          {/* Desktop Navigation — modules across the top */}
+          {/* Desktop Navigation — three pillars across the top */}
           <div className="hidden md:flex items-center space-x-8">
-            {moduleLinks.map((link) => (
+            {pillarLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 prefetch={true}
                 className={cn(
                   "text-sm font-medium transition-colors duration-200",
-                  pathname === link.href
+                  isPillarActive(link.href, pathname)
                     ? "text-gold"
                     : "text-porcelain hover:text-gold"
                 )}
@@ -162,14 +179,14 @@ export function Navigation() {
             role="menu"
           >
             <div className="flex flex-col space-y-4">
-              {moduleLinks.map((link) => (
+              {pillarLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
                     "text-sm font-medium transition-colors px-1",
-                    pathname === link.href
+                    isPillarActive(link.href, pathname)
                       ? "text-gold"
                       : "text-porcelain hover:text-gold"
                   )}

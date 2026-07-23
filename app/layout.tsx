@@ -32,23 +32,25 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OpenHouse Ai — The AI Resident Portal for Modern Developments",
+  title:
+    "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
   description:
-    "Cut support requests, wow buyers, and give residents answers in seconds. One AI portal that knows your development inside out.",
+    "OpenHouse gives property developers one platform to run every scheme, every home a 24/7 AI assistant with energy intelligence, and renewables installers their own Care product. Live on developments in Ireland today.",
   keywords: [
-    "property management",
-    "AI assistant",
-    "real estate",
-    "resident portal",
-    "smart building",
-    "NFC onboarding",
+    "property development platform",
+    "AI home assistant",
+    "energy intelligence",
+    "heat pump support",
+    "home energy monitoring",
+    "renewables installer software",
     "property technology",
   ],
   authors: [{ name: "EvolvAi" }],
   openGraph: {
-    title: "OpenHouse Ai — The AI Resident Portal for Modern Developments",
+    title:
+      "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
     description:
-      "Cut support requests, wow buyers, and give residents answers in seconds.",
+      "One platform to run every scheme, a 24/7 AI assistant with energy intelligence for every home, and dedicated Care for renewables installers.",
     url: "https://openhouseai.ie",
     siteName: "OpenHouse Ai",
     images: [
@@ -64,9 +66,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OpenHouse Ai — The AI Resident Portal for Modern Developments",
+    title:
+      "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
     description:
-      "Cut support requests, wow buyers, and give residents answers in seconds.",
+      "One platform to run every scheme, a 24/7 AI assistant with energy intelligence for every home, and dedicated Care for renewables installers.",
     images: ["/og.jpg"],
   },
 };

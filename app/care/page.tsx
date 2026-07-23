@@ -18,14 +18,13 @@ import {
   Sun,
   Layers,
   ArrowRight,
-  TrendingUp,
-  FolderOpen,
   MessageSquare,
-  Sparkles,
-  Headphones,
   Play,
   Phone,
   MessageCircle,
+  CheckCircle2,
+  AlertTriangle,
+  Zap,
 } from "lucide-react";
 
 export const metadata = {
@@ -125,11 +124,8 @@ const personas = [
 ];
 
 const platformModules = [
-  { title: "Sales", href: "/sales", icon: TrendingUp, accent: "text-blue-400" },
-  { title: "Build", href: "/build", icon: FolderOpen, accent: "text-emerald-400" },
-  { title: "Handover", href: "/handover", icon: MessageSquare, accent: "text-gold" },
-  { title: "Intelligence", href: "/intelligence", icon: Sparkles, accent: "text-violet-300" },
-  { title: "Agent", href: "/agent", icon: Headphones, accent: "text-gold" },
+  { title: "Developer platform", href: "/platform", icon: BarChart3, accent: "text-gold" },
+  { title: "Property Assistant", href: "/assistant", icon: MessageSquare, accent: "text-gold" },
 ];
 
 export default function CarePage() {
@@ -404,6 +400,120 @@ export default function CarePage() {
         </Container>
       </section>
 
+      {/* ── 3b. Fleet Intelligence (deepened for installers) ── */}
+      <section className="relative py-24 sm:py-28 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.04] to-transparent"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] gap-10 lg:gap-14 items-center max-w-6xl mx-auto">
+            {/* Copy */}
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+                Reads the real system
+              </p>
+              <h2 className="text-[28px] sm:text-4xl lg:text-[44px] font-bold text-white font-heading leading-tight mb-5">
+                It knows the difference between a scare and a callout.
+              </h2>
+              <p className="text-[17px] text-porcelain/75 leading-relaxed mb-4">
+                Where the integration exists, Care reads live data from the customer&rsquo;s system &mdash; Daikin ONECTA, SolarEdge, Huawei FusionSolar &mdash; and diagnoses against the exact unit you installed. An intermittent sensor gets a 90-second self-check. A genuine fault goes straight to your booking flow.
+              </p>
+              <p className="text-[15px] text-porcelain/60 leading-relaxed">
+                Every question and callout feeds one console, so you see what your whole installation base is doing &mdash; and what keeps failing.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-4">
+                {["Daikin ONECTA", "SolarEdge", "Huawei FusionSolar"].map((t) => (
+                  <span key={t} className="inline-flex items-center gap-2 text-[13px] text-porcelain/70">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden="true" />
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Installer console */}
+            <div className="relative">
+              <div
+                className="absolute -inset-4 bg-gradient-to-r from-emerald-500/15 via-transparent to-emerald-500/15 rounded-3xl blur-2xl"
+                aria-hidden="true"
+              />
+              <div className="relative rounded-3xl border border-white/10 bg-neutral-900/90 backdrop-blur-xl overflow-hidden">
+                <div className="flex items-center gap-3 px-5 sm:px-7 py-4 border-b border-white/5">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+                    <Activity className="w-4 h-4 text-emerald-400" aria-hidden="true" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-porcelain">Your fleet, live</p>
+                    <p className="text-[11px] text-porcelain/45 truncate">Every question and callout, one console</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-[11px] font-medium text-emerald-300">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden="true" />
+                    Online
+                  </span>
+                </div>
+
+                <div className="p-5 sm:p-7 grid grid-cols-1 sm:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-5">
+                  {/* Fault feed */}
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-porcelain/45 font-semibold mb-3">
+                      Recent activity
+                    </p>
+                    <ul className="space-y-2.5">
+                      {[
+                        { unit: "Daikin Altherma · E5", detail: "Sensor check resolved it", tone: "ok" as const },
+                        { unit: "Mitsubishi Ecodan · E4", detail: "Low flow — callout booked", tone: "warn" as const },
+                        { unit: "SolarEdge · night drop", detail: "Explained, no callout", tone: "ok" as const },
+                        { unit: "Battery · capacity query", detail: "Answered from the manual", tone: "ok" as const },
+                      ].map((row) => (
+                        <li
+                          key={row.unit}
+                          className="flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.02] p-2.5"
+                        >
+                          {row.tone === "ok" ? (
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                          ) : (
+                            <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                          )}
+                          <div className="min-w-0">
+                            <p className="text-[13px] font-medium text-porcelain leading-tight">{row.unit}</p>
+                            <p className={`text-[11px] ${row.tone === "ok" ? "text-emerald-300/80" : "text-amber-300/80"}`}>
+                              {row.detail}
+                            </p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Metrics */}
+                  <div className="space-y-3">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-porcelain/45 font-semibold mb-1">
+                      This month
+                    </p>
+                    <MetricTile value="128" label="Callouts avoided" />
+                    <MetricTile value="31" label="Engineer-days saved" />
+                    <div className="rounded-xl border border-amber-500/25 bg-amber-500/[0.05] p-3">
+                      <p className="text-[10px] uppercase tracking-wider text-amber-300/80 font-semibold mb-1 flex items-center gap-1.5">
+                        <Zap className="w-3 h-3" aria-hidden="true" /> Recurring pattern
+                      </p>
+                      <p className="text-[13px] text-porcelain/85 leading-snug">
+                        E5 after cold snaps &mdash; 9 homes. Add it to the winter handover pack.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="px-5 sm:px-7 pb-5 -mt-1">
+                  <p className="text-[11px] text-porcelain/35 leading-relaxed">
+                    Illustrative console. Figures marked &ldquo;Example&rdquo; are for illustration, not real customer data.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* ── 4. How Care Works ── */}
       <section className="relative py-24 bg-porcelain">
         <Container>
@@ -591,13 +701,13 @@ export default function CarePage() {
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h2 className="text-[24px] sm:text-3xl font-bold text-carbon font-heading mb-4">
-              Part of the OpenHouse platform.
+              A separate product, on the same platform.
             </h2>
             <p className="text-[17px] sm:text-lg text-carbon/70 leading-relaxed">
-              Care is one module of six. Same data, different surfaces, one platform that runs every stage of a home.
+              Care is its own product for installers, built on the platform developers use to run their schemes and give every home an assistant.
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
             {platformModules.map((mod) => (
               <Link
                 key={mod.title}
@@ -622,6 +732,22 @@ export default function CarePage() {
           </div>
         </Container>
       </section>
+    </div>
+  );
+}
+
+/* Small metric tile for the installer console. Figures are illustrative. */
+function MetricTile({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
+      <div className="flex items-baseline gap-2">
+        <span className="text-3xl font-bold text-emerald-400 font-heading leading-none">{value}</span>
+        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider text-porcelain/60 border border-white/15 bg-white/5">
+          Example
+          <span className="sr-only"> figure, for illustration only, not real customer data</span>
+        </span>
+      </div>
+      <p className="text-[12px] text-porcelain/70 mt-1">{label}</p>
     </div>
   );
 }

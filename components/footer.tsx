@@ -3,11 +3,8 @@ import Image from "next/image";
 import { env } from "@/lib/env";
 
 const productLinks = [
-  { label: "Sales", href: "/sales" },
-  { label: "Build", href: "/build" },
-  { label: "Handover", href: "/handover" },
-  { label: "Intelligence", href: "/intelligence" },
-  { label: "Agent", href: "/agent" },
+  { label: "Platform", href: "/platform" },
+  { label: "Property Assistant", href: "/assistant" },
   { label: "Care", href: "/care" },
   { label: "Contact", href: "/contact" },
 ];
@@ -36,8 +33,8 @@ export function Footer() {
               />
             </Link>
             <p className="text-xs text-porcelain/50 leading-relaxed mb-4">
-              The AI Resident Portal for Modern Developments. 
-              Transforming how developers support their residents.
+              One platform for property developers, a 24/7 AI assistant for every
+              home, and dedicated Care for renewables installers.
             </p>
             <a
               href={`mailto:${env.CONTACT_EMAIL}`}

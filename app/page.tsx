@@ -2,122 +2,65 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { PlatformFloatingCards } from "@/components/hero/cards/PlatformCards";
+import { EnergyIntelligenceDemo } from "@/components/interactive/EnergyIntelligenceDemo";
 import heroBackground from "@/attached_assets/stock_images/platform_aerial_network.png";
 import {
-  TrendingUp,
-  FolderOpen,
-  MessageSquare,
-  BarChart3,
   ArrowRight,
   Building2,
+  MessageCircle,
   Wrench,
-  Headphones,
-  Sparkles,
-  Check,
   HardHat,
   Database,
   Calendar,
-  ShieldCheck,
-  Globe,
   Plug,
+  Zap,
 } from "lucide-react";
 
 export const metadata = {
-  title: "OpenHouse Ai, One Platform for Every Stage of Property Development",
+  title: "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
   description:
-    "OpenHouse replaces the spreadsheets, WhatsApp groups, and paper folders developers still rely on. Sales, build, handover, ongoing care. One system, one source of truth, used by real developers in Ireland today.",
+    "OpenHouse gives property developers one platform to run every scheme, every home a 24/7 AI assistant with energy intelligence, and renewables installers their own Care product. Live on developments in Ireland today.",
 };
 
-const modules = [
+const pillars = [
   {
-    title: "Sales",
-    href: "/sales",
-    icon: TrendingUp,
-    desc: "Live pipeline across every unit, scheme, and buyer.",
-    accent: "text-blue-400",
-    bg: "bg-blue-500/10",
-    border: "border-blue-500/30",
-    hoverShadow: "hover:shadow-[0_15px_40px_-15px_rgba(59,130,246,0.35)]",
-  },
-  {
-    title: "Build",
-    href: "/build",
-    icon: FolderOpen,
-    desc: "Documents, certs, and compliance organised before handover.",
-    accent: "text-emerald-400",
-    bg: "bg-emerald-500/10",
-    border: "border-emerald-500/30",
-    hoverShadow: "hover:shadow-[0_15px_40px_-15px_rgba(16,185,129,0.35)]",
-  },
-  {
-    title: "Handover",
-    href: "/handover",
-    icon: MessageSquare,
-    desc: "Every home gets an AI assistant trained on its own documents.",
+    title: "Developer platform",
+    href: "/platform",
+    icon: Building2,
+    who: "For property developers",
+    tagline: "Run every scheme in one place.",
+    desc: "Sales pipeline, build documents, compliance, digital handover, portfolio intelligence and an AI agent — one source of truth for the whole development.",
     accent: "text-gold",
     bg: "bg-gold/10",
     border: "border-gold/30",
-    hoverShadow: "hover:shadow-[0_15px_40px_-15px_rgba(212,175,55,0.35)]",
+    hoverShadow: "hover:shadow-[0_20px_50px_-20px_rgba(212,175,55,0.4)]",
+    badge: null as string | null,
   },
   {
-    title: "Intelligence",
-    href: "/intelligence",
-    icon: Sparkles,
-    desc: "Ask anything about any scheme, get the answer instantly.",
-    accent: "text-violet-300",
-    bg: "bg-violet-500/15",
-    border: "border-violet-400/30",
-    hoverShadow: "hover:shadow-[0_15px_40px_-15px_rgba(139,92,246,0.35)]",
-  },
-  {
-    title: "Agent",
-    href: "/agent",
-    icon: Headphones,
-    desc: "A voice-first AI colleague for the agents selling and letting your homes.",
+    title: "Property Assistant",
+    href: "/assistant",
+    icon: MessageCircle,
+    who: "For homeowners",
+    tagline: "A 24/7 AI for every home.",
+    desc: "Every home gets its own assistant, trained on its documents and connected to its energy systems. It answers any question — from a bill to a warning light — and helps run an A-rated home.",
     accent: "text-gold",
     bg: "bg-gold/10",
     border: "border-gold/30",
-    hoverShadow: "hover:shadow-[0_15px_40px_-15px_rgba(212,175,55,0.35)]",
+    hoverShadow: "hover:shadow-[0_20px_50px_-20px_rgba(212,175,55,0.4)]",
+    badge: "Now with Energy Intelligence",
   },
   {
     title: "Care",
     href: "/care",
     icon: Wrench,
-    desc: "Aftercare AI for the renewable systems in every home you build.",
+    who: "For heat pump & solar installers",
+    tagline: "Aftercare for renewable systems.",
+    desc: "A separate product for renewables installers — a branded assistant that cuts avoidable callouts and shows what your whole installation base is doing.",
     accent: "text-emerald-400",
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/30",
-    hoverShadow: "hover:shadow-[0_15px_40px_-15px_rgba(16,185,129,0.35)]",
-  },
-];
-
-const realityList = [
-  "One live pipeline instead of a Friday Excel update",
-  "Every cert, manual, and document tied to a unit, not a folder",
-  "Buyer questions answered by the platform, not by a phone call",
-  "Handover packs ready a week before keys, not the night before",
-  "One assistant that knows your whole portfolio",
-  "Aftercare that doesn't depend on someone being on call",
-];
-
-const personas = [
-  {
-    icon: Building2,
-    title: "For developer principals.",
-    description:
-      "You see every scheme, every unit, every buyer, every cert, every cost, in one place. No chasing your team for status.",
-  },
-  {
-    icon: TrendingUp,
-    title: "For sales directors.",
-    description:
-      "A live pipeline across every development, not a Friday spreadsheet. Selections, contracts, deposits, all in one view.",
-  },
-  {
-    icon: HardHat,
-    title: "For construction and customer care teams.",
-    description:
-      "Compliance docs organised by unit. Handover packs that build themselves. Residents who find their own answers.",
+    hoverShadow: "hover:shadow-[0_20px_50px_-20px_rgba(16,185,129,0.4)]",
+    badge: null as string | null,
   },
 ];
 
@@ -129,7 +72,7 @@ const trustLines = [
   },
   {
     icon: Calendar,
-    title: "Your team adopts it in an afternoon.",
+    title: "Adopt it in an afternoon.",
     body: "No twelve-week implementation.",
   },
   {
@@ -139,46 +82,7 @@ const trustLines = [
   },
 ];
 
-// Modules positioned across the lifecycle for the platform diagram in section 3.
-const lifecycle = ["Sell", "Build", "Handover", "Ongoing"];
-
-interface OverlayModule {
-  title: string;
-  icon: typeof Sparkles;
-  accent: string;
-  bg: string;
-  border: string;
-  spans: string; // tailwind col-span / grid placement
-}
-
-const overlayModules: OverlayModule[] = [
-  {
-    title: "Intelligence sits across all four",
-    icon: Sparkles,
-    accent: "text-violet-300",
-    bg: "bg-violet-500/10",
-    border: "border-violet-400/30",
-    spans: "col-span-4",
-  },
-  {
-    title: "Agent sits across all four",
-    icon: Headphones,
-    accent: "text-gold",
-    bg: "bg-gold/10",
-    border: "border-gold/30",
-    spans: "col-span-4",
-  },
-  {
-    title: "Care sits across Handover and Ongoing",
-    icon: Wrench,
-    accent: "text-emerald-400",
-    bg: "bg-emerald-500/10",
-    border: "border-emerald-500/30",
-    spans: "col-start-3 col-span-2",
-  },
-];
-
-export default function PlatformPage() {
+export default function HomePage() {
   return (
     <div>
       {/* ── 1. Hero ── */}
@@ -197,15 +101,15 @@ export default function PlatformPage() {
         }
         title={
           <>
-            One platform.{" "}
+            One platform for the{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              Every stage
+              whole life
             </span>{" "}
-            of property development.
+            of a home.
           </>
         }
-        subtitle="OpenHouse replaces the spreadsheets, WhatsApp groups, and paper folders developers still rely on. Sales, build, handover, ongoing care. One system, one source of truth, used by real developers in Ireland today."
-        primaryCta={{ href: "#platform", label: "See how it works" }}
+        subtitle="OpenHouse gives developers one system to run every scheme, hands every home a 24/7 AI assistant with energy intelligence, and gives renewables installers their own Care product. Three things, one platform."
+        primaryCta={{ href: "#pillars", label: "See how it works" }}
         secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >
         <PlatformFloatingCards />
@@ -242,18 +146,18 @@ export default function PlatformPage() {
               </div>
             </div>
             <p className="text-center text-[15px] sm:text-[16px] text-carbon/70 leading-relaxed mt-10 max-w-2xl mx-auto">
-              A market this scale runs on spreadsheets, WhatsApp groups, and paper folders. OpenHouse is the system replacing them. Live today on developments in Cork, and expanding.
+              A market this scale still runs on spreadsheets and paper folders. OpenHouse is the system replacing them — live today in Cork, and expanding.
             </p>
             <p className="text-center text-[12px] text-carbon/45 mt-4 max-w-3xl mx-auto leading-relaxed">
-              Sources: CSO New Dwelling Completions, Q4 2025 full year; Residential Tenancies Board, Q4 2024 Profile of the Register; SEAI Record Year of Progress 2024.
+              Sources: CSO New Dwelling Completions, Q4 2025; Residential Tenancies Board, Q4 2024 Profile of the Register; SEAI Record Year of Progress 2024.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* ── 3. The Platform (money shot) ── */}
+      {/* ── 3. The three pillars (the taxonomy moment) ── */}
       <section
-        id="platform"
+        id="pillars"
         className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32"
       >
         <div
@@ -267,97 +171,53 @@ export default function PlatformPage() {
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              The Platform
+              What OpenHouse is
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
-              The full lifecycle, in one platform.
+              Three products. One platform.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              Every home a developer builds passes through the same stages. Most developers still manage each stage with a different tool, a different team, and a different file system. OpenHouse holds all of it in one place.
+              The developer who builds the home, the family who lives in it, and the installer who keeps its energy systems running — all on the same platform, sharing the same data.
             </p>
           </div>
 
-          {/* Lifecycle diagram */}
-          <div className="relative max-w-5xl mx-auto mb-14 sm:mb-20">
-            {/* Lifecycle row */}
-            <div className="grid grid-cols-4 gap-3 sm:gap-4 mb-3">
-              {lifecycle.map((stage, i) => (
-                <div key={stage} className="relative">
-                  <div className="rounded-2xl border border-white/15 bg-white/[0.04] backdrop-blur-sm px-3 py-4 sm:py-5 text-center">
-                    <p className="text-[10px] uppercase tracking-wider text-porcelain/45 mb-1">
-                      Stage {i + 1}
-                    </p>
-                    <p className="text-base sm:text-lg font-semibold text-white">
-                      {stage}
-                    </p>
-                  </div>
-                  {i < lifecycle.length - 1 && (
-                    <div
-                      className="hidden sm:flex absolute top-1/2 -right-2 -translate-y-1/2 z-10 items-center"
-                      aria-hidden="true"
-                    >
-                      <ArrowRight className="w-4 h-4 text-porcelain/30" />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Overlay layers showing which modules span which stages */}
-            <div className="space-y-2 mt-4">
-              {overlayModules.map((mod) => (
-                <div
-                  key={mod.title}
-                  className="grid grid-cols-4 gap-3 sm:gap-4"
-                >
-                  <div
-                    className={`${mod.spans} rounded-xl border ${mod.border} ${mod.bg} backdrop-blur-sm px-4 py-2.5 flex items-center gap-3`}
-                  >
-                    <mod.icon
-                      className={`w-4 h-4 ${mod.accent} flex-shrink-0`}
-                      aria-hidden="true"
-                    />
-                    <p className={`text-[12px] sm:text-sm font-medium ${mod.accent}`}>
-                      {mod.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Six module cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-6xl mx-auto">
-            {modules.map((mod) => (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-6xl mx-auto">
+            {pillars.map((p) => (
               <Link
-                key={mod.title}
-                href={mod.href}
-                className={`group relative p-6 rounded-2xl border ${mod.border} ${mod.bg} backdrop-blur-sm hover:-translate-y-1 transition-all duration-500 ${mod.hoverShadow} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon focus-visible:ring-white/50`}
+                key={p.title}
+                href={p.href}
+                className={`group relative flex flex-col p-7 sm:p-8 rounded-3xl border ${p.border} ${p.bg} backdrop-blur-sm hover:-translate-y-1.5 transition-all duration-500 ${p.hoverShadow} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon focus-visible:ring-white/50`}
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-center justify-between mb-6">
                   <div
-                    className={`w-11 h-11 rounded-xl ${mod.bg} border ${mod.border} flex items-center justify-center flex-shrink-0`}
+                    className={`w-14 h-14 rounded-2xl ${p.bg} border ${p.border} flex items-center justify-center`}
                   >
-                    <mod.icon
-                      className={`w-5 h-5 ${mod.accent}`}
-                      aria-hidden="true"
-                    />
+                    <p.icon className={`w-7 h-7 ${p.accent}`} aria-hidden="true" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-white mb-2 font-heading">
-                      {mod.title}
-                    </h3>
-                    <p className="text-[15px] text-porcelain/70 leading-relaxed">
-                      {mod.desc}
-                    </p>
-                  </div>
+                  <span className={`text-[11px] uppercase tracking-wider font-semibold ${p.accent} opacity-80`}>
+                    {p.who}
+                  </span>
                 </div>
+
+                <h3 className="text-2xl font-bold text-white font-heading leading-tight mb-1">
+                  {p.title}
+                </h3>
+                <p className={`text-[15px] font-semibold ${p.accent} mb-4`}>{p.tagline}</p>
+                <p className="text-[15px] text-porcelain/70 leading-relaxed flex-1">{p.desc}</p>
+
+                {p.badge && (
+                  <span className="mt-5 inline-flex items-center gap-1.5 w-fit px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[12px] font-medium text-emerald-300">
+                    <Zap className="w-3.5 h-3.5" aria-hidden="true" />
+                    {p.badge}
+                  </span>
+                )}
+
                 <div
-                  className={`mt-4 inline-flex items-center gap-1.5 text-xs font-semibold ${mod.accent} opacity-0 group-hover:opacity-100 transition-opacity`}
+                  className={`mt-6 inline-flex items-center gap-1.5 text-sm font-semibold ${p.accent}`}
                 >
                   Explore
                   <ArrowRight
-                    className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"
                   />
                 </div>
@@ -367,50 +227,39 @@ export default function PlatformPage() {
         </Container>
       </section>
 
-      {/* ── 4. Why developers actually adopt it ── */}
-      <section className="relative py-24 bg-porcelain">
+      {/* ── 4. Energy Intelligence — the signature moment ── */}
+      <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.12] via-transparent to-emerald-900/[0.06]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1100px] max-h-[1100px] rounded-full bg-emerald-500/[0.05] blur-[130px]"
+          aria-hidden="true"
+        />
         <Container>
-          <div className="max-w-3xl mx-auto mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-amber-700 mb-4 font-semibold">
-              Why developers adopt it
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+              Energy Intelligence
             </p>
-            <h2 className="text-[28px] sm:text-4xl font-bold text-carbon font-heading leading-tight">
-              The reason isn&rsquo;t AI. It&rsquo;s the small things.
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] mb-6">
+              Every home, watching its own energy.
             </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              The assistant knows every energy system in the home. It monitors 24/7, diagnoses issues before they become callouts, teaches the homeowner how to reach an A rating, and shows what it saves. Press play, or step through it yourself.
+            </p>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-16 max-w-5xl mx-auto">
-            <div>
-              <p className="text-[17px] sm:text-lg text-carbon/80 leading-relaxed">
-                The reason developers move to OpenHouse is rarely &ldquo;we wanted AI.&rdquo; It&rsquo;s the small things that have been broken for years.
-              </p>
-              <p className="text-[17px] sm:text-lg text-carbon/80 leading-relaxed mt-4">
-                The handover folder no one can find. The selection sheet that&rsquo;s three versions out of date. The buyer email that nobody followed up on. The compliance cert that turns up two days before keys.
-              </p>
-              <p className="text-[17px] sm:text-lg text-carbon font-semibold leading-relaxed mt-4">
-                OpenHouse fixes the small things first.
-              </p>
-            </div>
-
-            <ul className="space-y-4">
-              {realityList.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 p-4 rounded-xl border border-carbon/10 bg-white"
-                >
-                  <span className="w-6 h-6 rounded-md bg-amber-100 border border-amber-200 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check
-                      className="w-3.5 h-3.5 text-amber-700"
-                      aria-hidden="true"
-                      strokeWidth={3}
-                    />
-                  </span>
-                  <span className="text-[15px] sm:text-base text-carbon/85 leading-relaxed">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
+          <div className="max-w-5xl mx-auto">
+            <EnergyIntelligenceDemo accent="emerald" />
+          </div>
+          <div className="text-center mt-10">
+            <Link
+              href="/assistant#energy"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-emerald-500/30 text-sm font-medium text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-500/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+            >
+              How the Property Assistant works
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
           </div>
         </Container>
       </section>
@@ -428,13 +277,8 @@ export default function PlatformPage() {
         <Container>
           <div className="relative max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30 mb-8">
-              <HardHat
-                className="w-4 h-4 text-gold"
-                aria-hidden="true"
-              />
-              <span className="text-sm font-medium text-gold">
-                Built by a developer
-              </span>
+              <HardHat className="w-4 h-4 text-gold" aria-hidden="true" />
+              <span className="text-sm font-medium text-gold">Built by a developer</span>
             </div>
             <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-8">
               Built by a developer, for developers.
@@ -449,65 +293,19 @@ export default function PlatformPage() {
         </Container>
       </section>
 
-      {/* ── 6. Three-persona block ── */}
-      <section className="relative py-24 bg-porcelain">
-        <Container>
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-amber-700 mb-4 font-semibold">
-              Built For You
-            </p>
-            <h2 className="text-[28px] sm:text-4xl font-bold text-carbon font-heading leading-tight">
-              You probably recognise one of these.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {personas.map((p) => (
-              <div
-                key={p.title}
-                className="p-6 sm:p-8 rounded-2xl border border-carbon/10 bg-white hover:border-amber-600/40 hover:shadow-[0_15px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-500"
-              >
-                <div className="w-12 h-12 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center mb-5">
-                  <p.icon
-                    className="w-6 h-6 text-amber-700"
-                    aria-hidden="true"
-                  />
-                </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-carbon mb-3 font-heading">
-                  {p.title}
-                </h3>
-                <p className="text-[17px] text-carbon/70 leading-relaxed">
-                  {p.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── 7. Quiet trust lines ── */}
-      <section className="relative py-24 bg-porcelain">
+      {/* ── 6. Trust band ── */}
+      <section className="relative py-16 bg-porcelain">
         <Container>
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {trustLines.map((t) => (
-                <div
-                  key={t.title}
-                  className="flex items-start gap-3"
-                >
+                <div key={t.title} className="flex items-start gap-3">
                   <span className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center flex-shrink-0">
-                    <t.icon
-                      className="w-4 h-4 text-amber-700"
-                      aria-hidden="true"
-                    />
+                    <t.icon className="w-4 h-4 text-amber-700" aria-hidden="true" />
                   </span>
                   <div>
-                    <p className="text-[16px] font-semibold text-carbon leading-snug">
-                      {t.title}
-                    </p>
-                    <p className="text-[14px] text-carbon/65 leading-relaxed mt-1">
-                      {t.body}
-                    </p>
+                    <p className="text-[16px] font-semibold text-carbon leading-snug">{t.title}</p>
+                    <p className="text-[14px] text-carbon/65 leading-relaxed mt-1">{t.body}</p>
                   </div>
                 </div>
               ))}
@@ -516,7 +314,7 @@ export default function PlatformPage() {
         </Container>
       </section>
 
-      {/* ── 8. Peak-end CTA ── */}
+      {/* ── 7. Peak-end CTA ── */}
       <section className="relative py-28 sm:py-36 bg-carbon overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-b from-gold/[0.05] via-transparent to-gold/[0.07]"
