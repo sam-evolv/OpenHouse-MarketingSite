@@ -192,7 +192,7 @@ function DocumentViewerCard() {
         </div>
         <div>
           <p className="text-sm font-medium text-porcelain">Document Viewer</p>
-          <p className="text-[10px] text-hint">boiler_manual.pdf</p>
+          <p className="text-[10px] text-hint">heat_pump_manual.pdf</p>
         </div>
       </div>
       <div className="p-4">

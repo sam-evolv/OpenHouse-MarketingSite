@@ -69,7 +69,7 @@ const steps = [
   {
     icon: Bell,
     title: "The home reminds you.",
-    desc: "Boiler service due. BER renewal coming up. A system running inefficiently. The assistant nudges at the right moment.",
+    desc: "Heat pump service due. BER renewal coming up. A system running inefficiently. The assistant nudges at the right moment.",
   },
 ];
 
@@ -138,7 +138,7 @@ export default function AssistantPage() {
               {"Not a chatbot.\nYour home, answering."}
             </SplitText>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              Trained on the documents for this specific home — your boiler model, your kitchen warranty, your BER cert, your developer&rsquo;s walk-through videos. It answers with the right detail for the right home.
+              Trained on the documents for this specific home — your heat pump model, your kitchen warranty, your BER cert, your developer&rsquo;s walk-through videos. It answers with the right detail for the right home.
             </p>
           </div>
 
@@ -182,10 +182,10 @@ export default function AssistantPage() {
                       <div className="flex justify-start">
                         <div className="bg-white/10 rounded-2xl rounded-bl-md px-3 py-2 max-w-[88%]">
                           <p className="text-[12px] text-porcelain leading-relaxed mb-1.5">
-                            Your immersion ran daily this month instead of the heat pump doing hot water. That&rsquo;s about &euro;28 of the rise.
+                            Your EV charged at the full day rate three times this week instead of your off-peak window. That&rsquo;s about &euro;28 of the rise.
                           </p>
                           <p className="text-[11px] text-porcelain/70 leading-relaxed">
-                            I can switch hot water back to the heat pump and move it to your off-peak window. Want me to?
+                            I can move charging back to your off-peak window. Want me to?
                           </p>
                         </div>
                       </div>
@@ -220,17 +220,17 @@ export default function AssistantPage() {
                         Connected to your home
                       </p>
                       <p className="text-sm text-porcelain/60">
-                        Daikin Altherma 3 R &middot; live telemetry
+                        EV charger &amp; smart meter &middot; live telemetry
                       </p>
                     </div>
                   </div>
 
                   <div className="space-y-3 mb-5">
                     <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
-                      Your bill rose because the backup immersion heater ran daily for hot water instead of the heat pump. On your tariff that&rsquo;s roughly &euro;28 of the increase.
+                      Your bill rose because the EV charged at the full day rate instead of your off-peak window — three sessions this week, roughly &euro;28 of the increase.
                     </p>
                     <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
-                      I&rsquo;ve seen this before after a power cut resets the schedule. I can restore the heat-pump hot-water schedule and move it to your cheapest off-peak window.
+                      This usually happens after a charger app update resets the schedule. I can restore your cheapest off-peak charging window now.
                     </p>
                   </div>
 

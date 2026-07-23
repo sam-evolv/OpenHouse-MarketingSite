@@ -138,7 +138,7 @@ const afterItems = [
 const exampleQuestions = [
   "What size is my living room?",
   "How do I adjust the heat pump?",
-  "Is the boiler still under warranty?",
+  "Is the heat pump still under warranty?",
   "Where's the nearest GP?"
 ];
 

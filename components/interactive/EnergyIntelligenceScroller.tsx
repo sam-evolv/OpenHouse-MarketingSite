@@ -35,13 +35,21 @@ export function EnergyIntelligenceScroller() {
   const [stageIndex, setStageIndex] = useState(0);
 
   // Desktop-only, resolved before first paint so there is no mode flash.
+  // Reduced motion is read from matchMedia directly (not the hook, whose
+  // state only settles in a post-paint effect) so a reduced-motion desktop
+  // never paints the 400vh layout and then collapses it.
   useLayoutEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const update = () => setPinned(mq.matches && !reducedMotion);
+    const mqWide = window.matchMedia("(min-width: 1024px)");
+    const mqReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setPinned(mqWide.matches && !mqReduced.matches);
     update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, [reducedMotion]);
+    mqWide.addEventListener("change", update);
+    mqReduced.addEventListener("change", update);
+    return () => {
+      mqWide.removeEventListener("change", update);
+      mqReduced.removeEventListener("change", update);
+    };
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: ref,

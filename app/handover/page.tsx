@@ -37,7 +37,7 @@ const costStats = [
   {
     value: "~100%",
     label:
-      "Of new Irish homes use a heat pump as the primary heating system. Oil and gas boilers are banned in new builds.",
+      "Of new Irish homes use a heat pump as the primary heating system — the all-electric standard for new builds.",
   },
   {
     value: "12,047",
@@ -92,7 +92,7 @@ const features = [
     icon: Bell,
     title: "Reminders from the home itself.",
     description:
-      "Boiler service due. BER renewal coming up. Heat pump filter check. The platform reminds the resident at the right time.",
+      "Heat pump service due. BER renewal coming up. Ventilation filter check. The platform reminds the resident at the right time.",
   },
 ];
 
@@ -211,7 +211,7 @@ export default function HandoverPage() {
             The questions start arriving in week two. The phone rings, and the answers were always there.
           </p>
           <p className="text-center text-[12px] text-porcelain/40 mt-5 max-w-3xl mx-auto leading-relaxed">
-            Sources: CSO New Dwelling Completions, Q4 2025 full year (36,284 total: 12,047 apartments, 24,237 houses); Irish Heat Pumps on the ban on oil and gas boilers in new builds.
+            Sources: CSO New Dwelling Completions, Q4 2025 full year (36,284 total: 12,047 apartments, 24,237 houses); Irish Heat Pumps on heat pumps as the new-build standard.
           </p>
         </Container>
       </section>
@@ -238,7 +238,7 @@ export default function HandoverPage() {
               Every home gets its own assistant.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              Not a chatbot trained on the internet. An assistant trained on the documents for this specific home. Your boiler model. Your kitchen warranty. Your BER cert. Your developer&rsquo;s actual walk-through videos. Buyers get the right answer the first time.
+              Not a chatbot trained on the internet. An assistant trained on the documents for this specific home. Your heat pump model. Your kitchen warranty. Your BER cert. Your developer&rsquo;s actual walk-through videos. Buyers get the right answer the first time.
             </p>
           </div>
 

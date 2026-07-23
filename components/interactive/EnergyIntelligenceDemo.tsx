@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   Thermometer,
   Sun,
@@ -349,11 +349,15 @@ export function EnergyIntelligenceDemo({
             </div>
           </div>
 
-          {/* Right: the assistant response, live region */}
+          {/* Right: the assistant response, live region.
+              FIXED height + opacity-only crossfade: stage swaps must never
+              change this panel's height — height changes inside the pinned
+              sticky (or the in-flow mobile demo) read as the page jumping
+              or scrolling itself. */}
           <div
             aria-live="polite"
             aria-atomic="false"
-            className={`relative rounded-2xl border ${a.border} bg-black/40 p-5 min-h-[300px]`}
+            className={`relative rounded-2xl border ${a.border} bg-black/40 h-[560px] sm:h-[500px] lg:h-[400px]`}
           >
             {/* Connector rail from systems into the assistant */}
             {variant === "full" && (
@@ -373,7 +377,18 @@ export function EnergyIntelligenceDemo({
               </div>
             )}
 
-            <StageContent stage={stage} accent={a} animate={animate} savingsVal={savingsVal} ratingIndex={ratingIndex} />
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={stage}
+                className="absolute inset-0 p-5 overflow-hidden"
+                initial={animate ? { opacity: 0 } : false}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: animate ? 0.25 : 0 } }}
+                transition={{ duration: animate ? 0.35 : 0, ease: EASE }}
+              >
+                <StageContent stage={stage} accent={a} animate={animate} savingsVal={savingsVal} ratingIndex={ratingIndex} />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
 
@@ -440,13 +455,9 @@ function StageContent({
   savingsVal: number;
   ratingIndex: number;
 }) {
-  const fade = animate
-    ? { initial: { opacity: 0, y: 8 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.4 } }
-    : {};
-
   if (stage === "monitoring") {
     return (
-      <motion.div key="monitoring" {...fade} className="space-y-4">
+      <div className="space-y-4">
         <AssistantLabel accent={accent} />
         <p className="text-[15px] text-porcelain/85 leading-relaxed">
           I&rsquo;m watching every system in this home, 24/7 &mdash; heat pump, solar, battery and EV charger. Nothing needs attention right now.
@@ -454,13 +465,13 @@ function StageContent({
         <p className="text-[13px] text-porcelain/55 leading-relaxed">
           Ask me anything, from a bill you don&rsquo;t understand to a warning light on a unit. I already know what&rsquo;s installed and how it&rsquo;s performing.
         </p>
-      </motion.div>
+      </div>
     );
   }
 
   if (stage === "diagnose") {
     return (
-      <motion.div key="diagnose" {...fade} className="space-y-4">
+      <div className="space-y-4">
         {/* Echoed homeowner question */}
         <div className="flex justify-end">
           <div className="bg-white/10 rounded-2xl rounded-br-sm px-3.5 py-2 max-w-[85%]">
@@ -487,7 +498,7 @@ function StageContent({
           </div>
         </div>
         <Sources accent={accent} items={["Daikin Altherma 3 R manual", "Live telemetry: ONECTA"]} />
-      </motion.div>
+      </div>
     );
   }
 
@@ -498,7 +509,7 @@ function StageContent({
       "Store midday solar in the battery for the evening peak.",
     ];
     return (
-      <motion.div key="educate" {...fade} className="space-y-4">
+      <div className="space-y-4">
         <AssistantLabel accent={accent} />
         <p className="text-[15px] text-porcelain/85 leading-relaxed">
           While I&rsquo;m here &mdash; three changes would move this home from a{" "}
@@ -516,13 +527,13 @@ function StageContent({
           ))}
         </ul>
         <RatingLadder index={ratingIndex} accent={accent} animate={animate} />
-      </motion.div>
+      </div>
     );
   }
 
   // savings
   return (
-    <motion.div key="savings" {...fade} className="space-y-4">
+    <div className="space-y-4">
       <AssistantLabel accent={accent} />
       <p className="text-[15px] text-porcelain/85 leading-relaxed">
         Those changes are working. Consumption is trending down and the home is now running at an{" "}
@@ -547,7 +558,7 @@ function StageContent({
         <BillBars accent={accent} animate={animate} />
       </div>
       <Sources accent={accent} items={["Your meter readings", "Live telemetry"]} />
-    </motion.div>
+    </div>
   );
 }
 

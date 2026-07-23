@@ -15,7 +15,7 @@ const docs = [
   "Floor plan",
   "Kitchen warranty",
   "Heat pump manual",
-  "Boiler service log",
+  "Solar PV warranty",
 ];
 
 export function HandoverFloatingCards() {
@@ -141,10 +141,10 @@ export function HandoverFloatingCards() {
           </div>
           <div className="p-4">
             <p className="text-sm font-semibold text-porcelain mb-1">
-              Boiler service due
+              Heat pump service due
             </p>
             <p className="text-[12px] text-porcelain/70 leading-relaxed">
-              Six-month service is due next week. We&rsquo;ve drafted an email to your installer.
+              The annual service is due next month. We&rsquo;ve drafted an email to your installer.
             </p>
           </div>
         </div>

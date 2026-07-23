@@ -215,12 +215,16 @@ html.lenis body {
     cursor: auto !important;
   }
   html {
-    scroll-behavior: smooth;
+    /* No native smooth scrolling — Lenis owns all scroll smoothing; two
+       smoothing systems fighting reads as drift/jumpiness. */
     overscroll-behavior: none;
     cursor: auto !important;
   }
   body {
     overscroll-behavior: none;
+    /* Timer-driven content (e.g. the autoplaying energy demo) must never
+       let browser scroll-anchoring nudge the viewport by itself. */
+    overflow-anchor: none;
   }
 }
 
