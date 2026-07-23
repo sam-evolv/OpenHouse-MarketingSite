@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { HandoverFloatingCards } from "@/components/hero/cards/HandoverCards";
 import { EnergyIntelligenceDemo } from "@/components/interactive/EnergyIntelligenceDemo";
+import { SplitText } from "@/components/effects/SplitText";
 import heroBackground from "@/attached_assets/stock_images/modern_luxury_apartm_7dec65c9.jpg";
 import {
   Home,
@@ -130,9 +131,12 @@ export default function AssistantPage() {
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
               The Assistant
             </p>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Not a chatbot. Your home, answering.
-            </h2>
+            <SplitText
+              as="h2"
+              className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6"
+            >
+              {"Not a chatbot.\nYour home, answering."}
+            </SplitText>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
               Trained on the documents for this specific home — your boiler model, your kitchen warranty, your BER cert, your developer&rsquo;s walk-through videos. It answers with the right detail for the right home.
             </p>

@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, ReactNode } from "react";
+import { useRef, ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import SplitType from "split-type";
+import { useInViewOnce } from "@/hooks/useInViewOnce";
 
 interface SplitTextProps {
   children: ReactNode;
@@ -12,6 +12,12 @@ interface SplitTextProps {
   className?: string;
 }
 
+/**
+ * Per-line masked rise for string children (split on \n).
+ * The in-view trigger observes the component root — never the translated
+ * inner spans, whose intersection is clipped by their overflow-hidden
+ * parents and can deadlock a threshold.
+ */
 export function SplitText({
   children,
   as: Component = "h1",
@@ -19,39 +25,29 @@ export function SplitText({
   delay = 0.1,
   className = "",
 }: SplitTextProps) {
-  const textRef = useRef<any>(null);
+  const ref = useRef<HTMLElement | null>(null);
+  const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.3 });
   const reducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (!textRef.current || reducedMotion) return;
-
-    const split = new SplitType(textRef.current, {
-      types: "lines",
-      lineClass: "split-line",
-    });
-
-    return () => split.revert();
-  }, [reducedMotion]);
 
   if (reducedMotion) {
     return <Component className={className}>{children}</Component>;
   }
 
   return (
-    <Component ref={textRef} className={className}>
+    <Component ref={ref as any} className={className}>
       {typeof children === "string"
         ? children.split("\n").map((line, i) => (
             <motion.span
               key={i}
               className="block overflow-hidden"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ delay: delay + i * stagger }}
             >
               <motion.span
                 className="block"
                 initial={{ y: 24, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                animate={isInView ? { y: 0, opacity: 1 } : { y: 24, opacity: 0 }}
                 transition={{
                   duration: 0.7,
                   delay: delay + i * stagger,

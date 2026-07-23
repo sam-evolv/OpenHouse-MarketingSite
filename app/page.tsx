@@ -6,6 +6,8 @@ import { EnergyIntelligenceScroller } from "@/components/interactive/EnergyIntel
 import { CountUp } from "@/components/effects/CountUp";
 import { Reveal } from "@/components/effects/Reveal";
 import { ThreadSeam } from "@/components/effects/ThreadSeam";
+import { SplitText } from "@/components/effects/SplitText";
+import { CinematicInterlude } from "@/components/sections/home/CinematicInterlude";
 import heroBackground from "@/attached_assets/stock_images/platform_aerial_network.png";
 import {
   ArrowRight,
@@ -275,6 +277,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── 4.5 Cinematic interlude — a breath after the technical chapter ── */}
+      <CinematicInterlude />
+
       {/* ── 5. Built by a developer (credibility) ── */}
       <section className="relative py-28 sm:py-32 bg-carbon overflow-hidden">
         <div
@@ -292,13 +297,16 @@ export default function HomePage() {
               <HardHat className="w-4 h-4 text-gold" aria-hidden="true" />
               <span className="text-sm font-medium text-gold">Built by a developer</span>
             </div>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-8">
-              Built by a developer, for developers.
-            </h2>
-            <p className="text-[17px] sm:text-xl text-porcelain/80 leading-relaxed mb-5">
+            <SplitText
+              as="h2"
+              className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-8"
+            >
+              {"Built by a developer,\nfor developers."}
+            </SplitText>
+            <p className="text-[17px] sm:text-xl text-porcelain/80 leading-relaxed mb-6">
               OpenHouse was built by a working property developer in Cork while running a thousand-home development pipeline. Every workflow in the platform exists because it was missing from a real developer&rsquo;s day.
             </p>
-            <p className="text-[17px] sm:text-xl text-porcelain/80 leading-relaxed">
+            <p className="text-[18px] sm:text-xl text-gold/90 font-medium leading-relaxed">
               We&rsquo;re still using it on our own schemes.
             </p>
           </div>

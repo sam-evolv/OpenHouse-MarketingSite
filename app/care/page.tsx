@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { CareFloatingCards } from "@/components/hero/cards/CareCards";
+import { CountUp } from "@/components/effects/CountUp";
 import heroBackground from "@/attached_assets/stock_images/carebackground.png";
 import {
   LifeBuoy,
@@ -35,23 +36,31 @@ export const metadata = {
 };
 
 interface MarketStat {
-  value: string;
+  end: number;
+  prefix?: string;
+  suffix?: string;
+  minWidth: string;
   label: string;
 }
 
 const marketStats: MarketStat[] = [
   {
-    value: "3,609",
+    end: 3609,
+    minWidth: "min-w-[5ch]",
     label:
       "Heat pumps installed under SEAI schemes in 2024. A record year, up 13% on 2023.",
   },
   {
-    value: "400,000",
+    end: 400000,
+    minWidth: "min-w-[7ch]",
     label:
       "The Irish government's heat pump installation target by 2030. The current run rate gets to roughly 51,400.",
   },
   {
-    value: "€616m",
+    end: 616,
+    prefix: "€",
+    suffix: "m",
+    minWidth: "min-w-[5ch]",
     label:
       "SEAI investment in 2024 in home energy upgrades. The installer market is scaling fast.",
   },
@@ -198,11 +207,16 @@ export default function CarePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl">
             {marketStats.map((stat) => (
               <div
-                key={stat.value}
+                key={stat.label}
                 className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 hover:border-emerald-500/30 hover:bg-emerald-500/[0.03] transition-all duration-500"
               >
-                <p className="text-[44px] sm:text-5xl lg:text-[56px] font-bold text-emerald-400 font-heading leading-none mb-4">
-                  {stat.value}
+                <p className="text-[44px] sm:text-5xl lg:text-[56px] font-bold text-emerald-400 font-heading leading-none mb-4 tabular-nums">
+                  <CountUp
+                    end={stat.end}
+                    prefix={stat.prefix}
+                    suffix={stat.suffix}
+                    className={`inline-block ${stat.minWidth}`}
+                  />
                 </p>
                 <p className="text-[17px] text-porcelain/75 leading-relaxed">
                   {stat.label}
