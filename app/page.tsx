@@ -19,12 +19,14 @@ import {
   Calendar,
   Plug,
   Zap,
+  FileText,
+  ShieldAlert,
 } from "lucide-react";
 
 export const metadata = {
-  title: "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
+  title: "OpenHouse Ai | A home that can explain itself",
   description:
-    "OpenHouse gives property developers one platform to run every scheme, every home a 24/7 AI assistant with energy intelligence, and renewables installers their own Care product. Live on developments in Ireland today.",
+    "OpenHouse turns the information already created for every home into sourced homeowner answers and practical aftercare insight for property developers.",
 };
 
 const pillars = [
@@ -33,8 +35,8 @@ const pillars = [
     href: "/developers",
     icon: Building2,
     who: "For property developers",
-    tagline: "Run every scheme in one place.",
-    desc: "Sales, build, snagging, handover and aftercare on one dashboard — with every home reporting back, and the digital Home User Guide behind Home Performance Index certification.",
+    tagline: "The developer control plane.",
+    desc: "Load the approved evidence for a house type, issue it to every matching home and see the questions, escalations and information gaps that follow.",
     accent: "text-gold",
     bg: "bg-gold/10",
     border: "border-gold/30",
@@ -46,26 +48,26 @@ const pillars = [
     href: "/assistant",
     icon: MessageCircle,
     who: "For homeowners",
-    tagline: "A 24/7 AI for every home.",
-    desc: "Every home gets its own assistant, trained on its documents and connected to its energy systems. It answers any question — from a bill to a warning light — and helps run an A-rated home.",
+    tagline: "The homeowner interface.",
+    desc: "Homeowners ask by text, speech or image and receive plain-language answers grounded in the approved information for their specific home.",
     accent: "text-gold",
     bg: "bg-gold/10",
     border: "border-gold/30",
     hoverShadow: "hover:shadow-[0_20px_50px_-20px_rgba(212,175,55,0.4)]",
-    badge: "Now with Energy Intelligence",
+    badge: "Live product",
   },
   {
     title: "Care",
     href: "/care",
     icon: Wrench,
     who: "For heat pump & solar installers",
-    tagline: "Aftercare for renewable systems.",
-    desc: "A separate product for renewables installers — a branded assistant that cuts avoidable callouts and shows what your whole installation base is doing.",
+    tagline: "An installer extension.",
+    desc: "Care applies the same home record and escalation workflow to renewable-system aftercare, while genuine issues return to the installer.",
     accent: "text-emerald-400",
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/30",
     hoverShadow: "hover:shadow-[0_20px_50px_-20px_rgba(16,185,129,0.4)]",
-    badge: null as string | null,
+    badge: "Pilot direction",
   },
 ];
 
@@ -77,13 +79,13 @@ const trustLines = [
   },
   {
     icon: Calendar,
-    title: "Adopt it in an afternoon.",
-    body: "No twelve-week implementation.",
+    title: "Start with one house type.",
+    body: "Use information your team already creates.",
   },
   {
     icon: Plug,
-    title: "Your existing tools keep working.",
-    body: "Email, calendar, accounting, all integrated.",
+    title: "Missing evidence stays visible.",
+    body: "OpenHouse escalates instead of guessing.",
   },
 ];
 
@@ -92,6 +94,7 @@ export default function HomePage() {
     <div>
       {/* ── 1. Hero ── */}
       <ModuleHero
+        titleLabel="A home that can explain itself."
         backgroundImage={heroBackground}
         accentColor="gold"
         imagePosition="object-top"
@@ -100,22 +103,22 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
             <span className="w-2 h-2 bg-gold rounded-full" />
             <span className="text-sm font-medium text-gold">
-              Live on active developments today
+              Live across more than 150 homes in Cork
             </span>
           </div>
         }
         title={
           <>
-            One platform for the{" "}
+            A home that can{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              whole life
-            </span>{" "}
-            of a home.
+              explain itself
+            </span>
+            .
           </>
         }
-        subtitle="OpenHouse gives developers one system to run every scheme, hands every home a 24/7 AI assistant with energy intelligence, and gives renewables installers their own Care product. Three things, one platform."
-        primaryCta={{ href: "#pillars", label: "See how it works" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        subtitle="OpenHouse turns the information already created for every home into sourced answers for homeowners and visible aftercare insight for developers."
+        primaryCta={{ href: "/contact", label: "Request a house-type walkthrough" }}
+        secondaryCta={{ href: "#pillars", label: "Trace a sourced answer" }}
       >
         <PlatformFloatingCards />
       </ModuleHero>
@@ -125,40 +128,40 @@ export default function HomePage() {
         <Container>
           <ThreadSeam tone="light" height="sm" className="-mt-4 mb-8" />
           <p className="text-sm uppercase tracking-[0.3em] text-amber-700 font-semibold text-center mb-10">
-            The market
+            Live product proof
           </p>
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-center">
               <div>
                 <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2 tabular-nums">
-                  <CountUp end={36284} className="inline-block min-w-[6ch]" />
+                  <CountUp end={150} suffix="+" className="inline-block min-w-[4ch]" />
                 </p>
                 <p className="text-[14px] sm:text-[15px] text-carbon/75 leading-relaxed">
-                  New homes completed in Ireland in 2025, the highest since 2008.
+                  Homes supported within a live Cork residential development.
                 </p>
               </div>
               <div>
                 <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2 tabular-nums">
-                  <CountUp end={240964} className="inline-block min-w-[7ch]" />
+                  1
                 </p>
                 <p className="text-[14px] sm:text-[15px] text-carbon/75 leading-relaxed">
-                  Private tenancies registered with the Residential Tenancies Board.
+                  Persistent record for each home, built from approved house-type information.
                 </p>
               </div>
               <div>
                 <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2 tabular-nums">
-                  <CountUp end={3609} className="inline-block min-w-[5ch]" />
+                  0
                 </p>
                 <p className="text-[14px] sm:text-[15px] text-carbon/75 leading-relaxed">
-                  New heat pumps installed under SEAI schemes in 2024 alone.
+                  Unsupported answers presented as fact. Missing evidence is escalated.
                 </p>
               </div>
             </div>
             <p className="text-center text-[15px] sm:text-[16px] text-carbon/70 leading-relaxed mt-10 max-w-2xl mx-auto">
-              A market this scale still runs on spreadsheets and paper folders. OpenHouse is the system replacing them — live today in Cork, and expanding.
+              Operational proof from real homes. The next commercial step is a focused developer walkthrough using one real house type.
             </p>
             <p className="text-center text-[12px] text-carbon/60 mt-4 max-w-3xl mx-auto leading-relaxed">
-              Sources: CSO New Dwelling Completions, Q4 2025; Residential Tenancies Board, Q4 2024 Profile of the Register; SEAI Record Year of Progress 2024.
+              Founder-verified deployment: more than 150 houses within a wider development planned for more than 750 homes.
             </p>
           </div>
         </Container>
@@ -184,10 +187,10 @@ export default function HomePage() {
               What OpenHouse is
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Three products. One platform.
+              One home record. Three useful views.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              The developer who builds the home, the family who lives in it, and the installer who keeps its energy systems running — all on the same platform, sharing the same data.
+              The Developer Dashboard is the control plane. The Property Assistant is the homeowner interface. Care extends the same record into installer aftercare.
             </p>
           </div>
 
@@ -237,6 +240,53 @@ export default function HomePage() {
               </Link>
             ))}
           </Reveal>
+
+          <div className="mx-auto mt-12 grid max-w-6xl gap-4 rounded-3xl border border-gold/20 bg-black/25 p-5 sm:p-7 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-5">
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <p className="text-sm font-semibold text-porcelain">A sourced homeowner answer</p>
+                <span className="rounded border border-white/15 bg-white/5 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-porcelain/65">
+                  Example interaction
+                </span>
+              </div>
+              <p className="mb-3 font-serif text-[15px] italic text-porcelain">
+                How do I top up the pressure on my heat pump?
+              </p>
+              <p className="mb-4 text-sm leading-relaxed text-porcelain/75">
+                Your home has a Daikin Altherma 3 R in the utility room. The approved handover guide shows the filling loop beneath the indoor unit.
+              </p>
+              <details className="group rounded-xl border border-gold/25 bg-gold/[0.06]">
+                <summary className="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-3 px-4 text-sm font-medium text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gold">
+                  <span className="flex items-center gap-2">
+                    <FileText className="h-4 w-4" aria-hidden="true" />
+                    Open source: handover guide, page 14
+                  </span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-open:rotate-90" aria-hidden="true" />
+                </summary>
+                <p className="border-t border-gold/20 px-4 py-3 text-xs leading-relaxed text-porcelain/65">
+                  Heating system: Daikin Altherma 3 R. Location: utility room. Pressure guidance and installer contact are recorded on page 14.
+                </p>
+              </details>
+            </div>
+
+            <div className="rounded-2xl border border-amber-400/25 bg-amber-400/[0.055] p-5">
+              <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-amber-300">
+                <ShieldAlert className="h-4 w-4" aria-hidden="true" />
+                Evidence missing
+              </div>
+              <p className="mb-4 text-sm leading-relaxed text-porcelain/75">
+                I cannot confirm whether this noise is safe from the approved information for your home. I can send the question and photo to the developer or installer.
+              </p>
+              <div className="rounded-xl border border-white/10 bg-black/25 p-3">
+                <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-gold">
+                  Developer insight
+                </p>
+                <p className="text-xs leading-relaxed text-porcelain/60">
+                  This unanswered question has appeared across the house type. Add an approved troubleshooting note to future handovers.
+                </p>
+              </div>
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -252,13 +302,13 @@ export default function HomePage() {
             <ThreadSeam tone="dark" className="-mt-6 mb-10" />
             <div className="text-center max-w-3xl mx-auto mb-14">
               <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-                Energy Intelligence
+                Direction: Energy Intelligence
               </p>
               <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-                Every home, watching its own energy.
+                The next layer on the same home record.
               </h2>
               <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-                It monitors 24/7, diagnoses before the callout, helps you run it like an A-rated home, and shows the saving.
+                The interface below is an illustrative direction, not a claim of live telemetry, automated diagnosis, remote control or verified savings.
               </p>
             </div>
           </Container>
@@ -311,10 +361,10 @@ export default function HomePage() {
               {"Built by a developer,\nfor developers."}
             </SplitText>
             <p className="text-[17px] sm:text-xl text-porcelain/80 leading-relaxed mb-6">
-              OpenHouse was built by a working property developer in Cork while running a thousand-home development pipeline. Every workflow in the platform exists because it was missing from a real developer&rsquo;s day.
+              OpenHouse was built by a working property developer in Cork while helping take a residential scheme from greenfield to more than 200 homes within a planned 750-plus-home development.
             </p>
             <p className="text-[18px] sm:text-xl text-gold/90 font-medium leading-relaxed">
-              We&rsquo;re still using it on our own schemes.
+              It now supports more than 150 homes there.
             </p>
           </div>
         </Container>
@@ -359,7 +409,7 @@ export default function HomePage() {
               See it on one of your own schemes.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">
-              A demo is the fastest way to know whether OpenHouse fits your operation. Thirty minutes. We&rsquo;ll show you the platform configured against the kind of development you&rsquo;re already building.
+              Bring the plans, manuals and handover information for one house type. We&rsquo;ll trace how it becomes a homeowner answer and a developer insight.
             </p>
 
             <div className="flex flex-col items-center gap-5">
@@ -372,7 +422,7 @@ export default function HomePage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-carbon flex items-center gap-3">
-                  Book a Demo
+                  Request a house-type walkthrough
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"

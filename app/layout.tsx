@@ -42,10 +42,10 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title:
-    "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
+  metadataBase: new URL("https://openhouseai.ie"),
+  title: "OpenHouse Ai | A home that can explain itself",
   description:
-    "OpenHouse gives property developers one platform to run every scheme, every home a 24/7 AI assistant with energy intelligence, and renewables installers their own Care product. Live on developments in Ireland today.",
+    "OpenHouse turns approved house-type information into sourced homeowner answers and visible aftercare insight for property developers.",
   keywords: [
     "property development platform",
     "AI home assistant",
@@ -58,9 +58,9 @@ export const metadata: Metadata = {
   authors: [{ name: "EvolvAi" }],
   openGraph: {
     title:
-      "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
+      "OpenHouse Ai | A home that can explain itself",
     description:
-      "One platform to run every scheme, a 24/7 AI assistant with energy intelligence for every home, and dedicated Care for renewables installers.",
+      "One living record for each home, with sourced answers for homeowners and aftercare insight for property developers.",
     url: "https://openhouseai.ie",
     siteName: "OpenHouse Ai",
     images: [
@@ -77,9 +77,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
+      "OpenHouse Ai | A home that can explain itself",
     description:
-      "One platform to run every scheme, a 24/7 AI assistant with energy intelligence for every home, and dedicated Care for renewables installers.",
+      "One living record for each home, with sourced answers for homeowners and aftercare insight for property developers.",
     images: ["/og.jpg"],
   },
 };

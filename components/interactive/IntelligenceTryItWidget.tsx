@@ -170,7 +170,7 @@ export function IntelligenceTryItWidget() {
             </p>
           </div>
           <span className="text-[11px] uppercase tracking-wider text-porcelain/40">
-            Try it
+            Example data
           </span>
         </div>
 

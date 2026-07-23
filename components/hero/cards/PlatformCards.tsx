@@ -3,27 +3,14 @@
 import { motion } from "framer-motion";
 import { Building2, MessageCircle, Wrench, Zap } from "lucide-react";
 import { FloatingCard } from "../ModuleHero";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+
 import { EASE } from "@/lib/motion";
 
 /**
- * Hero floating cards — one card per pillar plus Energy Intelligence,
- * mirroring the story the page tells below: Developer platform,
- * Property Assistant, Care, and the energy saving. Illustrative figures
- * carry an "Example" tag.
+ * Hero floating cards: four views of the same living home record.
  */
 
-function ExampleTag() {
-  return (
-    <span className="inline-flex items-center px-1 py-px rounded text-[8px] font-semibold uppercase tracking-wider text-porcelain/55 border border-white/15 bg-white/5">
-      Example
-    </span>
-  );
-}
-
 export function PlatformFloatingCards() {
-  const reducedMotion = usePrefersReducedMotion();
-
   return (
     <>
       {/* Card 1: Developer platform */}
@@ -38,9 +25,9 @@ export function PlatformFloatingCards() {
             </div>
             <div className="space-y-1.5">
               {[
-                { label: "Units sale agreed", value: "158", tone: "text-gold" },
-                { label: "Docs complete", value: "94%", tone: "text-gold" },
-                { label: "Flags", value: "3", tone: "text-amber-400" },
+                { label: "House type", value: "B2", tone: "text-gold" },
+                { label: "Home record", value: "Ready", tone: "text-gold" },
+                { label: "Evidence gaps", value: "Visible", tone: "text-amber-400" },
               ].map((row) => (
                 <div key={row.label} className="flex items-center justify-between">
                   <span className="text-[10px] text-hint">{row.label}</span>
@@ -64,7 +51,7 @@ export function PlatformFloatingCards() {
                 <p className="text-sm font-medium text-porcelain">Property Assistant</p>
                 <p className="text-[10px] text-emerald-400 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
-                  AI Online
+                  Grounded in this home
                 </p>
               </div>
             </div>
@@ -72,14 +59,14 @@ export function PlatformFloatingCards() {
               <div className="flex justify-end">
                 <div className="bg-gold/20 rounded-2xl rounded-br-md px-3 py-1.5 max-w-[90%]">
                   <p className="font-serif italic text-[12px] text-porcelain">
-                    My heat pump flashed E5 — engineer?
+                    How do I top up the pressure?
                   </p>
                 </div>
               </div>
               <div className="flex justify-start">
                 <div className="bg-white/10 rounded-2xl rounded-bl-md px-3 py-1.5 max-w-[92%]">
                   <p className="text-[11px] text-porcelain">
-                    It&rsquo;s a sensor reading. Try this 90-second check first.
+                    Open the approved guide, page 14.
                   </p>
                 </div>
               </div>
@@ -100,16 +87,18 @@ export function PlatformFloatingCards() {
             </div>
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] text-hint">Systems monitored</span>
-                <span className="text-[10px] font-semibold text-emerald-400">412</span>
+                <span className="text-[10px] text-hint">Installer route</span>
+                <span className="text-[10px] font-semibold text-emerald-400">Connected</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[10px] text-hint">Need attention</span>
-                <span className="text-[10px] font-semibold text-amber-400">3</span>
+                <span className="text-[10px] text-hint">Evidence missing</span>
+                <span className="text-[10px] font-semibold text-amber-400">Escalate</span>
               </div>
             </div>
             <div className="mt-2.5">
-              <ExampleTag />
+              <span className="inline-flex items-center px-1 py-px rounded text-[8px] font-semibold uppercase tracking-wider text-emerald-300 border border-emerald-500/25 bg-emerald-500/10">
+                Pilot direction
+              </span>
             </div>
           </div>
         </div>
@@ -124,23 +113,22 @@ export function PlatformFloatingCards() {
                 <Zap className="w-3.5 h-3.5 text-emerald-300" />
               </div>
               <span className="text-[10px] font-medium text-emerald-300 uppercase tracking-wider">
-                Energy Intelligence
+                Energy layer
               </span>
             </div>
             <div className="flex items-baseline gap-1.5 mb-2">
               <span className="text-xl font-bold text-emerald-300 font-heading">
-                &euro;420/yr
+                Direction
               </span>
-              <ExampleTag />
             </div>
-            <p className="text-[10px] text-hint mb-2.5">saved by this home</p>
+            <p className="text-[10px] text-hint mb-2.5">money, comfort and risk</p>
             <div className="flex items-end gap-1 h-[26px]" aria-hidden="true">
               {[22, 19, 16, 13, 10, 8].map((h, i) => (
                 <motion.span
                   key={i}
                   className={`w-1.5 rounded-sm ${i >= 4 ? "bg-emerald-400" : "bg-white/15"}`}
                   style={{ height: h }}
-                  initial={reducedMotion ? false : { height: 3, opacity: 0.4 }}
+                  initial={false}
                   animate={{ height: h, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 1.3 + i * 0.07, ease: EASE }}
                 />

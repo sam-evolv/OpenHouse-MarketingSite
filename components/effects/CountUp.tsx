@@ -26,7 +26,7 @@ export function CountUp({
   const ref = useRef<HTMLSpanElement | null>(null);
   const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.5 });
   const reducedMotion = usePrefersReducedMotion();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(end);
 
   useEffect(() => {
     if (!isInView || isLoading) return;
@@ -35,6 +35,7 @@ export function CountUp({
       return;
     }
 
+    setCount(0);
     let startTime: number | null = null;
     const startValue = 0;
     const change = end - startValue;

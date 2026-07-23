@@ -29,10 +29,9 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title:
-    "Care Module, Stop the Callouts That Don't Need an Engineer | OpenHouse Ai",
+  title: "Care | Installer extension on the OpenHouse home record",
   description:
-    "OpenHouse Care gives every installation its own AI assistant, branded for your business, trained on the systems you actually installed. Drop the avoidable callouts. Keep the ones that need a technician.",
+    "A focused installer extension for approved guidance, honest escalation and recurring aftercare insight across installed systems.",
 };
 
 interface MarketStat {
@@ -69,18 +68,18 @@ const marketStats: MarketStat[] = [
 const steps = [
   {
     icon: Upload,
-    title: "Onboard your installations.",
-    desc: "Add your installation base. Heat pumps, solar arrays, HVAC, EV chargers. Each installation is registered against the customer's home, with the system specs the assistant needs.",
+    title: "Pilot: add one installation type.",
+    desc: "Start with the approved information for one installation type and attach it to the same home record.",
   },
   {
     icon: Smartphone,
-    title: "Customers get a branded portal.",
-    desc: "QR code at handover. Customer scans, links their installation to the portal. The assistant is now available 24/7 in your branding.",
+    title: "Pilot: show a branded access point.",
+    desc: "A QR code could link a customer to approved installation information under the installer's brand.",
   },
   {
     icon: BarChart3,
-    title: "You see what's happening.",
-    desc: "On the installer side, you see every question, every resolved issue, every callout that did need an engineer. Patterns surface. Training improves. Your operation gets leaner.",
+    title: "Pilot: review questions and gaps.",
+    desc: "An installer view could group customer questions, missing evidence and issues escalated for professional support.",
   },
 ];
 
@@ -89,25 +88,25 @@ const features = [
     icon: Headset,
     title: "A branded customer assistant.",
     description:
-      "24/7 support in your branding. Trained on the specific systems you installed. Customers get the right answer the first time.",
+      "Approved guidance and a clear route to human support, presented under the installer brand.",
   },
   {
     icon: Plug,
-    title: "Telemetry integrations.",
+    title: "Direction: system-data connections.",
     description:
-      "Huawei FusionSolar, Daikin ONECTA, SolarEdge, and growing. The assistant reads live system data where the integration exists.",
+      "Potential connections such as Huawei FusionSolar, Daikin ONECTA and SolarEdge are shown as future direction, not live integrations.",
   },
   {
     icon: PhoneCall,
     title: "Callouts that do need you, routed to you.",
     description:
-      "When the issue is real, the customer is taken straight to your booking flow. You don't lose the work, you just lose the avoidable trips.",
+      "A pilot could route unresolved questions to the installer's existing support or booking flow. No automatic diagnosis is claimed.",
   },
   {
     icon: Activity,
     title: "Patterns across your installation base.",
     description:
-      "Every question and every callout gives you data on what's failing, where, and how often. Your next install is informed by your last hundred.",
+      "A pilot could group recurring questions and evidence gaps so the installer can decide what to improve in future handovers.",
   },
 ];
 
@@ -116,19 +115,19 @@ const personas = [
     icon: Thermometer,
     title: "Heat pump and HVAC installers.",
     description:
-      "Managing 500 to 5,000 active installs. Care drops your avoidable callouts and gives you data on what your fleet is actually doing.",
+      "For teams exploring whether approved guidance and clearer escalation could reduce avoidable support work.",
   },
   {
     icon: Sun,
     title: "Solar PV and battery installers.",
     description:
-      "Customers want to understand their system. Care gives them the answers without your phone ringing every week about a normal nighttime drop.",
+      "For teams exploring a sourced, branded way to answer common questions without pretending illustrative system data is live.",
   },
   {
     icon: Layers,
     title: "Multi-system installers.",
     description:
-      "Heat pump plus solar plus battery plus EV charger in the same home. Care holds the whole system in one place for the customer and one dashboard for you.",
+      "For teams exploring how approved information for several installed systems could remain attached to one home record.",
   },
 ];
 
@@ -155,6 +154,7 @@ export default function CarePage() {
 
       {/* ── 1. Hero ── */}
       <ModuleHero
+        titleLabel="Aftercare on the same home record."
         backgroundImage={heroBackground}
         accentColor="emerald"
         imagePosition="object-center"
@@ -172,16 +172,16 @@ export default function CarePage() {
         }
         title={
           <>
-            Stop the{" "}
+            Aftercare on the{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              callouts
-            </span>{" "}
-            that don&rsquo;t need an engineer.
+              same home record
+            </span>
+            .
           </>
         }
-        subtitle="Roughly four in ten heat pump and solar callouts are for things the customer could resolve themselves. OpenHouse Care gives every installation its own AI assistant, branded for your business, trained on the systems you actually installed."
-        primaryCta={{ href: "#roi", label: "See the math" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        subtitle="Care is a focused installer extension of OpenHouse: approved guidance for the customer, honest escalation when evidence is not enough, and a clearer view of recurring aftercare questions."
+        primaryCta={{ href: "#roi", label: "See the extension" }}
+        secondaryCta={{ href: "/contact?interest=care", label: "Discuss a pilot" }}
       >
         <CareFloatingCards />
       </ModuleHero>
@@ -232,7 +232,7 @@ export default function CarePage() {
               The math, when we do it together
             </p>
             <p className="text-[17px] sm:text-lg text-porcelain/85 leading-relaxed">
-              Different installers run very different ratios of avoidable to genuine callouts depending on the systems installed and the quality of handover documentation. We&rsquo;d rather not invent the numbers for your operation. On a demo call, bring your callout log for the last three months and we&rsquo;ll do the math against what OpenHouse Care would catch. If the saving doesn&rsquo;t pay for the platform several times over, we&rsquo;ll tell you straight.
+              Avoidable-callout rates vary by installer, system mix and handover quality. Bring an anonymised three-month callout log to a pilot discussion and we can classify what approved guidance might have answered, what still needed professional judgement and what must remain an engineer visit. No generic percentage is presented as your result.
             </p>
           </div>
 
@@ -255,13 +255,13 @@ export default function CarePage() {
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              Your Brand, In Front
+              Pilot concept
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Branded for you. Trained on your installations.
+              Branded for you. Grounded in approved information.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              Customers see your name, not ours. The assistant knows what you installed, when you installed it, and what to do when something goes wrong. The trust stays with your brand. The callouts that actually need you, still come to you.
+              This example shows how an installer-branded extension could answer from the approved installation record and escalate when that record is not enough. It is a pilot concept, not a live fleet or automated diagnostic service.
             </p>
           </div>
 
@@ -281,7 +281,7 @@ export default function CarePage() {
                   <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black p-5 pt-12 flex flex-col">
                     <div className="flex items-center justify-between text-[11px] text-porcelain/40 mb-4">
                       <span>9:41</span>
-                      <span className="font-semibold">Acme Renewables</span>
+                      <span className="font-semibold">Example Installer</span>
                       <span>100%</span>
                     </div>
 
@@ -292,7 +292,7 @@ export default function CarePage() {
                       </div>
                       <div>
                         <p className="text-[12px] font-semibold text-porcelain">
-                          Acme Renewables
+                          Example Installer
                         </p>
                         <p className="text-[9px] text-emerald-400">
                           Your installer&rsquo;s support
@@ -311,10 +311,10 @@ export default function CarePage() {
                       <div className="flex justify-start">
                         <div className="bg-white/10 rounded-2xl rounded-bl-sm px-3 py-2 max-w-[90%]">
                           <p className="text-[12px] text-porcelain leading-relaxed mb-1.5">
-                            E5 is a flow temperature sensor issue on your Daikin Altherma 3 R.
+                            The approved Daikin guide identifies E5 as a flow temperature sensor issue.
                           </p>
                           <p className="text-[11px] text-porcelain/70 leading-relaxed">
-                            Let&rsquo;s try a 90-second check first. If that doesn&rsquo;t fix it, we&rsquo;ll book a technician for you.
+                            Do not open the unit. Follow the approved user guidance, and contact your installer if the warning remains.
                           </p>
                         </div>
                       </div>
@@ -324,7 +324,7 @@ export default function CarePage() {
                     <div className="mt-3 pt-3 border-t border-white/5">
                       <div className="inline-flex items-center gap-2 w-full justify-center px-3 py-2.5 rounded-xl bg-emerald-500 text-carbon text-[11px] font-semibold">
                         <Phone className="w-3 h-3" aria-hidden="true" />
-                        Book a callout with Acme Renewables
+                        Book a callout with Example Installer
                       </div>
                     </div>
 
@@ -349,7 +349,7 @@ export default function CarePage() {
                     </div>
                     <div>
                       <p className="text-[11px] uppercase tracking-wider text-emerald-400 font-semibold">
-                        Acme Renewables support
+                        Example Installer support
                       </p>
                       <p className="text-sm text-porcelain/60">
                         Daikin Altherma 3 R, installed March 2024
@@ -359,10 +359,10 @@ export default function CarePage() {
 
                   <div className="space-y-3 mb-5">
                     <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
-                      E5 means your heat pump has detected a flow temperature sensor issue. Nine times out of ten this is a connection on the sensor wiring that has worked loose during a cold snap.
+                      The approved Daikin Altherma 3 R guide identifies E5 as a flow temperature sensor issue. This interface does not infer the cause from the code alone.
                     </p>
                     <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
-                      Here&rsquo;s the 90-second check, recorded by our team for this exact unit. If the check doesn&rsquo;t resolve it, this is a real one. Book a technician below and we&rsquo;ll be out.
+                      Show the approved homeowner guidance first. If it does not resolve the warning, or the evidence is incomplete, escalate to the installer for qualified assessment.
                     </p>
                   </div>
 
@@ -377,36 +377,31 @@ export default function CarePage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold text-porcelain truncate">
-                          E5 sensor wiring check
+                          Approved E5 homeowner guidance
                         </p>
                         <p className="text-[12px] text-porcelain/50">
-                          Recorded by Acme Renewables, 1m 28s
+                          Example content supplied by the installer
                         </p>
                       </div>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
-                    <button
-                      type="button"
-                      className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-emerald-500 text-carbon text-sm font-semibold hover:scale-[1.02] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+                    <div
+                      className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-emerald-500 text-carbon text-sm font-semibold"
                     >
-                      <Play
-                        className="w-4 h-4 fill-carbon"
-                        aria-hidden="true"
-                      />
-                      Watch the 90-second check
-                    </button>
-                    <button
-                      type="button"
-                      className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-white text-carbon text-sm font-semibold border border-white hover:scale-[1.02] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                      <Play className="w-4 h-4 fill-carbon" aria-hidden="true" />
+                      Example: approved guidance
+                    </div>
+                    <div
+                      className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-white text-carbon text-sm font-semibold border border-white"
                     >
                       <Phone className="w-4 h-4" aria-hidden="true" />
-                      Book a callout with Acme Renewables
-                    </button>
+                      Example: book a callout
+                    </div>
                   </div>
                   <p className="text-[11px] text-porcelain/40 mt-4">
-                    Acme Renewables shown as a placeholder. In production, the assistant carries your name, your colours, your logo.
+                    Example Installer shown as a placeholder. In production, the assistant carries your name, your colours, your logo.
                   </p>
                 </div>
               </div>
@@ -426,16 +421,16 @@ export default function CarePage() {
             {/* Copy */}
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-                Reads the real system
+                Direction: connected support
               </p>
               <h2 className="text-[28px] sm:text-4xl lg:text-[44px] font-bold text-white font-heading leading-tight mb-5">
-                It knows the difference between a scare and a callout.
+                System context could strengthen the escalation.
               </h2>
               <p className="text-[17px] text-porcelain/75 leading-relaxed mb-4">
-                Where the integration exists, Care reads live data from the customer&rsquo;s system &mdash; Daikin ONECTA, SolarEdge, Huawei FusionSolar &mdash; and diagnoses against the exact unit you installed. An intermittent sensor gets a 90-second self-check. A genuine fault goes straight to your booking flow.
+                The interface beside this text illustrates a future direction in which approved documents and connected system data sit together. Daikin ONECTA, SolarEdge and Huawei FusionSolar are examples of potential data sources, not claimed live integrations.
               </p>
               <p className="text-[15px] text-porcelain/60 leading-relaxed">
-                Every question and callout feeds one console, so you see what your whole installation base is doing &mdash; and what keeps failing.
+                The current product value is the structured installation record, grounded guidance and visible route to the installer when evidence is not enough.
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
                 {["Daikin ONECTA", "SolarEdge", "Huawei FusionSolar"].map((t) => (
@@ -459,12 +454,12 @@ export default function CarePage() {
                     <Activity className="w-4 h-4 text-emerald-400" aria-hidden="true" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-porcelain">Your fleet, live</p>
-                    <p className="text-[11px] text-porcelain/45 truncate">Every question and callout, one console</p>
+                    <p className="text-sm font-semibold text-porcelain">Example fleet view</p>
+                    <p className="text-[11px] text-porcelain/45 truncate">Direction concept for questions and escalation</p>
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-[11px] font-medium text-emerald-300">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden="true" />
-                    Online
+                    Example
                   </span>
                 </div>
 
@@ -476,9 +471,9 @@ export default function CarePage() {
                     </p>
                     <ul className="space-y-2.5">
                       {[
-                        { unit: "Daikin Altherma · E5", detail: "Sensor check resolved it", tone: "ok" as const },
-                        { unit: "Mitsubishi Ecodan · E4", detail: "Low flow — callout booked", tone: "warn" as const },
-                        { unit: "SolarEdge · night drop", detail: "Explained, no callout", tone: "ok" as const },
+                        { unit: "Daikin Altherma · E5", detail: "Approved guide shown, then escalated", tone: "warn" as const },
+                        { unit: "Mitsubishi Ecodan · E4", detail: "Evidence gap sent to installer", tone: "warn" as const },
+                        { unit: "Solar PV · nighttime query", detail: "Answered from approved guidance", tone: "ok" as const },
                         { unit: "Battery · capacity query", detail: "Answered from the manual", tone: "ok" as const },
                       ].map((row) => (
                         <li
@@ -513,7 +508,7 @@ export default function CarePage() {
                         <Zap className="w-3 h-3" aria-hidden="true" /> Recurring pattern
                       </p>
                       <p className="text-[13px] text-porcelain/85 leading-snug">
-                        E5 after cold snaps &mdash; 9 homes. Add it to the winter handover pack.
+                        Repeated E5 questions in this example suggest reviewing the winter handover pack.
                       </p>
                     </div>
                   </div>
@@ -534,10 +529,10 @@ export default function CarePage() {
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-700 mb-4 font-semibold">
-              How Care Works
+              Pilot workflow
             </p>
             <h2 className="text-[28px] sm:text-4xl font-bold text-carbon font-heading leading-tight">
-              Three steps, no curve.
+              Start with one installation type.
             </h2>
           </div>
 
@@ -579,10 +574,10 @@ export default function CarePage() {
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              What Care Does
+              Pilot capabilities
             </p>
             <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
-              Four jobs, off your van.
+              Four capabilities to test with an installer.
             </h2>
           </div>
 
@@ -615,7 +610,7 @@ export default function CarePage() {
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              Built For You
+              Potential pilot partners
             </p>
             <h2 className="text-[28px] sm:text-4xl font-bold text-white font-heading leading-tight">
               You probably recognise one of these.
@@ -651,10 +646,10 @@ export default function CarePage() {
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
-              Built by people who already work with developers.
+              Built from direct housing-delivery experience.
             </h2>
             <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed">
-              OpenHouse is a property platform used by developers across Ireland. Care exists because the same homes that come out of those developments have heat pumps and solar arrays that need ongoing care. We already sit between developers and homeowners. Care extends that to installers.
+              OpenHouse is being shaped through direct work on a live Cork housing development. Care is a proposed extension for the systems already attached to those homes, using the same approved record, provenance and escalation model.
             </p>
           </div>
         </Container>
@@ -676,12 +671,12 @@ export default function CarePage() {
               See it on your actual installation base.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">
-              A demo takes thirty minutes. Bring the spec of one of your typical installations and we&rsquo;ll show you exactly what your customer&rsquo;s experience would look like in Care, branded for you.
+              Bring the approved specification for one typical installation and an anonymised three-month callout log. We will map what could be answered from evidence, what must escalate and what a limited pilot would need to prove.
             </p>
 
             <div className="flex flex-col items-center gap-5">
               <Link
-                href="/contact"
+                href="/contact?interest=care"
                 className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(16,185,129,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
               >
                 <span
@@ -689,7 +684,7 @@ export default function CarePage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-white flex items-center gap-3">
-                  Book a Demo
+                  Discuss a Care pilot
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"
@@ -716,10 +711,10 @@ export default function CarePage() {
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h2 className="text-[24px] sm:text-3xl font-bold text-carbon font-heading mb-4">
-              A separate product, on the same platform.
+              A focused extension, on the same home record.
             </h2>
             <p className="text-[17px] sm:text-lg text-carbon/70 leading-relaxed">
-              Care is its own product for installers, built on the platform developers use to run their schemes and give every home an assistant.
+              Care applies the same evidence, source and escalation model to installer aftercare. It does not create a separate product story or a second version of the home.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">

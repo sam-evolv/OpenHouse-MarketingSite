@@ -32,7 +32,7 @@ export function CareFloatingCards() {
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-porcelain">
-                Acme Renewables, support
+                Example Installer, support
               </p>
               <p className="text-[10px] text-emerald-400 flex items-center gap-1">
                 <motion.span
@@ -40,7 +40,7 @@ export function CareFloatingCards() {
                   animate={{ opacity: [0.4, 1, 0.4] }}
                   transition={{ duration: 1.8, repeat: Infinity }}
                 />
-                AI online
+                Pilot concept
               </p>
             </div>
           </div>
@@ -81,22 +81,22 @@ export function CareFloatingCards() {
               <BarChart3 className="w-4 h-4 text-emerald-400" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-porcelain">This week</p>
-              <p className="text-[10px] text-porcelain/50">Your fleet</p>
+              <p className="text-sm font-medium text-porcelain">Example week</p>
+              <p className="text-[10px] text-porcelain/50">Illustrative fleet view</p>
             </div>
           </div>
           <div className="p-4 space-y-3">
             <div className="flex items-baseline justify-between">
               <span className="text-[11px] text-porcelain/70">
-                Queries answered without a callout
+                Questions grounded in approved guidance
               </span>
-              <span className="text-2xl font-bold text-emerald-400">47</span>
+              <span className="text-sm font-bold text-emerald-400">Visible</span>
             </div>
             <div className="flex items-baseline justify-between pt-2 border-t border-white/5">
               <span className="text-[11px] text-porcelain/70">
-                Engineer hours saved
+                Evidence gaps escalated
               </span>
-              <span className="text-lg font-semibold text-emerald-300">12</span>
+              <span className="text-sm font-semibold text-emerald-300">Visible</span>
             </div>
           </div>
         </div>
@@ -137,8 +137,8 @@ export function CareFloatingCards() {
               <Plug className="w-4 h-4 text-emerald-400" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-porcelain">Connected</p>
-              <p className="text-[10px] text-porcelain/50">Live telemetry</p>
+              <p className="text-sm font-medium text-porcelain">Direction</p>
+              <p className="text-[10px] text-porcelain/50">Potential data sources</p>
             </div>
           </div>
           <div className="p-4 space-y-1.5">

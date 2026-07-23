@@ -33,17 +33,17 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Developer Dashboard — Aggregated Insight From Every Home | OpenHouse Ai",
+  title: "Developer Dashboard | One living record for every home | OpenHouse Ai",
   description:
-    "One dashboard for property developers: sales, build, snagging, handover and portfolio intelligence — plus aggregated analysis of every home's energy, issues, snags and questions, and the digital Home User Guide behind Home Performance Index certification.",
+    "Turn approved house-type information into property-specific handovers, sourced homeowner guidance and visible aftercare gaps across a scheme.",
 };
 
 const capabilities = [
   {
     title: "Sales",
-    href: "/sales",
+    href: "#developer-proof",
     icon: TrendingUp,
-    desc: "Live pipeline, velocity and at-risk-deal alerts across every unit and scheme — not a Friday spreadsheet.",
+    desc: "Keep approved buyer, unit and house-type context attached to the same record used at handover.",
     accent: "text-blue-400",
     bg: "bg-blue-500/10",
     border: "border-blue-500/30",
@@ -51,9 +51,9 @@ const capabilities = [
   },
   {
     title: "Build",
-    href: "/build",
+    href: "#developer-proof",
     icon: FolderOpen,
-    desc: "Compliance, certs, documents and drawings per unit — BCAR to BER, sub-contractors and all, audit-ready.",
+    desc: "Organise approved certificates, documents and drawings against the relevant house type and home.",
     accent: "text-emerald-400",
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/30",
@@ -61,9 +61,9 @@ const capabilities = [
   },
   {
     title: "Snagging",
-    href: "/build",
+    href: "#developer-proof",
     icon: ListChecks,
-    desc: "Snag lists tracked live per unit, with dates updated as items are raised, assigned and closed off.",
+    desc: "Keep the handover status and approved record aligned as outstanding items are reviewed and closed.",
     accent: "text-emerald-400",
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/30",
@@ -71,9 +71,9 @@ const capabilities = [
   },
   {
     title: "Handover",
-    href: "/handover",
+    href: "#developer-proof",
     icon: MessageSquare,
-    desc: "Digital handover packs that build themselves, and a home portal for every buyer.",
+    desc: "Turn approved house-type information into a property-specific record and homeowner interface.",
     accent: "text-gold",
     bg: "bg-gold/10",
     border: "border-gold/30",
@@ -81,9 +81,9 @@ const capabilities = [
   },
   {
     title: "Intelligence",
-    href: "/intelligence",
+    href: "#developer-proof",
     icon: Sparkles,
-    desc: "Ask anything across the portfolio and get the answer instantly, with its source — plus a morning briefing.",
+    desc: "Group recurring homeowner questions and evidence gaps so the next handover can improve at source.",
     accent: "text-violet-300",
     bg: "bg-violet-500/15",
     border: "border-violet-400/30",
@@ -109,6 +109,7 @@ export default function PlatformOverviewPage() {
 
       {/* ── 1. Hero ── */}
       <ModuleHero
+        titleLabel="One home record. Compounding insight."
         backgroundImage={heroBackground}
         accentColor="gold"
         imagePosition="object-top"
@@ -121,16 +122,16 @@ export default function PlatformOverviewPage() {
         }
         title={
           <>
-            Run every stage of a scheme in{" "}
+            One home record.{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              one place
+              Compounding insight
             </span>
             .
           </>
         }
-        subtitle="OpenHouse replaces the spreadsheets, WhatsApp groups, and paper folders developers still rely on. Sales, build, snagging, handover and portfolio intelligence — and aggregated insight from every home you've handed over. One dashboard, live on developments in Ireland today."
-        primaryCta={{ href: "#capabilities", label: "See what it runs" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        subtitle="Start with one house type. OpenHouse turns the approved information your team already creates into sourced homeowner guidance, visible evidence gaps and a better feedback loop for future homes."
+        primaryCta={{ href: "/contact", label: "Request a house-type walkthrough" }}
+        secondaryCta={{ href: "#developer-proof", label: "See how it compounds" }}
       >
         <PlatformFloatingCards />
       </ModuleHero>
@@ -151,13 +152,13 @@ export default function PlatformOverviewPage() {
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              One platform
+              One living record
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Everything a scheme needs, on one system.
+              One control plane across the scheme.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              Every home a developer builds passes through the same stages. OpenHouse holds all of them — same data, different surfaces — so nothing lives in a folder no one can find.
+              OpenHouse keeps the house type, the individual home and the developer workflow connected. The same known information can support sales, build, snagging, handover and aftercare without becoming separate records.
             </p>
           </div>
 
@@ -201,9 +202,9 @@ export default function PlatformOverviewPage() {
                   <Zap className="w-5 h-5 text-emerald-400" aria-hidden="true" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-white mb-2 font-heading">Energy Intelligence</h3>
+                  <h3 className="text-lg font-bold text-white mb-2 font-heading">Energy Intelligence <span className="ml-1 align-middle text-[9px] uppercase tracking-wider text-emerald-300">Direction</span></h3>
                   <p className="text-[15px] text-porcelain/70 leading-relaxed">
-                    Hand every buyer a home that monitors and explains its own energy. You see the aggregate.
+                    A future layer connecting energy context to the same home record. No live telemetry or savings claim.
                   </p>
                 </div>
               </div>
@@ -249,7 +250,7 @@ export default function PlatformOverviewPage() {
       </section>
 
       {/* ── 3. Aggregated portfolio intelligence ── */}
-      <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
+      <section id="developer-proof" className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32">
         <div
           className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.04] to-transparent"
           aria-hidden="true"
@@ -257,20 +258,20 @@ export default function PlatformOverviewPage() {
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              Aggregated intelligence
+              The feedback loop
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Every home reports back.
+              Every question can improve the next home.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              Across a scheme, OpenHouse aggregates and analyses what every home experiences — energy consumption, issues, snag items, and the questions homeowners actually ask. Patterns, not anecdotes.
+              OpenHouse can group the questions homeowners ask, show where approved information is missing and surface repeated aftercare themes across a scheme. Developers see patterns instead of isolated calls.
             </p>
           </div>
 
           <div className="max-w-5xl mx-auto">
             <ProductShot
               src={analyticsInsights}
-              alt="OpenHouse developer analytics: aggregated energy, issue, and question insights across a scheme"
+              alt="Example OpenHouse developer analytics view showing grouped issue and homeowner-question insights across a scheme"
               accent="gold"
             />
 
@@ -335,8 +336,8 @@ export default function PlatformOverviewPage() {
               },
               {
                 icon: ShieldCheck,
-                title: "Evidence for certification and green finance.",
-                body: "A logged record that aftercare was delivered. HPI certification can unlock discounted green development finance and supports EU Taxonomy reporting.",
+                title: "A clearer evidence trail for certification.",
+                body: "A property-specific guide and logged aftercare record can support an HPI evidence pack. Certification and finance eligibility remain decisions for the relevant assessor and lender.",
               },
               {
                 icon: TrendingDown,
@@ -408,7 +409,7 @@ export default function PlatformOverviewPage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-carbon flex items-center gap-3">
-                  Book a Demo
+                  Request a house-type walkthrough
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"

@@ -5,8 +5,8 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import { ArrowRight } from "lucide-react";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { EASE } from "@/lib/motion";
+import { useHydratedReducedMotion } from "@/hooks/useHydratedReducedMotion";
 
 interface ModuleHeroProps {
   backgroundImage: StaticImageData;
@@ -15,6 +15,7 @@ interface ModuleHeroProps {
   imagePosition?: string; // e.g. "object-bottom" | "object-top"
   badge: ReactNode;
   title: ReactNode;
+  titleLabel?: string;
   subtitle: string;
   primaryCta: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
@@ -35,6 +36,7 @@ export function ModuleHero({
   imagePosition,
   badge,
   title,
+  titleLabel,
   subtitle,
   primaryCta,
   secondaryCta,
@@ -42,7 +44,7 @@ export function ModuleHero({
 }: ModuleHeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
-  const reducedMotion = usePrefersReducedMotion();
+  const reducedMotion = useHydratedReducedMotion();
 
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
@@ -81,7 +83,7 @@ export function ModuleHero({
     >
       {/* Parallax background */}
       <motion.div
-        className="absolute inset-0 scale-110 overflow-hidden"
+        className="pointer-events-none absolute inset-0 scale-110 overflow-hidden"
         style={{ x: bgX, y: bgY }}
       >
         <Image
@@ -89,6 +91,7 @@ export function ModuleHero({
           alt={backgroundAlt}
           fill
           priority
+          quality={60}
           className={`object-cover ${imagePosition || ""}`}
           sizes="100vw"
         />
@@ -105,7 +108,7 @@ export function ModuleHero({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[70vh] lg:min-h-[75vh]">
           {/* Left: Text content */}
           <motion.div
-            initial={reducedMotion ? false : { opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
             className="relative z-20"
@@ -115,7 +118,7 @@ export function ModuleHero({
               <div className="relative p-4">
                 {/* Badge */}
                 <motion.div
-                  initial={reducedMotion ? false : { opacity: 0, scale: 0.95 }}
+                  initial={false}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.45, ease: EASE }}
                   className="mb-6"
@@ -124,7 +127,7 @@ export function ModuleHero({
                 </motion.div>
 
                 {/* Title */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6 font-heading">
+                <h1 aria-label={titleLabel} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6 font-heading">
                   {title}
                 </h1>
 
@@ -182,14 +185,14 @@ export function ModuleHero({
           <span className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/20 to-gold/30" />
           <motion.span
             className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/60 to-gold origin-top"
-            initial={reducedMotion ? false : { scaleY: 0 }}
+            initial={false}
             animate={{ scaleY: 1 }}
             transition={{ duration: 0.6, delay: 1.1, ease: EASE }}
           />
         </span>
         <motion.span
           className="block w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_12px_rgba(212,175,55,0.5)]"
-          initial={reducedMotion ? false : { opacity: 0 }}
+          initial={false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 1.6, ease: EASE }}
         />
@@ -207,7 +210,7 @@ interface FloatingCardProps {
 }
 
 export function FloatingCard({ children, depth, className = "", delay = 0.6 }: FloatingCardProps) {
-  const reducedMotion = usePrefersReducedMotion();
+  const reducedMotion = useHydratedReducedMotion();
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
   const springConfig = { damping: 25, stiffness: 150 };
@@ -232,7 +235,7 @@ export function FloatingCard({ children, depth, className = "", delay = 0.6 }: F
     <motion.div
       className="relative shrink-0 snap-center lg:absolute"
       style={{ x: cardX, y: cardY, zIndex: depth * 10 }}
-      initial={reducedMotion ? false : { opacity: 0, y: 50 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay, ease: EASE }}
     >

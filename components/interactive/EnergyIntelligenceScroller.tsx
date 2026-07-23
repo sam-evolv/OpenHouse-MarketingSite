@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useId, useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import {
@@ -29,6 +29,7 @@ function stageFor(p: number): number {
 }
 
 export function EnergyIntelligenceScroller() {
+  const tabId = useId();
   const ref = useRef<HTMLElement | null>(null);
   const reducedMotion = usePrefersReducedMotion();
   const [pinned, setPinned] = useState(false);
@@ -123,8 +124,25 @@ export function EnergyIntelligenceScroller() {
                       key={s.id}
                       type="button"
                       role="tab"
+                      id={`${tabId}-tab-${s.id}`}
+                      aria-controls={`${tabId}-panel`}
                       aria-selected={active}
+                      tabIndex={active ? 0 : -1}
                       onClick={() => jump(i)}
+                      onKeyDown={(event) => {
+                        const tabs = Array.from(
+                          event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]') ?? []
+                        );
+                        let next = i;
+                        if (event.key === "ArrowDown" || event.key === "ArrowRight") next = (i + 1) % STEPS.length;
+                        else if (event.key === "ArrowUp" || event.key === "ArrowLeft") next = (i - 1 + STEPS.length) % STEPS.length;
+                        else if (event.key === "Home") next = 0;
+                        else if (event.key === "End") next = STEPS.length - 1;
+                        else return;
+                        event.preventDefault();
+                        void jump(next);
+                        tabs[next]?.focus();
+                      }}
                       className={`group flex items-center gap-3 min-h-[40px] text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon rounded-md ${
                         active
                           ? "text-emerald-300"
@@ -150,11 +168,17 @@ export function EnergyIntelligenceScroller() {
             </div>
 
             {/* The demo, stage-driven by scroll */}
-            <EnergyIntelligenceDemo
-              accent="emerald"
-              stage={ORDER[stageIndex]}
-              hideControls
-            />
+            <div
+              id={`${tabId}-panel`}
+              role="tabpanel"
+              aria-labelledby={`${tabId}-tab-${ORDER[stageIndex]}`}
+            >
+              <EnergyIntelligenceDemo
+                accent="emerald"
+                stage={ORDER[stageIndex]}
+                hideControls
+              />
+            </div>
           </div>
         </Container>
       </div>

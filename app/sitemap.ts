@@ -1,19 +1,13 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://openhouse.ai';
+  const baseUrl = 'https://openhouseai.ie';
 
   const routes = [
     '',
     '/developers',
     '/assistant',
     '/care',
-    '/features',
-    '/solutions',
-    '/pricing',
-    '/case-studies',
-    '/docs',
-    '/demo',
     '/contact',
     '/privacy',
     '/terms',

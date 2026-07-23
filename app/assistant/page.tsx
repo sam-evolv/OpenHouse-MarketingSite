@@ -23,23 +23,23 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Property Assistant — A 24/7 AI for Every Home | OpenHouse Ai",
+  title: "Property Assistant | Sourced answers for every home | OpenHouse Ai",
   description:
-    "Every home OpenHouse hands over comes with its own 24/7 AI assistant — trained on that home's documents and connected to its energy systems. It answers any question, from a bill to a warning light, and helps homeowners run an A-rated home.",
+    "Homeowners ask by text, speech or image and receive plain-language answers grounded in the approved information for their specific home.",
 };
 
 const answers = [
   {
     icon: Zap,
-    q: "My heat pump flashed E5 — do I need an engineer?",
-    a: "Diagnoses the fault from live telemetry, offers a 90-second self-check, and only books a callout if it's genuinely needed.",
-    tag: "Energy",
+    q: "My heat pump flashed E5. Do I need an engineer?",
+    a: "Checks the approved manual for that exact unit. If the evidence is not enough to answer safely, it explains the gap and escalates.",
+    tag: "Manuals",
   },
   {
     icon: Receipt,
     q: "Why did my electricity bill jump this month?",
-    a: "Reads your usage, points to what changed, and suggests the cheapest fix — off-peak charging, flow temperature, tariff.",
-    tag: "Bills",
+    a: "Explains the home and its systems from the approved record. Meter or tariff analysis is a future energy-intelligence layer, not presented here as live.",
+    tag: "Direction",
   },
   {
     icon: Ruler,
@@ -63,13 +63,13 @@ const steps = [
   },
   {
     icon: Bot,
-    title: "Ask anything, any time.",
-    desc: "Trained on this specific home and connected to its energy systems. The right answer, the first time, 24/7.",
+    title: "Ask in the way that suits you.",
+    desc: "Use text, speech or an image. OpenHouse answers from the approved record for this specific home and keeps the source visible.",
   },
   {
     icon: Bell,
-    title: "The home reminds you.",
-    desc: "Heat pump service due. BER renewal coming up. A system running inefficiently. The assistant nudges at the right moment.",
+    title: "Escalate when evidence stops.",
+    desc: "If the record cannot support a reliable answer, OpenHouse says so and routes the question to the developer or appropriate professional.",
   },
 ];
 
@@ -91,6 +91,7 @@ export default function AssistantPage() {
 
       {/* ── 1. Hero ── */}
       <ModuleHero
+        titleLabel="Your home, with a memory."
         backgroundImage={heroBackground}
         accentColor="gold"
         imagePosition="object-center"
@@ -103,22 +104,22 @@ export default function AssistantPage() {
         }
         title={
           <>
-            A 24/7 AI for{" "}
+            Your home, with a{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              every home
-            </span>{" "}
-            you build.
+              memory
+            </span>
+            .
           </>
         }
-        subtitle="Every home comes with its own assistant — trained on that home's documents and connected to its energy systems. It answers any question, from a bill to a warning light, and helps the homeowner run an efficient, A-rated home."
-        primaryCta={{ href: "#energy", label: "See energy intelligence" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        subtitle="Homeowners ask by text, speech or image and receive plain-language answers grounded in the approved information for their specific home."
+        primaryCta={{ href: "#assistant-proof", label: "Trace a sourced answer" }}
+        secondaryCta={{ href: "/contact", label: "Request a walkthrough" }}
       >
         <HandoverFloatingCards />
       </ModuleHero>
 
       {/* ── 2. Assistant money shot ── */}
-      <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
+      <section id="assistant-proof" className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-28">
         <div
           className="absolute inset-0 bg-gradient-to-b from-gold/[0.06] via-transparent to-gold/[0.04]"
           aria-hidden="true"
@@ -176,17 +177,17 @@ export default function AssistantPage() {
                       <div className="flex justify-end">
                         <div className="bg-gold/20 rounded-2xl rounded-br-md px-3 py-2 max-w-[85%]">
                           <p className="font-serif italic text-[13px] text-porcelain leading-relaxed">
-                            Why did my electricity bill jump this month?
+                            How do I top up the pressure on my heat pump?
                           </p>
                         </div>
                       </div>
                       <div className="flex justify-start">
                         <div className="bg-white/10 rounded-2xl rounded-bl-md px-3 py-2 max-w-[88%]">
                           <p className="text-[12px] text-porcelain leading-relaxed mb-1.5">
-                            Your EV charged at the full day rate three times this week instead of your off-peak window. That&rsquo;s about &euro;28 of the rise.
+                            Your home has a Daikin Altherma 3 R in the utility room.
                           </p>
                           <p className="text-[11px] text-porcelain/70 leading-relaxed">
-                            I can move charging back to your off-peak window. Want me to?
+                            The approved handover guide shows the filling loop on page 14.
                           </p>
                         </div>
                       </div>
@@ -218,37 +219,37 @@ export default function AssistantPage() {
                     </div>
                     <div>
                       <p className="text-[11px] uppercase tracking-wider text-gold font-semibold">
-                        Connected to your home
+                        Grounded in approved information
                       </p>
                       <p className="text-sm text-porcelain/60">
-                        EV charger &amp; smart meter &middot; live telemetry
+                        House Type B2 &middot; handover guide, page 14
                       </p>
                     </div>
                   </div>
 
                   <div className="space-y-3 mb-5">
                     <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
-                      Your bill rose because the EV charged at the full day rate instead of your off-peak window — three sessions this week, roughly &euro;28 of the increase.
+                      Your home has a Daikin Altherma 3 R in the utility room. The approved handover guide identifies the filling loop beneath the indoor unit.
                     </p>
                     <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
-                      This usually happens after a charger app update resets the schedule. I can restore your cheapest off-peak charging window now.
+                      Open the source before changing any setting. If the instructions do not match what you can see, stop and send a photo for escalation.
                     </p>
                   </div>
 
                   <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
-                    <button
-                      type="button"
+                    <Link
+                      href="/#pillars"
                       className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-gold text-carbon text-sm font-semibold hover:scale-[1.02] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
                     >
                       <Play className="w-4 h-4 fill-carbon" aria-hidden="true" />
-                      Fix the schedule
-                    </button>
-                    <button
-                      type="button"
+                      Open the sourced example
+                    </Link>
+                    <Link
+                      href="#grounding"
                       className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full border border-white/15 text-sm text-porcelain hover:border-gold/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
                     >
-                      Explain my bill
-                    </button>
+                      See the escalation rule
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -269,13 +270,13 @@ export default function AssistantPage() {
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              Energy Intelligence
+              Direction: Energy Intelligence
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              A home that watches its own energy.
+              Energy becomes another explainable layer.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              The assistant has full context of every energy system in the home. It monitors around the clock, diagnoses issues before they become callouts, helps the homeowner run it like the A-rated home it is, and shows exactly what that saves.
+              The same trusted home record can later connect system and consumption data to money, comfort and risk. The interface below is illustrative direction, not a claim of live integrations, automated diagnosis, remote control or verified savings.
             </p>
           </div>
           <div className="max-w-5xl mx-auto">
@@ -385,7 +386,7 @@ export default function AssistantPage() {
       </section>
 
       {/* ── 6. Trust line ── */}
-      <section className="relative py-24 bg-porcelain">
+      <section id="grounding" className="relative py-24 bg-porcelain scroll-mt-28">
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 border border-amber-200 mb-6">
@@ -393,10 +394,10 @@ export default function AssistantPage() {
               <span className="text-sm font-medium text-amber-700">Grounded, not guessing</span>
             </div>
             <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
-              The assistant doesn&rsquo;t make things up.
+              Grounded in evidence. Honest about gaps.
             </h2>
             <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed">
-              Every answer comes from this home&rsquo;s own documents and live system data. If it doesn&rsquo;t know, it says so and offers to message the developer directly. No hallucinations, no fake confidence, no answers pulled from the wider internet.
+              Answers are grounded in the home&rsquo;s approved information and keep the source visible. When that evidence is missing or professional judgement is required, OpenHouse says so and offers escalation rather than inventing an answer.
             </p>
           </div>
         </Container>
@@ -431,7 +432,7 @@ export default function AssistantPage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-carbon flex items-center gap-3">
-                  Book a Demo
+                  Request a house-type walkthrough
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Thermometer,
@@ -21,9 +21,9 @@ import { SourceChips, SourceOverlay } from "./SourcePeek";
 
 /**
  * EnergyIntelligenceDemo
- * The signature "Energy Intelligence" moment: an always-on assistant that has
- * full context of a home's energy systems. It monitors, diagnoses a real fault,
- * helps the homeowner run the home like the A-rated home it is, and shows the money saved.
+ * The signature future-direction Energy Intelligence concept. It illustrates
+ * how approved home information and clearly labelled example data might support
+ * context, escalation and homeowner guidance without claiming live operation.
  *
  * DOM + inline SVG + framer-motion only. No WebGL. Reduced-motion safe.
  * Every figure shown is illustrative and is labelled "Example".
@@ -32,10 +32,10 @@ import { SourceChips, SourceOverlay } from "./SourcePeek";
 export type Stage = "monitoring" | "diagnose" | "educate" | "savings";
 
 export const STEPS: { id: Stage; label: string }[] = [
-  { id: "monitoring", label: "Monitor" },
-  { id: "diagnose", label: "Diagnose" },
-  { id: "educate", label: "Educate" },
-  { id: "savings", label: "Save" },
+  { id: "monitoring", label: "Context" },
+  { id: "diagnose", label: "Escalate" },
+  { id: "educate", label: "Guide" },
+  { id: "savings", label: "Explore" },
 ];
 
 const STAGE_MS: Record<Stage, number> = {
@@ -127,6 +127,7 @@ export function EnergyIntelligenceDemo({
   onStageChange,
   hideControls = false,
 }: EnergyIntelligenceDemoProps) {
+  const tabId = useId();
   const a = ACCENTS[accent];
   const reduced = usePrefersReducedMotion();
   const animate = !reduced;
@@ -233,7 +234,7 @@ export function EnergyIntelligenceDemo({
     <div
       ref={rootRef}
       role="group"
-      aria-label="Energy Intelligence demo, an always-on assistant that monitors and explains a home's energy"
+      aria-label="Direction concept for a future energy-intelligence layer on the OpenHouse home record"
       className={`relative ${className}`}
     >
       <div
@@ -249,7 +250,7 @@ export function EnergyIntelligenceDemo({
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-porcelain">Energy Intelligence</p>
             <p className="text-[11px] text-porcelain/45 truncate">
-              Always-on. Knows every system in this home.
+              Direction concept on the same home record
             </p>
           </div>
           {!hideControls && (
@@ -282,8 +283,25 @@ export function EnergyIntelligenceDemo({
                   key={s.id}
                   type="button"
                   role="tab"
+                  id={`${tabId}-tab-${s.id}`}
+                  aria-controls={`${tabId}-panel`}
                   aria-selected={isActive}
+                  tabIndex={isActive ? 0 : -1}
                   onClick={() => handleStepClick(s.id)}
+                  onKeyDown={(event) => {
+                    const tabs = Array.from(
+                      event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]') ?? []
+                    );
+                    let next = i;
+                    if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (i + 1) % STEPS.length;
+                    else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (i - 1 + STEPS.length) % STEPS.length;
+                    else if (event.key === "Home") next = 0;
+                    else if (event.key === "End") next = STEPS.length - 1;
+                    else return;
+                    event.preventDefault();
+                    handleStepClick(STEPS[next].id);
+                    tabs[next]?.focus();
+                  }}
                   className={`inline-flex items-center gap-2 min-h-[40px] px-3.5 rounded-full border text-[13px] font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 ${a.ring} focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 ${
                     isActive
                       ? a.chipActive
@@ -306,6 +324,9 @@ export function EnergyIntelligenceDemo({
 
         {/* Body: systems | assistant */}
         <div
+          id={`${tabId}-panel`}
+          role={hideControls ? undefined : "tabpanel"}
+          aria-labelledby={hideControls ? undefined : `${tabId}-tab-${stage}`}
           className={`p-5 sm:p-7 grid gap-5 lg:gap-6 ${
             variant === "compact" ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
           }`}
@@ -363,7 +384,7 @@ export function EnergyIntelligenceDemo({
             {/* Live telemetry footnote */}
             <div className="mt-3 flex items-center gap-2 text-[11px] text-porcelain/40">
               <span className={`w-1.5 h-1.5 rounded-full ${a.dot} ${animate ? "motion-safe:animate-pulse" : ""}`} aria-hidden="true" />
-              Live telemetry: Daikin ONECTA &middot; SolarEdge
+              Illustrative data connections: Daikin ONECTA &middot; SolarEdge
             </div>
           </div>
 
@@ -433,7 +454,7 @@ export function EnergyIntelligenceDemo({
         {/* Footer note */}
         <div className="px-5 sm:px-7 pb-5 -mt-1">
           <p className="text-[11px] text-porcelain/55 leading-relaxed">
-            Illustrative demo. Figures marked &ldquo;Example&rdquo; are for illustration, not real customer data.
+            Direction concept. Telemetry, integrations, diagnosis, control and savings shown here are illustrative, not current live capabilities or customer outcomes.
           </p>
         </div>
       </div>
@@ -502,10 +523,10 @@ function StageContent({
       <div className="space-y-4">
         <AssistantLabel accent={accent} />
         <p className="text-[15px] text-porcelain/85 leading-relaxed">
-          I&rsquo;m watching every system in this home, 24/7 &mdash; heat pump, solar, battery and EV charger. Nothing needs attention right now.
+          In this direction concept, illustrative system data is available for a heat pump, solar, battery and EV charger. No live connection is being claimed.
         </p>
         <p className="text-[13px] text-porcelain/55 leading-relaxed">
-          Ask me anything, from a bill you don&rsquo;t understand to a warning light on a unit. I already know what&rsquo;s installed and how it&rsquo;s performing.
+          A future assistant could connect that context to documents and user questions while keeping every data source visible.
         </p>
       </div>
     );
@@ -524,10 +545,10 @@ function StageContent({
         </div>
         <AssistantLabel accent={accent} />
         <p className="text-[15px] text-porcelain/85 leading-relaxed">
-          E5 on your Daikin Altherma 3 R is a flow-temperature sensor reading. Live telemetry shows it&rsquo;s intermittent, which is usually a sensor connection loosened by a cold snap &mdash; not a failed unit.
+          The approved manual identifies E5 as a flow-temperature sensor reading. In this direction concept, an illustrative data feed shows an intermittent reading. That is not enough to diagnose a cause, so professional escalation remains available.
         </p>
         <p className="text-[13px] text-porcelain/60 leading-relaxed">
-          Let&rsquo;s try a 90-second check before booking anyone.
+          The homeowner can open the source and follow only the approved check for this unit.
         </p>
         {/* 90-second check card */}
         <div className="rounded-xl border border-white/10 bg-black/50 p-3 flex items-center gap-3">
@@ -539,24 +560,22 @@ function StageContent({
             <p className="text-[11px] text-porcelain/50">Filmed for this exact unit &middot; 1m 28s</p>
           </div>
         </div>
-        <SourceChips accent={accentName} items={["Daikin Altherma 3 R manual", "Live telemetry: ONECTA"]} onOpen={onOpenSource} />
+        <SourceChips accent={accentName} items={["Daikin Altherma 3 R manual", "Planned integration: ONECTA"]} onOpen={onOpenSource} />
       </div>
     );
   }
 
   if (stage === "educate") {
     const tips = [
-      "Drop the heat-pump flow temperature to 35°C — same comfort, less energy.",
-      "Shift EV charging and hot water to your cheapest off-peak window.",
-      "Store midday solar in the battery for the evening peak.",
+      "Use the approved operating guide before changing heat-pump settings.",
+      "Check tariff and equipment guidance before shifting EV or hot-water schedules.",
+      "Keep installer and manufacturer instructions attached to every recommendation.",
     ];
     return (
       <div className="space-y-4">
         <AssistantLabel accent={accent} />
         <p className="text-[15px] text-porcelain/85 leading-relaxed">
-          While I&rsquo;m here &mdash; this home is built to run like an{" "}
-          <span className={`font-semibold ${accent.text}`}>A</span>. A few habits keep it performing that way, rather than slipping to a{" "}
-          <span className="font-semibold text-porcelain">B3</span> in everyday use.
+          In this future layer, guidance would stay connected to the approved information for the home rather than making generic recommendations.
         </p>
         <ul className="space-y-2">
           {tips.map((t) => (
@@ -581,8 +600,7 @@ function StageContent({
     <div className="space-y-4">
       <AssistantLabel accent={accent} />
       <p className="text-[15px] text-porcelain/85 leading-relaxed">
-        Those habits are working. Consumption is trending down &mdash; you&rsquo;re running this home like the{" "}
-        <span className={`font-semibold ${accent.text}`}>A-rated</span> home it is.
+        This screen illustrates how a future energy layer could explain an estimated outcome while keeping the underlying data and assumptions visible.
       </p>
       <div className="rounded-xl border border-white/10 bg-black/50 p-4 flex flex-wrap items-end justify-between gap-4">
         <div>
@@ -602,7 +620,7 @@ function StageContent({
         </div>
         <BillBars accent={accent} animate={animate} />
       </div>
-      <SourceChips accent={accentName} items={["Your meter readings", "Live telemetry"]} onOpen={onOpenSource} />
+      <SourceChips accent={accentName} items={["Illustrative meter readings", "Illustrative data feed"]} onOpen={onOpenSource} />
     </div>
   );
 }

@@ -97,7 +97,7 @@ function TelemetryExcerpt({ a }: { a: AccentBits }) {
       <div className="px-3 py-2 border-b border-white/10 flex items-center justify-between">
         <p className="font-mono text-[10px] tracking-wide text-porcelain/70 flex items-center gap-1.5">
           <Activity className={`w-3 h-3 ${a.text}`} aria-hidden="true" />
-          Live telemetry · Daikin ONECTA
+          Planned data connection &middot; Daikin ONECTA
         </p>
         <span className="ml-2 shrink-0 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider text-porcelain/60 border border-white/15 bg-white/5">
           Example
@@ -117,7 +117,7 @@ function TelemetryExcerpt({ a }: { a: AccentBits }) {
           </div>
         ))}
         <p className="px-2 pt-1 text-[10px] text-porcelain/45">
-          Intermittent sensor reads — consistent with a loose connection, not a failed unit.
+          Illustrative intermittent readings. This excerpt does not establish a cause or rule out a failed unit.
         </p>
       </div>
     </div>
@@ -250,7 +250,7 @@ export function SourceOverlay({ name, accent = "emerald", onClose }: SourceOverl
       </div>
       <div className="flex-1 overflow-y-auto">{excerptFor(name, a)}</div>
       <p className="pt-2 text-[10px] text-porcelain/40">
-        Every answer traces back to this home&rsquo;s own documents and live data.
+        Document answers trace to the approved home record. Data feeds shown in this direction concept are illustrative.
       </p>
     </motion.div>
   );

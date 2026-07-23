@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, ReactNode } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useHydratedReducedMotion } from "@/hooks/useHydratedReducedMotion";
 
 interface ParallaxProps {
   children: ReactNode;
@@ -19,7 +20,7 @@ export function Parallax({
   className = "",
 }: ParallaxProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useHydratedReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -32,12 +33,8 @@ export function Parallax({
     [strength, -strength]
   );
 
-  if (reducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
-    <motion.div ref={ref} style={{ y }} className={className}>
+    <motion.div ref={ref} style={{ y: reducedMotion ? 0 : y }} className={className}>
       {children}
     </motion.div>
   );

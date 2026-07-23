@@ -1,8 +1,6 @@
 "use client";
 
-import { useRef, ReactNode } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { useInViewOnce } from "@/hooks/useInViewOnce";
+import { ReactNode } from "react";
 
 interface RevealProps {
   children: ReactNode;
@@ -12,67 +10,21 @@ interface RevealProps {
   staggerDelay?: number;
 }
 
+/**
+ * Keeps meaningful content visible in the server-rendered page. The site still
+ * uses motion in its hero and interactive chapters, but core cards and copy do
+ * not depend on IntersectionObserver or JavaScript to appear.
+ */
 export function Reveal({
   children,
-  delay = 0,
   className = "",
   stagger = false,
-  staggerDelay = 0.06,
 }: RevealProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.2 });
-  const reducedMotion = useReducedMotion();
-
-  if (reducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: stagger ? staggerDelay : 0,
-        delayChildren: delay,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: {
-      y: 24,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as any,
-      },
-    },
-  };
-
   return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={stagger ? containerVariants : undefined}
-    >
-      {stagger ? (
-        Array.isArray(children) ? (
-          children.map((child, i) => (
-            <motion.div key={i} variants={itemVariants}>
-              {child}
-            </motion.div>
-          ))
-        ) : (
-          <motion.div variants={itemVariants}>{children}</motion.div>
-        )
-      ) : (
-        <motion.div variants={itemVariants}>{children}</motion.div>
-      )}
-    </motion.div>
+    <div className={className}>
+      {stagger && Array.isArray(children)
+        ? children.map((child, index) => <div key={index}>{child}</div>)
+        : <div>{children}</div>}
+    </div>
   );
 }

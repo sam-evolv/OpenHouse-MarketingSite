@@ -28,13 +28,13 @@ export function Footer() {
                 alt="OpenHouse Ai"
                 width={600}
                 height={150}
-                sizes="(min-width: 768px) 519px, (min-width: 640px) 461px, 404px"
+                sizes="(min-width: 768px) 200px, 160px"
                 className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
               />
             </Link>
             <p className="text-xs text-porcelain/60 leading-relaxed mb-4">
-              One platform for property developers, a 24/7 AI assistant for every
-              home, and dedicated Care for renewables installers.
+              One living record for each home, with a developer control plane,
+              a homeowner interface and a focused installer extension.
             </p>
             <a
               href={`mailto:${env.CONTACT_EMAIL}`}
@@ -91,9 +91,11 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-1.5 text-xs text-porcelain/60">
             <span>Designed &amp; Developed by OpenHouse Ai</span>
-            <img
+            <Image
               src="/images/openhouse-mark.png"
               alt="OpenHouse Ai"
+              width={16}
+              height={16}
               className="h-4 w-auto rounded-[3px]"
             />
           </div>

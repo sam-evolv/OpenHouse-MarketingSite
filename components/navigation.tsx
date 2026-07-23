@@ -19,8 +19,7 @@ const pillarLinks = [
   { href: "/care", label: "Care" },
 ];
 
-// The Developer Dashboard pillar groups the developer-facing module routes,
-// which stay live as deep-dives. Highlight it whenever the visitor is on any.
+// Highlight the Developer Dashboard while a legacy module URL is redirecting.
 const developerChildren = [
   "/developers",
   "/sales",
@@ -73,7 +72,7 @@ export function Navigation() {
               width={600}
               height={150}
               priority
-              sizes="(min-width: 768px) 519px, (min-width: 640px) 461px, 404px"
+              sizes="(min-width: 768px) 200px, 160px"
               className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
             />
           </Link>
@@ -147,7 +146,7 @@ export function Navigation() {
               href="/contact"
               className="px-4 py-2.5 text-sm font-medium text-porcelain hover:text-gold border border-white/10 hover:border-gold/40 rounded-full transition-all duration-200"
             >
-              Book a Demo
+              Request a walkthrough
             </a>
           </div>
 
@@ -211,7 +210,7 @@ export function Navigation() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-sm font-medium text-gold hover:text-gold/80 px-1"
               >
-                Book a Demo
+                Request a walkthrough
               </a>
             </div>
           </div>
