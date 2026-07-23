@@ -5,14 +5,15 @@ type SectionShellProps = {
   children: ReactNode;
   id?: string;
   className?: string;
-  tone?: "carbon" | "ink" | "porcelain";
+  tone?: "carbon" | "ink" | "porcelain" | "paper";
   labelledBy?: string;
 };
 
 const toneStyles = {
-  carbon: "bg-carbon text-white",
-  ink: "bg-[#0d0d0b] text-white",
-  porcelain: "bg-[#eee9df] text-carbon",
+  carbon: "bg-carbon text-porcelain",
+  ink: "bg-[#0d0d0b] text-porcelain",
+  porcelain: "bg-porcelain text-carbon",
+  paper: "bg-[#eee9de] text-carbon",
 };
 
 export function SectionShell({

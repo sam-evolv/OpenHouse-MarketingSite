@@ -1,3 +1,4 @@
+import { EvidenceModelSection } from "@/components/home/EvidenceModelSection";
 import { LivingHomeHero } from "@/components/home/LivingHomeHero";
 import { ProductShowcase } from "@/components/marketing/ProductShowcase";
 
@@ -11,6 +12,7 @@ export default function PlatformPage() {
   return (
     <div>
       <LivingHomeHero />
+      <EvidenceModelSection />
       <ProductShowcase />
     </div>
   );
