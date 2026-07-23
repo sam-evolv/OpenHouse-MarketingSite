@@ -4,7 +4,7 @@ import { ModuleHero } from "@/components/hero/ModuleHero";
 import { PlatformFloatingCards } from "@/components/hero/cards/PlatformCards";
 import { IntelligenceTryItWidget } from "@/components/interactive/IntelligenceTryItWidget";
 import { ProductShot } from "@/components/marketing/ProductShot";
-import { HPIGauge } from "@/components/interactive/HPIGauge";
+import { HPICert } from "@/components/interactive/HPICert";
 import { CountUp } from "@/components/effects/CountUp";
 import { Reveal } from "@/components/effects/Reveal";
 import heroBackground from "@/attached_assets/stock_images/platform_aerial_network.png";
@@ -16,18 +16,26 @@ import {
   FolderOpen,
   MessageSquare,
   Sparkles,
-  Headphones,
+  ListChecks,
   ArrowRight,
   Zap,
-  GraduationCap,
+  BookOpen,
   ShieldCheck,
-  PhoneOff,
+  TrendingDown,
+  Gauge,
+  AlertTriangle,
+  BadgeCheck,
+  Files,
+  PenLine,
+  Users,
+  Sunrise,
+  Archive,
 } from "lucide-react";
 
 export const metadata = {
   title: "Developer Dashboard — Aggregated Insight From Every Home | OpenHouse Ai",
   description:
-    "One dashboard for property developers: sales, build, handover, portfolio intelligence, and an AI agent — plus aggregated analysis of every home's energy, issues, snags and questions, and the Home Performance Index that proves your homeowners were educated.",
+    "One dashboard for property developers: sales, build, snagging, handover and portfolio intelligence — plus aggregated analysis of every home's energy, issues, snags and questions, and the digital Home User Guide behind Home Performance Index certification.",
 };
 
 const capabilities = [
@@ -35,7 +43,7 @@ const capabilities = [
     title: "Sales",
     href: "/sales",
     icon: TrendingUp,
-    desc: "A live pipeline across every unit, scheme, and buyer — not a Friday spreadsheet.",
+    desc: "Live pipeline, velocity and at-risk-deal alerts across every unit and scheme — not a Friday spreadsheet.",
     accent: "text-blue-400",
     bg: "bg-blue-500/10",
     border: "border-blue-500/30",
@@ -45,7 +53,17 @@ const capabilities = [
     title: "Build",
     href: "/build",
     icon: FolderOpen,
-    desc: "Documents, certs, and compliance organised by unit — ready before handover.",
+    desc: "Compliance, certs, documents and drawings per unit — BCAR to BER, sub-contractors and all, audit-ready.",
+    accent: "text-emerald-400",
+    bg: "bg-emerald-500/10",
+    border: "border-emerald-500/30",
+    hoverShadow: "hover:shadow-[0_15px_40px_-15px_rgba(16,185,129,0.35)]",
+  },
+  {
+    title: "Snagging",
+    href: "/build",
+    icon: ListChecks,
+    desc: "Snag lists tracked live per unit, with dates updated as items are raised, assigned and closed off.",
     accent: "text-emerald-400",
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/30",
@@ -65,21 +83,11 @@ const capabilities = [
     title: "Intelligence",
     href: "/intelligence",
     icon: Sparkles,
-    desc: "Ask anything about any scheme and get the answer instantly, with its source.",
+    desc: "Ask anything across the portfolio and get the answer instantly, with its source — plus a morning briefing.",
     accent: "text-violet-300",
     bg: "bg-violet-500/15",
     border: "border-violet-400/30",
     hoverShadow: "hover:shadow-[0_15px_40px_-15px_rgba(139,92,246,0.35)]",
-  },
-  {
-    title: "Agent",
-    href: "/agent",
-    icon: Headphones,
-    desc: "A voice-first AI colleague for the agents selling and letting your homes.",
-    accent: "text-gold",
-    bg: "bg-gold/10",
-    border: "border-gold/30",
-    hoverShadow: "hover:shadow-[0_15px_40px_-15px_rgba(212,175,55,0.35)]",
   },
 ];
 
@@ -120,7 +128,7 @@ export default function PlatformOverviewPage() {
             .
           </>
         }
-        subtitle="OpenHouse replaces the spreadsheets, WhatsApp groups, and paper folders developers still rely on. Sales, build, handover, portfolio intelligence, an AI agent — and aggregated insight from every home you've handed over. One dashboard, live on developments in Ireland today."
+        subtitle="OpenHouse replaces the spreadsheets, WhatsApp groups, and paper folders developers still rely on. Sales, build, snagging, handover and portfolio intelligence — and aggregated insight from every home you've handed over. One dashboard, live on developments in Ireland today."
         primaryCta={{ href: "#capabilities", label: "See what it runs" }}
         secondaryCta={{ href: "/contact", label: "Book a Demo" }}
       >
@@ -208,6 +216,35 @@ export default function PlatformOverviewPage() {
               </div>
             </Link>
           </div>
+
+          {/* Subtle breadth strip — the depth behind the modules */}
+          <div className="max-w-5xl mx-auto mt-16 sm:mt-20">
+            <p className="text-center text-[13px] uppercase tracking-[0.2em] text-porcelain/45 font-semibold mb-6">
+              Everything a scheme needs, already in the box
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5">
+              {[
+                { icon: Gauge, label: "Sales velocity" },
+                { icon: AlertTriangle, label: "At-risk-deal alerts" },
+                { icon: BadgeCheck, label: "Sub-contractor cert portal" },
+                { icon: Files, label: "Document & drawing vault" },
+                { icon: ListChecks, label: "Live snag lists" },
+                { icon: PenLine, label: "Drafted communications" },
+                { icon: TrendingUp, label: "Portfolio comparison" },
+                { icon: Users, label: "Homeowner management" },
+                { icon: Sunrise, label: "Morning briefing" },
+                { icon: Archive, label: "Audit-ready records" },
+              ].map((chip) => (
+                <span
+                  key={chip.label}
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] text-[13px] text-porcelain/70"
+                >
+                  <chip.icon className="w-3.5 h-3.5 text-gold/70" aria-hidden="true" />
+                  {chip.label}
+                </span>
+              ))}
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -277,68 +314,34 @@ export default function PlatformOverviewPage() {
               Home Performance Index
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Proof your homes perform.
+              Built to earn the standard.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              Every home carries an HPI — a live score built from how the home is running and how confidently its owner runs it. It rises as the assistant teaches. It&rsquo;s your evidence that education happened — and the homes with a higher HPI ask fewer repeat questions.
+              The Home Performance Index is the Irish Green Building Council&rsquo;s national sustainability certification for new homes. Its Consumer Information &amp; Aftercare criterion asks you to give every home a property-specific <span className="text-porcelain">Home User Guide</span> — so owners run the home the way it was designed. OpenHouse <span className="text-porcelain">is that guide, delivered digitally</span>, with the 24/7 aftercare to match.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 max-w-5xl mx-auto">
-            {/* One home */}
-            <div className="rounded-3xl border border-gold/25 bg-neutral-900/80 backdrop-blur-xl p-6 sm:p-8 flex flex-col items-center justify-center">
-              <HPIGauge score={92} letter="A" caption="This home's HPI" />
-              <p className="mt-6 text-[14px] text-porcelain/60 leading-relaxed text-center max-w-xs">
-                Started at B3 on handover day. Every question answered and habit learned moved it here.
-              </p>
-            </div>
-
-            {/* The scheme */}
-            <div className="rounded-3xl border border-white/10 bg-neutral-900/80 backdrop-blur-xl p-6 sm:p-8">
-              <div className="flex items-center justify-between mb-5">
-                <p className="text-[11px] uppercase tracking-[0.2em] text-porcelain/50 font-semibold">
-                  One scheme, right now
-                </p>
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider text-porcelain/60 border border-white/15 bg-white/5">
-                  Example
-                </span>
-              </div>
-              <Reveal stagger staggerDelay={0.008} className="grid grid-cols-10 gap-1.5 mb-5">
-                {Array.from({ length: 60 }, (_, i) => {
-                  const band =
-                    i < 28 ? "bg-gold" : i < 46 ? "bg-gold/45" : i < 56 ? "bg-white/15" : "bg-amber-500/60";
-                  return <div key={i} className={`aspect-square rounded-[3px] ${band}`} />;
-                })}
-              </Reveal>
-              <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-porcelain/60 mb-4">
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-[2px] bg-gold" /> A-rated running (28)</span>
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-[2px] bg-gold/45" /> Climbing (18)</span>
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-[2px] bg-white/15" /> Settling in (10)</span>
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-[2px] bg-amber-500/60" /> Needs a nudge (4)</span>
-              </div>
-              <p className="text-[14px] text-porcelain/70 leading-relaxed">
-                The whole scheme, climbing toward A — and you can see exactly which homes need help getting there.
-              </p>
-            </div>
+          <div className="max-w-5xl mx-auto">
+            <HPICert awarded="Gold" />
           </div>
 
           {/* Why it matters */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 max-w-5xl mx-auto mt-6">
             {[
               {
-                icon: GraduationCap,
-                title: "Trains your homeowners.",
-                body: "The assistant teaches each owner to run their systems well — and the HPI shows the lesson landed.",
+                icon: BookOpen,
+                title: "A Home User Guide for every home.",
+                body: "Property-specific operating and maintenance guidance, generated per unit — the best-practice document the criterion rewards.",
               },
               {
                 icon: ShieldCheck,
-                title: "Proof it happened.",
-                body: "A per-home record that onboarding and education were delivered — evidence for buyers and for you.",
+                title: "Evidence for certification and green finance.",
+                body: "A logged record that aftercare was delivered. HPI certification can unlock discounted green development finance and supports EU Taxonomy reporting.",
               },
               {
-                icon: PhoneOff,
-                title: "Fewer repeat questions.",
-                body: "Educated homeowners stop asking the same aftercare questions. Your phone gets quieter as the index climbs.",
+                icon: TrendingDown,
+                title: "Closes the performance gap.",
+                body: "Owners who understand their home run it as designed — so it performs, and the same aftercare questions stop coming back.",
               },
             ].map((b) => (
               <div key={b.title} className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 h-full">

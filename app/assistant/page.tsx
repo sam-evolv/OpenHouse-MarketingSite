@@ -366,10 +366,10 @@ export default function AssistantPage() {
                   Home Performance Index
                 </p>
                 <h2 className="text-[24px] sm:text-3xl font-bold text-white font-heading leading-tight tracking-[-0.01em] mb-3">
-                  Every answer builds the record.
+                  The Home User Guide, always on.
                 </h2>
                 <p className="text-[15px] sm:text-[16px] text-porcelain/75 leading-relaxed">
-                  What the assistant teaches becomes the home&rsquo;s HPI — a live score that the home is understood and run well. Homeowners see their home climb toward A. Developers get proof the education happened.
+                  The assistant is every home&rsquo;s digital Home User Guide with 24/7 aftercare — the Consumer Information &amp; Aftercare the IGBC&rsquo;s Home Performance Index calls for. It helps owners run the home the way it was designed, and gives developers a record that the guidance was there.
                 </p>
               </div>
               <Link

@@ -34,7 +34,7 @@ const pillars = [
     icon: Building2,
     who: "For property developers",
     tagline: "Run every scheme in one place.",
-    desc: "Sales, build, handover and aftercare on one dashboard — with every home reporting back: aggregated energy, issues, snags and questions, and each home's Home Performance Index.",
+    desc: "Sales, build, snagging, handover and aftercare on one dashboard — with every home reporting back, and the digital Home User Guide behind Home Performance Index certification.",
     accent: "text-gold",
     bg: "bg-gold/10",
     border: "border-gold/30",

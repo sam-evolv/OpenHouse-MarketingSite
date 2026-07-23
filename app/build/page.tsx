@@ -24,7 +24,6 @@ import {
   TrendingUp,
   MessageSquare,
   Sparkles,
-  Headphones,
 } from "lucide-react";
 
 export const metadata = {
@@ -132,7 +131,6 @@ const platformModules = [
     icon: Sparkles,
     accent: "text-gold",
   },
-  { title: "Agent", href: "/agent", icon: Headphones, accent: "text-gold" },
   { title: "Care", href: "/care", icon: Wrench, accent: "text-emerald-400" },
 ];
 
@@ -494,7 +492,7 @@ export default function BuildPage() {
               Part of the OpenHouse platform.
             </h2>
             <p className="text-[17px] sm:text-lg text-carbon/70 leading-relaxed">
-              Build is one module of six. Same data, different surfaces, one platform that runs every stage of a development.
+              Build is one module of five. Same data, different surfaces, one platform that runs every stage of a development.
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto">

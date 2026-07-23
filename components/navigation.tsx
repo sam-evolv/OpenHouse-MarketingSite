@@ -27,7 +27,6 @@ const developerChildren = [
   "/build",
   "/handover",
   "/intelligence",
-  "/agent",
 ];
 
 function isPillarActive(href: string, pathname: string): boolean {
