@@ -130,7 +130,7 @@ export default function AssistantPage() {
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
               The Assistant
             </p>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
               Not a chatbot. Your home, answering.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
@@ -266,7 +266,7 @@ export default function AssistantPage() {
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
               Energy Intelligence
             </p>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] mb-6">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
               A home that watches its own energy.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
@@ -381,7 +381,7 @@ export default function AssistantPage() {
         />
         <Container>
           <div className="relative max-w-3xl mx-auto text-center">
-            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
               See it on one of your own homes.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">

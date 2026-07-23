@@ -3,6 +3,8 @@ import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { PlatformFloatingCards } from "@/components/hero/cards/PlatformCards";
 import { EnergyIntelligenceDemo } from "@/components/interactive/EnergyIntelligenceDemo";
+import { CountUp } from "@/components/effects/CountUp";
+import { Reveal } from "@/components/effects/Reveal";
 import heroBackground from "@/attached_assets/stock_images/platform_aerial_network.png";
 import {
   ArrowRight,
@@ -93,7 +95,7 @@ export default function HomePage() {
         backgroundAlt="Aerial view of a residential development at golden hour, connected lines suggesting a platform"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
-            <span className="w-2 h-2 bg-gold rounded-full motion-safe:animate-pulse" />
+            <span className="w-2 h-2 bg-gold rounded-full" />
             <span className="text-sm font-medium text-gold">
               Live on active developments today
             </span>
@@ -116,29 +118,29 @@ export default function HomePage() {
       </ModuleHero>
 
       {/* ── 2. Market-context strip ── */}
-      <section className="relative py-14 sm:py-16 bg-porcelain">
+      <section className="relative py-16 sm:py-20 bg-porcelain">
         <Container>
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-center">
               <div>
-                <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2">
-                  36,284
+                <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2 tabular-nums">
+                  <CountUp end={36284} className="inline-block min-w-[6ch]" />
                 </p>
                 <p className="text-[14px] sm:text-[15px] text-carbon/75 leading-relaxed">
                   New homes completed in Ireland in 2025, the highest since 2008.
                 </p>
               </div>
               <div>
-                <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2">
-                  240,964
+                <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2 tabular-nums">
+                  <CountUp end={240964} className="inline-block min-w-[7ch]" />
                 </p>
                 <p className="text-[14px] sm:text-[15px] text-carbon/75 leading-relaxed">
                   Private tenancies registered with the Residential Tenancies Board.
                 </p>
               </div>
               <div>
-                <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2">
-                  3,609
+                <p className="text-3xl sm:text-4xl font-bold text-amber-700 font-heading leading-none mb-2 tabular-nums">
+                  <CountUp end={3609} className="inline-block min-w-[5ch]" />
                 </p>
                 <p className="text-[14px] sm:text-[15px] text-carbon/75 leading-relaxed">
                   New heat pumps installed under SEAI schemes in 2024 alone.
@@ -173,7 +175,7 @@ export default function HomePage() {
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
               What OpenHouse is
             </p>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
               Three products. One platform.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
@@ -242,7 +244,7 @@ export default function HomePage() {
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
               Energy Intelligence
             </p>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] mb-6">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
               Every home, watching its own energy.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
@@ -280,7 +282,7 @@ export default function HomePage() {
               <HardHat className="w-4 h-4 text-gold" aria-hidden="true" />
               <span className="text-sm font-medium text-gold">Built by a developer</span>
             </div>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-8">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-8">
               Built by a developer, for developers.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/80 leading-relaxed mb-5">
@@ -326,7 +328,7 @@ export default function HomePage() {
         />
         <Container>
           <div className="relative max-w-3xl mx-auto text-center">
-            <h2 className="text-[32px] sm:text-5xl lg:text-[60px] font-bold text-white font-heading leading-[1.05] mb-6">
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
               See it on one of your own schemes.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">

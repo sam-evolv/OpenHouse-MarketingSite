@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useInViewOnce } from "@/hooks/useInViewOnce";
+import { EASE } from "@/lib/motion";
 
 /**
  * EnergyIntelligenceDemo
@@ -600,7 +601,7 @@ function RatingLadder({ index, accent, animate }: { index: number; accent: Accen
           style={animate ? { left: `${pct}%` } : { left: `${pct}%` }}
           initial={false}
           animate={animate ? { left: `${pct}%` } : undefined}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: EASE }}
         >
           <span className={`block w-2 h-2 -ml-1 rounded-full ${accent.dot}`} aria-hidden="true" />
         </motion.div>

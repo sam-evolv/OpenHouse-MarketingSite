@@ -180,6 +180,7 @@ html.lenis body {
     --input: 240 5.9% 90%;
     --ring: 41 45% 58%;
     --radius: 12px;
+    --ease-signature: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .dark {
