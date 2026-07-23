@@ -28,17 +28,17 @@ export function Footer() {
                 alt="OpenHouse Ai"
                 width={600}
                 height={150}
-                priority
+                sizes="(min-width: 768px) 519px, (min-width: 640px) 461px, 404px"
                 className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
               />
             </Link>
-            <p className="text-xs text-porcelain/50 leading-relaxed mb-4">
+            <p className="text-xs text-porcelain/60 leading-relaxed mb-4">
               One platform for property developers, a 24/7 AI assistant for every
               home, and dedicated Care for renewables installers.
             </p>
             <a
               href={`mailto:${env.CONTACT_EMAIL}`}
-              className="text-xs text-porcelain/50 hover:text-gold transition-colors"
+              className="text-xs text-porcelain/60 hover:text-gold transition-colors"
             >
               {env.CONTACT_EMAIL}
             </a>
@@ -46,16 +46,16 @@ export function Footer() {
 
           {/* Product Links */}
           <div>
-            <h4 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
+            <h3 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
               Platform
-            </h4>
+            </h3>
             <ul className="space-y-2">
               {productLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     prefetch={true}
-                    className="text-xs text-porcelain/50 hover:text-gold transition-colors"
+                    className="text-xs text-porcelain/60 hover:text-gold transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -66,16 +66,16 @@ export function Footer() {
 
           {/* Legal Resources */}
           <div>
-            <h4 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
+            <h3 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
               Legal
-            </h4>
+            </h3>
             <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     prefetch={true}
-                    className="text-xs text-porcelain/50 hover:text-gold transition-colors"
+                    className="text-xs text-porcelain/60 hover:text-gold transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -86,14 +86,14 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-xs text-porcelain/40">
+          <p className="text-xs text-porcelain/60">
             © {new Date().getFullYear()} OpenHouse Ai. All rights reserved.
           </p>
           <a 
             href="https://www.evolvai.ie" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-porcelain/40 hover:text-porcelain/60 transition-colors"
+            className="flex items-center gap-1.5 text-xs text-porcelain/60 hover:text-porcelain/60 transition-colors"
           >
             <span>Designed & Developed by EvolvAi</span>
             <img 

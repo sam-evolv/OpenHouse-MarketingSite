@@ -74,6 +74,7 @@ export function Navigation() {
               width={600}
               height={150}
               priority
+              sizes="(min-width: 768px) 519px, (min-width: 640px) 461px, 404px"
               className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
             />
           </Link>

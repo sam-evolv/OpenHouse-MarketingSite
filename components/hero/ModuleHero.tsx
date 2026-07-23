@@ -107,7 +107,7 @@ export function ModuleHero({
           <motion.div
             initial={reducedMotion ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
+            transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
             className="relative z-20"
           >
             <div className="relative">

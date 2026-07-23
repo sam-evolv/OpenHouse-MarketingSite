@@ -518,7 +518,7 @@ export default function CarePage() {
                   </div>
                 </div>
                 <div className="px-5 sm:px-7 pb-5 -mt-1">
-                  <p className="text-[11px] text-porcelain/35 leading-relaxed">
+                  <p className="text-[11px] text-porcelain/55 leading-relaxed">
                     Illustrative console. Figures marked &ldquo;Example&rdquo; are for illustration, not real customer data.
                   </p>
                 </div>

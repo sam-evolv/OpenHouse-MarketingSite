@@ -157,7 +157,7 @@ export default function HomePage() {
             <p className="text-center text-[15px] sm:text-[16px] text-carbon/70 leading-relaxed mt-10 max-w-2xl mx-auto">
               A market this scale still runs on spreadsheets and paper folders. OpenHouse is the system replacing them — live today in Cork, and expanding.
             </p>
-            <p className="text-center text-[12px] text-carbon/45 mt-4 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-center text-[12px] text-carbon/60 mt-4 max-w-3xl mx-auto leading-relaxed">
               Sources: CSO New Dwelling Completions, Q4 2025; Residential Tenancies Board, Q4 2024 Profile of the Register; SEAI Record Year of Progress 2024.
             </p>
           </div>
