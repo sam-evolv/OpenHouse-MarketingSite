@@ -1,13 +1,71 @@
 import Link from "next/link";
-import Image from "next/image";
 import { env } from "@/lib/env";
+import { OpenHouseWordmark } from "@/components/brand/OpenHouseWordmark";
+
 const productLinks = [
-  { label: "For builders", href: "/developer-dashboard" },
-  { label: "For purchasers", href: "/property-assistant" },
-  { label: "Energy intelligence", href: "/intelligence" },
-  { label: "Contact", href: "/contact" },
-];
-const legalLinks = [{ label: "Privacy Policy", href: "/privacy" }, { label: "Terms of Service", href: "/terms" }, { label: "Support", href: "/support" }];
+  { label: "Product", href: "/#working-example" },
+  { label: "For developers", href: "/developer-dashboard" },
+  { label: "For homeowners", href: "/property-assistant" },
+  { label: "Energy direction", href: "/intelligence" },
+] as const;
+
+const legalLinks = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Support", href: "/support" },
+] as const;
+
 export function Footer() {
-  return <footer className="bg-carbon border-t border-white/5"><div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><div className="grid grid-cols-1 md:grid-cols-3 gap-10"><div><Link href="/" className="inline-block mb-3"><Image src="/images/openhouseai-logo.png" alt="OpenHouse Ai" width={600} height={150} priority className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe" /></Link><p className="text-xs text-porcelain/50 leading-relaxed mb-4">The intelligence layer installed at construction and useful for the life of the home.</p><a href={`mailto:${env.CONTACT_EMAIL}`} className="text-xs text-porcelain/50 hover:text-gold transition-colors">{env.CONTACT_EMAIL}</a></div><div><h4 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">OpenHouse</h4><ul className="space-y-2">{productLinks.map((link) => <li key={link.href}><Link href={link.href} prefetch={true} className="text-xs text-porcelain/50 hover:text-gold transition-colors">{link.label}</Link></li>)}</ul></div><div><h4 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">Legal</h4><ul className="space-y-2">{legalLinks.map((link) => <li key={link.href}><Link href={link.href} prefetch={true} className="text-xs text-porcelain/50 hover:text-gold transition-colors">{link.label}</Link></li>)}</ul></div></div><div className="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-2"><p className="text-xs text-porcelain/40">© {new Date().getFullYear()} OpenHouse Ai. All rights reserved.</p><a href="https://www.evolvai.ie" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-porcelain/40 hover:text-porcelain/60 transition-colors"><span>Designed & Developed by EvolvAi</span><img src="/images/evolvai-logo.png" alt="EvolvAi" className="h-4 w-auto" /></a></div></div></footer>;
+  return (
+    <footer className="border-t border-white/[0.07] bg-[#080808] text-porcelain">
+      <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_0.7fr_0.7fr]">
+          <div className="max-w-sm">
+            <Link href="/" className="inline-flex text-gold">
+              <OpenHouseWordmark />
+            </Link>
+            <p className="mt-5 text-sm leading-relaxed text-porcelain/62">
+              Home-specific context, practical homeowner answers and clearer developer insight after handover.
+            </p>
+            <a href={`mailto:${env.CONTACT_EMAIL}`} className="mt-5 inline-block text-sm text-porcelain/62 transition-colors hover:text-gold">
+              {env.CONTACT_EMAIL}
+            </a>
+          </div>
+
+          <div>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-porcelain/82">OpenHouse</h2>
+            <ul className="mt-5 space-y-3">
+              {productLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-porcelain/58 transition-colors hover:text-gold">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-porcelain/82">Legal</h2>
+            <ul className="mt-5 space-y-3">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-porcelain/58 transition-colors hover:text-gold">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-14 flex flex-col gap-3 border-t border-white/[0.07] pt-6 text-xs text-porcelain/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} OpenHouse AI. All rights reserved.</p>
+          <a href="https://www.evolvai.ie" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-porcelain/70">
+            Built by EvolvAI
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
 }
