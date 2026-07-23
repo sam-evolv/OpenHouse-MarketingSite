@@ -80,6 +80,7 @@ export default function AssistantPage() {
       <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
+          aria-label="Back to the OpenHouse home page"
           className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-medium backdrop-blur-md hover:bg-gold/20 transition-all duration-300"
         >
           <ChevronLeft className="w-3 h-3" aria-hidden="true" />
@@ -305,7 +306,7 @@ export default function AssistantPage() {
                   <div className="w-11 h-11 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center flex-shrink-0">
                     <item.icon className="w-5 h-5 text-amber-700" aria-hidden="true" />
                   </div>
-                  <span className="text-[11px] uppercase tracking-wider font-semibold text-amber-700/80">
+                  <span className="text-[11px] uppercase tracking-wider font-semibold text-amber-800">
                     {item.tag}
                   </span>
                 </div>
@@ -345,7 +346,7 @@ export default function AssistantPage() {
                   <div className="w-11 h-11 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center">
                     <step.icon className="w-5 h-5 text-gold" aria-hidden="true" />
                   </div>
-                  <span className="text-xs font-mono text-porcelain/40">Step {i + 1}</span>
+                  <span className="text-xs font-mono text-porcelain/60">Step {i + 1}</span>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-3 font-heading">{step.title}</h3>
                 <p className="text-[17px] text-porcelain/75 leading-relaxed">{step.desc}</p>

@@ -129,6 +129,7 @@ export default function SalesPage() {
       <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
+          aria-label="Back to the OpenHouse home page"
           className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium backdrop-blur-md hover:bg-blue-500/20 transition-all duration-300"
         >
           <ChevronLeft className="w-3 h-3" aria-hidden="true" />
@@ -300,7 +301,7 @@ export default function SalesPage() {
                   <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
                     <step.icon className="w-5 h-5 text-blue-700" aria-hidden="true" />
                   </div>
-                  <span className="text-xs font-mono text-carbon/40">
+                  <span className="text-xs font-mono text-carbon/60">
                     Step {i + 1}
                   </span>
                 </div>

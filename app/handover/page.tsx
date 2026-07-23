@@ -137,6 +137,7 @@ export default function HandoverPage() {
       <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
+          aria-label="Back to the OpenHouse home page"
           className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-medium backdrop-blur-md hover:bg-gold/20 transition-all duration-300"
         >
           <ChevronLeft className="w-3 h-3" aria-hidden="true" />
@@ -417,7 +418,7 @@ export default function HandoverPage() {
                       aria-hidden="true"
                     />
                   </div>
-                  <span className="text-xs font-mono text-carbon/40">
+                  <span className="text-xs font-mono text-carbon/60">
                     Step {i + 1}
                   </span>
                 </div>

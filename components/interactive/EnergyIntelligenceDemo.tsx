@@ -12,12 +12,12 @@ import {
   AlertTriangle,
   Leaf,
   TrendingDown,
-  FileText,
   Activity,
 } from "lucide-react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useInViewOnce } from "@/hooks/useInViewOnce";
 import { EASE } from "@/lib/motion";
+import { SourceChips, SourceOverlay } from "./SourcePeek";
 
 /**
  * EnergyIntelligenceDemo
@@ -137,9 +137,27 @@ export function EnergyIntelligenceDemo({
   const [internalStage, setInternalStage] = useState<Stage>("monitoring");
   const [isPlaying, setIsPlaying] = useState(false);
   const [savingsVal, setSavingsVal] = useState(0);
+  const [openSource, setOpenSource] = useState<string | null>(null);
+  const sourceOpenerRef = useRef<HTMLButtonElement | null>(null);
 
   const controlled = controlledStage !== undefined;
   const stage = controlledStage ?? internalStage;
+
+  // A source receipt belongs to its stage; close it when the stage moves on.
+  useEffect(() => {
+    setOpenSource(null);
+  }, [stage]);
+
+  const handleOpenSource = (name: string, opener: HTMLButtonElement) => {
+    sourceOpenerRef.current = opener;
+    setOpenSource(name);
+    if (!controlled) setIsPlaying(false); // let the visitor read the receipt
+  };
+
+  const handleCloseSource = () => {
+    setOpenSource(null);
+    sourceOpenerRef.current?.focus();
+  };
 
   const systems = variant === "compact" ? ALL_SYSTEMS.slice(0, 2) : ALL_SYSTEMS;
   const flagged = stage === "diagnose"; // heat pump is only in fault during diagnose
@@ -380,15 +398,35 @@ export function EnergyIntelligenceDemo({
             <AnimatePresence initial={false}>
               <motion.div
                 key={stage}
-                className="absolute inset-0 p-5 overflow-hidden"
+                // transform-gpu pins this wrapper as the containing block for
+                // the SourcePeek overlay's absolute positioning.
+                className="absolute inset-0 p-5 overflow-hidden transform-gpu"
                 initial={animate ? { opacity: 0 } : false}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: animate ? 0.25 : 0 } }}
                 transition={{ duration: animate ? 0.35 : 0, ease: EASE }}
               >
-                <StageContent stage={stage} accent={a} animate={animate} savingsVal={savingsVal} ratingIndex={ratingIndex} />
+                <StageContent
+                  stage={stage}
+                  accent={a}
+                  accentName={accent}
+                  animate={animate}
+                  savingsVal={savingsVal}
+                  ratingIndex={ratingIndex}
+                  onOpenSource={handleOpenSource}
+                />
               </motion.div>
             </AnimatePresence>
+
+            {/* The receipt — direct child of the relative panel so it covers
+                the panel exactly, independent of any wrapper padding. */}
+            {openSource && (
+              <SourceOverlay
+                name={openSource}
+                accent={accent}
+                onClose={handleCloseSource}
+              />
+            )}
           </div>
         </div>
 
@@ -445,15 +483,19 @@ function StatusDot({ fault, accent, animate }: { fault: boolean; accent: AccentC
 function StageContent({
   stage,
   accent,
+  accentName,
   animate,
   savingsVal,
   ratingIndex,
+  onOpenSource,
 }: {
   stage: Stage;
   accent: AccentClasses;
+  accentName: "gold" | "emerald";
   animate: boolean;
   savingsVal: number;
   ratingIndex: number;
+  onOpenSource: (name: string, opener: HTMLButtonElement) => void;
 }) {
   if (stage === "monitoring") {
     return (
@@ -497,7 +539,7 @@ function StageContent({
             <p className="text-[11px] text-porcelain/50">Filmed for this exact unit &middot; 1m 28s</p>
           </div>
         </div>
-        <Sources accent={accent} items={["Daikin Altherma 3 R manual", "Live telemetry: ONECTA"]} />
+        <SourceChips accent={accentName} items={["Daikin Altherma 3 R manual", "Live telemetry: ONECTA"]} onOpen={onOpenSource} />
       </div>
     );
   }
@@ -560,7 +602,7 @@ function StageContent({
         </div>
         <BillBars accent={accent} animate={animate} />
       </div>
-      <Sources accent={accent} items={["Your meter readings", "Live telemetry"]} />
+      <SourceChips accent={accentName} items={["Your meter readings", "Live telemetry"]} onOpen={onOpenSource} />
     </div>
   );
 }
@@ -582,25 +624,6 @@ function ExampleTag() {
       Example
       <span className="sr-only"> figure, for illustration only, not real customer data</span>
     </span>
-  );
-}
-
-function Sources({ accent, items }: { accent: AccentClasses; items: string[] }) {
-  return (
-    <div className="pt-3 border-t border-white/5">
-      <p className="text-[10px] uppercase tracking-wider text-porcelain/45 font-semibold mb-2">Sources</p>
-      <div className="flex flex-wrap gap-1.5">
-        {items.map((s) => (
-          <span
-            key={s}
-            className={`inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-full ${accent.softBg} ${accent.text} border ${accent.border}`}
-          >
-            <FileText className="w-3 h-3" aria-hidden="true" />
-            {s}
-          </span>
-        ))}
-      </div>
-    </div>
   );
 }
 
