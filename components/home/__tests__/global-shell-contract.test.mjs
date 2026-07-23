@@ -33,6 +33,7 @@ test("navigation avoids oversized branding, eager prefetch and scroll-driven sta
   assert.doesNotMatch(source, /prefetch=\{true\}/);
   assert.doesNotMatch(source, /priority/);
   assert.match(source, /h-20/);
+  assert.match(source, /bg-carbon\/\[0\.92\]/);
   assert.match(source, /Request a walkthrough/);
 });
 

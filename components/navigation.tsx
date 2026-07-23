@@ -39,7 +39,7 @@ export function Navigation() {
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.08] bg-carbon/92 backdrop-blur-xl" aria-label="Main navigation">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.08] bg-carbon/[0.92] backdrop-blur-xl" aria-label="Main navigation">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <Link href="/" className="text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold">

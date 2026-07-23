@@ -1,6 +1,9 @@
+import { DeveloperInsightSection } from "@/components/home/DeveloperInsightSection";
+import { EnergyDirectionSection } from "@/components/home/EnergyDirectionSection";
 import { EvidenceModelSection } from "@/components/home/EvidenceModelSection";
+import { FinalCtaSection } from "@/components/home/FinalCtaSection";
+import { HomeownerProofSection } from "@/components/home/HomeownerProofSection";
 import { LivingHomeHero } from "@/components/home/LivingHomeHero";
-import { ProductShowcase } from "@/components/marketing/ProductShowcase";
 
 export const metadata = {
   title: "OpenHouse AI | A home that can explain itself",
@@ -13,7 +16,10 @@ export default function PlatformPage() {
     <div>
       <LivingHomeHero />
       <EvidenceModelSection />
-      <ProductShowcase />
+      <HomeownerProofSection />
+      <DeveloperInsightSection />
+      <EnergyDirectionSection />
+      <FinalCtaSection />
     </div>
   );
 }
