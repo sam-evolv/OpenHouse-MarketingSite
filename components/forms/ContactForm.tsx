@@ -1,225 +1,195 @@
 "use client";
 
 import { useState } from "react";
-import { FormInput, FormSelect, useForm } from "@/components/ui/form-input";
-import { Button } from "@/components/ui/button";
-import { Send, CheckCircle, Loader2 } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
-interface ContactFormData {
+type FormState = {
   name: string;
   email: string;
   company: string;
-  phone: string;
-  enquiryType: string;
-  message: string;
-  [key: string]: string;
-}
-
-const enquiryOptions = [
-  { value: "demo", label: "Request a Demo" },
-  { value: "pricing", label: "Pricing Enquiry" },
-  { value: "partnership", label: "Partnership Opportunity" },
-  { value: "support", label: "Technical Support" },
-  { value: "other", label: "Other" },
-];
-
-const validationSchemas = {
-  name: [
-    { type: "required" as const, message: "Full name is required" },
-    { type: "minLength" as const, value: 2, message: "Name must be at least 2 characters" },
-  ],
-  email: [
-    { type: "required" as const, message: "Email address is required" },
-    { type: "email" as const, message: "Please enter a valid email address" },
-  ],
-  company: [
-    { type: "required" as const, message: "Company name is required" },
-  ],
-  phone: [
-    { 
-      type: "pattern" as const, 
-      value: /^[\d\s+()-]*$/, 
-      message: "Please enter a valid phone number" 
-    },
-  ],
-  enquiryType: [
-    { type: "required" as const, message: "Please select an enquiry type" },
-  ],
-  message: [
-    { type: "required" as const, message: "Message is required" },
-    { type: "minLength" as const, value: 20, message: "Message must be at least 20 characters" },
-    { type: "maxLength" as const, value: 2000, message: "Message must be less than 2000 characters" },
-  ],
+  role: string;
+  scheme: string;
+  units: string;
+  problem: string;
+  preferredTime: string;
 };
 
-export function ContactForm() {
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
-  
-  const {
-    values,
-    isSubmitting,
-    setValue,
-    setIsSubmitting,
-    reset,
-    validateAll,
-  } = useForm<ContactFormData>({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    enquiryType: "",
-    message: "",
-  });
+const initialState: FormState = {
+  name: "",
+  email: "",
+  company: "",
+  role: "",
+  scheme: "",
+  units: "",
+  problem: "",
+  preferredTime: "",
+};
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const isValid = validateAll(validationSchemas);
-    if (!isValid) return;
+const fieldClass =
+  "min-h-[48px] w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-porcelain placeholder:text-porcelain/40 outline-none transition-colors focus:border-gold focus:ring-2 focus:ring-gold/30";
 
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
+export function ContactForm({ mode = "developer" }: { mode?: "developer" | "care" }) {
+  const isCare = mode === "care";
+  const [form, setForm] = useState(initialState);
+  const [opened, setOpened] = useState(false);
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      setSubmitStatus("success");
-      reset();
-    } catch {
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
-    }
+  const setValue = (key: keyof FormState, value: string) => {
+    setForm((current) => ({ ...current, [key]: value }));
   };
 
-  if (submitStatus === "success") {
-    return (
-      <div className="text-center py-12">
-        <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-500/20 flex items-center justify-center">
-          <CheckCircle className="w-8 h-8 text-green-400" />
-        </div>
-        <h3 className="text-2xl font-bold text-porcelain mb-2">Message Sent</h3>
-        <p className="text-hint mb-6">
-          Thank you for getting in touch. We'll respond within 24 hours.
-        </p>
-        <Button 
-          variant="outline" 
-          onClick={() => setSubmitStatus("idle")}
-          className="border-gold/40 text-gold hover:bg-gold/10"
-        >
-          Send Another Message
-        </Button>
-      </div>
-    );
-  }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const subject = `${isCare ? "Care pilot" : "House-type walkthrough"} request from ${form.company}`;
+    const body = [
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      `Company: ${form.company}`,
+      `Role: ${form.role}`,
+      `${isCare ? "Installation type or active base" : "Scheme or development type"}: ${form.scheme}`,
+      `${isCare ? "Approximate active installs" : "Approximate units"}: ${form.units}`,
+      `${isCare ? "Recurring support or callout problem" : "Biggest handover or aftercare problem"}: ${form.problem}`,
+      `Preferred time: ${form.preferredTime}`,
+    ].join("\n");
+
+    setOpened(true);
+    window.location.href = `mailto:sam@openhouseai.ie?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FormInput
-          id="name"
-          name="name"
-          label="Full Name"
-          placeholder="John Smith"
-          value={values.name}
-          onChange={(v) => setValue("name", v)}
-          validationRules={validationSchemas.name}
-          autoComplete="name"
-        />
-        
-        <FormInput
-          id="email"
-          name="email"
-          label="Email Address"
-          type="email"
-          placeholder="john@example.com"
-          value={values.email}
-          onChange={(v) => setValue("email", v)}
-          validationRules={validationSchemas.email}
-          autoComplete="email"
-        />
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field label="Name" htmlFor="name">
+          <input
+            id="name"
+            name="name"
+            required
+            autoComplete="name"
+            className={fieldClass}
+            value={form.name}
+            onChange={(event) => setValue("name", event.target.value)}
+          />
+        </Field>
+        <Field label="Work email" htmlFor="email">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            className={fieldClass}
+            value={form.email}
+            onChange={(event) => setValue("email", event.target.value)}
+          />
+        </Field>
       </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FormInput
-          id="company"
-          name="company"
-          label="Company"
-          placeholder="Acme Property Group"
-          value={values.company}
-          onChange={(v) => setValue("company", v)}
-          validationRules={validationSchemas.company}
-          autoComplete="organization"
-        />
-        
-        <FormInput
-          id="phone"
-          name="phone"
-          label="Phone Number"
-          type="tel"
-          placeholder="+44 20 1234 5678"
-          value={values.phone}
-          onChange={(v) => setValue("phone", v)}
-          validationRules={validationSchemas.phone}
-          autoComplete="tel"
-        />
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field label="Company" htmlFor="company">
+          <input
+            id="company"
+            name="company"
+            required
+            autoComplete="organization"
+            className={fieldClass}
+            value={form.company}
+            onChange={(event) => setValue("company", event.target.value)}
+          />
+        </Field>
+        <Field label="Role" htmlFor="role">
+          <input
+            id="role"
+            name="role"
+            required
+            autoComplete="organization-title"
+            className={fieldClass}
+            value={form.role}
+            onChange={(event) => setValue("role", event.target.value)}
+          />
+        </Field>
       </div>
-      
-      <FormSelect
-        id="enquiryType"
-        name="enquiryType"
-        label="Enquiry Type"
-        value={values.enquiryType}
-        onChange={(v) => setValue("enquiryType", v)}
-        options={enquiryOptions}
-        placeholder="Select enquiry type"
-        validationRules={validationSchemas.enquiryType}
-      />
-      
-      <FormInput
-        id="message"
-        name="message"
-        label="Message"
-        type="textarea"
-        placeholder="Tell us about your development and how we can help..."
-        value={values.message}
-        onChange={(v) => setValue("message", v)}
-        validationRules={validationSchemas.message}
-        rows={5}
-      />
-      
-      {submitStatus === "error" && (
-        <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-          <p className="text-sm text-red-400">
-            Something went wrong. Please try again or email us directly at contact@openhouse.ai
-          </p>
-        </div>
-      )}
-      
-      <Button
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field label={isCare ? "Installation type or active base" : "Current scheme or development type"} htmlFor="scheme">
+          <input
+            id="scheme"
+            name="scheme"
+            required
+            placeholder={isCare ? "For example, Daikin Altherma installations" : "For example, 3-bed semi-detached scheme"}
+            className={fieldClass}
+            value={form.scheme}
+            onChange={(event) => setValue("scheme", event.target.value)}
+          />
+        </Field>
+        <Field label={isCare ? "Approximate active installs" : "Approximate units"} htmlFor="units">
+          <input
+            id="units"
+            name="units"
+            inputMode="numeric"
+            placeholder="For example, 120"
+            className={fieldClass}
+            value={form.units}
+            onChange={(event) => setValue("units", event.target.value)}
+          />
+        </Field>
+      </div>
+
+      <Field label={isCare ? "Recurring support or callout problem" : "Biggest handover or aftercare problem"} htmlFor="problem">
+        <textarea
+          id="problem"
+          name="problem"
+          required
+          rows={4}
+          className={fieldClass}
+          placeholder={isCare ? "What keeps generating calls, uncertainty or site visits?" : "What keeps being repeated, missed or escalated?"}
+          value={form.problem}
+          onChange={(event) => setValue("problem", event.target.value)}
+        />
+      </Field>
+
+      <Field label="Preferred time" htmlFor="preferredTime">
+        <input
+          id="preferredTime"
+          name="preferredTime"
+          className={fieldClass}
+          placeholder="For example, Tuesday after 4pm"
+          value={form.preferredTime}
+          onChange={(event) => setValue("preferredTime", event.target.value)}
+        />
+      </Field>
+
+      <button
         type="submit"
-        disabled={isSubmitting}
-        className="w-full py-4 bg-gold text-carbon font-semibold hover:bg-gold/90 transition-all duration-200 disabled:opacity-50"
+        className="group inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-full bg-gold px-7 py-4 font-semibold text-carbon transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
       >
-        {isSubmitting ? (
-          <>
-            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-            Sending...
-          </>
-        ) : (
-          <>
-            <Send className="w-5 h-5 mr-2" />
-            Send Message
-          </>
-        )}
-      </Button>
-      
-      <p className="text-xs text-hint text-center">
-        By submitting this form, you agree to our{" "}
-        <a href="/privacy" className="text-gold hover:underline">Privacy Policy</a>
-        {" "}and{" "}
-        <a href="/terms" className="text-gold hover:underline">Terms of Service</a>.
+        {isCare ? "Discuss a Care pilot" : "Request a house-type walkthrough"}
+        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+      </button>
+
+      <p className="flex items-start gap-2 text-xs leading-relaxed text-porcelain/55">
+        <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+        {opened
+          ? "Your email application should now be open with the request completed. Review it and press send."
+          : "This opens a completed email to sam@openhouseai.ie. Nothing is submitted until you press send in your email application."}
       </p>
     </form>
+  );
+}
+
+function Field({
+  label,
+  htmlFor,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="space-y-2">
+      <label htmlFor={htmlFor} className="block text-sm font-medium text-porcelain/85">
+        {label}
+      </label>
+      {children}
+    </div>
   );
 }

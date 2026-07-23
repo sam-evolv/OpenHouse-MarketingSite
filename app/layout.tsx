@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Inter, JetBrains_Mono } from "next/font/google";
+import { Manrope, Inter, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { ScrollProvider } from "@/components/providers/ScrollProvider";
@@ -31,24 +31,36 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+// The human voice: used ONLY for homeowners' own words and one emotional
+// line per chapter — never for product UI. Scarcity is what makes it read.
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  style: ["normal", "italic"],
+  weight: ["400", "600"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "OpenHouse Ai — The AI Resident Portal for Modern Developments",
+  metadataBase: new URL("https://openhouseai.ie"),
+  title: "OpenHouse Ai | A home that can explain itself",
   description:
-    "Cut support requests, wow buyers, and give residents answers in seconds. One AI portal that knows your development inside out.",
+    "OpenHouse turns approved house-type information into sourced homeowner answers and visible aftercare insight for property developers.",
   keywords: [
-    "property management",
-    "AI assistant",
-    "real estate",
-    "resident portal",
-    "smart building",
-    "NFC onboarding",
+    "property development platform",
+    "AI home assistant",
+    "energy intelligence",
+    "heat pump support",
+    "home energy monitoring",
+    "renewables installer software",
     "property technology",
   ],
   authors: [{ name: "EvolvAi" }],
   openGraph: {
-    title: "OpenHouse Ai — The AI Resident Portal for Modern Developments",
+    title:
+      "OpenHouse Ai | A home that can explain itself",
     description:
-      "Cut support requests, wow buyers, and give residents answers in seconds.",
+      "One living record for each home, with sourced answers for homeowners and aftercare insight for property developers.",
     url: "https://openhouseai.ie",
     siteName: "OpenHouse Ai",
     images: [
@@ -64,9 +76,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OpenHouse Ai — The AI Resident Portal for Modern Developments",
+    title:
+      "OpenHouse Ai | A home that can explain itself",
     description:
-      "Cut support requests, wow buyers, and give residents answers in seconds.",
+      "One living record for each home, with sourced answers for homeowners and aftercare insight for property developers.",
     images: ["/og.jpg"],
   },
 };
@@ -77,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable} ${sourceSerif.variable}`}>
       <head>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}

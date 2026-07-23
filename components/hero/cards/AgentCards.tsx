@@ -15,7 +15,7 @@ export function AgentFloatingCards() {
       {/* Card 1: Voice listening */}
       <FloatingCard
         depth={1}
-        className="-translate-x-20 -translate-y-24"
+        className="lg:-translate-x-20 lg:-translate-y-24"
         delay={0.6}
       >
         <div className="w-72 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
@@ -63,7 +63,7 @@ export function AgentFloatingCards() {
       {/* Card 2: Draft ready */}
       <FloatingCard
         depth={2}
-        className="translate-x-16 -translate-y-4"
+        className="lg:translate-x-16 lg:-translate-y-4"
         delay={0.8}
       >
         <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
@@ -100,7 +100,7 @@ export function AgentFloatingCards() {
       {/* Card 3: Viewing scheduled */}
       <FloatingCard
         depth={3}
-        className="-translate-x-28 translate-y-28"
+        className="lg:-translate-x-28 lg:translate-y-28"
         delay={1.0}
       >
         <div className="w-64 bg-gradient-to-br from-gold/20 to-gold/5 backdrop-blur-md rounded-2xl border border-gold/30 shadow-2xl overflow-hidden">
@@ -131,7 +131,7 @@ export function AgentFloatingCards() {
       {/* Card 4: Lease renewal RPZ */}
       <FloatingCard
         depth={2}
-        className="translate-x-28 translate-y-32"
+        className="lg:translate-x-28 lg:translate-y-32"
         delay={1.2}
       >
         <div className="w-60 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">

@@ -15,7 +15,7 @@ const docs = [
   "Floor plan",
   "Kitchen warranty",
   "Heat pump manual",
-  "Boiler service log",
+  "Solar PV warranty",
 ];
 
 export function HandoverFloatingCards() {
@@ -24,7 +24,7 @@ export function HandoverFloatingCards() {
       {/* Card 1: Resident chat with assistant */}
       <FloatingCard
         depth={1}
-        className="-translate-x-20 -translate-y-24"
+        className="lg:-translate-x-20 lg:-translate-y-24"
         delay={0.6}
       >
         <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
@@ -49,7 +49,7 @@ export function HandoverFloatingCards() {
           <div className="p-4 space-y-3">
             <div className="flex justify-end">
               <div className="bg-gold/15 rounded-2xl rounded-br-md px-3 py-2 max-w-[80%]">
-                <p className="text-[12px] text-porcelain">
+                <p className="font-serif italic text-[13px] text-porcelain">
                   How do I top up my heat pump pressure?
                 </p>
               </div>
@@ -74,7 +74,7 @@ export function HandoverFloatingCards() {
       {/* Card 2: Your home, documents */}
       <FloatingCard
         depth={2}
-        className="translate-x-20 -translate-y-4"
+        className="lg:translate-x-20 lg:-translate-y-4"
         delay={0.8}
       >
         <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
@@ -105,7 +105,7 @@ export function HandoverFloatingCards() {
       {/* Card 3: QR setup */}
       <FloatingCard
         depth={3}
-        className="-translate-x-28 translate-y-28"
+        className="lg:-translate-x-28 lg:translate-y-28"
         delay={1.0}
       >
         <div className="w-60 bg-gradient-to-br from-gold/20 to-gold/5 backdrop-blur-md rounded-2xl border border-gold/30 shadow-2xl overflow-hidden">
@@ -126,7 +126,7 @@ export function HandoverFloatingCards() {
       {/* Card 4: Service reminder (peeking) */}
       <FloatingCard
         depth={2}
-        className="translate-x-28 translate-y-32"
+        className="lg:translate-x-28 lg:translate-y-32"
         delay={1.2}
       >
         <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
@@ -141,10 +141,10 @@ export function HandoverFloatingCards() {
           </div>
           <div className="p-4">
             <p className="text-sm font-semibold text-porcelain mb-1">
-              Boiler service due
+              Heat pump service due
             </p>
             <p className="text-[12px] text-porcelain/70 leading-relaxed">
-              Six-month service is due next week. We&rsquo;ve drafted an email to your installer.
+              The annual service is due next month. We&rsquo;ve drafted an email to your installer.
             </p>
           </div>
         </div>

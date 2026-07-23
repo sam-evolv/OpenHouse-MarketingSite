@@ -21,7 +21,6 @@ import {
   FolderOpen,
   MessageSquare,
   Sparkles,
-  Headphones,
   Wrench,
 } from "lucide-react";
 
@@ -118,7 +117,6 @@ const platformModules = [
   { title: "Build", href: "/build", icon: FolderOpen, accent: "text-emerald-400" },
   { title: "Handover", href: "/handover", icon: MessageSquare, accent: "text-gold" },
   { title: "Intelligence", href: "/intelligence", icon: Sparkles, accent: "text-gold" },
-  { title: "Agent", href: "/agent", icon: Headphones, accent: "text-gold" },
   { title: "Care", href: "/care", icon: Wrench, accent: "text-emerald-400" },
 ];
 
@@ -129,6 +127,7 @@ export default function SalesPage() {
       <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
+          aria-label="Back to the OpenHouse home page"
           className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium backdrop-blur-md hover:bg-blue-500/20 transition-all duration-300"
         >
           <ChevronLeft className="w-3 h-3" aria-hidden="true" />
@@ -300,7 +299,7 @@ export default function SalesPage() {
                   <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
                     <step.icon className="w-5 h-5 text-blue-700" aria-hidden="true" />
                   </div>
-                  <span className="text-xs font-mono text-carbon/40">
+                  <span className="text-xs font-mono text-carbon/60">
                     Step {i + 1}
                   </span>
                 </div>
@@ -459,7 +458,7 @@ export default function SalesPage() {
               Part of the OpenHouse platform.
             </h2>
             <p className="text-[17px] sm:text-lg text-carbon/70 leading-relaxed">
-              Sales is one module of six. Same data, different surfaces, one platform that runs every stage of a development.
+              Sales is one module of five. Same data, different surfaces, one platform that runs every stage of a development.
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto">

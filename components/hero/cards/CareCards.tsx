@@ -22,7 +22,7 @@ export function CareFloatingCards() {
       {/* Card 1: Customer chat with installer branding */}
       <FloatingCard
         depth={1}
-        className="-translate-x-20 -translate-y-24"
+        className="lg:-translate-x-20 lg:-translate-y-24"
         delay={0.6}
       >
         <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
@@ -32,7 +32,7 @@ export function CareFloatingCards() {
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-porcelain">
-                Acme Renewables, support
+                Example Installer, support
               </p>
               <p className="text-[10px] text-emerald-400 flex items-center gap-1">
                 <motion.span
@@ -40,14 +40,14 @@ export function CareFloatingCards() {
                   animate={{ opacity: [0.4, 1, 0.4] }}
                   transition={{ duration: 1.8, repeat: Infinity }}
                 />
-                AI online
+                Pilot concept
               </p>
             </div>
           </div>
           <div className="p-4 space-y-2.5">
             <div className="flex justify-end">
               <div className="bg-emerald-500/20 rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%]">
-                <p className="text-[12px] text-porcelain">
+                <p className="font-serif italic text-[13px] text-porcelain">
                   My heat pump is showing E4. Is that serious?
                 </p>
               </div>
@@ -72,7 +72,7 @@ export function CareFloatingCards() {
       {/* Card 2: Installer dashboard */}
       <FloatingCard
         depth={2}
-        className="translate-x-20 -translate-y-4"
+        className="lg:translate-x-20 lg:-translate-y-4"
         delay={0.85}
       >
         <div className="w-72 bg-slate/95 backdrop-blur-md rounded-2xl border border-emerald-500/30 shadow-2xl overflow-hidden">
@@ -81,22 +81,22 @@ export function CareFloatingCards() {
               <BarChart3 className="w-4 h-4 text-emerald-400" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-porcelain">This week</p>
-              <p className="text-[10px] text-porcelain/50">Your fleet</p>
+              <p className="text-sm font-medium text-porcelain">Example week</p>
+              <p className="text-[10px] text-porcelain/50">Illustrative fleet view</p>
             </div>
           </div>
           <div className="p-4 space-y-3">
             <div className="flex items-baseline justify-between">
               <span className="text-[11px] text-porcelain/70">
-                Queries answered without a callout
+                Questions grounded in approved guidance
               </span>
-              <span className="text-2xl font-bold text-emerald-400">47</span>
+              <span className="text-sm font-bold text-emerald-400">Visible</span>
             </div>
             <div className="flex items-baseline justify-between pt-2 border-t border-white/5">
               <span className="text-[11px] text-porcelain/70">
-                Engineer hours saved
+                Evidence gaps escalated
               </span>
-              <span className="text-lg font-semibold text-emerald-300">12</span>
+              <span className="text-sm font-semibold text-emerald-300">Visible</span>
             </div>
           </div>
         </div>
@@ -105,7 +105,7 @@ export function CareFloatingCards() {
       {/* Card 3: Your branding (lower left) */}
       <FloatingCard
         depth={3}
-        className="-translate-x-28 translate-y-28"
+        className="lg:-translate-x-28 lg:translate-y-28"
         delay={1.0}
       >
         <div className="w-64 bg-gradient-to-br from-emerald-500/20 to-emerald-700/5 backdrop-blur-md rounded-2xl border border-emerald-500/30 shadow-2xl overflow-hidden">
@@ -128,7 +128,7 @@ export function CareFloatingCards() {
       {/* Card 4: Telemetry integrations (peeking) */}
       <FloatingCard
         depth={2}
-        className="translate-x-28 translate-y-32"
+        className="lg:translate-x-28 lg:translate-y-32"
         delay={1.15}
       >
         <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
@@ -137,8 +137,8 @@ export function CareFloatingCards() {
               <Plug className="w-4 h-4 text-emerald-400" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-porcelain">Connected</p>
-              <p className="text-[10px] text-porcelain/50">Live telemetry</p>
+              <p className="text-sm font-medium text-porcelain">Direction</p>
+              <p className="text-[10px] text-porcelain/50">Potential data sources</p>
             </div>
           </div>
           <div className="p-4 space-y-1.5">

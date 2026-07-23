@@ -14,7 +14,7 @@ export function createLenis() {
   }
 
   lenisInstance = new Lenis({
-    duration: 1.2,
+    duration: 1.0,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // subtle deceleration
     orientation: "vertical",
     gestureOrientation: "vertical",

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { HeadlineMaskScroll } from "@/components/fx/HeadlineMaskScroll";
 import { Magnetic } from "@/components/interactive/Magnetic";
 import { Reveal } from "@/components/effects/Reveal";
-import { ArchitecturalScene } from "@/components/FX/ArchitecturalScene";
+import { ArchitecturalScene } from "@/components/fx/ArchitecturalScene";
 import content from "@/i18n/en.json";
 
 export function HeroSectionEnhanced() {

@@ -24,8 +24,8 @@ const SCENARIOS: Scenario[] = [
     title: "Maintenance",
     icon: "🔧",
     messages: [
-      { sender: "resident", text: "The radiator in the bedroom is making a loud banging noise." },
-      { sender: "ai", text: "That sounds like trapped air (kettling). I have a 30-second guide on how to bleed your specific radiator model. Would you like to see it?" },
+      { sender: "resident", text: "The ventilation unit in the hall is making a humming noise." },
+      { sender: "ai", text: "That usually means the filter is due a clean. I have a 30-second guide for your exact ventilation unit. Would you like to see it?" },
     ],
     resultTag: { text: "Ticket Avoided", style: "green" },
   },

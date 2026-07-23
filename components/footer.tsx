@@ -3,11 +3,8 @@ import Image from "next/image";
 import { env } from "@/lib/env";
 
 const productLinks = [
-  { label: "Sales", href: "/sales" },
-  { label: "Build", href: "/build" },
-  { label: "Handover", href: "/handover" },
-  { label: "Intelligence", href: "/intelligence" },
-  { label: "Agent", href: "/agent" },
+  { label: "Developer Dashboard", href: "/developers" },
+  { label: "Property Assistant", href: "/assistant" },
   { label: "Care", href: "/care" },
   { label: "Contact", href: "/contact" },
 ];
@@ -31,17 +28,17 @@ export function Footer() {
                 alt="OpenHouse Ai"
                 width={600}
                 height={150}
-                priority
+                sizes="(min-width: 768px) 200px, 160px"
                 className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
               />
             </Link>
-            <p className="text-xs text-porcelain/50 leading-relaxed mb-4">
-              The AI Resident Portal for Modern Developments. 
-              Transforming how developers support their residents.
+            <p className="text-xs text-porcelain/60 leading-relaxed mb-4">
+              One living record for each home, with a developer control plane,
+              a homeowner interface and a focused installer extension.
             </p>
             <a
               href={`mailto:${env.CONTACT_EMAIL}`}
-              className="text-xs text-porcelain/50 hover:text-gold transition-colors"
+              className="text-xs text-porcelain/60 hover:text-gold transition-colors"
             >
               {env.CONTACT_EMAIL}
             </a>
@@ -49,16 +46,16 @@ export function Footer() {
 
           {/* Product Links */}
           <div>
-            <h4 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
+            <h3 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
               Platform
-            </h4>
+            </h3>
             <ul className="space-y-2">
               {productLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     prefetch={true}
-                    className="text-xs text-porcelain/50 hover:text-gold transition-colors"
+                    className="text-xs text-porcelain/60 hover:text-gold transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -69,16 +66,16 @@ export function Footer() {
 
           {/* Legal Resources */}
           <div>
-            <h4 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
+            <h3 className="text-xs font-semibold text-porcelain uppercase tracking-wider mb-4">
               Legal
-            </h4>
+            </h3>
             <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     prefetch={true}
-                    className="text-xs text-porcelain/50 hover:text-gold transition-colors"
+                    className="text-xs text-porcelain/60 hover:text-gold transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -89,22 +86,19 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-xs text-porcelain/40">
+          <p className="text-xs text-porcelain/60">
             © {new Date().getFullYear()} OpenHouse Ai. All rights reserved.
           </p>
-          <a 
-            href="https://www.evolvai.ie" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-porcelain/40 hover:text-porcelain/60 transition-colors"
-          >
-            <span>Designed & Developed by EvolvAi</span>
-            <img 
-              src="/images/evolvai-logo.png" 
-              alt="EvolvAi" 
-              className="h-4 w-auto"
+          <div className="flex items-center gap-1.5 text-xs text-porcelain/60">
+            <span>Designed &amp; Developed by OpenHouse Ai</span>
+            <Image
+              src="/images/openhouse-mark.png"
+              alt="OpenHouse Ai"
+              width={16}
+              height={16}
+              className="h-4 w-auto rounded-[3px]"
             />
-          </a>
+          </div>
         </div>
       </div>
     </footer>

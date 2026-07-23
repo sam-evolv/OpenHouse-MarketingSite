@@ -13,14 +13,29 @@ import {
 } from "lucide-react";
 import { appRoutes } from "@/lib/env";
 
-const moduleLinks = [
-  { href: "/sales", label: "Sales" },
-  { href: "/build", label: "Build" },
-  { href: "/handover", label: "Handover" },
-  { href: "/intelligence", label: "Intelligence" },
-  { href: "/agent", label: "Agent" },
+const pillarLinks = [
+  { href: "/developers", label: "Developer Dashboard" },
+  { href: "/assistant", label: "Property Assistant" },
   { href: "/care", label: "Care" },
 ];
+
+// Highlight the Developer Dashboard while a legacy module URL is redirecting.
+const developerChildren = [
+  "/developers",
+  "/sales",
+  "/build",
+  "/handover",
+  "/intelligence",
+];
+
+function isPillarActive(href: string, pathname: string): boolean {
+  if (href === "/developers") {
+    return developerChildren.some(
+      (p) => pathname === p || pathname.startsWith(p + "/")
+    );
+  }
+  return pathname === href || pathname.startsWith(href + "/");
+}
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,20 +72,21 @@ export function Navigation() {
               width={600}
               height={150}
               priority
+              sizes="(min-width: 768px) 200px, 160px"
               className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
             />
           </Link>
 
-          {/* Desktop Navigation — modules across the top */}
+          {/* Desktop Navigation — three pillars across the top */}
           <div className="hidden md:flex items-center space-x-8">
-            {moduleLinks.map((link) => (
+            {pillarLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 prefetch={true}
                 className={cn(
                   "text-sm font-medium transition-colors duration-200",
-                  pathname === link.href
+                  isPillarActive(link.href, pathname)
                     ? "text-gold"
                     : "text-porcelain hover:text-gold"
                 )}
@@ -130,7 +146,7 @@ export function Navigation() {
               href="/contact"
               className="px-4 py-2.5 text-sm font-medium text-porcelain hover:text-gold border border-white/10 hover:border-gold/40 rounded-full transition-all duration-200"
             >
-              Book a Demo
+              Request a walkthrough
             </a>
           </div>
 
@@ -162,14 +178,14 @@ export function Navigation() {
             role="menu"
           >
             <div className="flex flex-col space-y-4">
-              {moduleLinks.map((link) => (
+              {pillarLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
                     "text-sm font-medium transition-colors px-1",
-                    pathname === link.href
+                    isPillarActive(link.href, pathname)
                       ? "text-gold"
                       : "text-porcelain hover:text-gold"
                   )}
@@ -194,7 +210,7 @@ export function Navigation() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-sm font-medium text-gold hover:text-gold/80 px-1"
               >
-                Book a Demo
+                Request a walkthrough
               </a>
             </div>
           </div>

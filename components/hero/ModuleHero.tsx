@@ -5,6 +5,8 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import { ArrowRight } from "lucide-react";
+import { EASE } from "@/lib/motion";
+import { useHydratedReducedMotion } from "@/hooks/useHydratedReducedMotion";
 
 interface ModuleHeroProps {
   backgroundImage: StaticImageData;
@@ -13,6 +15,7 @@ interface ModuleHeroProps {
   imagePosition?: string; // e.g. "object-bottom" | "object-top"
   badge: ReactNode;
   title: ReactNode;
+  titleLabel?: string;
   subtitle: string;
   primaryCta: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
@@ -33,6 +36,7 @@ export function ModuleHero({
   imagePosition,
   badge,
   title,
+  titleLabel,
   subtitle,
   primaryCta,
   secondaryCta,
@@ -40,6 +44,7 @@ export function ModuleHero({
 }: ModuleHeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const reducedMotion = useHydratedReducedMotion();
 
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
@@ -56,7 +61,7 @@ export function ModuleHero({
   }, []);
 
   useEffect(() => {
-    if (!isMounted) return;
+    if (!isMounted || reducedMotion) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
@@ -69,7 +74,7 @@ export function ModuleHero({
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isMounted, mouseX, mouseY]);
+  }, [isMounted, reducedMotion, mouseX, mouseY]);
 
   return (
     <section
@@ -78,7 +83,7 @@ export function ModuleHero({
     >
       {/* Parallax background */}
       <motion.div
-        className="absolute inset-0 scale-110 overflow-hidden"
+        className="pointer-events-none absolute inset-0 scale-110 overflow-hidden"
         style={{ x: bgX, y: bgY }}
       >
         <Image
@@ -86,6 +91,7 @@ export function ModuleHero({
           alt={backgroundAlt}
           fill
           priority
+          quality={60}
           className={`object-cover ${imagePosition || ""}`}
           sizes="100vw"
         />
@@ -102,9 +108,9 @@ export function ModuleHero({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[70vh] lg:min-h-[75vh]">
           {/* Left: Text content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
             className="relative z-20"
           >
             <div className="relative">
@@ -112,16 +118,16 @@ export function ModuleHero({
               <div className="relative p-4">
                 {/* Badge */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={false}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4 }}
+                  transition={{ duration: 0.5, delay: 0.45, ease: EASE }}
                   className="mb-6"
                 >
                   {badge}
                 </motion.div>
 
                 {/* Title */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] mb-6 font-heading">
+                <h1 aria-label={titleLabel} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6 font-heading">
                   {title}
                 </h1>
 
@@ -155,40 +161,41 @@ export function ModuleHero({
             </div>
           </motion.div>
 
-          {/* Right: Floating cards */}
+          {/* Right: product cards.
+              Mobile: a normal-flow horizontal snap row so the product is
+              visible on phones too. Desktop (lg+): the absolute parallax
+              stage, unchanged. */}
           {children && (
-            <div className="relative hidden lg:flex items-center justify-center h-[500px]">
+            <div className="relative flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:px-0 lg:pb-0 lg:overflow-visible lg:snap-none lg:items-center lg:justify-center lg:h-[500px]">
               {children}
             </div>
           )}
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20">
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="text-xs font-medium uppercase tracking-wider text-porcelain/70">
-            Scroll to explore
-          </span>
-          <svg
-            className="w-5 h-5 text-porcelain/60"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
+      {/* Thread stub — plants the golden-thread motif; drawn once, then still */}
+      <div
+        className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+        aria-hidden="true"
+      >
+        <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-porcelain/50">
+          Scroll
+        </span>
+        <span className="relative block w-px h-12 overflow-hidden">
+          <span className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/20 to-gold/30" />
+          <motion.span
+            className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/60 to-gold origin-top"
+            initial={false}
+            animate={{ scaleY: 1 }}
+            transition={{ duration: 0.6, delay: 1.1, ease: EASE }}
+          />
+        </span>
+        <motion.span
+          className="block w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_12px_rgba(212,175,55,0.5)]"
+          initial={false}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: 1.6, ease: EASE }}
+        />
       </div>
     </section>
   );
@@ -203,6 +210,7 @@ interface FloatingCardProps {
 }
 
 export function FloatingCard({ children, depth, className = "", delay = 0.6 }: FloatingCardProps) {
+  const reducedMotion = useHydratedReducedMotion();
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
   const springConfig = { damping: 25, stiffness: 150 };
@@ -214,21 +222,22 @@ export function FloatingCard({ children, depth, className = "", delay = 0.6 }: F
   const cardY = useTransform(smoothY, [0, 1], [-15 * multiplier, 15 * multiplier]);
 
   useEffect(() => {
+    if (reducedMotion) return;
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX / window.innerWidth);
       mouseY.set(e.clientY / window.innerHeight);
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+  }, [reducedMotion, mouseX, mouseY]);
 
   return (
     <motion.div
-      className="absolute"
+      className="relative shrink-0 snap-center lg:absolute"
       style={{ x: cardX, y: cardY, zIndex: depth * 10 }}
-      initial={{ opacity: 0, y: 50 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: 0.6, delay, ease: EASE }}
     >
       <div className={`relative ${className}`}>
         {children}

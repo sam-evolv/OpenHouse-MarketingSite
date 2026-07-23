@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://openhouse.ai/sitemap.xml',
+    sitemap: 'https://openhouseai.ie/sitemap.xml',
   };
 }
