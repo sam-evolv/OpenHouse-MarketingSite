@@ -29,9 +29,9 @@ import { EASE } from "@/lib/motion";
  * Every figure shown is illustrative and is labelled "Example".
  */
 
-type Stage = "monitoring" | "diagnose" | "educate" | "savings";
+export type Stage = "monitoring" | "diagnose" | "educate" | "savings";
 
-const STEPS: { id: Stage; label: string }[] = [
+export const STEPS: { id: Stage; label: string }[] = [
   { id: "monitoring", label: "Monitor" },
   { id: "diagnose", label: "Diagnose" },
   { id: "educate", label: "Educate" },
@@ -111,6 +111,11 @@ interface EnergyIntelligenceDemoProps {
   autoPlay?: boolean;
   variant?: "full" | "compact";
   className?: string;
+  /** Controlled mode: when set, the parent owns the stage (e.g. scroll-driven). */
+  stage?: Stage;
+  onStageChange?: (s: Stage) => void;
+  /** Hide Play/Pause + step chips (the parent supplies its own control surface). */
+  hideControls?: boolean;
 }
 
 export function EnergyIntelligenceDemo({
@@ -118,6 +123,9 @@ export function EnergyIntelligenceDemo({
   autoPlay = true,
   variant = "full",
   className = "",
+  stage: controlledStage,
+  onStageChange,
+  hideControls = false,
 }: EnergyIntelligenceDemoProps) {
   const a = ACCENTS[accent];
   const reduced = usePrefersReducedMotion();
@@ -126,9 +134,12 @@ export function EnergyIntelligenceDemo({
   const rootRef = useRef<HTMLDivElement | null>(null);
   const inView = useInViewOnce(rootRef as React.RefObject<Element>, { threshold: 0.25 });
 
-  const [stage, setStage] = useState<Stage>("monitoring");
+  const [internalStage, setInternalStage] = useState<Stage>("monitoring");
   const [isPlaying, setIsPlaying] = useState(false);
   const [savingsVal, setSavingsVal] = useState(0);
+
+  const controlled = controlledStage !== undefined;
+  const stage = controlledStage ?? internalStage;
 
   const systems = variant === "compact" ? ALL_SYSTEMS.slice(0, 2) : ALL_SYSTEMS;
   const flagged = stage === "diagnose"; // heat pump is only in fault during diagnose
@@ -137,15 +148,19 @@ export function EnergyIntelligenceDemo({
   // Start autoplay once the demo scrolls into view (keeps timers/paint off the
   // critical path so the hero image stays the LCP element).
   useEffect(() => {
+    if (controlled) return;
     if (inView && autoPlay && animate) setIsPlaying(true);
-  }, [inView, autoPlay, animate]);
+  }, [controlled, inView, autoPlay, animate]);
 
   // Stage auto-advance.
   useEffect(() => {
-    if (!isPlaying) return;
-    const t = setTimeout(() => setStage((prev) => nextStage(prev)), STAGE_MS[stage]);
+    if (controlled || !isPlaying) return;
+    const t = setTimeout(
+      () => setInternalStage((prev) => nextStage(prev)),
+      STAGE_MS[stage]
+    );
     return () => clearTimeout(t);
-  }, [stage, isPlaying]);
+  }, [controlled, stage, isPlaying]);
 
   // Savings counter.
   useEffect(() => {
@@ -171,12 +186,17 @@ export function EnergyIntelligenceDemo({
   }, [stage, animate]);
 
   const handleStepClick = (id: Stage) => {
-    setStage(id);
+    if (controlled) {
+      onStageChange?.(id);
+      return;
+    }
+    setInternalStage(id);
     setIsPlaying(false); // pause on manual control so the visitor can read
   };
 
   const togglePlay = () => {
-    if (!isPlaying) setStage("monitoring");
+    if (controlled) return;
+    if (!isPlaying) setInternalStage("monitoring");
     setIsPlaying((p) => !p);
   };
 
@@ -214,26 +234,28 @@ export function EnergyIntelligenceDemo({
               Always-on. Knows every system in this home.
             </p>
           </div>
-          <button
-            type="button"
-            onClick={togglePlay}
-            aria-label={isPlaying ? "Pause the demo" : "Play the demo"}
-            className={`inline-flex items-center gap-1.5 h-9 px-3 rounded-full border border-white/10 bg-white/[0.03] text-[12px] font-medium text-porcelain/80 hover:text-porcelain hover:border-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 ${a.ring} focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900`}
-          >
-            {isPlaying ? (
-              <>
-                <Pause className="w-3.5 h-3.5" aria-hidden="true" /> Pause
-              </>
-            ) : (
-              <>
-                <Play className="w-3.5 h-3.5" aria-hidden="true" /> Play
-              </>
-            )}
-          </button>
+          {!hideControls && (
+            <button
+              type="button"
+              onClick={togglePlay}
+              aria-label={isPlaying ? "Pause the demo" : "Play the demo"}
+              className={`inline-flex items-center gap-1.5 h-9 px-3 rounded-full border border-white/10 bg-white/[0.03] text-[12px] font-medium text-porcelain/80 hover:text-porcelain hover:border-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 ${a.ring} focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900`}
+            >
+              {isPlaying ? (
+                <>
+                  <Pause className="w-3.5 h-3.5" aria-hidden="true" /> Pause
+                </>
+              ) : (
+                <>
+                  <Play className="w-3.5 h-3.5" aria-hidden="true" /> Play
+                </>
+              )}
+            </button>
+          )}
         </div>
 
         {/* Step chips */}
-        <div className="px-5 sm:px-7 pt-5">
+        <div className={`px-5 sm:px-7 pt-5 ${hideControls ? "hidden" : ""}`}>
           <div className="flex flex-wrap gap-2" role="tablist" aria-label="Demo steps">
             {STEPS.map((s, i) => {
               const isActive = stage === s.id;

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { PlatformFloatingCards } from "@/components/hero/cards/PlatformCards";
-import { EnergyIntelligenceDemo } from "@/components/interactive/EnergyIntelligenceDemo";
+import { EnergyIntelligenceScroller } from "@/components/interactive/EnergyIntelligenceScroller";
 import { CountUp } from "@/components/effects/CountUp";
 import { Reveal } from "@/components/effects/Reveal";
 import { ThreadSeam } from "@/components/effects/ThreadSeam";
@@ -238,42 +238,41 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ── 4. Energy Intelligence — the signature moment ── */}
-      <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
+      {/* ── 4. Energy Intelligence — the signature pinned chapter.
+             No overflow-hidden here: it would break position: sticky. ── */}
+      <section className="relative bg-carbon">
         <div
           className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.12] via-transparent to-emerald-900/[0.06]"
           aria-hidden="true"
         />
-        <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1100px] max-h-[1100px] rounded-full bg-emerald-500/[0.05] blur-[130px]"
-          aria-hidden="true"
-        />
-        <Container>
-          <ThreadSeam tone="dark" className="-mt-6 mb-10" />
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-              Energy Intelligence
-            </p>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Every home, watching its own energy.
-            </h2>
-            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              The assistant knows every energy system in the home. It monitors 24/7, diagnoses issues before they become callouts, teaches the homeowner how to reach an A rating, and shows what it saves. Press play, or step through it yourself.
-            </p>
-          </div>
-          <div className="max-w-5xl mx-auto">
-            <EnergyIntelligenceDemo accent="emerald" />
-          </div>
-          <div className="text-center mt-10">
-            <Link
-              href="/assistant#energy"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-emerald-500/30 text-sm font-medium text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-500/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-            >
-              How the Property Assistant works
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </Container>
+        <div className="relative pt-24 sm:pt-32">
+          <Container>
+            <ThreadSeam tone="dark" className="-mt-6 mb-10" />
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+                Energy Intelligence
+              </p>
+              <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
+                Every home, watching its own energy.
+              </h2>
+              <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+                It monitors 24/7, diagnoses before the callout, teaches the home toward an A rating, and shows the saving.
+              </p>
+            </div>
+          </Container>
+          <EnergyIntelligenceScroller />
+          <Container>
+            <div className="text-center pt-10 pb-24 sm:pb-32">
+              <Link
+                href="/assistant#energy"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-emerald-500/30 text-sm font-medium text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-500/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              >
+                How the Property Assistant works
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </Container>
+        </div>
       </section>
 
       {/* ── 5. Built by a developer (credibility) ── */}
