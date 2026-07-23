@@ -5,6 +5,7 @@ import { PlatformFloatingCards } from "@/components/hero/cards/PlatformCards";
 import { EnergyIntelligenceDemo } from "@/components/interactive/EnergyIntelligenceDemo";
 import { CountUp } from "@/components/effects/CountUp";
 import { Reveal } from "@/components/effects/Reveal";
+import { ThreadSeam } from "@/components/effects/ThreadSeam";
 import heroBackground from "@/attached_assets/stock_images/platform_aerial_network.png";
 import {
   ArrowRight,
@@ -120,6 +121,10 @@ export default function HomePage() {
       {/* ── 2. Market-context strip ── */}
       <section className="relative py-16 sm:py-20 bg-porcelain">
         <Container>
+          <ThreadSeam tone="light" height="sm" className="-mt-4 mb-8" />
+          <p className="text-sm uppercase tracking-[0.3em] text-amber-700 font-semibold text-center mb-10">
+            The market
+          </p>
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-center">
               <div>
@@ -171,6 +176,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
         <Container>
+          <ThreadSeam tone="dark" className="-mt-6 mb-10" />
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
               What OpenHouse is
@@ -183,12 +189,15 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-6xl mx-auto">
+          <Reveal
+            stagger
+            className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-6xl mx-auto"
+          >
             {pillars.map((p) => (
               <Link
                 key={p.title}
                 href={p.href}
-                className={`group relative flex flex-col p-7 sm:p-8 rounded-3xl border ${p.border} ${p.bg} backdrop-blur-sm hover:-translate-y-1.5 transition-all duration-500 ${p.hoverShadow} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon focus-visible:ring-white/50`}
+                className={`group relative flex flex-col h-full p-7 sm:p-8 rounded-3xl border ${p.border} ${p.bg} backdrop-blur-sm hover:-translate-y-1.5 transition-all duration-500 ${p.hoverShadow} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon focus-visible:ring-white/50`}
               >
                 <div className="flex items-center justify-between mb-6">
                   <div
@@ -225,7 +234,7 @@ export default function HomePage() {
                 </div>
               </Link>
             ))}
-          </div>
+          </Reveal>
         </Container>
       </section>
 
@@ -240,6 +249,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
         <Container>
+          <ThreadSeam tone="dark" className="-mt-6 mb-10" />
           <div className="text-center max-w-3xl mx-auto mb-14">
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
               Energy Intelligence
@@ -277,6 +287,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
         <Container>
+          <ThreadSeam tone="dark" className="-mt-6 mb-10" />
           <div className="relative max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30 mb-8">
               <HardHat className="w-4 h-4 text-gold" aria-hidden="true" />
@@ -296,8 +307,9 @@ export default function HomePage() {
       </section>
 
       {/* ── 6. Trust band ── */}
-      <section className="relative py-16 bg-porcelain">
+      <section className="relative py-16 sm:py-20 bg-porcelain">
         <Container>
+          <ThreadSeam tone="light" height="sm" className="-mt-4 mb-8" />
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {trustLines.map((t) => (
@@ -327,6 +339,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
         <Container>
+          <ThreadSeam tone="dark" terminal className="-mt-6 mb-12" />
           <div className="relative max-w-3xl mx-auto text-center">
             <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
               See it on one of your own schemes.
