@@ -98,7 +98,7 @@ export function Navigation() {
               Request a walkthrough
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-            <a href={appRoutes.login} onClick={closeMenu} className="mt-2 px-3 py-3 text-center text-sm font-medium text-porcelain/55">
+            <a href={appRoutes.login} onClick={closeMenu} className="mt-2 px-3 py-3 text-center text-sm font-medium text-porcelain/62">
               Login to OpenHouse
             </a>
           </div>

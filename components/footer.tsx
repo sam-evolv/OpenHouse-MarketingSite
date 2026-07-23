@@ -59,7 +59,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-white/[0.07] pt-6 text-xs text-porcelain/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-3 border-t border-white/[0.07] pt-6 text-xs text-porcelain/55 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} OpenHouse AI. All rights reserved.</p>
           <a href="https://www.evolvai.ie" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-porcelain/70">
             Built by EvolvAI

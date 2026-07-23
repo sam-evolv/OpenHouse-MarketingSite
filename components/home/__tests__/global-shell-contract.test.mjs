@@ -23,7 +23,9 @@ test("root layout keeps the opening render free of global transition and prefetc
   }
 
   assert.match(source, /metadataBase:/);
-  assert.match(source, /strategy="lazyOnload"/);
+  assert.doesNotMatch(source, /next\/font/);
+  assert.doesNotMatch(source, /next\/script/);
+  assert.doesNotMatch(source, /googletagmanager/);
 });
 
 test("navigation avoids oversized branding, eager prefetch and scroll-driven state", async () => {

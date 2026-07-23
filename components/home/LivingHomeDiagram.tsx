@@ -36,9 +36,10 @@ export function LivingHomeDiagram({ active = true }: LivingHomeDiagramProps) {
           <text x="336" y="272" fill="rgba(245,245,243,0.45)" fontSize="8" fontFamily="system-ui">28.5 m²</text>
         </svg>
 
-        <div className="absolute left-[4%] top-[6%] max-w-[9.5rem] rounded-xl border border-white/10 bg-black/75 p-3 backdrop-blur-sm">
-          <p className="text-[0.625rem] uppercase tracking-[0.16em] text-porcelain/45">Approved plan</p>
-          <p className="mt-1 text-xs text-porcelain/85">Ground Floor · A3</p>
+        <div className="absolute left-[4%] top-[6%] max-w-[10.5rem] rounded-xl border border-gold/25 bg-black/80 p-3 backdrop-blur-sm">
+          <p className="text-[0.625rem] uppercase tracking-[0.16em] text-gold">Known answer</p>
+          <p className="mt-1 text-sm font-semibold text-white">Living room · 28.5 m²</p>
+          <p className="mt-1 text-[0.625rem] text-porcelain/48">Source · Ground Floor plan, A3</p>
         </div>
         <div className="absolute right-[3%] top-[12%] max-w-[9.5rem] rounded-xl border border-white/10 bg-black/75 p-3 backdrop-blur-sm">
           <p className="text-[0.625rem] uppercase tracking-[0.16em] text-porcelain/45">Installed system</p>

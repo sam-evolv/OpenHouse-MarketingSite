@@ -9,19 +9,19 @@ const signals = [
     icon: CircleCheck,
     label: "Resolved",
     detail: "Questions answered from the available information.",
-    className: "text-emerald-700 bg-emerald-700/8 border-emerald-700/18",
+    className: "text-emerald-900 bg-emerald-900/[0.04] border-emerald-900/15",
   },
   {
     icon: CircleAlert,
     label: "Escalated",
     detail: "Questions that still need a person or developer action.",
-    className: "text-amber-800 bg-amber-700/8 border-amber-700/18",
+    className: "text-amber-950 bg-amber-900/[0.04] border-amber-900/15",
   },
   {
     icon: CircleDashed,
     label: "Missing",
     detail: "Low-confidence answers and information gaps worth fixing.",
-    className: "text-carbon/65 bg-carbon/[0.035] border-carbon/12",
+    className: "text-carbon/80 bg-carbon/[0.035] border-carbon/12",
   },
 ] as const;
 
@@ -31,8 +31,8 @@ export function DeveloperInsightSection() {
       <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end lg:gap-16">
         <div>
           <div className="flex flex-wrap items-center gap-3">
-            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-carbon/55">The developer view</p>
-            <CapabilityLabel status="live" />
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-carbon/70">The developer view</p>
+            <CapabilityLabel status="live" tone="light" />
           </div>
           <h2 className="mt-6 max-w-[11ch] font-editorial text-[clamp(3rem,5.8vw,5.8rem)] leading-[0.95] tracking-[-0.045em] text-carbon">
             See what homeowners need after keys.
@@ -72,7 +72,7 @@ export function DeveloperInsightSection() {
           <div key={signal.label} className={`rounded-2xl border p-5 ${signal.className}`}>
             <signal.icon className="h-5 w-5" aria-hidden="true" />
             <p className="mt-4 text-sm font-semibold">{signal.label}</p>
-            <p className="mt-1.5 text-sm leading-relaxed opacity-75">{signal.detail}</p>
+            <p className="mt-1.5 text-sm leading-relaxed">{signal.detail}</p>
           </div>
         ))}
       </div>

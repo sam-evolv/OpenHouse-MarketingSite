@@ -8,8 +8,9 @@ function shouldAvoidAutoplay() {
   if (typeof window === "undefined") return true;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const compactViewport = window.matchMedia("(max-width: 767px)").matches;
   const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-  return reducedMotion || Boolean(connection?.saveData);
+  return reducedMotion || compactViewport || Boolean(connection?.saveData);
 }
 
 export function HeroSequencePlayer() {
@@ -167,8 +168,13 @@ export function HeroSequencePlayer() {
               aria-selected={index === activeIndex}
               aria-label={item.accessibleLabel}
               onClick={() => selectState(index)}
-              className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ${index === activeIndex ? "w-8 bg-gold" : "w-3 bg-white/25 hover:bg-white/45"}`}
-            />
+              className="group flex h-8 min-w-8 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            >
+              <span
+                aria-hidden="true"
+                className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ${index === activeIndex ? "w-8 bg-gold" : "w-3 bg-white/35 group-hover:bg-white/55"}`}
+              />
+            </button>
           ))}
         </div>
         <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/75 p-1 backdrop-blur-md">

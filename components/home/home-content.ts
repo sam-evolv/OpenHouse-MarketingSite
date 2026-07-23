@@ -9,14 +9,14 @@ export const heroContent = {
   eyebrow: "For property developers",
   headline: "A home that can explain itself.",
   support:
-    "OpenHouse connects each house type’s plans, specifications, systems and approved documents to a practical homeowner assistant. Developers see the questions it can answer and the gaps that still need a person.",
+    "OpenHouse turns each house type’s approved information into sourced homeowner answers and visible developer gaps.",
   primaryAction: {
-    label: "See a working example",
-    href: "#working-example",
+    label: "Request a house-type walkthrough",
+    href: "/contact?intent=house-type-walkthrough",
   },
   commercialAction: {
-    label: "Show me one of our house types",
-    href: "/contact?intent=house-type-walkthrough",
+    label: "Trace a sourced answer",
+    href: "#working-example",
   },
   proof: "Live product capability shown with clearly labelled example data.",
 } as const;
