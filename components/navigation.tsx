@@ -14,15 +14,15 @@ import {
 import { appRoutes } from "@/lib/env";
 
 const pillarLinks = [
-  { href: "/platform", label: "Platform" },
+  { href: "/developers", label: "Developer Dashboard" },
   { href: "/assistant", label: "Property Assistant" },
   { href: "/care", label: "Care" },
 ];
 
-// The Platform pillar groups the developer-facing module routes, which stay
-// live as deep-dives. Highlight "Platform" whenever the visitor is on any of them.
-const platformChildren = [
-  "/platform",
+// The Developer Dashboard pillar groups the developer-facing module routes,
+// which stay live as deep-dives. Highlight it whenever the visitor is on any.
+const developerChildren = [
+  "/developers",
   "/sales",
   "/build",
   "/handover",
@@ -31,8 +31,8 @@ const platformChildren = [
 ];
 
 function isPillarActive(href: string, pathname: string): boolean {
-  if (href === "/platform") {
-    return platformChildren.some(
+  if (href === "/developers") {
+    return developerChildren.some(
       (p) => pathname === p || pathname.startsWith(p + "/")
     );
   }

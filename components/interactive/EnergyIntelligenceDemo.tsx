@@ -527,6 +527,9 @@ function StageContent({
           ))}
         </ul>
         <RatingLadder index={ratingIndex} accent={accent} animate={animate} />
+        <p className="text-[12px] text-porcelain/55 leading-relaxed">
+          Every improvement lifts this home&rsquo;s Home Performance Index.
+        </p>
       </div>
     );
   }

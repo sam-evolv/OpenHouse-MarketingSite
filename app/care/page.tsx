@@ -133,7 +133,7 @@ const personas = [
 ];
 
 const platformModules = [
-  { title: "Developer platform", href: "/platform", icon: BarChart3, accent: "text-gold" },
+  { title: "Developer Dashboard", href: "/developers", icon: BarChart3, accent: "text-gold" },
   { title: "Property Assistant", href: "/assistant", icon: MessageSquare, accent: "text-gold" },
 ];
 

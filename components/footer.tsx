@@ -3,7 +3,7 @@ import Image from "next/image";
 import { env } from "@/lib/env";
 
 const productLinks = [
-  { label: "Platform", href: "/platform" },
+  { label: "Developer Dashboard", href: "/developers" },
   { label: "Property Assistant", href: "/assistant" },
   { label: "Care", href: "/care" },
   { label: "Contact", href: "/contact" },

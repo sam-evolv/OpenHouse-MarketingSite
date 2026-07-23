@@ -29,12 +29,12 @@ export const metadata = {
 
 const pillars = [
   {
-    title: "Developer platform",
-    href: "/platform",
+    title: "Developer Dashboard",
+    href: "/developers",
     icon: Building2,
     who: "For property developers",
     tagline: "Run every scheme in one place.",
-    desc: "Sales pipeline, build documents, compliance, digital handover, portfolio intelligence and an AI agent — one source of truth for the whole development.",
+    desc: "Sales, build, handover and aftercare on one dashboard — with every home reporting back: aggregated energy, issues, snags and questions, and each home's Home Performance Index.",
     accent: "text-gold",
     bg: "bg-gold/10",
     border: "border-gold/30",
@@ -264,12 +264,19 @@ export default function HomePage() {
           </Container>
           <EnergyIntelligenceScroller />
           <Container>
-            <div className="text-center pt-10 pb-24 sm:pb-32">
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-10 pb-24 sm:pb-32">
               <Link
                 href="/assistant#energy"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-emerald-500/30 text-sm font-medium text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-500/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
               >
                 How the Property Assistant works
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/developers"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/30 text-sm font-medium text-gold hover:bg-gold/10 hover:border-gold/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              >
+                See what developers see
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>

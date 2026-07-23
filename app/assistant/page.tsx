@@ -355,6 +355,34 @@ export default function AssistantPage() {
         </Container>
       </section>
 
+      {/* ── 5b. HPI beat — the home side of the Home Performance Index ── */}
+      <section className="relative py-16 sm:py-20 bg-carbon">
+        <Container>
+          <div className="max-w-4xl mx-auto rounded-3xl border border-gold/25 bg-gradient-to-r from-gold/[0.07] via-transparent to-gold/[0.07] p-7 sm:p-10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
+              <div className="flex-1">
+                <p className="text-[11px] uppercase tracking-[0.25em] text-gold font-semibold mb-3">
+                  Home Performance Index
+                </p>
+                <h2 className="text-[24px] sm:text-3xl font-bold text-white font-heading leading-tight tracking-[-0.01em] mb-3">
+                  Every answer builds the record.
+                </h2>
+                <p className="text-[15px] sm:text-[16px] text-porcelain/75 leading-relaxed">
+                  What the assistant teaches becomes the home&rsquo;s HPI — a live score that the home is understood and run well. Homeowners see their home climb toward A. Developers get proof the education happened.
+                </p>
+              </div>
+              <Link
+                href="/developers"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-gold/30 text-sm font-medium text-gold hover:bg-gold/10 hover:border-gold/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold whitespace-nowrap"
+              >
+                See the developer side
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* ── 6. Trust line ── */}
       <section className="relative py-24 bg-porcelain">
         <Container>
@@ -412,10 +440,10 @@ export default function AssistantPage() {
 
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
-                  href="/platform"
+                  href="/developers"
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/15 text-sm text-porcelain/80 hover:text-porcelain hover:border-gold/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
                 >
-                  The developer platform
+                  The Developer Dashboard
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </Link>
                 <Link

@@ -8,6 +8,12 @@ const nextConfig = {
     SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
   },
+  async redirects() {
+    return [
+      // The developer pillar moved from /platform to /developers.
+      { source: '/platform', destination: '/developers', permanent: true },
+    ];
+  },
 };
 
 module.exports = nextConfig;

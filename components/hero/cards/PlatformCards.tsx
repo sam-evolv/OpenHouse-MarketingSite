@@ -34,7 +34,7 @@ export function PlatformFloatingCards() {
               <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/20 flex items-center justify-center">
                 <Building2 className="w-4 h-4 text-gold" />
               </div>
-              <p className="text-sm font-medium text-porcelain">Developer platform</p>
+              <p className="text-sm font-medium text-porcelain">Developer Dashboard</p>
             </div>
             <div className="space-y-1.5">
               {[
