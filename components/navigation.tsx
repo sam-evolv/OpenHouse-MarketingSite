@@ -63,17 +63,17 @@ export function Navigation() {
       aria-label="Main navigation"
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-32 sm:h-36">
+        <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" prefetch={true} className="flex items-center">
+          <Link href="/" prefetch={true} className="flex items-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon">
             <Image
-              src="/images/openhouseai-logo.png"
+              src="/images/openhouseai-logo-trimmed.png"
               alt="OpenHouse Ai"
-              width={600}
-              height={150}
+              width={512}
+              height={148}
               priority
-              sizes="(min-width: 768px) 200px, 160px"
-              className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
+              sizes="(min-width: 768px) 152px, 124px"
+              className="h-9 md:h-11 w-auto"
             />
           </Link>
 
@@ -85,7 +85,7 @@ export function Navigation() {
                 href={link.href}
                 prefetch={true}
                 className={cn(
-                  "text-sm font-medium transition-colors duration-200",
+                  "text-sm font-medium whitespace-nowrap py-2 transition-colors duration-200 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon",
                   isPillarActive(link.href, pathname)
                     ? "text-gold"
                     : "text-porcelain hover:text-gold"
@@ -106,7 +106,7 @@ export function Navigation() {
             >
               <a
                 href={appRoutes.login}
-                className="group relative flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-full overflow-hidden transition-all duration-300 border border-white/20 hover:border-gold/60 bg-white/[0.03] hover:bg-white/[0.08]"
+                className="group relative flex items-center gap-2 whitespace-nowrap px-4 py-2.5 text-sm font-medium rounded-full overflow-hidden transition-colors duration-300 border border-white/20 hover:border-gold/60 bg-white/[0.03] hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-carbon"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/10 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <LogIn className="w-4 h-4 text-porcelain group-hover:text-gold transition-colors relative z-10" />
@@ -144,7 +144,7 @@ export function Navigation() {
             {/* Book a Demo */}
             <a
               href="/contact"
-              className="px-4 py-2.5 text-sm font-medium text-porcelain hover:text-gold border border-white/10 hover:border-gold/40 rounded-full transition-all duration-200"
+              className="whitespace-nowrap px-4 py-2.5 text-sm font-medium text-carbon bg-gold hover:bg-amber-300 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-carbon"
             >
               Request a walkthrough
             </a>
@@ -153,7 +153,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-porcelain hover:text-gold"
+            className="md:hidden -mr-2.5 p-2.5 text-porcelain hover:text-gold"
             aria-label={
               isMobileMenuOpen
                 ? "Close navigation menu"

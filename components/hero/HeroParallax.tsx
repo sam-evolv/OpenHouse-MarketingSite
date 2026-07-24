@@ -72,7 +72,7 @@ export function HeroParallax() {
         <div className="absolute inset-0 bg-gradient-to-t from-carbon via-transparent to-carbon/30" />
       </motion.div>
 
-      <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-44 sm:pt-48 md:pt-40 lg:pt-32 pb-20 lg:pb-0">
+      <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-28 pb-20 lg:pb-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[70vh] lg:min-h-[75vh]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

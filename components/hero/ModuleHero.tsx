@@ -1,11 +1,22 @@
 "use client";
 
-import { useEffect, useState, useRef, ReactNode } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  ReactNode,
+} from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  MotionValue,
+} from "framer-motion";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import { ArrowRight } from "lucide-react";
-import { EASE } from "@/lib/motion";
 import { useHydratedReducedMotion } from "@/hooks/useHydratedReducedMotion";
 
 interface ModuleHeroProps {
@@ -19,15 +30,28 @@ interface ModuleHeroProps {
   subtitle: string;
   primaryCta: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
-  children?: ReactNode; // Floating cards
+  children?: ReactNode; // The product stage
 }
 
 const accentOverlays: Record<string, string> = {
   blue: "bg-gradient-to-br from-blue-950/40 via-transparent to-blue-900/20",
   emerald: "bg-gradient-to-br from-emerald-950/40 via-transparent to-emerald-900/20",
   violet: "bg-gradient-to-br from-violet-950/50 via-transparent to-purple-900/30",
-  gold: "bg-gradient-to-br from-amber-950/30 via-transparent to-amber-900/10",
+  gold: "bg-gradient-to-br from-amber-950/25 via-transparent to-amber-900/10",
 };
+
+/**
+ * Cursor depth is calibrated once for the whole hero and shared by every
+ * card, so the stage moves as one object. Previously the hero and each
+ * card attached their own pointer listener, which cost more and let the
+ * cards drift independently, reading as loose widgets rather than one
+ * system.
+ */
+interface HeroPointer {
+  x: MotionValue<number>;
+  y: MotionValue<number>;
+}
+const HeroPointerContext = createContext<HeroPointer | null>(null);
 
 export function ModuleHero({
   backgroundImage,
@@ -43,206 +67,162 @@ export function ModuleHero({
   children,
 }: ModuleHeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMounted, setIsMounted] = useState(false);
   const reducedMotion = useHydratedReducedMotion();
 
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
+  // Normalised pointer position, -0.5 to 0.5 on each axis.
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springConfig = { damping: 30, stiffness: 110, mass: 0.6 };
+  const smoothX = useSpring(pointerX, springConfig);
+  const smoothY = useSpring(pointerY, springConfig);
 
-  const springConfig = { damping: 25, stiffness: 150 };
-  const smoothMouseX = useSpring(mouseX, springConfig);
-  const smoothMouseY = useSpring(mouseY, springConfig);
-
-  const bgX = useTransform(smoothMouseX, [0, 1], [15, -15]);
-  const bgY = useTransform(smoothMouseY, [0, 1], [10, -10]);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const bgX = useTransform(smoothX, (v) => v * -22);
+  const bgY = useTransform(smoothY, (v) => v * -14);
 
   useEffect(() => {
-    if (!isMounted || reducedMotion) return;
+    if (reducedMotion) return;
+    // Desktop, fine-pointer devices only. Touch users get the same
+    // composition without the drift.
+    const mq = window.matchMedia("(pointer: fine) and (min-width: 1024px)");
+    if (!mq.matches) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-      mouseX.set(x);
-      mouseY.set(y);
+      pointerX.set(e.clientX / window.innerWidth - 0.5);
+      pointerY.set(e.clientY / window.innerHeight - 0.5);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isMounted, reducedMotion, mouseX, mouseY]);
+  }, [reducedMotion, pointerX, pointerY]);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-screen flex items-center bg-carbon"
-    >
-      {/* Parallax background */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 scale-110 overflow-hidden"
-        style={{ x: bgX, y: bgY }}
+    <HeroPointerContext.Provider value={{ x: smoothX, y: smoothY }}>
+      <section
+        ref={containerRef}
+        className="surface-grain relative min-h-screen flex items-center bg-carbon overflow-hidden"
       >
-        <Image
-          src={backgroundImage}
-          alt={backgroundAlt}
-          fill
-          priority
-          quality={60}
-          className={`object-cover ${imagePosition || ""}`}
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-carbon/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-carbon via-transparent to-carbon/30" />
-        {accentColor && accentOverlays[accentColor] && (
-          <div className={`absolute inset-0 ${accentOverlays[accentColor]}`} />
-        )}
-      </motion.div>
+        {/* Architectural backdrop. Tonal grading is layered rather than a
+            single flat scrim, so the photograph keeps its depth while the
+            left column stays type-safe without a glass panel over it. */}
+        <motion.div
+          className="pointer-events-none absolute inset-0 scale-[1.06]"
+          style={{ x: bgX, y: bgY }}
+        >
+          <Image
+            src={backgroundImage}
+            alt={backgroundAlt}
+            fill
+            priority
+            quality={60}
+            className={`object-cover ${imagePosition || ""}`}
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-carbon/45" />
+          <div className="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/70 to-carbon/5" />
+          <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/25 to-carbon/50" />
+          {accentColor && accentOverlays[accentColor] && (
+            <div className={`absolute inset-0 ${accentOverlays[accentColor]}`} />
+          )}
+        </motion.div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-44 sm:pt-48 md:pt-40 lg:pt-32 pb-20 lg:pb-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[70vh] lg:min-h-[75vh]">
-          {/* Left: Text content */}
-          <motion.div
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-            className="relative z-20"
-          >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-carbon/40 backdrop-blur-xl rounded-3xl" />
-              <div className="relative p-4">
-                {/* Badge */}
-                <motion.div
-                  initial={false}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.45, ease: EASE }}
-                  className="mb-6"
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-28 pb-20 lg:pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,1fr)] gap-12 lg:gap-6 items-center min-h-[68vh] lg:min-h-[74vh]">
+            {/* Left: text */}
+            <div className="relative z-20 max-w-[39rem]">
+              <div className="mb-7">{badge}</div>
+
+              <h1
+                aria-label={titleLabel}
+                className="text-[2.6rem] sm:text-5xl lg:text-[3.6rem] xl:text-[4.2rem] font-bold text-white leading-[1.03] tracking-[-0.035em] mb-6 font-heading [text-wrap:balance]"
+              >
+                {title}
+              </h1>
+
+              <p className="text-[1.0625rem] sm:text-lg text-porcelain/75 mb-9 max-w-[33rem] leading-[1.65]">
+                {subtitle}
+              </p>
+
+              {/* Buttons never break their own label; the row wraps instead,
+                  so a narrow lg column can't clip a CTA. */}
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3.5">
+                <Link
+                  href={primaryCta.href}
+                  className="group relative inline-flex items-center justify-center gap-2 whitespace-nowrap px-6 py-4 text-base font-semibold rounded-full overflow-hidden transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
                 >
-                  {badge}
-                </motion.div>
-
-                {/* Title */}
-                <h1 aria-label={titleLabel} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6 font-heading">
-                  {title}
-                </h1>
-
-                {/* Subtitle */}
-                <p className="text-lg sm:text-xl text-porcelain/80 mb-8 max-w-xl leading-relaxed">
-                  {subtitle}
-                </p>
-
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-4">
+                  <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-400 to-gold" />
+                  <span className="relative z-10 text-carbon flex items-center gap-2">
+                    {primaryCta.label}
+                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Link>
+                {secondaryCta && (
                   <Link
-                    href={primaryCta.href}
-                    className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
+                    href={secondaryCta.href}
+                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap px-6 py-4 text-base font-medium text-porcelain border border-white/20 hover:border-gold/50 hover:text-white rounded-full transition-colors duration-300 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-500 to-gold" />
-                    <span className="relative z-10 text-carbon flex items-center gap-2">
-                      {primaryCta.label}
-                      <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                    </span>
+                    {secondaryCta.label}
                   </Link>
-                  {secondaryCta && (
-                    <Link
-                      href={secondaryCta.href}
-                      className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-porcelain border border-white/20 hover:border-gold/50 rounded-full transition-all duration-300 hover:bg-white/5"
-                    >
-                      {secondaryCta.label}
-                    </Link>
-                  )}
-                </div>
+                )}
               </div>
             </div>
-          </motion.div>
 
-          {/* Right: product cards.
-              Mobile: a normal-flow horizontal snap row so the product is
-              visible on phones too. Desktop (lg+): the absolute parallax
-              stage, unchanged. */}
-          {children && (
-            <div className="relative flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:px-0 lg:pb-0 lg:overflow-visible lg:snap-none lg:items-center lg:justify-center lg:h-[500px]">
-              {children}
-            </div>
-          )}
+            {/* Right: the product stage.
+                Mobile keeps a deliberate horizontal snap row so the product
+                is legible on a phone. Desktop (lg+) becomes one composed
+                stage: cards are centred siblings offset from a shared
+                origin, which is what lets the connectors line up. */}
+            {children && (
+              <div className="relative flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:px-0 lg:pb-0 lg:overflow-visible lg:snap-none lg:items-center lg:justify-center lg:h-[520px] lg:scale-[0.78] xl:scale-[0.98] lg:origin-center">
+                {children}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-
-      {/* Thread stub — plants the golden-thread motif; drawn once, then still */}
-      <div
-        className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
-        aria-hidden="true"
-      >
-        <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-porcelain/50">
-          Scroll
-        </span>
-        <span className="relative block w-px h-12 overflow-hidden">
-          <span className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/20 to-gold/30" />
-          <motion.span
-            className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/60 to-gold origin-top"
-            initial={false}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 0.6, delay: 1.1, ease: EASE }}
-          />
-        </span>
-        <motion.span
-          className="block w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_12px_rgba(212,175,55,0.5)]"
-          initial={false}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 1.6, ease: EASE }}
-        />
-      </div>
-    </section>
+      </section>
+    </HeroPointerContext.Provider>
   );
 }
 
-/* ─── Parallax card wrapper ─── */
+/* ─── Stage card ───
+   Three nested elements, each owning exactly one transform: the outer
+   holds layout position, the middle holds shared cursor depth, the inner
+   holds the card itself. Collapsing these would make the transforms
+   overwrite each other. */
 interface FloatingCardProps {
   children: ReactNode;
   depth: 1 | 2 | 3;
   className?: string;
   delay?: number;
+  /** Stacking order. Defaults to depth, but the focal card is anchored
+   *  (low depth, little drift) while still sitting on top. */
+  elevation?: number;
 }
 
-export function FloatingCard({ children, depth, className = "", delay = 0.6 }: FloatingCardProps) {
-  const reducedMotion = useHydratedReducedMotion();
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
-  const springConfig = { damping: 25, stiffness: 150 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
+export function FloatingCard({
+  children,
+  depth,
+  className = "",
+  elevation,
+}: FloatingCardProps) {
+  const pointer = useContext(HeroPointerContext);
+  const fallbackX = useMotionValue(0);
+  const fallbackY = useMotionValue(0);
+  const sourceX = pointer?.x ?? fallbackX;
+  const sourceY = pointer?.y ?? fallbackY;
 
-  const multiplier = depth === 1 ? 1 : depth === 2 ? 1.75 : 2.5;
-  const cardX = useTransform(smoothX, [0, 1], [-20 * multiplier, 20 * multiplier]);
-  const cardY = useTransform(smoothY, [0, 1], [-15 * multiplier, 15 * multiplier]);
-
-  useEffect(() => {
-    if (reducedMotion) return;
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX / window.innerWidth);
-      mouseY.set(e.clientY / window.innerHeight);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [reducedMotion, mouseX, mouseY]);
+  const multiplier = depth === 1 ? 1 : depth === 2 ? 1.8 : 2.6;
+  const x = useTransform(sourceX, (v) => v * 24 * multiplier);
+  const y = useTransform(sourceY, (v) => v * 16 * multiplier);
 
   return (
-    <motion.div
+    <div
       className="relative shrink-0 snap-center lg:absolute"
-      style={{ x: cardX, y: cardY, zIndex: depth * 10 }}
-      initial={false}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay, ease: EASE }}
+      style={{ zIndex: (elevation ?? depth) * 10 }}
     >
-      <div className={`relative ${className}`}>
-        {children}
-      </div>
-    </motion.div>
+      <motion.div style={{ x, y }}>
+        <div className={`relative ${className}`}>{children}</div>
+      </motion.div>
+    </div>
   );
 }
-

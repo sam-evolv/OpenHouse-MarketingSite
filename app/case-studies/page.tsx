@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function CaseStudiesPage() {
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-carbon">
+    <div className="pt-24 md:pt-28 pb-24 min-h-screen bg-carbon">
       <Container>
         <div className="text-center mb-16">
           <SplitText
