@@ -2,30 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Logo Breathing Animation */
-@keyframes breathe {
-  0%, 100% {
-    opacity: 0.9;
-    transform: scale(1);
-    filter: brightness(1) drop-shadow(0 0 0px rgba(212, 175, 55, 0));
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.04);
-    filter: brightness(1.15) drop-shadow(0 0 25px rgba(212, 175, 55, 0.5));
-  }
+/* ── Material system ───────────────────────────────────────────────
+   Charcoal should read as a material, not a flat fill. One tiled noise
+   field supplies architectural grain; one elevation scale supplies depth.
+   Both are opt-in per surface so the page keeps a deliberate hierarchy
+   instead of blurring and glowing everywhere. */
+:root {
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --elev-2: 0 10px 30px -14px rgba(0, 0, 0, 0.7);
+  --elev-3: 0 28px 70px -28px rgba(0, 0, 0, 0.85);
+  /* Soft internal highlight along a surface's top edge. */
+  --sheen: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.animate-breathe {
-  animation: breathe 3s ease-in-out infinite !important;
-  will-change: opacity, filter, transform;
-  transform-origin: left center;
+.surface-grain {
+  position: relative;
+}
+.surface-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animate-breathe {
-    animation: none !important;
-  }
+/* Controlled card surface: an opaque charcoal base so product copy holds
+   its contrast over photography, then a hairline edge, a tinted shadow
+   and a top sheen. Replaces ad-hoc glass blur on the hero's cards. */
+.card-surface {
+  background-color: rgba(16, 17, 19, 0.92);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.012)
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: var(--elev-2), var(--sheen);
+}
+.card-surface-focal {
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: var(--elev-3), var(--sheen), 0 0 0 1px rgba(212, 175, 55, 0.06);
 }
 
 /* JS-free entrance animations.
@@ -57,6 +77,58 @@
   @keyframes anim-pop {
     from { opacity: 0; transform: scale(0.95); }
     to   { opacity: 1; transform: none; }
+  }
+
+  /* Evidence thread. A connection is drawn once, left to right, then
+     holds. This is the only looping-free way the hero shows that the
+     cards are views of one record rather than four separate widgets.
+     Transform-only, and inert for reduced-motion users (the line simply
+     renders complete). */
+  .anim-trace {
+    transform-origin: left center;
+    animation: anim-trace 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--anim-delay, 0s);
+  }
+  @keyframes anim-trace {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* Vertical run of the same thread. */
+  .anim-trace-y {
+    transform-origin: center top;
+    animation: anim-trace-y 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--anim-delay, 0s);
+  }
+  @keyframes anim-trace-y {
+    from { transform: scaleY(0); }
+    to   { transform: scaleY(1); }
+  }
+
+  /* A single node travelling the spine once: the record resolving into
+     an answer. --trace-len is the run length in px. */
+  .anim-node-y {
+    animation: anim-node-y 1.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation-delay: var(--anim-delay, 0s);
+  }
+  @keyframes anim-node-y {
+    0%   { opacity: 0; transform: translateY(0); }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(var(--trace-len, 0px)); }
+  }
+
+  /* A single node travelling the thread once: source resolving into an
+     answer. --trace-len is the connector length in px. */
+  .anim-node {
+    animation: anim-node 1.15s cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation-delay: var(--anim-delay, 0s);
+  }
+  @keyframes anim-node {
+    0%   { opacity: 0; transform: translateX(0); }
+    18%  { opacity: 1; }
+    82%  { opacity: 1; }
+    100% { opacity: 0; transform: translateX(var(--trace-len, 0px)); }
   }
 }
 

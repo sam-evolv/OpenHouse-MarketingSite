@@ -24,10 +24,10 @@ export function HandoverFloatingCards() {
       {/* Card 1: Resident chat with assistant */}
       <FloatingCard
         depth={1}
-        className="lg:-translate-x-20 lg:-translate-y-24"
+        className="lg:-translate-x-[120px] lg:-translate-y-[150px]"
         delay={0.6}
       >
-        <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+        <div className="w-80 card-surface rounded-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
               <MessageCircle className="w-4 h-4 text-gold" />
@@ -74,10 +74,10 @@ export function HandoverFloatingCards() {
       {/* Card 2: Your home, documents */}
       <FloatingCard
         depth={2}
-        className="lg:translate-x-20 lg:-translate-y-4"
+        className="lg:translate-x-[130px] lg:-translate-y-[10px]"
         delay={0.8}
       >
-        <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+        <div className="w-64 card-surface rounded-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
               <FolderOpen className="w-4 h-4 text-gold" />
@@ -105,7 +105,7 @@ export function HandoverFloatingCards() {
       {/* Card 3: QR setup */}
       <FloatingCard
         depth={3}
-        className="lg:-translate-x-28 lg:translate-y-28"
+        className="lg:-translate-x-[140px] lg:translate-y-[120px]"
         delay={1.0}
       >
         <div className="w-60 bg-gradient-to-br from-gold/20 to-gold/5 backdrop-blur-md rounded-2xl border border-gold/30 shadow-2xl overflow-hidden">
@@ -126,10 +126,10 @@ export function HandoverFloatingCards() {
       {/* Card 4: Service reminder (peeking) */}
       <FloatingCard
         depth={2}
-        className="lg:translate-x-28 lg:translate-y-32"
+        className="lg:translate-x-[120px] lg:translate-y-[215px]"
         delay={1.2}
       >
-        <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+        <div className="w-64 card-surface rounded-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
               <Bell className="w-4 h-4 text-gold" />

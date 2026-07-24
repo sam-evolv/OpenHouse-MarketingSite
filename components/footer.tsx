@@ -22,14 +22,17 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Company Info */}
           <div>
-            <Link href="/" className="inline-block mb-3">
+            <Link
+              href="/"
+              className="inline-block mb-3 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
+            >
               <Image
-                src="/images/openhouseai-logo.png"
+                src="/images/openhouseai-logo-trimmed.png"
                 alt="OpenHouse Ai"
-                width={600}
-                height={150}
-                sizes="(min-width: 768px) 519px, (min-width: 640px) 461px, 404px"
-                className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
+                width={512}
+                height={148}
+                sizes="(min-width: 640px) 180px, 152px"
+                className="h-11 sm:h-[3.25rem] w-auto"
               />
             </Link>
             <p className="text-xs text-porcelain/60 leading-relaxed mb-4">

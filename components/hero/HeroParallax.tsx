@@ -72,7 +72,7 @@ export function HeroParallax() {
         <div className="absolute inset-0 bg-gradient-to-t from-carbon via-transparent to-carbon/30" />
       </motion.div>
 
-      <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-40 lg:pt-32 pb-20 lg:pb-0">
+      <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-28 pb-20 lg:pb-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[70vh] lg:min-h-[75vh]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -89,7 +89,7 @@ export function HeroParallax() {
                   transition={{ delay: 0.4 }}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30 mb-6"
                 >
-                  <span className="w-2 h-2 bg-gold rounded-full animate-pulse" />
+                  <span className="w-2 h-2 bg-gold rounded-full" />
                   <span className="text-sm font-medium text-gold">From handover to everyday living</span>
                 </motion.div>
 
@@ -107,7 +107,7 @@ export function HeroParallax() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="/contact"
-                    className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
+                    className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_14px_38px_-14px_rgba(212,175,55,0.5)]"
                   >
                     <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-500 to-gold" />
                     <span className="relative z-10 text-carbon flex items-center gap-2">

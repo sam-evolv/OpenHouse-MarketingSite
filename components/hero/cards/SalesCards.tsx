@@ -23,10 +23,10 @@ export function SalesFloatingCards() {
       {/* Card 1: Pipeline overview */}
       <FloatingCard
         depth={1}
-        className="lg:-translate-x-20 lg:-translate-y-24"
+        className="lg:-translate-x-[120px] lg:-translate-y-[150px]"
         delay={0.6}
       >
-        <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+        <div className="w-80 card-surface rounded-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
               <TrendingUp className="w-4 h-4 text-blue-400" />
@@ -71,7 +71,7 @@ export function SalesFloatingCards() {
       {/* Card 2: At-risk alert (amber, the warning colour) */}
       <FloatingCard
         depth={2}
-        className="lg:translate-x-20 lg:-translate-y-4"
+        className="lg:translate-x-[130px] lg:-translate-y-[10px]"
         delay={0.8}
       >
         <div className="w-72 bg-slate/95 backdrop-blur-md rounded-2xl border border-amber-500/40 shadow-2xl overflow-hidden">
@@ -105,7 +105,7 @@ export function SalesFloatingCards() {
       {/* Card 3: Buyer profile */}
       <FloatingCard
         depth={3}
-        className="lg:-translate-x-28 lg:translate-y-28"
+        className="lg:-translate-x-[140px] lg:translate-y-[120px]"
         delay={1.0}
       >
         <div className="w-64 bg-gradient-to-br from-blue-500/20 to-blue-500/5 backdrop-blur-md rounded-2xl border border-blue-500/30 shadow-2xl overflow-hidden">
@@ -148,10 +148,10 @@ export function SalesFloatingCards() {
       {/* Card 4: Weekly report (peeking) */}
       <FloatingCard
         depth={2}
-        className="lg:translate-x-28 lg:translate-y-32"
+        className="lg:translate-x-[120px] lg:translate-y-[215px]"
         delay={1.2}
       >
-        <div className="w-60 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+        <div className="w-60 card-surface rounded-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
               <FileText className="w-4 h-4 text-blue-400" />

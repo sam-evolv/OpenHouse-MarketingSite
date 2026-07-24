@@ -77,7 +77,7 @@ export default function AssistantPage() {
   return (
     <div>
       {/* ── Home Badge ── */}
-      <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-50">
+      <div className="fixed top-20 md:top-24 left-4 sm:left-6 z-50">
         <Link
           href="/"
           aria-label="Back to the OpenHouse home page"
@@ -153,7 +153,7 @@ export default function AssistantPage() {
               {/* iPhone mock */}
               <div className="relative flex justify-center lg:justify-end">
                 <div
-                  className="absolute -inset-8 bg-gradient-to-br from-gold/25 via-amber-500/10 to-gold/25 rounded-[60px] blur-3xl"
+                  className="absolute -inset-8 bg-gradient-to-br from-gold/12 via-amber-500/5 to-gold/12 rounded-[60px] blur-3xl"
                   aria-hidden="true"
                 />
                 <div className="relative w-[280px] sm:w-[320px] h-[580px] sm:h-[640px] rounded-[48px] bg-neutral-900 border-[10px] border-black shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
@@ -434,7 +434,7 @@ export default function AssistantPage() {
             <div className="flex flex-col items-center gap-6">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(212,175,55,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
+                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_18px_50px_-18px_rgba(212,175,55,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
               >
                 <span
                   className="absolute inset-0 bg-gradient-to-r from-gold via-amber-400 to-gold"

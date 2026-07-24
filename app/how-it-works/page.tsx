@@ -150,7 +150,7 @@ export default function HowItWorksPage() {
   const staggerItem = getStaggerItem(prefersReducedMotion);
 
   return (
-    <div className="bg-carbon min-h-screen pt-24 md:pt-32 lg:pt-36">
+    <div className="bg-carbon min-h-screen pt-24 md:pt-28">
       {/* SECTION 1: HERO */}
       <section className="relative min-h-[calc(100vh-8rem)] flex items-center justify-center">
         <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">

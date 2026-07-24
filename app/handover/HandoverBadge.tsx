@@ -5,7 +5,7 @@ import { Home, ChevronLeft } from "lucide-react";
 
 export function HandoverBadge() {
   return (
-    <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-40">
+    <div className="fixed top-20 md:top-24 left-4 sm:left-6 z-40">
       <Link
         href="/"
         className="group flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-full backdrop-blur-sm hover:border-amber-500/40 transition-all duration-200"

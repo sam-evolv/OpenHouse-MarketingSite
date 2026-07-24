@@ -22,10 +22,10 @@ export function CareFloatingCards() {
       {/* Card 1: Customer chat with installer branding */}
       <FloatingCard
         depth={1}
-        className="lg:-translate-x-20 lg:-translate-y-24"
+        className="lg:-translate-x-[120px] lg:-translate-y-[150px]"
         delay={0.6}
       >
-        <div className="w-80 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+        <div className="w-80 card-surface rounded-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
               <MessageCircle className="w-4 h-4 text-emerald-400" />
@@ -72,7 +72,7 @@ export function CareFloatingCards() {
       {/* Card 2: Installer dashboard */}
       <FloatingCard
         depth={2}
-        className="lg:translate-x-20 lg:-translate-y-4"
+        className="lg:translate-x-[130px] lg:-translate-y-[10px]"
         delay={0.85}
       >
         <div className="w-72 bg-slate/95 backdrop-blur-md rounded-2xl border border-emerald-500/30 shadow-2xl overflow-hidden">
@@ -105,7 +105,7 @@ export function CareFloatingCards() {
       {/* Card 3: Your branding (lower left) */}
       <FloatingCard
         depth={3}
-        className="lg:-translate-x-28 lg:translate-y-28"
+        className="lg:-translate-x-[140px] lg:translate-y-[120px]"
         delay={1.0}
       >
         <div className="w-64 bg-gradient-to-br from-emerald-500/20 to-emerald-700/5 backdrop-blur-md rounded-2xl border border-emerald-500/30 shadow-2xl overflow-hidden">
@@ -128,10 +128,10 @@ export function CareFloatingCards() {
       {/* Card 4: Telemetry integrations (peeking) */}
       <FloatingCard
         depth={2}
-        className="lg:translate-x-28 lg:translate-y-32"
+        className="lg:translate-x-[120px] lg:translate-y-[215px]"
         delay={1.15}
       >
-        <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+        <div className="w-64 card-surface rounded-2xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
               <Plug className="w-4 h-4 text-emerald-400" />

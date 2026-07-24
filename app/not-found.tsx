@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="pt-24 md:pt-32 pb-24 min-h-screen bg-carbon flex items-center">
+    <div className="pt-24 md:pt-28 pb-24 min-h-screen bg-carbon flex items-center">
       <Container className="text-center">
         <h1 className="text-display-lg font-bold text-gold mb-4">404</h1>
         <h2 className="text-heading-xl font-bold text-porcelain mb-6">

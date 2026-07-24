@@ -4,7 +4,7 @@ import { FAQAccordion } from "@/components/sections/faq-accordion";
 
 export default function PricingPage() {
   return (
-    <div className="pt-24 md:pt-32 min-h-screen bg-carbon">
+    <div className="pt-24 md:pt-28 min-h-screen bg-carbon">
       <PricingSection />
       <PricingComparison />
       <FAQAccordion />

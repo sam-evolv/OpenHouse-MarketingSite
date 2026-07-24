@@ -29,7 +29,7 @@ const steps = [
 
 export default function ContactPage() {
   return (
-    <div className="pt-24 md:pt-44 pb-24 min-h-screen bg-carbon">
+    <div className="pt-24 md:pt-28 pb-24 min-h-screen bg-carbon">
       <Container>
         <div className="max-w-5xl mx-auto">
           <div className="max-w-2xl mb-12">

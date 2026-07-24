@@ -141,7 +141,7 @@ export default function CarePage() {
   return (
     <div>
       {/* ── Module Badge ── */}
-      <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-50">
+      <div className="fixed top-20 md:top-24 left-4 sm:left-6 z-50">
         <Link
           href="/"
           aria-label="Back to the OpenHouse home page"
@@ -277,7 +277,7 @@ export default function CarePage() {
               {/* iPhone mock with branded chat */}
               <div className="relative flex justify-center lg:justify-end">
                 <div
-                  className="absolute -inset-8 bg-gradient-to-br from-emerald-500/25 via-emerald-400/10 to-emerald-500/25 rounded-[60px] blur-3xl"
+                  className="absolute -inset-8 bg-gradient-to-br from-emerald-500/12 via-emerald-400/5 to-emerald-500/12 rounded-[60px] blur-3xl"
                   aria-hidden="true"
                 />
                 <div className="relative w-[280px] sm:w-[320px] h-[580px] sm:h-[640px] rounded-[48px] bg-neutral-900 border-[10px] border-black shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
@@ -454,7 +454,7 @@ export default function CarePage() {
                 <div className="flex flex-wrap gap-4">
                   {["Daikin ONECTA", "SolarEdge", "Huawei FusionSolar"].map((t) => (
                     <span key={t} className="inline-flex items-center gap-2 text-[13px] text-porcelain/70">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden="true" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
                       {t}
                     </span>
                   ))}
@@ -481,7 +481,7 @@ export default function CarePage() {
                     <p className="text-[11px] text-porcelain/45 truncate">Every question and callout, one console</p>
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-[11px] font-medium text-emerald-300">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden="true" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
                     Online
                   </span>
                 </div>
@@ -700,7 +700,7 @@ export default function CarePage() {
             <div className="flex flex-col items-center gap-5">
               <Link
                 href="/contact?intent=care"
-                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(16,185,129,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
+                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_18px_50px_-18px_rgba(16,185,129,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
               >
                 <span
                   className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600"

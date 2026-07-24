@@ -130,7 +130,7 @@ export default function AgentPage() {
   return (
     <div>
       {/* ── Module Badge (back to platform) ── */}
-      <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-50">
+      <div className="fixed top-20 md:top-24 left-4 sm:left-6 z-50">
         <Link
           href="/"
           aria-label="Back to the OpenHouse home page"
@@ -599,7 +599,7 @@ export default function AgentPage() {
         <Container>
           <div className="relative max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30 mb-8">
-              <span className="w-2 h-2 bg-gold rounded-full motion-safe:animate-pulse" aria-hidden="true" />
+              <span className="w-2 h-2 bg-gold rounded-full" aria-hidden="true" />
               <span className="text-sm font-medium text-gold">Live today</span>
             </div>
 
@@ -613,7 +613,7 @@ export default function AgentPage() {
             <div className="flex flex-col items-center gap-6">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(212,175,55,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
+                className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_18px_50px_-18px_rgba(212,175,55,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-gold via-amber-400 to-gold" aria-hidden="true" />
                 <span className="relative z-10 text-carbon flex items-center gap-3">
