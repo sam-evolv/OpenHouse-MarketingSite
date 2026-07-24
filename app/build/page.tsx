@@ -138,7 +138,7 @@ export default function BuildPage() {
   return (
     <div>
       {/* ── Module Badge ── */}
-      <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
+      <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
           aria-label="Back to the OpenHouse home page"
@@ -177,7 +177,7 @@ export default function BuildPage() {
         }
         subtitle="OpenHouse Build holds every BCAR submission, HomeBond cert, BER, fire safety document, sub-contractor cert, and homeowner manual against the unit it belongs to. Audit-ready from day one. No more two-day scrambles before handover."
         primaryCta={{ href: "#money-shot", label: "See a handover pack" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        secondaryCta={{ href: "/contact", label: "Request a walkthrough" }}
       >
         <BuildFloatingCards />
       </ModuleHero>
@@ -462,7 +462,7 @@ export default function BuildPage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-white flex items-center gap-3">
-                  Book a Demo
+                  Request a walkthrough
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"

@@ -101,27 +101,25 @@ export function ModuleHero({
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-44 sm:pt-48 md:pt-40 lg:pt-32 pb-20 lg:pb-0">
+      <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-40 lg:pt-32 pb-20 lg:pb-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[70vh] lg:min-h-[75vh]">
-          {/* Left: Text content */}
-          <motion.div
-            initial={reducedMotion ? false : { opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-            className="relative z-20"
+          {/* Left: Text content.
+              CSS entrance (anim-*) instead of JS animation: the hero copy is
+              server-rendered and visible before JavaScript loads. */}
+          <div
+            className="relative z-20 anim-rise"
+            style={{ "--anim-delay": "0.1s" } as React.CSSProperties}
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-carbon/40 backdrop-blur-xl rounded-3xl" />
               <div className="relative p-4">
                 {/* Badge */}
-                <motion.div
-                  initial={reducedMotion ? false : { opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.45, ease: EASE }}
-                  className="mb-6"
+                <div
+                  className="mb-6 anim-pop"
+                  style={{ "--anim-delay": "0.45s" } as React.CSSProperties}
                 >
                   {badge}
-                </motion.div>
+                </div>
 
                 {/* Title */}
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6 font-heading">
@@ -156,7 +154,7 @@ export function ModuleHero({
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right: product cards.
               Mobile: a normal-flow horizontal snap row so the product is
@@ -232,12 +230,19 @@ export function FloatingCard({ children, depth, className = "", delay = 0.6 }: F
     <motion.div
       className="relative shrink-0 snap-center lg:absolute"
       style={{ x: cardX, y: cardY, zIndex: depth * 10 }}
-      initial={reducedMotion ? false : { opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay, ease: EASE }}
     >
+      {/* CSS entrance so the cards render without JavaScript; the framer
+          wrapper above only adds mouse parallax as an enhancement. The
+          entrance lives on its own inner wrapper because anim-rise ends on
+          `transform: none`, which would override the positional translate
+          classes if they shared an element. */}
       <div className={`relative ${className}`}>
-        {children}
+        <div
+          className="anim-rise"
+          style={{ "--anim-delay": `${delay}s` } as React.CSSProperties}
+        >
+          {children}
+        </div>
       </div>
     </motion.div>
   );

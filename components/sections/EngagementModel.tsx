@@ -76,7 +76,7 @@ export function EngagementModel() {
             href="/contact"
             className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full bg-gold text-carbon hover:bg-gold/90 transition-all duration-300 shadow-lg shadow-gold/20"
           >
-            Book a Demo
+            Request a walkthrough
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </Link>
           <Link

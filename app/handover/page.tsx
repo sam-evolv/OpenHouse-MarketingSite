@@ -132,7 +132,7 @@ export default function HandoverPage() {
   return (
     <div>
       {/* ── Module Badge ── */}
-      <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
+      <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
           aria-label="Back to the OpenHouse home page"
@@ -169,7 +169,7 @@ export default function HandoverPage() {
         }
         subtitle="Every home OpenHouse hands over comes with its own AI assistant, trained on the manuals, warranties, certs, and walk-throughs for that specific property. Residents ask. The assistant answers. The phone rings only when it really needs to."
         primaryCta={{ href: "#money-shot", label: "See the assistant in action" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        secondaryCta={{ href: "/contact", label: "Request a walkthrough" }}
       >
         <HandoverFloatingCards />
       </ModuleHero>
@@ -507,10 +507,10 @@ export default function HandoverPage() {
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
-              The assistant doesn&rsquo;t make things up.
+              Grounded in what you approved.
             </h2>
             <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed">
-              Every answer comes from the documents you uploaded for that specific home. If the assistant doesn&rsquo;t know, it says so and offers to message you directly. No hallucinations, no fake confidence, no answers pulled from the wider internet.
+              Answers are grounded in the documents you uploaded for that specific home. When the evidence is missing, the assistant says so, logs the gap and escalates to you instead of guessing.
             </p>
           </div>
         </Container>
@@ -545,7 +545,7 @@ export default function HandoverPage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-carbon flex items-center gap-3">
-                  Book a Demo
+                  Request a walkthrough
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"

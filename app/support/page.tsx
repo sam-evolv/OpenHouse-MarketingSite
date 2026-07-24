@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function SupportPage() {
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-carbon">
+    <div className="pt-24 md:pt-32 pb-24 min-h-screen bg-carbon">
       <Container className="max-w-4xl">
         <h1 className="text-display-md font-bold text-porcelain mb-4">
           OpenHouse Ai Support

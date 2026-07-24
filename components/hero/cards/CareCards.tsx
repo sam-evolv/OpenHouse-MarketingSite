@@ -32,7 +32,7 @@ export function CareFloatingCards() {
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-porcelain">
-                Acme Renewables, support
+                Your Brand Renewables, support
               </p>
               <p className="text-[10px] text-emerald-400 flex items-center gap-1">
                 <motion.span

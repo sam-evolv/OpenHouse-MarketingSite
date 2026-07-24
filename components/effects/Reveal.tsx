@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, ReactNode } from "react";
+import { useRef, useEffect, useState, ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useInViewOnce } from "@/hooks/useInViewOnce";
 
@@ -12,6 +12,12 @@ interface RevealProps {
   staggerDelay?: number;
 }
 
+/**
+ * Scroll-entrance reveal that never hides server-rendered content.
+ * The markup ships visible (initial={false}); after hydration, elements
+ * still below the viewport are "armed" hidden and animate in on view.
+ * Without JavaScript, or with reduced motion, everything simply shows.
+ */
 export function Reveal({
   children,
   delay = 0,
@@ -22,13 +28,31 @@ export function Reveal({
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.2 });
   const reducedMotion = useReducedMotion();
+  const [armed, setArmed] = useState(false);
+
+  useEffect(() => {
+    if (reducedMotion || armed) return;
+    const el = ref.current;
+    if (!el) return;
+    // Arm the entrance only for content still below the fold at hydration.
+    if (el.getBoundingClientRect().top > window.innerHeight) {
+      setArmed(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reducedMotion]);
 
   if (reducedMotion) {
-    return <div className={className}>{children}</div>;
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
   }
 
+  const hidden = armed && !isInView;
+
   const containerVariants = {
-    hidden: {},
+    hidden: { transition: { duration: 0 } },
     visible: {
       transition: {
         staggerChildren: stagger ? staggerDelay : 0,
@@ -41,6 +65,7 @@ export function Reveal({
     hidden: {
       y: 24,
       opacity: 0,
+      transition: { duration: 0 },
     },
     visible: {
       y: 0,
@@ -56,8 +81,8 @@ export function Reveal({
     <motion.div
       ref={ref}
       className={className}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      initial={false}
+      animate={hidden ? "hidden" : "visible"}
       variants={stagger ? containerVariants : undefined}
     >
       {stagger ? (

@@ -28,6 +28,38 @@
   }
 }
 
+/* JS-free entrance animations.
+   Content is fully server-rendered and visible without JavaScript: the
+   hidden first frame exists only while the CSS animation itself is
+   pending (fill-mode: both), and reduced-motion users never see it.
+   Delay via --anim-delay. */
+@media (prefers-reduced-motion: no-preference) {
+  .anim-rise,
+  .anim-fade,
+  .anim-pop {
+    animation-duration: 0.55s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-fill-mode: both;
+    animation-delay: var(--anim-delay, 0s);
+  }
+  .anim-rise { animation-name: anim-rise; }
+  .anim-fade { animation-name: anim-fade; }
+  .anim-pop  { animation-name: anim-pop; }
+
+  @keyframes anim-rise {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes anim-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes anim-pop {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
 /* Hero Visual Animations - Document to Conversation */
 @keyframes float-front {
   0%, 100% { transform: translateY(0) rotate(0deg); }

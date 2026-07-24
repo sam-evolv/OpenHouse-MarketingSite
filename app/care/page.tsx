@@ -89,13 +89,13 @@ const features = [
     icon: Headset,
     title: "A branded customer assistant.",
     description:
-      "24/7 support in your branding. Trained on the specific systems you installed. Customers get the right answer the first time.",
+      "24/7 support in your branding. Trained on the specific systems you installed. Customers get the answer for their exact system, not a generic script.",
   },
   {
     icon: Plug,
     title: "Telemetry integrations.",
     description:
-      "Huawei FusionSolar, Daikin ONECTA, SolarEdge, and growing. The assistant reads live system data where the integration exists.",
+      "Daikin ONECTA, SolarEdge and Huawei FusionSolar are the first targets. Live status is confirmed per system on your call, and the assistant answers from the installation record either way.",
   },
   {
     icon: PhoneCall,
@@ -141,7 +141,7 @@ export default function CarePage() {
   return (
     <div>
       {/* ── Module Badge ── */}
-      <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
+      <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
           aria-label="Back to the OpenHouse home page"
@@ -179,9 +179,9 @@ export default function CarePage() {
             that don&rsquo;t need an engineer.
           </>
         }
-        subtitle="Roughly four in ten heat pump and solar callouts are for things the customer could resolve themselves. OpenHouse Care gives every installation its own AI assistant, branded for your business, trained on the systems you actually installed."
-        primaryCta={{ href: "#roi", label: "See the math" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        subtitle="A share of every installer's callouts are for things the customer could have resolved with the right guidance. Your own callout log will tell us how big that share is for you. Care gives every installation an assistant branded for your business, trained on the systems you actually installed."
+        primaryCta={{ href: "/contact?intent=care", label: "Run the callout calculation" }}
+        secondaryCta={{ href: "#roi", label: "See the math" }}
       >
         <CareFloatingCards />
       </ModuleHero>
@@ -231,9 +231,16 @@ export default function CarePage() {
             <p className="text-xs uppercase tracking-[0.25em] text-emerald-400 font-semibold mb-4">
               The math, when we do it together
             </p>
-            <p className="text-[17px] sm:text-lg text-porcelain/85 leading-relaxed">
-              Different installers run very different ratios of avoidable to genuine callouts depending on the systems installed and the quality of handover documentation. We&rsquo;d rather not invent the numbers for your operation. On a demo call, bring your callout log for the last three months and we&rsquo;ll do the math against what OpenHouse Care would catch. If the saving doesn&rsquo;t pay for the platform several times over, we&rsquo;ll tell you straight.
+            <p className="text-[17px] sm:text-lg text-porcelain/85 leading-relaxed mb-6">
+              Different installers run very different ratios of avoidable to genuine callouts depending on the systems installed and the quality of handover documentation. We&rsquo;d rather not invent the numbers for your operation. Bring your last three months of callouts. We&rsquo;ll identify which ones Care could have handled and calculate the value using your own numbers. If the saving doesn&rsquo;t pay for the platform several times over, we&rsquo;ll tell you straight.
             </p>
+            <Link
+              href="/contact?intent=care"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-500 text-carbon text-[15px] font-semibold hover:scale-[1.02] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon"
+            >
+              Run the callout calculation
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
           </div>
 
           <p className="text-center text-[12px] text-porcelain/40 mt-8 max-w-3xl mx-auto leading-relaxed">
@@ -281,18 +288,18 @@ export default function CarePage() {
                   <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black p-5 pt-12 flex flex-col">
                     <div className="flex items-center justify-between text-[11px] text-porcelain/40 mb-4">
                       <span>9:41</span>
-                      <span className="font-semibold">Acme Renewables</span>
+                      <span className="font-semibold">Your Brand Renewables</span>
                       <span>100%</span>
                     </div>
 
                     {/* Branded header */}
                     <div className="flex items-center gap-2 px-1 mb-4 pb-3 border-b border-white/5">
                       <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-300 text-xs">
-                        AR
+                        YB
                       </div>
                       <div>
                         <p className="text-[12px] font-semibold text-porcelain">
-                          Acme Renewables
+                          Your Brand Renewables
                         </p>
                         <p className="text-[9px] text-emerald-400">
                           Your installer&rsquo;s support
@@ -324,7 +331,7 @@ export default function CarePage() {
                     <div className="mt-3 pt-3 border-t border-white/5">
                       <div className="inline-flex items-center gap-2 w-full justify-center px-3 py-2.5 rounded-xl bg-emerald-500 text-carbon text-[11px] font-semibold">
                         <Phone className="w-3 h-3" aria-hidden="true" />
-                        Book a callout with Acme Renewables
+                        Book a callout with Your Brand Renewables
                       </div>
                     </div>
 
@@ -345,11 +352,11 @@ export default function CarePage() {
                 <div className="relative rounded-2xl border border-emerald-500/30 bg-neutral-900/95 backdrop-blur-xl p-6 sm:p-8 shadow-2xl">
                   <div className="flex items-center gap-3 mb-5">
                     <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-300">
-                      AR
+                      YB
                     </div>
                     <div>
                       <p className="text-[11px] uppercase tracking-wider text-emerald-400 font-semibold">
-                        Acme Renewables support
+                        Your Brand Renewables support
                       </p>
                       <p className="text-sm text-porcelain/60">
                         Daikin Altherma 3 R, installed March 2024
@@ -359,7 +366,7 @@ export default function CarePage() {
 
                   <div className="space-y-3 mb-5">
                     <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
-                      E5 means your heat pump has detected a flow temperature sensor issue. Nine times out of ten this is a connection on the sensor wiring that has worked loose during a cold snap.
+                      E5 means your heat pump has detected a flow temperature sensor issue. This is often just a connection on the sensor wiring that has worked loose during a cold snap.
                     </p>
                     <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
                       Here&rsquo;s the 90-second check, recorded by our team for this exact unit. If the check doesn&rsquo;t resolve it, this is a real one. Book a technician below and we&rsquo;ll be out.
@@ -380,7 +387,7 @@ export default function CarePage() {
                           E5 sensor wiring check
                         </p>
                         <p className="text-[12px] text-porcelain/50">
-                          Recorded by Acme Renewables, 1m 28s
+                          Recorded by Your Brand Renewables, 1m 28s
                         </p>
                       </div>
                     </div>
@@ -402,11 +409,11 @@ export default function CarePage() {
                       className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-white text-carbon text-sm font-semibold border border-white hover:scale-[1.02] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                     >
                       <Phone className="w-4 h-4" aria-hidden="true" />
-                      Book a callout with Acme Renewables
+                      Book a callout with Your Brand Renewables
                     </button>
                   </div>
                   <p className="text-[11px] text-porcelain/40 mt-4">
-                    Acme Renewables shown as a placeholder. In production, the assistant carries your name, your colours, your logo.
+                    &ldquo;Your Brand Renewables&rdquo; is a placeholder, not a customer. In production the assistant carries your name, your colours, your logo.
                   </p>
                 </div>
               </div>
@@ -432,18 +439,29 @@ export default function CarePage() {
                 It knows the difference between a scare and a callout.
               </h2>
               <p className="text-[17px] text-porcelain/75 leading-relaxed mb-4">
-                Where the integration exists, Care reads live data from the customer&rsquo;s system &mdash; Daikin ONECTA, SolarEdge, Huawei FusionSolar &mdash; and diagnoses against the exact unit you installed. An intermittent sensor gets a 90-second self-check. A genuine fault goes straight to your booking flow.
+                When a customer&rsquo;s system exposes live data, Care reads it and screens the problem against the exact unit you installed. An intermittent sensor gets a 90-second self-check. A genuine fault goes straight to your booking flow, with the context attached.
+              </p>
+              <p className="text-[15px] text-porcelain/70 leading-relaxed mb-4">
+                Care never replaces certified engineering diagnosis. It filters the calls that never needed an engineer, and routes the real ones to you.
               </p>
               <p className="text-[15px] text-porcelain/60 leading-relaxed">
-                Every question and callout feeds one console, so you see what your whole installation base is doing &mdash; and what keeps failing.
+                Every question and callout feeds one console, so you see what your whole installation base is doing, and what keeps failing.
               </p>
-              <div className="mt-6 flex flex-wrap gap-4">
-                {["Daikin ONECTA", "SolarEdge", "Huawei FusionSolar"].map((t) => (
-                  <span key={t} className="inline-flex items-center gap-2 text-[13px] text-porcelain/70">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden="true" />
-                    {t}
-                  </span>
-                ))}
+              <div className="mt-6">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-porcelain/45 font-semibold mb-3">
+                  First integration targets
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  {["Daikin ONECTA", "SolarEdge", "Huawei FusionSolar"].map((t) => (
+                    <span key={t} className="inline-flex items-center gap-2 text-[13px] text-porcelain/70">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden="true" />
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-3 text-[12px] text-porcelain/45 leading-relaxed">
+                  Live status is confirmed per system, for your installation base, on the call. We don&rsquo;t claim an integration you can&rsquo;t use.
+                </p>
               </div>
             </div>
 
@@ -676,12 +694,12 @@ export default function CarePage() {
               See it on your actual installation base.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">
-              A demo takes thirty minutes. Bring the spec of one of your typical installations and we&rsquo;ll show you exactly what your customer&rsquo;s experience would look like in Care, branded for you.
+              Bring your last three months of callouts. We&rsquo;ll identify which ones Care could have handled and calculate the value using your own numbers, on a thirty-minute call.
             </p>
 
             <div className="flex flex-col items-center gap-5">
               <Link
-                href="/contact"
+                href="/contact?intent=care"
                 className="group relative inline-flex items-center justify-center gap-3 min-h-[64px] px-10 sm:px-14 py-5 text-lg sm:text-xl font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_60px_rgba(16,185,129,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon"
               >
                 <span
@@ -689,7 +707,7 @@ export default function CarePage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-white flex items-center gap-3">
-                  Book a Demo
+                  Run the callout calculation
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"
@@ -716,10 +734,10 @@ export default function CarePage() {
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h2 className="text-[24px] sm:text-3xl font-bold text-carbon font-heading mb-4">
-              A separate product, on the same platform.
+              The same home record, extended to installers.
             </h2>
             <p className="text-[17px] sm:text-lg text-carbon/70 leading-relaxed">
-              Care is its own product for installers, built on the platform developers use to run their schemes and give every home an assistant.
+              Care runs on the record OpenHouse already keeps for every home. Developers run their schemes on it, homeowners ask it questions, and Care extends it to the people who keep the energy systems running.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">

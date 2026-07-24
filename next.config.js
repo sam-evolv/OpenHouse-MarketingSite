@@ -3,11 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   transpilePackages: ['three'],
-  env: {
-    SUPABASE_URL: process.env.SUPABASE_URL,
-    SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
-    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
-  },
+  // NOTE: no `env:` block here on purpose. The API routes read
+  // process.env at runtime on the server; inlining SUPABASE_* (including
+  // the service-role key) into the client bundle was a security defect.
   async redirects() {
     return [
       // The developer pillar moved from /platform to /developers.

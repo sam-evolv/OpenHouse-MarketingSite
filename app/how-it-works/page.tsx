@@ -150,7 +150,7 @@ export default function HowItWorksPage() {
   const staggerItem = getStaggerItem(prefersReducedMotion);
 
   return (
-    <div className="bg-carbon min-h-screen pt-32 lg:pt-36">
+    <div className="bg-carbon min-h-screen pt-24 md:pt-32 lg:pt-36">
       {/* SECTION 1: HERO */}
       <section className="relative min-h-[calc(100vh-8rem)] flex items-center justify-center">
         <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
@@ -589,7 +589,7 @@ export default function HowItWorksPage() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 bg-gold text-carbon h-12 px-8 text-base font-medium rounded-xl hover:bg-gold/90 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] active:scale-[0.98] shadow-sm border border-gold/20 transition-all duration-150"
             >
-              Book a Demo
+              Request a walkthrough
               <ArrowRight className="w-4 h-4" />
             </Link>
             

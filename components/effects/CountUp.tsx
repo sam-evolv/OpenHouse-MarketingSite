@@ -26,11 +26,25 @@ export function CountUp({
   const ref = useRef<HTMLSpanElement | null>(null);
   const isInView = useInViewOnce(ref as React.RefObject<Element>, { threshold: 0.5 });
   const reducedMotion = usePrefersReducedMotion();
-  const [count, setCount] = useState(0);
+  // The real number is server-rendered: 0 must never be the meaningful
+  // default. The count-up is a client enhancement, armed only for elements
+  // still below the viewport at hydration time.
+  const [count, setCount] = useState(end);
+  const armed = useRef(false);
+
+  useEffect(() => {
+    if (reducedMotion || isLoading || armed.current || isInView) return;
+    const el = ref.current;
+    if (!el) return;
+    if (el.getBoundingClientRect().top > window.innerHeight) {
+      armed.current = true;
+      setCount(0);
+    }
+  }, [reducedMotion, isLoading, isInView]);
 
   useEffect(() => {
     if (!isInView || isLoading) return;
-    if (reducedMotion) {
+    if (!armed.current || reducedMotion) {
       setCount(end);
       return;
     }

@@ -33,8 +33,9 @@ export function Footer() {
               />
             </Link>
             <p className="text-xs text-porcelain/60 leading-relaxed mb-4">
-              One platform for property developers, a 24/7 AI assistant for every
-              home, and dedicated Care for renewables installers.
+              One living record of every home: sourced answers for homeowners,
+              aftercare intelligence for developers, and support for the
+              installers who keep its systems running.
             </p>
             <a
               href={`mailto:${env.CONTACT_EMAIL}`}

@@ -35,7 +35,7 @@ import {
 export const metadata = {
   title: "Developer Dashboard — Aggregated Insight From Every Home | OpenHouse Ai",
   description:
-    "One dashboard for property developers: sales, build, snagging, handover and portfolio intelligence — plus aggregated analysis of every home's energy, issues, snags and questions, and the digital Home User Guide behind Home Performance Index certification.",
+    "The developer control plane for the OpenHouse home record: issue sourced guidance to every buyer, see the questions and gaps coming back, and run sales, build, snagging and handover on the same data.",
 };
 
 const capabilities = [
@@ -95,7 +95,7 @@ export default function PlatformOverviewPage() {
   return (
     <div>
       {/* ── Home Badge ── */}
-      <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
+      <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
           aria-label="Back to the OpenHouse home page"
@@ -128,14 +128,137 @@ export default function PlatformOverviewPage() {
             .
           </>
         }
-        subtitle="OpenHouse replaces the spreadsheets, WhatsApp groups, and paper folders developers still rely on. Sales, build, snagging, handover and portfolio intelligence — and aggregated insight from every home you've handed over. One dashboard, live on developments in Ireland today."
-        primaryCta={{ href: "#capabilities", label: "See what it runs" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        subtitle="One house type becomes a living record. Every buyer gets sourced, property-specific guidance. Every unanswered question comes back to you as aftercare intelligence. And the day-to-day of the scheme, from sales to snagging to handover, runs on the same data."
+        primaryCta={{ href: "/contact", label: "Request a house-type walkthrough" }}
+        secondaryCta={{ href: "#loop", label: "See how the loop works" }}
       >
         <PlatformFloatingCards />
       </ModuleHero>
 
-      {/* ── 2. Capabilities ── */}
+      {/* ── 1b. The wedge — the loop that runs everything else ── */}
+      <section
+        id="loop"
+        className="relative py-24 sm:py-28 bg-carbon overflow-hidden scroll-mt-32"
+      >
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-gold/[0.05] via-transparent to-transparent"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+              Start here
+            </p>
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
+              One house type becomes a living record.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              Start with the pack you already have. The record does the explaining, and everything it can&rsquo;t explain comes back to you as work you can see.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 max-w-5xl mx-auto">
+            {[
+              {
+                n: "01",
+                icon: Files,
+                title: "The pack becomes the record",
+                body: "Manuals, certs, plans and warranties for one house type, turned into a persistent record for every matching unit.",
+              },
+              {
+                n: "02",
+                icon: BookOpen,
+                title: "Every buyer gets sourced guidance",
+                body: "Property-specific answers with the source attached, from the day they get the keys. No generic manual folder.",
+              },
+              {
+                n: "03",
+                icon: AlertTriangle,
+                title: "Every gap becomes intelligence",
+                body: "What the record can't answer is logged, escalated and aggregated across the scheme, so the next handover ships sharper.",
+              },
+            ].map((s) => (
+              <div key={s.n} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 h-full">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="w-11 h-11 rounded-xl bg-gold/10 border border-gold/25 flex items-center justify-center">
+                    <s.icon className="w-5 h-5 text-gold" aria-hidden="true" />
+                  </span>
+                  <span className="font-mono text-[12px] text-gold/70">{s.n}</span>
+                </div>
+                <h3 className="text-[17px] font-semibold text-white mb-2 font-heading">{s.title}</h3>
+                <p className="text-[14px] text-porcelain/70 leading-relaxed">{s.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-10">
+            <Link
+              href="/#trace"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/30 text-sm font-medium text-gold hover:bg-gold/10 hover:border-gold/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              Trace a sourced answer, end to end
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+
+      {/* ── 2. Aggregated portfolio intelligence — proof of the loop ── */}
+      <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.04] to-transparent"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+              Aggregated intelligence
+            </p>
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
+              Every home reports back.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              Across a scheme, OpenHouse aggregates and analyses what every home experiences — energy consumption, issues, snag items, and the questions homeowners actually ask. Patterns, not anecdotes.
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <ProductShot
+              src={analyticsInsights}
+              alt="OpenHouse developer analytics: aggregated energy, issue, and question insights across a scheme"
+              accent="gold"
+            />
+
+            {/* KPI row — illustrative */}
+            <Reveal stagger className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-12 sm:mt-14">
+              {[
+                { end: 214, label: "Homes reporting in across the scheme" },
+                { end: 128, label: "Issues resolved before they became callouts" },
+                { end: 36, label: "Recurring questions turned into fixes and guides" },
+              ].map((kpi) => (
+                <div
+                  key={kpi.label}
+                  className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 text-center h-full"
+                >
+                  <p className="flex items-baseline justify-center gap-2 mb-2">
+                    <span className="text-4xl font-bold text-gold font-heading tabular-nums">
+                      <CountUp end={kpi.end} className="inline-block min-w-[3ch]" />
+                    </span>
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider text-porcelain/60 border border-white/15 bg-white/5">
+                      Example
+                      <span className="sr-only"> figure, for illustration only, not real customer data</span>
+                    </span>
+                  </p>
+                  <p className="text-[14px] text-porcelain/70 leading-relaxed">{kpi.label}</p>
+                </div>
+              ))}
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 3. Supporting capabilities ── */}
       <section
         id="capabilities"
         className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32"
@@ -151,13 +274,13 @@ export default function PlatformOverviewPage() {
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              One platform
+              Supporting capabilities
             </p>
             <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Everything a scheme needs, on one system.
+              The rest of the scheme, on the same system.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              Every home a developer builds passes through the same stages. OpenHouse holds all of them — same data, different surfaces — so nothing lives in a folder no one can find.
+              The record is the wedge. The rest of the scheme runs on the same data: sales, build, snagging, handover and portfolio intelligence, so nothing lives in a folder no one can find.
             </p>
           </div>
 
@@ -248,60 +371,6 @@ export default function PlatformOverviewPage() {
         </Container>
       </section>
 
-      {/* ── 3. Aggregated portfolio intelligence ── */}
-      <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.04] to-transparent"
-          aria-hidden="true"
-        />
-        <Container>
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              Aggregated intelligence
-            </p>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Every home reports back.
-            </h2>
-            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              Across a scheme, OpenHouse aggregates and analyses what every home experiences — energy consumption, issues, snag items, and the questions homeowners actually ask. Patterns, not anecdotes.
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            <ProductShot
-              src={analyticsInsights}
-              alt="OpenHouse developer analytics: aggregated energy, issue, and question insights across a scheme"
-              accent="gold"
-            />
-
-            {/* KPI row — illustrative */}
-            <Reveal stagger className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-12 sm:mt-14">
-              {[
-                { end: 214, label: "Homes reporting in across the scheme" },
-                { end: 128, label: "Issues resolved before they became callouts" },
-                { end: 36, label: "Recurring questions turned into fixes and guides" },
-              ].map((kpi) => (
-                <div
-                  key={kpi.label}
-                  className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 text-center h-full"
-                >
-                  <p className="flex items-baseline justify-center gap-2 mb-2">
-                    <span className="text-4xl font-bold text-gold font-heading tabular-nums">
-                      <CountUp end={kpi.end} className="inline-block min-w-[3ch]" />
-                    </span>
-                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider text-porcelain/60 border border-white/15 bg-white/5">
-                      Example
-                      <span className="sr-only"> figure, for illustration only, not real customer data</span>
-                    </span>
-                  </p>
-                  <p className="text-[14px] text-porcelain/70 leading-relaxed">{kpi.label}</p>
-                </div>
-              ))}
-            </Reveal>
-          </div>
-        </Container>
-      </section>
-
       {/* ── 4. HPI — the Home Performance Index ── */}
       <section className="relative py-24 sm:py-32 bg-carbon overflow-hidden">
         <div
@@ -380,7 +449,7 @@ export default function PlatformOverviewPage() {
         </Container>
       </section>
 
-      {/* ── 4. CTA ── */}
+      {/* ── 6. CTA ── */}
       <section className="relative py-28 sm:py-36 bg-carbon overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-b from-gold/[0.05] via-transparent to-gold/[0.07]"
@@ -408,7 +477,7 @@ export default function PlatformOverviewPage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-carbon flex items-center gap-3">
-                  Book a Demo
+                  Request a house-type walkthrough
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"

@@ -27,7 +27,7 @@ export function PlatformFloatingCards() {
   return (
     <>
       {/* Card 1: Developer platform */}
-      <FloatingCard depth={1} className="lg:-translate-x-20 lg:-translate-y-8" delay={0.6}>
+      <FloatingCard depth={1} className="lg:-translate-x-40 lg:-translate-y-32" delay={0.6}>
         <div className="w-56 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-center gap-3 mb-3">
@@ -53,7 +53,7 @@ export function PlatformFloatingCards() {
       </FloatingCard>
 
       {/* Card 2: Property Assistant — foreshadows the E5 diagnose chapter below */}
-      <FloatingCard depth={2} className="lg:translate-x-8 lg:-translate-y-24" delay={0.8}>
+      <FloatingCard depth={2} className="lg:translate-x-36 lg:-translate-y-20" delay={0.8}>
         <div className="w-64 bg-slate/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-center gap-3 mb-3">
@@ -89,7 +89,7 @@ export function PlatformFloatingCards() {
       </FloatingCard>
 
       {/* Card 3: Care */}
-      <FloatingCard depth={2} className="lg:-translate-x-8 lg:translate-y-16" delay={0.9}>
+      <FloatingCard depth={2} className="lg:-translate-x-44 lg:translate-y-28" delay={0.9}>
         <div className="w-56 bg-slate/90 backdrop-blur-md rounded-2xl border border-emerald-500/25 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-center gap-3 mb-3">
@@ -116,7 +116,7 @@ export function PlatformFloatingCards() {
       </FloatingCard>
 
       {/* Card 4: Energy Intelligence saving */}
-      <FloatingCard depth={3} className="lg:translate-x-28 lg:translate-y-24" delay={1.1}>
+      <FloatingCard depth={3} className="lg:translate-x-32 lg:translate-y-36" delay={1.1}>
         <div className="w-52 bg-gradient-to-br from-emerald-500/20 to-emerald-700/5 backdrop-blur-md rounded-2xl border border-emerald-500/30 shadow-2xl overflow-hidden">
           <div className="p-4">
             <div className="flex items-center gap-2 mb-2">

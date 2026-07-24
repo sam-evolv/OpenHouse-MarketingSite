@@ -14,9 +14,9 @@ import {
 import { appRoutes } from "@/lib/env";
 
 const pillarLinks = [
-  { href: "/developers", label: "Developer Dashboard" },
-  { href: "/assistant", label: "Property Assistant" },
-  { href: "/care", label: "Care" },
+  { href: "/developers", label: "For Developers" },
+  { href: "/assistant", label: "For Homeowners" },
+  { href: "/care", label: "For Installers" },
 ];
 
 // The Developer Dashboard pillar groups the developer-facing module routes,
@@ -64,7 +64,7 @@ export function Navigation() {
       aria-label="Main navigation"
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-32 sm:h-36">
+        <div className="flex items-center justify-between h-16 md:h-36">
           {/* Logo */}
           <Link href="/" prefetch={true} className="flex items-center">
             <Image
@@ -74,7 +74,7 @@ export function Navigation() {
               height={150}
               priority
               sizes="(min-width: 768px) 519px, (min-width: 640px) 461px, 404px"
-              className="h-[6.3rem] sm:h-[7.2rem] md:h-[8.1rem] w-auto animate-breathe"
+              className="h-9 md:h-[8.1rem] w-auto animate-breathe"
             />
           </Link>
 
@@ -142,19 +142,19 @@ export function Navigation() {
               </div>
             </div>
 
-            {/* Book a Demo */}
+            {/* Request a walkthrough */}
             <a
               href="/contact"
               className="px-4 py-2.5 text-sm font-medium text-porcelain hover:text-gold border border-white/10 hover:border-gold/40 rounded-full transition-all duration-200"
             >
-              Book a Demo
+              Request a walkthrough
             </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-porcelain hover:text-gold"
+            className="md:hidden -mr-2.5 p-2.5 text-porcelain hover:text-gold"
             aria-label={
               isMobileMenuOpen
                 ? "Close navigation menu"
@@ -211,7 +211,7 @@ export function Navigation() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-sm font-medium text-gold hover:text-gold/80 px-1"
               >
-                Book a Demo
+                Request a walkthrough
               </a>
             </div>
           </div>

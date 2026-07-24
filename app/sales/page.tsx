@@ -124,7 +124,7 @@ export default function SalesPage() {
   return (
     <div>
       {/* ── Module Badge ── */}
-      <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
+      <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
           aria-label="Back to the OpenHouse home page"
@@ -158,7 +158,7 @@ export default function SalesPage() {
         }
         subtitle="OpenHouse Sales gives you a live pipeline across every unit and every buyer, with the deals quietly going cold flagged before they die. No more Friday spreadsheets. No more &ldquo;I thought you were chasing that one.&rdquo;"
         primaryCta={{ href: "#money-shot", label: "See the pipeline" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        secondaryCta={{ href: "/contact", label: "Request a walkthrough" }}
       >
         <SalesFloatingCards />
       </ModuleHero>
@@ -428,7 +428,7 @@ export default function SalesPage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-white flex items-center gap-3">
-                  Book a Demo
+                  Request a walkthrough
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"

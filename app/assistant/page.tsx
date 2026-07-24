@@ -77,7 +77,7 @@ export default function AssistantPage() {
   return (
     <div>
       {/* ── Home Badge ── */}
-      <div className="fixed top-36 sm:top-40 left-4 sm:left-6 z-50">
+      <div className="fixed top-20 md:top-40 left-4 sm:left-6 z-50">
         <Link
           href="/"
           aria-label="Back to the OpenHouse home page"
@@ -110,9 +110,9 @@ export default function AssistantPage() {
             you build.
           </>
         }
-        subtitle="Every home comes with its own assistant — trained on that home's documents and connected to its energy systems. It answers any question, from a bill to a warning light, and helps the homeowner run an efficient, A-rated home."
+        subtitle="Every home comes with its own assistant, grounded in that home's approved documents. It answers with the source attached, says so when the record can't answer, and helps the homeowner run an efficient, A-rated home."
         primaryCta={{ href: "#energy", label: "See energy intelligence" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        secondaryCta={{ href: "/contact", label: "Request a walkthrough" }}
       >
         <HandoverFloatingCards />
       </ModuleHero>
@@ -141,6 +141,11 @@ export default function AssistantPage() {
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
               Trained on the documents for this specific home — your heat pump model, your kitchen warranty, your BER cert, your developer&rsquo;s walk-through videos. It answers with the right detail for the right home.
             </p>
+            <div className="mt-6 flex justify-center">
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[12px] font-semibold uppercase tracking-wider text-porcelain/60 border border-white/15 bg-white/5">
+                Illustrative interaction · Example data
+              </span>
+            </div>
           </div>
 
           <div className="relative max-w-6xl mx-auto">
@@ -186,7 +191,7 @@ export default function AssistantPage() {
                             Your EV charged at the full day rate three times this week instead of your off-peak window. That&rsquo;s about &euro;28 of the rise.
                           </p>
                           <p className="text-[11px] text-porcelain/70 leading-relaxed">
-                            I can move charging back to your off-peak window. Want me to?
+                            I can walk you through moving charging back to your off-peak window. Two steps in your charger app.
                           </p>
                         </div>
                       </div>
@@ -221,7 +226,7 @@ export default function AssistantPage() {
                         Connected to your home
                       </p>
                       <p className="text-sm text-porcelain/60">
-                        EV charger &amp; smart meter &middot; live telemetry
+                        EV charger &amp; smart meter &middot; Example data
                       </p>
                     </div>
                   </div>
@@ -231,7 +236,7 @@ export default function AssistantPage() {
                       Your bill rose because the EV charged at the full day rate instead of your off-peak window — three sessions this week, roughly &euro;28 of the increase.
                     </p>
                     <p className="text-[15px] sm:text-base text-porcelain/85 leading-relaxed">
-                      This usually happens after a charger app update resets the schedule. I can restore your cheapest off-peak charging window now.
+                      This usually happens after a charger app update resets the schedule. Here&rsquo;s how to restore your cheapest off-peak window, step by step for your exact charger.
                     </p>
                   </div>
 
@@ -241,7 +246,7 @@ export default function AssistantPage() {
                       className="inline-flex items-center gap-2 min-h-[48px] px-5 rounded-full bg-gold text-carbon text-sm font-semibold hover:scale-[1.02] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
                     >
                       <Play className="w-4 h-4 fill-carbon" aria-hidden="true" />
-                      Fix the schedule
+                      Show me how to restore the schedule
                     </button>
                     <button
                       type="button"
@@ -277,6 +282,11 @@ export default function AssistantPage() {
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
               The assistant has full context of every energy system in the home. It monitors around the clock, diagnoses issues before they become callouts, helps the homeowner run it like the A-rated home it is, and shows exactly what that saves.
             </p>
+            <div className="mt-6 flex justify-center">
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[12px] font-semibold uppercase tracking-wider text-porcelain/60 border border-white/15 bg-white/5">
+                Illustrative preview · Example data
+              </span>
+            </div>
           </div>
           <div className="max-w-5xl mx-auto">
             <EnergyIntelligenceDemo accent="emerald" />
@@ -393,10 +403,10 @@ export default function AssistantPage() {
               <span className="text-sm font-medium text-amber-700">Grounded, not guessing</span>
             </div>
             <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
-              The assistant doesn&rsquo;t make things up.
+              Grounded in the home&rsquo;s approved information.
             </h2>
             <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed">
-              Every answer comes from this home&rsquo;s own documents and live system data. If it doesn&rsquo;t know, it says so and offers to message the developer directly. No hallucinations, no fake confidence, no answers pulled from the wider internet.
+              Answers come from the home&rsquo;s own record: the documents the developer approved and, where connected, the home&rsquo;s systems. When the evidence is missing, OpenHouse says so, logs the gap and escalates to the developer instead of guessing.
             </p>
           </div>
         </Container>
@@ -431,7 +441,7 @@ export default function AssistantPage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-carbon flex items-center gap-3">
-                  Book a Demo
+                  Request a walkthrough
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"

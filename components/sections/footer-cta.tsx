@@ -20,7 +20,7 @@ export function FooterCTA() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-carbon font-semibold rounded-full hover:bg-gold/90 transition-all shadow-lg shadow-gold/20 hover:shadow-gold/30 hover:scale-105"
               >
-                Book a Demo
+                Request a walkthrough
                 <ArrowRight className="w-5 h-5" />
               </a>
             </div>

@@ -35,7 +35,7 @@ export function HPICert({ awarded = "Gold" }: { awarded?: (typeof TIERS)[number]
     {
       icon: BookOpen,
       title: "The digital Home User Guide",
-      body: "Property-specific guidance on running the home's heating, ventilation, hot water and renewables — the guide QA 8.0 asks for, generated for every unit.",
+      body: "Property-specific guidance on running the home's heating, ventilation, hot water and renewables — the guide the certification asks for, generated for every unit.",
     },
     {
       icon: Headset,

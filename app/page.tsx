@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ModuleHero } from "@/components/hero/ModuleHero";
 import { PlatformFloatingCards } from "@/components/hero/cards/PlatformCards";
+import { HomeRecordTrace } from "@/components/interactive/HomeRecordTrace";
 import { EnergyIntelligenceScroller } from "@/components/interactive/EnergyIntelligenceScroller";
 import { CountUp } from "@/components/effects/CountUp";
 import { Reveal } from "@/components/effects/Reveal";
@@ -16,15 +17,19 @@ import {
   Wrench,
   HardHat,
   Database,
-  Calendar,
   Plug,
-  Zap,
+  BookOpen,
+  MessagesSquare,
+  FileCheck,
+  ShieldAlert,
+  BarChart3,
+  Repeat,
 } from "lucide-react";
 
 export const metadata = {
-  title: "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
+  title: "OpenHouse Ai — A home that can explain itself",
   description:
-    "OpenHouse gives property developers one platform to run every scheme, every home a 24/7 AI assistant with energy intelligence, and renewables installers their own Care product. Live on developments in Ireland today.",
+    "OpenHouse turns the information already created for every home into a living record: sourced answers for the homeowner, aftercare intelligence for the developer, and an energy layer on the same model.",
 };
 
 const pillars = [
@@ -32,9 +37,9 @@ const pillars = [
     title: "Developer Dashboard",
     href: "/developers",
     icon: Building2,
-    who: "For property developers",
-    tagline: "Run every scheme in one place.",
-    desc: "Sales, build, snagging, handover and aftercare on one dashboard — with every home reporting back, and the digital Home User Guide behind Home Performance Index certification.",
+    who: "For developers",
+    tagline: "Runs the scheme.",
+    desc: "Issue a record to every home, see the questions and gaps coming back, and run sales, build, snagging and handover on the same data.",
     accent: "text-gold",
     bg: "bg-gold/10",
     border: "border-gold/30",
@@ -46,21 +51,21 @@ const pillars = [
     href: "/assistant",
     icon: MessageCircle,
     who: "For homeowners",
-    tagline: "A 24/7 AI for every home.",
-    desc: "Every home gets its own assistant, trained on its documents and connected to its energy systems. It answers any question — from a bill to a warning light — and helps run an A-rated home.",
+    tagline: "Answers the homeowner.",
+    desc: "Every buyer's window into their own home. Sourced answers, plain guidance, and an honest refusal that becomes a developer escalation when the record can't answer.",
     accent: "text-gold",
     bg: "bg-gold/10",
     border: "border-gold/30",
     hoverShadow: "hover:shadow-[0_20px_50px_-20px_rgba(212,175,55,0.4)]",
-    badge: "Now with Energy Intelligence",
+    badge: null as string | null,
   },
   {
     title: "Care",
     href: "/care",
     icon: Wrench,
-    who: "For heat pump & solar installers",
-    tagline: "Aftercare for renewable systems.",
-    desc: "A separate product for renewables installers — a branded assistant that cuts avoidable callouts and shows what your whole installation base is doing.",
+    who: "For installers",
+    tagline: "Extends it to installers.",
+    desc: "The same home record, extended to renewables installers: a branded assistant for the systems they installed, and fewer avoidable callouts.",
     accent: "text-emerald-400",
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/30",
@@ -69,21 +74,64 @@ const pillars = [
   },
 ];
 
-const trustLines = [
+const outcomes = [
   {
-    icon: Database,
-    title: "Your data stays yours.",
-    body: "Hosted in Europe. Exportable any time.",
+    icon: BookOpen,
+    title: "Property-specific handovers",
+    body: "Every buyer gets guidance for their exact home, not a generic manual folder.",
   },
   {
-    icon: Calendar,
-    title: "Adopt it in an afternoon.",
-    body: "No twelve-week implementation.",
+    icon: MessagesSquare,
+    title: "Fewer repeated questions",
+    body: "The record answers the same question the tenth time as patiently as the first.",
   },
   {
-    icon: Plug,
-    title: "Your existing tools keep working.",
-    body: "Email, calendar, accounting, all integrated.",
+    icon: FileCheck,
+    title: "A record of what buyers received",
+    body: "What was handed over, what was asked, what was answered. On the record.",
+  },
+  {
+    icon: ShieldAlert,
+    title: "Gaps surfaced, never guessed",
+    body: "A missing answer becomes a logged escalation, not an invented one.",
+  },
+  {
+    icon: BarChart3,
+    title: "Recurring questions, aggregated",
+    body: "See what an entire scheme is asking, ranked by frequency.",
+  },
+  {
+    icon: Repeat,
+    title: "Better next handovers",
+    body: "What this scheme taught you ships in the next scheme's record from day one.",
+  },
+];
+
+const adoptionSteps = [
+  {
+    n: "01",
+    title: "Share one house type's pack",
+    body: "The manuals, certs, plans and warranties you already have.",
+  },
+  {
+    n: "02",
+    title: "OpenHouse builds the record",
+    body: "And the homeowner experience that sits on top of it.",
+  },
+  {
+    n: "03",
+    title: "You review and approve",
+    body: "You see exactly what buyers will see before anyone else does.",
+  },
+  {
+    n: "04",
+    title: "Every matching unit gets its record",
+    body: "Issued at handover, carried for the life of the home.",
+  },
+  {
+    n: "05",
+    title: "Real questions sharpen it",
+    body: "Gaps come back to you once, get fixed for every future home.",
   },
 ];
 
@@ -100,27 +148,313 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
             <span className="w-2 h-2 bg-gold rounded-full" />
             <span className="text-sm font-medium text-gold">
-              Live on active developments today
+              In live use on the founder&rsquo;s own Cork schemes
             </span>
           </div>
         }
         title={
           <>
-            One platform for the{" "}
+            A home that can{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              whole life
-            </span>{" "}
-            of a home.
+              explain itself
+            </span>
+            .
           </>
         }
-        subtitle="OpenHouse gives developers one system to run every scheme, hands every home a 24/7 AI assistant with energy intelligence, and gives renewables installers their own Care product. Three things, one platform."
-        primaryCta={{ href: "#pillars", label: "See how it works" }}
-        secondaryCta={{ href: "/contact", label: "Book a Demo" }}
+        subtitle="OpenHouse turns the information already created for every home into sourced answers for the homeowner and live aftercare insight for the developer. Every answer shows where it came from. Every gap tells the developer what to fix."
+        primaryCta={{ href: "/contact", label: "Request a house-type walkthrough" }}
+        secondaryCta={{ href: "#trace", label: "Trace a sourced answer" }}
       >
         <PlatformFloatingCards />
       </ModuleHero>
 
-      {/* ── 2. Market-context strip ── */}
+      {/* ── 2. The proof: one interaction, end to end ── */}
+      <section id="trace" className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-gold/[0.06] via-transparent to-gold/[0.04]"
+          aria-hidden="true"
+        />
+        <Container>
+          <ThreadSeam tone="dark" className="-mt-6 mb-10" />
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+              The product, end to end
+            </p>
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
+              Every answer shows where it came from.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              This is how OpenHouse works. A house type&rsquo;s pack becomes a living record. The record answers the homeowner. A gap becomes work the developer can see.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <HomeRecordTrace />
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-10">
+            <Link
+              href="/developers"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/30 text-sm font-medium text-gold hover:bg-gold/10 hover:border-gold/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              See the developer view
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/assistant"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/15 text-sm font-medium text-porcelain/80 hover:text-porcelain hover:border-gold/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              Meet the assistant
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 3. What changes in a developer's operation ── */}
+      <section className="relative py-20 sm:py-24 bg-porcelain">
+        <Container>
+          <ThreadSeam tone="light" height="sm" className="-mt-4 mb-8" />
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <p className="text-sm uppercase tracking-[0.3em] text-amber-700 font-semibold mb-4">
+              For developers
+            </p>
+            <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-carbon font-heading leading-tight mb-4">
+              What changes in your operation.
+            </h2>
+            <p className="text-[16px] sm:text-lg text-carbon/70 leading-relaxed">
+              No invented percentages. This is what the record does, stated plainly.
+            </p>
+          </div>
+          <Reveal stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-5xl mx-auto">
+            {outcomes.map((o) => (
+              <div
+                key={o.title}
+                className="rounded-2xl border border-carbon/10 bg-white p-5 sm:p-6 h-full"
+              >
+                <span className="inline-flex w-10 h-10 rounded-xl bg-amber-50 border border-amber-100 items-center justify-center mb-4">
+                  <o.icon className="w-5 h-5 text-amber-700" aria-hidden="true" />
+                </span>
+                <h3 className="text-[16px] font-semibold text-carbon mb-1.5 leading-snug">
+                  {o.title}
+                </h3>
+                <p className="text-[14px] text-carbon/65 leading-relaxed">{o.body}</p>
+              </div>
+            ))}
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* ── 4. One model, three views ── */}
+      <section
+        id="pillars"
+        className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32"
+      >
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-gold/[0.06] via-transparent to-gold/[0.04]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] max-w-[1200px] rounded-full bg-gold/[0.04] blur-[140px]"
+          aria-hidden="true"
+        />
+        <Container>
+          <ThreadSeam tone="dark" className="-mt-6 mb-10" />
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+              One model, three views
+            </p>
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
+              One living record of every home.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              The home record is the durable asset. Developers run their schemes on it, homeowners ask it questions, and installers look after its systems. Three views of the same model.
+            </p>
+          </div>
+
+          <Reveal
+            stagger
+            className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-6xl mx-auto"
+          >
+            {pillars.map((p) => (
+              <Link
+                key={p.title}
+                href={p.href}
+                className={`group relative flex flex-col h-full p-7 sm:p-8 rounded-3xl border ${p.border} ${p.bg} backdrop-blur-sm hover:-translate-y-1.5 transition-all duration-500 ${p.hoverShadow} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon focus-visible:ring-white/50`}
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div
+                    className={`w-14 h-14 rounded-2xl ${p.bg} border ${p.border} flex items-center justify-center`}
+                  >
+                    <p.icon className={`w-7 h-7 ${p.accent}`} aria-hidden="true" />
+                  </div>
+                  <span className={`text-[11px] uppercase tracking-wider font-semibold ${p.accent} opacity-80`}>
+                    {p.who}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl font-bold text-white font-heading leading-tight mb-1">
+                  {p.title}
+                </h3>
+                <p className={`text-[15px] font-semibold ${p.accent} mb-4`}>{p.tagline}</p>
+                <p className="text-[15px] text-porcelain/70 leading-relaxed flex-1">{p.desc}</p>
+
+                <div
+                  className={`mt-6 inline-flex items-center gap-1.5 text-sm font-semibold ${p.accent}`}
+                >
+                  Explore
+                  <ArrowRight
+                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </div>
+              </Link>
+            ))}
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* ── 5. Adoption: start with one house type ── */}
+      <section className="relative py-20 sm:py-24 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.04] to-transparent"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+              Adoption
+            </p>
+            <h2 className="text-[28px] sm:text-4xl lg:text-5xl font-bold text-white font-heading leading-tight mb-4">
+              Start with one house type.
+            </h2>
+            <p className="text-[16px] sm:text-lg text-porcelain/70 leading-relaxed">
+              You provide the pack that already exists. OpenHouse produces the record, the homeowner experience and the aftercare intelligence.
+            </p>
+          </div>
+
+          <Reveal stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl mx-auto mb-12">
+            {adoptionSteps.map((s) => (
+              <div
+                key={s.n}
+                className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 h-full"
+              >
+                <p className="font-mono text-[12px] text-gold/80 mb-3">{s.n}</p>
+                <h3 className="text-[15px] font-semibold text-white mb-1.5 leading-snug">
+                  {s.title}
+                </h3>
+                <p className="text-[13px] text-porcelain/60 leading-relaxed">{s.body}</p>
+              </div>
+            ))}
+          </Reveal>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 max-w-3xl mx-auto">
+            <div className="flex items-center gap-3">
+              <span className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center flex-shrink-0">
+                <Database className="w-4 h-4 text-gold" aria-hidden="true" />
+              </span>
+              <p className="text-[14px] text-porcelain/70">
+                Your data stays yours. Hosted in Europe, exportable any time.
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center flex-shrink-0">
+                <Plug className="w-4 h-4 text-gold" aria-hidden="true" />
+              </span>
+              <p className="text-[14px] text-porcelain/70">
+                No rip and replace. Start with the record; move scheme workflows across when you are ready.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 6. Energy Intelligence: the next layer on the record.
+             No overflow-hidden here: it would break position: sticky. ── */}
+      <section className="relative bg-carbon">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.12] via-transparent to-emerald-900/[0.06]"
+          aria-hidden="true"
+        />
+        <div className="relative pt-24 sm:pt-32">
+          <Container>
+            <ThreadSeam tone="dark" className="-mt-6 mb-10" />
+            <div className="text-center max-w-3xl mx-auto mb-6">
+              <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
+                The next layer
+              </p>
+              <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
+                The same record, learning its energy.
+              </h2>
+              <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+                Energy intelligence is a layer on the home record, not another product. Connected systems report in, and the assistant explains what matters in plain language: money, comfort and risk.
+              </p>
+            </div>
+            <div className="flex justify-center mb-10">
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[12px] font-semibold uppercase tracking-wider text-porcelain/60 border border-white/15 bg-white/5">
+                Illustrative preview · Example data
+              </span>
+            </div>
+          </Container>
+          <EnergyIntelligenceScroller />
+          <Container>
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-10 pb-24 sm:pb-32">
+              <Link
+                href="/assistant#energy"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-emerald-500/30 text-sm font-medium text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-500/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              >
+                How the Property Assistant works
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/developers"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/30 text-sm font-medium text-gold hover:bg-gold/10 hover:border-gold/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              >
+                See what developers see
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </Container>
+        </div>
+      </section>
+
+      {/* ── 6.5 Cinematic interlude — a breath after the technical chapter ── */}
+      <CinematicInterlude />
+
+      {/* ── 7. Built by a developer (credibility) ── */}
+      <section className="relative py-28 sm:py-32 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-gold/[0.04] via-transparent to-gold/[0.06]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] rounded-full bg-gold/[0.05] blur-[120px]"
+          aria-hidden="true"
+        />
+        <Container>
+          <ThreadSeam tone="dark" className="-mt-6 mb-10" />
+          <div className="relative max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30 mb-8">
+              <HardHat className="w-4 h-4 text-gold" aria-hidden="true" />
+              <span className="text-sm font-medium text-gold">Built by a developer</span>
+            </div>
+            <SplitText
+              as="h2"
+              className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-8"
+            >
+              {"Built by a developer,\nfor developers."}
+            </SplitText>
+            <p className="text-[17px] sm:text-xl text-porcelain/80 leading-relaxed mb-6">
+              OpenHouse was built by a working property developer in Cork while running a live development pipeline. Every workflow in the platform exists because it was missing from a real developer&rsquo;s day.
+            </p>
+            <p className="text-[18px] sm:text-xl text-gold/90 font-medium leading-relaxed">
+              We&rsquo;re still using it on our own schemes.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 8. Market context ── */}
       <section className="relative py-16 sm:py-20 bg-porcelain">
         <Container>
           <ThreadSeam tone="light" height="sm" className="-mt-4 mb-8" />
@@ -155,7 +489,7 @@ export default function HomePage() {
               </div>
             </div>
             <p className="text-center text-[15px] sm:text-[16px] text-carbon/70 leading-relaxed mt-10 max-w-2xl mx-auto">
-              A market this scale still runs on spreadsheets and paper folders. OpenHouse is the system replacing them — live today in Cork, and expanding.
+              Every one of those homes ships with documents, certs and systems its owner will have questions about. OpenHouse was built inside that market, and is in live use on its founder&rsquo;s own Cork schemes.
             </p>
             <p className="text-center text-[12px] text-carbon/60 mt-4 max-w-3xl mx-auto leading-relaxed">
               Sources: CSO New Dwelling Completions, Q4 2025; Residential Tenancies Board, Q4 2024 Profile of the Register; SEAI Record Year of Progress 2024.
@@ -164,185 +498,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ── 3. The three pillars (the taxonomy moment) ── */}
-      <section
-        id="pillars"
-        className="relative py-24 sm:py-32 bg-carbon overflow-hidden scroll-mt-32"
-      >
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-gold/[0.06] via-transparent to-gold/[0.04]"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] max-w-[1200px] rounded-full bg-gold/[0.04] blur-[140px]"
-          aria-hidden="true"
-        />
-        <Container>
-          <ThreadSeam tone="dark" className="-mt-6 mb-10" />
-          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              What OpenHouse is
-            </p>
-            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              Three products. One platform.
-            </h2>
-            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-              The developer who builds the home, the family who lives in it, and the installer who keeps its energy systems running — all on the same platform, sharing the same data.
-            </p>
-          </div>
-
-          <Reveal
-            stagger
-            className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-6xl mx-auto"
-          >
-            {pillars.map((p) => (
-              <Link
-                key={p.title}
-                href={p.href}
-                className={`group relative flex flex-col h-full p-7 sm:p-8 rounded-3xl border ${p.border} ${p.bg} backdrop-blur-sm hover:-translate-y-1.5 transition-all duration-500 ${p.hoverShadow} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon focus-visible:ring-white/50`}
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <div
-                    className={`w-14 h-14 rounded-2xl ${p.bg} border ${p.border} flex items-center justify-center`}
-                  >
-                    <p.icon className={`w-7 h-7 ${p.accent}`} aria-hidden="true" />
-                  </div>
-                  <span className={`text-[11px] uppercase tracking-wider font-semibold ${p.accent} opacity-80`}>
-                    {p.who}
-                  </span>
-                </div>
-
-                <h3 className="text-2xl font-bold text-white font-heading leading-tight mb-1">
-                  {p.title}
-                </h3>
-                <p className={`text-[15px] font-semibold ${p.accent} mb-4`}>{p.tagline}</p>
-                <p className="text-[15px] text-porcelain/70 leading-relaxed flex-1">{p.desc}</p>
-
-                {p.badge && (
-                  <span className="mt-5 inline-flex items-center gap-1.5 w-fit px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[12px] font-medium text-emerald-300">
-                    <Zap className="w-3.5 h-3.5" aria-hidden="true" />
-                    {p.badge}
-                  </span>
-                )}
-
-                <div
-                  className={`mt-6 inline-flex items-center gap-1.5 text-sm font-semibold ${p.accent}`}
-                >
-                  Explore
-                  <ArrowRight
-                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </div>
-              </Link>
-            ))}
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* ── 4. Energy Intelligence — the signature pinned chapter.
-             No overflow-hidden here: it would break position: sticky. ── */}
-      <section className="relative bg-carbon">
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-emerald-900/[0.12] via-transparent to-emerald-900/[0.06]"
-          aria-hidden="true"
-        />
-        <div className="relative pt-24 sm:pt-32">
-          <Container>
-            <ThreadSeam tone="dark" className="-mt-6 mb-10" />
-            <div className="text-center max-w-3xl mx-auto mb-14">
-              <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4 font-semibold">
-                Energy Intelligence
-              </p>
-              <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-                Every home, watching its own energy.
-              </h2>
-              <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
-                It monitors 24/7, diagnoses before the callout, helps you run it like an A-rated home, and shows the saving.
-              </p>
-            </div>
-          </Container>
-          <EnergyIntelligenceScroller />
-          <Container>
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-10 pb-24 sm:pb-32">
-              <Link
-                href="/assistant#energy"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-emerald-500/30 text-sm font-medium text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-500/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-              >
-                How the Property Assistant works
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/developers"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/30 text-sm font-medium text-gold hover:bg-gold/10 hover:border-gold/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-              >
-                See what developers see
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
-            </div>
-          </Container>
-        </div>
-      </section>
-
-      {/* ── 4.5 Cinematic interlude — a breath after the technical chapter ── */}
-      <CinematicInterlude />
-
-      {/* ── 5. Built by a developer (credibility) ── */}
-      <section className="relative py-28 sm:py-32 bg-carbon overflow-hidden">
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-gold/[0.04] via-transparent to-gold/[0.06]"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] rounded-full bg-gold/[0.05] blur-[120px]"
-          aria-hidden="true"
-        />
-        <Container>
-          <ThreadSeam tone="dark" className="-mt-6 mb-10" />
-          <div className="relative max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30 mb-8">
-              <HardHat className="w-4 h-4 text-gold" aria-hidden="true" />
-              <span className="text-sm font-medium text-gold">Built by a developer</span>
-            </div>
-            <SplitText
-              as="h2"
-              className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-8"
-            >
-              {"Built by a developer,\nfor developers."}
-            </SplitText>
-            <p className="text-[17px] sm:text-xl text-porcelain/80 leading-relaxed mb-6">
-              OpenHouse was built by a working property developer in Cork while running a thousand-home development pipeline. Every workflow in the platform exists because it was missing from a real developer&rsquo;s day.
-            </p>
-            <p className="text-[18px] sm:text-xl text-gold/90 font-medium leading-relaxed">
-              We&rsquo;re still using it on our own schemes.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* ── 6. Trust band ── */}
-      <section className="relative py-16 sm:py-20 bg-porcelain">
-        <Container>
-          <ThreadSeam tone="light" height="sm" className="-mt-4 mb-8" />
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {trustLines.map((t) => (
-                <div key={t.title} className="flex items-start gap-3">
-                  <span className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center flex-shrink-0">
-                    <t.icon className="w-4 h-4 text-amber-700" aria-hidden="true" />
-                  </span>
-                  <div>
-                    <p className="text-[16px] font-semibold text-carbon leading-snug">{t.title}</p>
-                    <p className="text-[14px] text-carbon/65 leading-relaxed mt-1">{t.body}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* ── 7. Peak-end CTA ── */}
+      {/* ── 9. Peak-end CTA ── */}
       <section className="relative py-28 sm:py-36 bg-carbon overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-b from-gold/[0.05] via-transparent to-gold/[0.07]"
@@ -356,10 +512,10 @@ export default function HomePage() {
           <ThreadSeam tone="dark" terminal className="-mt-6 mb-12" />
           <div className="relative max-w-3xl mx-auto text-center">
             <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
-              See it on one of your own schemes.
+              Bring one house type. We&rsquo;ll do the rest.
             </h2>
             <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed max-w-2xl mx-auto mb-10">
-              A demo is the fastest way to know whether OpenHouse fits your operation. Thirty minutes. We&rsquo;ll show you the platform configured against the kind of development you&rsquo;re already building.
+              A walkthrough takes thirty minutes. We&rsquo;ll show you the record OpenHouse builds from a house type like yours, and the sourced answers your buyers would get.
             </p>
 
             <div className="flex flex-col items-center gap-5">
@@ -372,7 +528,7 @@ export default function HomePage() {
                   aria-hidden="true"
                 />
                 <span className="relative z-10 text-carbon flex items-center gap-3">
-                  Book a Demo
+                  Request a house-type walkthrough
                   <ArrowRight
                     className="w-6 h-6 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"

@@ -42,10 +42,9 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title:
-    "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
+  title: "OpenHouse Ai — A home that can explain itself",
   description:
-    "OpenHouse gives property developers one platform to run every scheme, every home a 24/7 AI assistant with energy intelligence, and renewables installers their own Care product. Live on developments in Ireland today.",
+    "OpenHouse turns the information already created for every home into a living record: sourced answers for the homeowner, aftercare intelligence for the developer, and an energy layer on the same model.",
   keywords: [
     "property development platform",
     "AI home assistant",
@@ -57,10 +56,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "EvolvAi" }],
   openGraph: {
-    title:
-      "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
+    title: "OpenHouse Ai — A home that can explain itself",
     description:
-      "One platform to run every scheme, a 24/7 AI assistant with energy intelligence for every home, and dedicated Care for renewables installers.",
+      "One living record of every home: sourced answers for the homeowner, aftercare intelligence for the developer, and an energy layer on the same model.",
     url: "https://openhouseai.ie",
     siteName: "OpenHouse Ai",
     images: [
@@ -76,10 +74,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "OpenHouse Ai — One platform for developers, a 24/7 AI for every home",
+    title: "OpenHouse Ai — A home that can explain itself",
     description:
-      "One platform to run every scheme, a 24/7 AI assistant with energy intelligence for every home, and dedicated Care for renewables installers.",
+      "One living record of every home: sourced answers for the homeowner, aftercare intelligence for the developer, and an energy layer on the same model.",
     images: ["/og.jpg"],
   },
 };

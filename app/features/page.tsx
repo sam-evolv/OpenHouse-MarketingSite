@@ -3,7 +3,7 @@ import { FeatureGrid } from "@/components/sections/feature-grid";
 
 export default function FeaturesPage() {
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-carbon">
+    <div className="pt-24 md:pt-32 pb-24 min-h-screen bg-carbon">
       <Container>
         <h1 className="text-display-md font-bold text-porcelain mb-6 text-center">
           Features that deliver results

@@ -17,7 +17,7 @@ const useCaseIcons = [Headphones, FileCheck, Globe, MessageSquare];
 
 export default function SolutionsPage() {
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-carbon">
+    <div className="pt-24 md:pt-32 pb-24 min-h-screen bg-carbon">
       <Container>
         <SectionHeading
           title={content.solutions.title}
@@ -123,7 +123,7 @@ export default function SolutionsPage() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full bg-gold text-carbon hover:bg-gold/90 transition-all duration-300"
             >
-              Book a Demo
+              Request a walkthrough
             </a>
           </div>
         </Reveal>
