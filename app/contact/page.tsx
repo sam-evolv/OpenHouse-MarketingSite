@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Container } from "@/components/ui/container";
 import { WalkthroughRequestForm } from "@/components/forms/WalkthroughRequestForm";
-import { Mail, Clock, FileText, MonitorPlay } from "lucide-react";
+import { Mail, Clock, FileText, MonitorPlay, ClipboardList } from "lucide-react";
 
 export const metadata = {
   title: "Request a house-type walkthrough | OpenHouse Ai",
@@ -9,38 +9,84 @@ export const metadata = {
     "Thirty minutes. Bring one house type. You'll see the record OpenHouse builds from it and the sourced answers your buyers would get.",
 };
 
-const steps = [
-  {
-    icon: Mail,
-    title: "Your request lands with the founder",
-    body: "The form composes an email from you to us, with the details we need to prepare.",
+/* Two audiences arrive here from different buttons. The installer route
+   (?intent=care) has to land on installer language: the form fields
+   already switch, but a page still headed "Request a house-type
+   walkthrough" makes "Run the callout calculation" look like it did
+   nothing. */
+const COPY = {
+  developer: {
+    eyebrow: "Talk to us",
+    heading: "Request a house-type walkthrough.",
+    intro:
+      "Thirty minutes, on a call. Bring one house type and we’ll show you the record OpenHouse builds from it, the sourced answers your buyers would get, and the aftercare intelligence you’d see coming back.",
+    steps: [
+      {
+        icon: Mail,
+        title: "Your request lands with the founder",
+        body: "The form composes an email from you to us, with the details we need to prepare.",
+      },
+      {
+        icon: Clock,
+        title: "We reply with times",
+        body: "Usually within one working day, from a person, not a sequence.",
+      },
+      {
+        icon: MonitorPlay,
+        title: "A thirty-minute walkthrough",
+        body: "On a call, against a house type like yours: the record, the assistant, and what you'd see coming back.",
+      },
+    ],
+    handy:
+      "The pack for one house type: manuals, certs, plans. If it’s scattered, that’s normal. Bring what you have.",
   },
-  {
-    icon: Clock,
-    title: "We reply with times",
-    body: "Usually within one working day, from a person, not a sequence.",
+  care: {
+    eyebrow: "For installers",
+    heading: "Run the callout calculation.",
+    intro:
+      "Bring your last three months of callouts. We’ll identify which ones Care could have handled and calculate the value using your own numbers, on a thirty-minute call.",
+    steps: [
+      {
+        icon: Mail,
+        title: "Your numbers land with the founder",
+        body: "The form composes an email from you to us, with the details we need to prepare.",
+      },
+      {
+        icon: Clock,
+        title: "We reply with times",
+        body: "Usually within one working day, from a person, not a sequence.",
+      },
+      {
+        icon: ClipboardList,
+        title: "We do the math together",
+        body: "On a call, against your own callout log: which ones Care could have handled, and what that is worth to you.",
+      },
+    ],
+    handy:
+      "Your callout log for the last three months. A rough export, or even a tally by system type, is enough to start.",
   },
-  {
-    icon: MonitorPlay,
-    title: "A thirty-minute walkthrough",
-    body: "On a call, against a house type like yours: the record, the assistant, and what you'd see coming back.",
-  },
-];
+} as const;
 
-export default function ContactPage() {
+export default function ContactPage({
+  searchParams,
+}: {
+  searchParams?: { intent?: string };
+}) {
+  const copy = searchParams?.intent === "care" ? COPY.care : COPY.developer;
+
   return (
     <div className="pt-24 md:pt-28 pb-24 min-h-screen bg-carbon">
       <Container>
         <div className="max-w-5xl mx-auto">
           <div className="max-w-2xl mb-12">
             <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
-              Talk to us
+              {copy.eyebrow}
             </p>
             <h1 className="text-[32px] sm:text-5xl font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-5">
-              Request a house-type walkthrough.
+              {copy.heading}
             </h1>
             <p className="text-[17px] sm:text-lg text-porcelain/75 leading-relaxed">
-              Thirty minutes, on a call. Bring one house type and we&rsquo;ll show you the record OpenHouse builds from it, the sourced answers your buyers would get, and the aftercare intelligence you&rsquo;d see coming back.
+              {copy.intro}
             </p>
           </div>
 
@@ -59,7 +105,7 @@ export default function ContactPage() {
                   What happens next
                 </h2>
                 <ol className="space-y-4">
-                  {steps.map((s, i) => (
+                  {copy.steps.map((s, i) => (
                     <li key={s.title} className="flex items-start gap-3.5">
                       <span className="w-9 h-9 rounded-xl bg-gold/10 border border-gold/25 flex items-center justify-center flex-shrink-0">
                         <s.icon className="w-4 h-4 text-gold" aria-hidden="true" />
@@ -99,7 +145,7 @@ export default function ContactPage() {
                 </h2>
                 <p className="text-[13px] text-porcelain/60 leading-relaxed flex items-start gap-2.5">
                   <FileText className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" aria-hidden="true" />
-                  The pack for one house type: manuals, certs, plans. If it&rsquo;s scattered, that&rsquo;s normal. Bring what you have.
+                  {copy.handy}
                 </p>
               </div>
             </div>

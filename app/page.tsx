@@ -9,6 +9,8 @@ import { Reveal } from "@/components/effects/Reveal";
 import { ThreadSeam } from "@/components/effects/ThreadSeam";
 import { SplitText } from "@/components/effects/SplitText";
 import { CinematicInterlude } from "@/components/sections/home/CinematicInterlude";
+import { AppScreen } from "@/components/product/AppScreen";
+import { AskModesCompact } from "@/components/product/AskModes";
 import heroBackground from "@/attached_assets/stock_images/platform_aerial_network.png";
 import {
   ArrowRight,
@@ -27,9 +29,9 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "OpenHouse Ai — A home that can explain itself",
+  title: "OpenHouse Ai — Hand over more than the keys",
   description:
-    "OpenHouse turns the information already created for every home into a living record: sourced answers for the homeowner, aftercare intelligence for the developer, and an energy layer on the same model.",
+    "OpenHouse turns the information already created for every home into a living record. Homeowners ask by text, voice or photo and get a sourced answer. Developers see every question and gap coming back.",
 };
 
 const pillars = [
@@ -110,18 +112,18 @@ const outcomes = [
 const adoptionSteps = [
   {
     n: "01",
-    title: "Share one house type's pack",
-    body: "The manuals, certs, plans and warranties you already have.",
+    title: "You upload one house type's pack",
+    body: "Straight into your developer dashboard: the manuals, certs, plans and warranties you already have.",
   },
   {
     n: "02",
     title: "OpenHouse builds the record",
-    body: "And the homeowner experience that sits on top of it.",
+    body: "Your files become one structured record, and the homeowner experience that sits on top of it.",
   },
   {
     n: "03",
-    title: "You review and approve",
-    body: "You see exactly what buyers will see before anyone else does.",
+    title: "You publish what goes live",
+    body: "You control the record from the dashboard. Nothing reaches a homeowner that you did not upload.",
   },
   {
     n: "04",
@@ -148,20 +150,20 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/30">
             <span className="w-2 h-2 bg-gold rounded-full" />
             <span className="text-sm font-medium text-gold">
-              In live use on the founder&rsquo;s own Cork schemes
+              Built by a property developer, in Cork
             </span>
           </div>
         }
         title={
           <>
-            A home that can{" "}
+            Hand over{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
-              explain itself
+              more than the keys
             </span>
             .
           </>
         }
-        subtitle="OpenHouse turns the information already created for every home into sourced answers for the homeowner and live aftercare insight for the developer. Every answer shows where it came from. Every gap tells the developer what to fix."
+        subtitle="Every home you build gets a living record of itself, and an assistant that answers from it around the clock. Homeowners ask by text, by voice, or by pointing a camera at whatever is flashing. Every answer shows its source, and every gap comes straight back to you."
         primaryCta={{ href: "/contact", label: "Request a house-type walkthrough" }}
         secondaryCta={{ href: "#trace", label: "Trace a sourced answer" }}
       >
@@ -207,6 +209,50 @@ export default function HomePage() {
               Meet the assistant
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 2.5 The homeowner app, shown rather than described.
+             Rebuilt in markup, not pasted in as a screenshot, so it stays
+             sharp at any width and legible on a phone. ── */}
+      <section className="relative py-24 sm:py-28 bg-carbon overflow-hidden">
+        <div
+          className="absolute left-1/2 top-1/2 h-[70vw] max-h-[900px] w-[70vw] max-w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.05] blur-[130px]"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] gap-14 lg:gap-20 items-center max-w-6xl mx-auto">
+            <div className="relative flex justify-center lg:justify-start">
+              <AppScreen />
+            </div>
+
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+                The homeowner app
+              </p>
+              <h2 className="text-[32px] sm:text-5xl font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
+                This is what your buyer opens.
+              </h2>
+              <p className="text-[17px] sm:text-lg text-porcelain/75 leading-relaxed mb-4">
+                Not a folder of PDFs and not a general-purpose chatbot. It opens knowing which home it belongs to, which house type it is, and which documents you published to it.
+              </p>
+              <p className="text-[17px] sm:text-lg text-porcelain/75 leading-relaxed mb-10">
+                And a question can arrive three ways.
+              </p>
+
+              <AskModesCompact />
+
+              <div className="flex flex-wrap items-center gap-3 mt-10">
+                <Link
+                  href="/assistant"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/30 text-sm font-medium text-gold hover:bg-gold/10 hover:border-gold/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                >
+                  See the assistant in full
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
@@ -329,7 +375,7 @@ export default function HomePage() {
               Start with one house type.
             </h2>
             <p className="text-[16px] sm:text-lg text-porcelain/70 leading-relaxed">
-              You provide the pack that already exists. OpenHouse produces the record, the homeowner experience and the aftercare intelligence.
+              You upload the pack that already exists, from your developer dashboard. OpenHouse produces the record, the homeowner experience and the aftercare intelligence.
             </p>
           </div>
 
@@ -445,10 +491,10 @@ export default function HomePage() {
               {"Built by a developer,\nfor developers."}
             </SplitText>
             <p className="text-[17px] sm:text-xl text-porcelain/80 leading-relaxed mb-6">
-              OpenHouse was built by a working property developer in Cork while running a live development pipeline. Every workflow in the platform exists because it was missing from a real developer&rsquo;s day.
+              OpenHouse was built by a working property developer in Cork. Every workflow in the platform exists because it was missing from a real developer&rsquo;s day: the handover pack nobody could find, the same question asked forty times, the snag that was already in an email.
             </p>
             <p className="text-[18px] sm:text-xl text-gold/90 font-medium leading-relaxed">
-              We&rsquo;re still using it on our own schemes.
+              Nothing in it was designed from the outside looking in.
             </p>
           </div>
         </Container>
@@ -489,7 +535,7 @@ export default function HomePage() {
               </div>
             </div>
             <p className="text-center text-[15px] sm:text-[16px] text-carbon/70 leading-relaxed mt-10 max-w-2xl mx-auto">
-              Every one of those homes ships with documents, certs and systems its owner will have questions about. OpenHouse was built inside that market, and is in live use on its founder&rsquo;s own Cork schemes.
+              Every one of those homes ships with documents, certs and systems its owner will have questions about. OpenHouse was built inside that market, for the handover that follows every one of them.
             </p>
             <p className="text-center text-[12px] text-carbon/60 mt-4 max-w-3xl mx-auto leading-relaxed">
               Sources: CSO New Dwelling Completions, Q4 2025; Residential Tenancies Board, Q4 2024 Profile of the Register; SEAI Record Year of Progress 2024.

@@ -507,7 +507,7 @@ export default function HandoverPage() {
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
-              Grounded in what you approved.
+              Grounded in what you uploaded.
             </h2>
             <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed">
               Answers are grounded in the documents you uploaded for that specific home. When the evidence is missing, the assistant says so, logs the gap and escalates to you instead of guessing.

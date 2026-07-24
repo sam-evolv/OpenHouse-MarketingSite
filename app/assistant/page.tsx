@@ -4,6 +4,7 @@ import { ModuleHero } from "@/components/hero/ModuleHero";
 import { HandoverFloatingCards } from "@/components/hero/cards/HandoverCards";
 import { EnergyIntelligenceDemo } from "@/components/interactive/EnergyIntelligenceDemo";
 import { SplitText } from "@/components/effects/SplitText";
+import { AskModesGrid } from "@/components/product/AskModes";
 import heroBackground from "@/attached_assets/stock_images/modern_luxury_apartm_7dec65c9.jpg";
 import {
   Home,
@@ -12,6 +13,8 @@ import {
   Bot,
   Play,
   Send,
+  Mic,
+  Camera,
   ArrowRight,
   Wrench,
   Zap,
@@ -23,9 +26,9 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Property Assistant — A 24/7 AI for Every Home | OpenHouse Ai",
+  title: "Property Assistant — A 24/7 Assistant for every home | OpenHouse Ai",
   description:
-    "Every home OpenHouse hands over comes with its own 24/7 AI assistant — trained on that home's documents and connected to its energy systems. It answers any question, from a bill to a warning light, and helps homeowners run an A-rated home.",
+    "Every home OpenHouse hands over comes with its own 24/7 assistant — grounded in that home's documents and connected to its energy systems. Ask by text, by voice or by photo, from a bill to a warning light, and it answers with the source attached.",
 };
 
 const answers = [
@@ -103,14 +106,14 @@ export default function AssistantPage() {
         }
         title={
           <>
-            A 24/7 AI for{" "}
+            A 24/7 Assistant for{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-400 to-gold">
               every home
-            </span>{" "}
-            you build.
+            </span>
+            .
           </>
         }
-        subtitle="Every home comes with its own assistant, grounded in that home's approved documents. It answers with the source attached, says so when the record can't answer, and helps the homeowner run an efficient, A-rated home."
+        subtitle="Every home comes with its own assistant, grounded in the documents its developer published to it. Ask by text, by voice or by photo. It answers with the source attached, says so when the record can't answer, and helps the homeowner run an efficient, A-rated home."
         primaryCta={{ href: "#energy", label: "See energy intelligence" }}
         secondaryCta={{ href: "/contact", label: "Request a walkthrough" }}
       >
@@ -200,6 +203,8 @@ export default function AssistantPage() {
                     <div className="mt-3 pt-3 border-t border-white/5">
                       <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
                         <span className="text-[11px] text-porcelain/40 flex-1">Ask about your home</span>
+                        <Camera className="w-3.5 h-3.5 text-porcelain/50" aria-hidden="true" />
+                        <Mic className="w-3.5 h-3.5 text-porcelain/50" aria-hidden="true" />
                         <span className="w-6 h-6 rounded-full bg-gold flex items-center justify-center">
                           <Send className="w-3 h-3 text-carbon" aria-hidden="true" />
                         </span>
@@ -259,6 +264,36 @@ export default function AssistantPage() {
               </div>
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* ── 2.5 Three ways in. Text was never the only one: a homeowner at
+             a flashing panel photographs it, and someone up a ladder
+             speaks. ── */}
+      <section className="relative py-24 sm:py-28 bg-carbon overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.04] to-transparent"
+          aria-hidden="true"
+        />
+        <Container>
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4 font-semibold">
+              How a question arrives
+            </p>
+            <h2 className="text-[32px] sm:text-5xl lg:text-[56px] font-bold text-white font-heading leading-[1.05] tracking-[-0.02em] mb-6">
+              Type it, say it, or show it.
+            </h2>
+            <p className="text-[17px] sm:text-xl text-porcelain/75 leading-relaxed">
+              Nobody standing in front of a flashing panel types a model number. They photograph it. Text, speech and camera are three doors into the same home record, and every one of them comes back with the source attached.
+            </p>
+            <div className="mt-6 flex justify-center">
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[12px] font-semibold uppercase tracking-wider text-porcelain/60 border border-white/15 bg-white/5">
+                Illustrative interactions · Example data
+              </span>
+            </div>
+          </div>
+
+          <AskModesGrid className="max-w-6xl mx-auto" />
         </Container>
       </section>
 
@@ -403,10 +438,10 @@ export default function AssistantPage() {
               <span className="text-sm font-medium text-amber-700">Grounded, not guessing</span>
             </div>
             <h2 className="text-[26px] sm:text-3xl lg:text-[32px] font-bold text-carbon font-heading leading-tight mb-6">
-              Grounded in the home&rsquo;s approved information.
+              Grounded in the home&rsquo;s own record.
             </h2>
             <p className="text-[18px] sm:text-lg text-carbon/75 leading-relaxed">
-              Answers come from the home&rsquo;s own record: the documents the developer approved and, where connected, the home&rsquo;s systems. When the evidence is missing, OpenHouse says so, logs the gap and escalates to the developer instead of guessing.
+              Answers come from the home&rsquo;s own record: the documents the developer uploaded and published to it and, where connected, the home&rsquo;s systems. Whether the question arrives as text, as speech or as a photo, the answer comes from the same record. When the evidence is missing, OpenHouse says so, logs the gap and escalates to the developer instead of guessing.
             </p>
           </div>
         </Container>
